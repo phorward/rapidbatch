@@ -1,0 +1,805 @@
+/* -PARSER----------------------------------------------------------------------
+RapidBATCH
+Copyright (C) 2008, 2009 by Phorward Software Technologies, Jan Max Meyer
+http://www.phorward-software.com ++ mail@phorward-software.com
+
+File:	rb6.par
+Author:	Jan Max Meyer
+Usage:	Compiler for the RapidBATCH, version 6, scripting language core
+----------------------------------------------------------------------------- */
+
+#whitespaces				whitespace;
+#lexeme						value ident pointer_varbegin
+							pointer_variable
+							;
+
+// Precedence definitions
+#left						'|';
+#left						'&';
+#left						'=' '!' '>' '<' ">=" "<=";
+#left						'#';
+#left						'+' '-';
+#left						'*' '/' '~';
+
+#default action				[* @@ = @1; *];
+
+// Parser description
+#parser						"RapidBATCH";
+#prefix						"rb";
+#version					"6.0";
+#copyright					"Copyright (C) 2008, 2009 by Phorward Software Technologies, Jan Max Meyer";
+#description				"";
+#language					"C";
+
+// Syntactical adjustments
+#case insensitive keywords	on;
+#lexem separation			on;
+#invalid keyword suffix		'A-Za-z0-9_';
+
+// Prologue definition
+#prologue
+[*
+
+/*
+ * Includes
+ */
+#include "rb_comp.h"
+#ifndef MAKE_PROTOTYPES
+#include "rb_proto.h"
+#endif
+#define WITHDEBUG	0
+
+/*
+ * Global variables
+ */
+long		cur_line;
+symbol*		cur_var_scope;
+symbol*		cur_proc;
+vm_prog 	cur_prog;
+boolean 	cur_is_global_scope	= TRUE;
+
+LIST*		implicit_proc_calls;
+
+REGION		cur_region;
+
+/*
+ * Functions
+ */
+
+*];
+
+/*
+ * Grammar
+ */
+
+// Start symbol
+program$			->	%<vm_addr>
+						[*	@@ = rb_vm_next_addr( &cur_prog, VMC_RESERVE );
+							rb_add_native_function( "getlen", rb_NATIVE_strlen_TEST, TRUE, "v" );
+						*]
+						
+						base_statement*
+						
+						[*	vm_addr		global_vars;
+							rb_comp_backpatch_proc_calls( (symbol*)NULL );
+							
+							global_vars = (vm_addr)rb_symtab_scope_size(
+											cur_var_scope );
+							rb_vm_patch( VM_GET_CODE( &cur_prog, @1 ),
+								VMC_RESERVE, &global_vars );
+
+							rb_vm_gen( &cur_prog, VMC_NOP, (void*)NULL );
+							rb_vm_dump( stderr, &cur_prog );
+							rb_vm_run( &cur_prog );
+						*]
+					;
+
+// General program structure
+
+base_statement		->	statement_or_empty
+
+					| funcdef
+
+					| procdef
+
+					;
+					
+statement_or_empty
+					-> statement
+					
+					[*
+					*]
+
+					
+					| '\n'
+
+					;
+
+statement			->
+					
+					if_block
+
+					| "IF" condition stack_jmp:jmp statement
+						[*
+							rb_vm_patch_jmp( &cur_prog, VMC_JMPFALSE, @jmp );
+						*]
+					
+					| "REPEAT" stack_region_for_iteration:prev_region '\n'
+							statement_or_empty*
+						"UNTIL" stack_next_addr:cont_target
+							condition stack_jmp:jmp
+								stack_next_addr:break_target '\n'
+						
+						[*
+							rb_vm_patch( VM_GET_CODE( &cur_prog, @jmp ),
+								VMC_JMPFALSE, &( cur_region.begin ) );
+
+							rb_comp_region_close( &@prev_region,
+								@break_target, @cont_target );
+						*]
+					
+					| "BREAK" '\n'
+						[*
+							 rb_comp_region_branch( FALSE );
+						*]
+					
+					| "CONT" '\n'
+						[*
+							rb_comp_region_branch( TRUE );
+						*]
+					
+					| "RET" '\n'
+						[*	int	idx;
+						
+							if( !cur_proc )
+							{
+								printf( "Error: RET used not within "
+										"a procedure/function\n" );
+							}
+							else
+							{
+								if( cur_proc->function )
+								{
+									/* We push an empty string onto
+										the stack, as function return
+											result */
+									idx	= rb_vm_str( &cur_prog, "" );
+									rb_vm_gen( &cur_prog,
+											VMC_PUSHSTR, (void*)&idx );
+								}
+								
+								rb_comp_proc_return( cur_proc );
+							}
+						*]
+						
+					| "RET" expression '\n'
+						[*	if( !cur_proc )
+							{
+								printf( "Error: RET used not within "
+										"a procedure/function\n" );
+							}
+							else if( !( cur_proc->function ) )
+							{
+								printf( "Error: Return value not "
+										"allowed in procedure!\n" );
+							}
+							else
+								rb_comp_proc_return( cur_proc );
+						*]
+					
+					| "DEC" dec_parms '\n'
+					
+					| "RESET" reset_parms '\n'
+					
+					| "GOSUB" mark '\n'
+						[* printf( "stmt: Gosub\n" ); *]
+					
+					| "GOTO" mark '\n'
+						[* printf( "stmt: Goto\n" ); *]
+					
+					| "RESUME" '\n'
+						[* printf( "stmt: Resume\n" ); *]
+					
+					| "LET"? variable_address '=' expression '\n'
+						[*
+							rb_vm_gen( &cur_prog, VMC_STORE, (void*)NULL );
+						*]
+
+					| '%' ident '\n'
+						[*
+							//if( rb_symtab_find_in_scope( 
+						*]
+					
+					| func_call '\n'
+						[**]
+					
+					| proc_call '\n'
+						[**]
+						
+					| #error
+					
+					;
+					
+if_block			->	"IF" condition stack_jmp_false:jmp '\n'
+							statement_or_empty*
+						elseif_block?:next
+							"ENDIF" '\n'
+						[*
+							vm_addr		jump;
+
+							if( @next )
+							{
+								jump = VM_NEXT_OF( &cur_prog, @next );
+								rb_vm_patch( VM_GET_CODE( &cur_prog, @jmp ),
+									VMC_JMPFALSE, &jump );
+
+								rb_vm_patch( VM_GET_CODE( &cur_prog, @next ),
+									*VM_GET_CODE( &cur_prog, @next ),
+										&( cur_prog.code_cnt ) );
+							}
+							else
+								rb_vm_patch( VM_GET_CODE( &cur_prog, @jmp ),
+									*VM_GET_CODE( &cur_prog, @jmp ),
+										&( cur_prog.code_cnt ) );
+						*]
+					;
+									
+elseif_block<vm_addr>
+					->	"ELSEIF" stack_jmp:skip condition
+							stack_jmp_false:jmp '\n'
+								statement_or_empty*
+							elseif_block?:next
+
+						[*
+							vm_addr		jump;
+
+							if( @next )
+							{
+								jump = VM_NEXT_OF( &cur_prog, @next );
+								rb_vm_patch( VM_GET_CODE( &cur_prog, @jmp ),
+									VMC_JMPFALSE, &jump );
+
+								rb_vm_patch( VM_GET_CODE( &cur_prog, @next ),
+									*VM_GET_CODE( &cur_prog, @next ),
+										&( cur_prog.code_cnt ) );
+							}
+							else
+								rb_vm_patch( VM_GET_CODE( &cur_prog, @jmp ),
+									*VM_GET_CODE( &cur_prog, @jmp ),
+										&( cur_prog.code_cnt ) );
+
+							@@ = @skip;
+						*]
+						
+					|	"ELSE" stack_jmp:skip '\n'
+							statement_or_empty*
+
+						[*
+							@@ = @skip;
+						*]
+					;
+					
+mark				-> expression		[**]
+					| ident				[**]
+					;
+
+// Variable declarations
+dec_parms			-> variable_address ',' variable_address
+						[*
+							rb_vm_gen( &cur_prog, VMC_INIT, (void*)NULL );
+						*]
+					
+					| variable_address
+						[*
+							rb_vm_gen( &cur_prog, VMC_INIT, (void*)NULL );
+						*]
+					;
+
+// Variable reset/free
+reset_parms			-> variable_address ',' variable_address
+						[*
+							rb_vm_gen( &cur_prog, VMC_FREE, (void*)NULL );
+						*]
+					
+					| variable_address
+						[*
+							rb_vm_gen( &cur_prog, VMC_FREE, (void*)NULL );
+						*]
+					;
+				
+// Procedure- and Function declarations
+funcdef_entry
+	<symbol*>		->  ident:ident procparmdef:parameter '\n'
+
+						[*	@@ = rb_comp_proc_header( @ident, TRUE, @parameter );
+						*]
+					;
+
+funcdef				-> "FUNC" stack_jmp:jmp stack_var_scope:prev_scope
+							funcdef_entry:func
+								stack_last_parm:last_param
+									statement_or_empty* "ENDFUNC" '\n'
+
+						[*
+							rb_comp_proc_complete( @func,
+								@last_param, @prev_scope, @jmp );
+						*]
+					;
+
+procdef_entry
+	<symbol*>		-> ident:ident procparmdef:parameter '\n'
+
+						[*	@@ = rb_comp_proc_header( @ident, FALSE, @parameter );
+						*]
+					;
+
+procdef				-> "PROC" stack_jmp:jmp stack_var_scope:prev_scope
+							procdef_entry:proc
+								stack_last_parm:last_param
+									statement_or_empty* "ENDPROC" '\n'
+
+						[*
+							rb_comp_proc_complete( @proc,
+								@last_param, @prev_scope, @jmp );
+						*]
+					;
+
+procparmdef<LIST*>
+					-> ':' procparms
+						[*	@@ = @2; *]
+					|	
+						[*	@@ = (LIST*)NULL; *]
+					;
+					
+procparms<LIST*>	-> procparms ',' procparm
+						[*	@@ = list_push( @1, (void*)@3 ); *]
+
+					| procparm
+						[*	@@ = list_push( (LIST*)NULL, (void*)@1 ); *]
+					;
+					
+procparm<symbol*>	-> simple_variable
+						[*	@@ = rb_symtab_new( @1.varname, SYM_VAR );
+							cur_var_scope = rb_symtab_engage_scope(
+								cur_var_scope, @@ );
+
+							rb_free( @1.varname );
+							
+							@@->global = FALSE;
+							@@->defined = TRUE;
+							@@->pointer = @1.pointer;
+						*]
+					;
+
+// Variables
+varname_tail<uchar*>
+					-> varname_tail 'A-Za-z0-9_ '
+						[* @@ = rb_str_append_char( @1, @2 );
+						*]
+					| 'A-Za-z0-9_ '
+						[* @@ = rb_str_append_char( (uchar*)NULL, @1 );
+						*]
+					;
+					
+varname<uchar*>		-> 'A-Za-z_ ' varname_tail?
+						[*	@@ = rb_str_append_char( (uchar*)NULL, @1 );
+							@@ = rb_str_append_str( @@, @2, TRUE );
+						*]
+					;
+
+varindex<char>		->	varindex ','? expression
+						[* @@ = @1 + 1; *]
+
+					|	expression
+						[* @@ = 1; *]
+					;
+					
+pointer_varbegin
+	<uchar*>		-> '*' varname
+						[* @@ = @2; *]
+					;
+
+simple_variable
+	<VAR_INFO>		-> '[' '*'? varname:name ']'
+						
+							[*
+								@@.varname = @name;
+
+								if( @2 == '*' )
+									@@.pointer = TRUE;
+								else
+									@@.pointer = FALSE;
+							*]
+					;
+					
+complex_variable
+	<VAR_INFO>		->	'[' '*'? varname:name ':'? varindex:index ']'
+
+							[*	/* Here, the array index depth is pushed;
+									This is required by the VMC_LOAD_ARRAY */
+								rb_vm_gen( &cur_prog, VMC_PUSHCHR, &@index );
+								@@.varname = @name;
+								
+								if( @2 == '*' )
+									@@.pointer = TRUE;
+								else
+									@@.pointer = FALSE;
+							*]
+					;
+
+pointer_variable
+	<uchar*>		-> '[' pointer_varbegin ']'
+						[* @@ = @2; *]
+					;
+					
+variable
+	<VAR_INFO_SYM>	-> 	simple_variable
+
+						[*	char null_depth	= 0;
+
+							@@.varsym = rb_comp_get_symbol( @1.varname, SYM_VAR );							
+							@@.varsym->used = TRUE;
+							rb_free( @1.varname );
+							
+							/* We push a 0 as indicator that no variable
+								dimensions are accessed here! */
+							rb_vm_gen( &cur_prog, VMC_PUSHCHR, &null_depth );
+							
+							@@.pointer = @1.pointer;
+						*]
+						
+					| complex_variable
+					
+						[*	@@.varsym = rb_comp_get_symbol( @1.varname, SYM_VAR );
+							@@.varsym->used = TRUE;
+							rb_free( @1.varname );
+							
+							@@.pointer = @1.pointer;
+						*]
+					;
+					
+variable_address
+	<VAR_INFO_SYM>	->	variable
+					
+						[*
+							if( !( @1.varsym->global ) )
+							{
+								long	addr = @1.varsym->offset._long;
+								
+								if( addr >= 0 )
+									addr += VM_ACTREC_SIZE;
+								
+								rb_vm_gen( &cur_prog, VMC_PUSHINT, &addr );
+								rb_vm_gen( &cur_prog, VMC_PUSHFRM,
+									(void*)NULL );
+								rb_vm_gen( &cur_prog, VMC_ADD,
+									(void*)NULL );
+							}
+							else
+							{
+								rb_vm_gen( &cur_prog, VMC_PUSHINT,
+									&( @1.varsym->offset._long ) );
+							}
+							
+							@@ = @1;
+						*]
+					;
+
+
+// Function/procedure calls
+in_expr_func_call	->	ident:procname '(' parameters:parameters ')'
+						
+						[*	rb_comp_proc_call( @procname, TRUE, @parameters,
+								(uchar*)NULL, cur_line );
+						*]
+
+					;
+
+func_call			->	ident:procname variable_address '='
+							parameters:parameters
+						
+						[*	rb_comp_proc_call( @procname, TRUE, @parameters,
+								(uchar*)NULL, cur_line );
+							rb_vm_gen( &cur_prog, VMC_STORE, (void*)NULL );
+						*]
+					;
+
+proc_call			->	ident:procname parameters:parameters
+						
+						[*	boolean			call_as_func	= FALSE;
+							symbol*			sym;
+							struct param*	parm;
+							
+							/* Special case function call:
+								Function with no parameters 
+							*/
+							if( ( sym = rb_symtab_find( @procname,
+									SYM_PROC ) )
+								&& list_count( @parameters ) == 1 )
+							{
+								parm = (struct param*)list_access(
+										@parameters );
+								fprintf( stderr, "%p->\n", parm->var );
+								if( parm->var && sym->function )
+								{
+									call_as_func = TRUE;
+									
+									rb_vm_patch( VM_GET_CODE( &cur_prog,
+										parm->push_code ), VMC_NOP,
+											(void*)NULL );
+									
+									@parameters = list_free(
+										@parameters );
+									rb_free( parm );
+								}
+							}
+
+							rb_comp_proc_call( @procname, call_as_func,
+								@parameters, (uchar*)NULL, cur_line );
+							
+							if( call_as_func )
+							{
+								rb_vm_gen( &cur_prog, VMC_STORE, (void*)NULL );
+							}
+						*]
+					;
+
+parameters<LIST*>	->	 parameter_list
+						[* @@ = @1; *]
+						
+					|
+
+						[* @@ = (LIST*)NULL; *]
+					;
+
+parameter_list<LIST*>
+					->	parameters ',' expression
+					
+						[*	@@ = list_push( @1,
+								(void*)rb_memdup( &@3,
+									sizeof( struct param ) ) );
+						*]
+					
+					|	expression
+
+						[*	@@ = list_push( (LIST*)NULL,
+								(void*)rb_memdup( &@1,
+									sizeof( struct param ) ) );
+						*]
+					;
+
+// Expressions
+value<vm_addr>		->	'\'' string_content '\''
+						[*	vm_addr	idx	= rb_vm_str( &cur_prog, @2 );
+							@@ = rb_vm_gen( &cur_prog, VMC_PUSHSTR, (void*)&idx );
+						*]
+
+					|	integer
+						[* 	@@ = rb_vm_gen( &cur_prog, VMC_PUSHINT, (void*)&@1 );
+						*]
+
+					|	float
+						[*
+							double d;
+							d = atof( @1 );
+							rb_free( @1 );
+							
+							@@ = rb_vm_gen( &cur_prog, VMC_PUSHDBL, (void*)&d );
+						*]
+					;
+					
+integer<long>	-> 	integer '0-9'
+						[*	@@ = @1 * 10 + @2 - '0'; *]
+					
+					|	'0-9'
+						[*	@@ = @1 - '0'; *]
+					
+					;
+
+float<uchar*>	-> 	float_opt '.' integer
+						[*	@@ = rb_str_append_char( @1, '.' );
+							@@ = rb_str_append_str( @@, @3, TRUE );
+						*]
+
+					|	integer '.' float_opt
+						[*	@@ = rb_str_append_char( @1, '.' );
+							@@ = rb_str_append_str( @@, @3, TRUE );
+						*]
+					;
+
+float_opt
+<uchar*>			->	integer
+					
+					|
+						[*	@@ = (uchar*)NULL; *]
+					;
+
+string_content
+<uchar*>			-> string_content !'\''
+						[*	@@ = rb_str_append_char( @1, (uchar)@2 ); *]
+					
+					|
+						[*	@@ = (uchar*)NULL; *]
+					;
+
+factor
+<struct param>	->	value
+						[*
+							@@.var = (symbol*)NULL;
+							@@.push_code = @1;
+						*]
+					
+					|	variable_address
+						[*	
+							if( @1.pointer )
+							{
+								@@.push_code = rb_vm_gen( &cur_prog,
+									VMC_PTRLOAD, (void*)NULL );
+								@@.ptrload = TRUE;
+							}
+							else
+							{
+								@@.push_code = rb_vm_gen( &cur_prog,
+									VMC_LOAD, (void*)NULL );
+								@@.ptrload = FALSE;
+							}
+							
+							@@.var = @1.varsym;
+						*]
+					
+					|	in_expr_func_call
+						[*
+							@@.var = (symbol*)NULL;; /* Erstmal nicht! */
+						*]
+
+					|	'(' expression ')'
+						[*	@@ = @2; *]					
+					;
+
+expression
+<struct param>	-> 	expression '#' expression
+						[*	rb_vm_gen( &cur_prog, VMC_JOIN, (void*)NULL );
+							@@.var = (symbol*)NULL;
+						*]
+
+					| expression '+' expression
+						[* 	rb_vm_gen( &cur_prog, VMC_ADD, (void*)NULL );
+							@@.var = (symbol*)NULL;
+						*]
+
+					| expression '-' expression
+						[* 	rb_vm_gen( &cur_prog, VMC_SUB, (void*)NULL );
+							@@.var = (symbol*)NULL;
+						*]
+
+					| expression '*' expression
+						[*	rb_vm_gen( &cur_prog, VMC_MUL, (void*)NULL );
+							@@.var = (symbol*)NULL;
+						*]
+
+					| expression '/' expression
+						[* 	rb_vm_gen( &cur_prog, VMC_DIV, (void*)NULL );
+							@@.var = (symbol*)NULL;
+						*]
+
+					| expression '~' expression
+						[* 	rb_vm_gen( &cur_prog, VMC_MOD, (void*)NULL );
+							@@.var = (symbol*)NULL;
+						*]
+						
+					| '!' expression
+						[* 	rb_vm_gen( &cur_prog, VMC_NOT, (void*)NULL );
+							@@.var = (symbol*)NULL;
+						*]
+					| factor
+					;
+					
+condition			-> condition '|' condition
+						[* rb_vm_gen( &cur_prog, VMC_LOR, (void*)NULL ); *]
+
+					| condition '&' condition
+						[* rb_vm_gen( &cur_prog, VMC_LAND, (void*)NULL ); *]
+
+					| condition '=' condition
+						[* rb_vm_gen( &cur_prog, VMC_EQU, (void*)NULL ); *]
+
+					| condition '!' condition
+						[* rb_vm_gen( &cur_prog, VMC_NEQ, (void*)NULL ); *]
+
+					| condition '>' condition
+						[* rb_vm_gen( &cur_prog, VMC_GRT, (void*)NULL ); *]
+
+					| condition '<' condition
+						[* rb_vm_gen( &cur_prog, VMC_LWR, (void*)NULL ); *]
+
+					| condition ">=" condition
+						[* rb_vm_gen( &cur_prog, VMC_GRE, (void*)NULL ); *]
+
+					| condition "<=" condition
+						[* rb_vm_gen( &cur_prog, VMC_LWE, (void*)NULL ); *]
+
+					| expression
+						[**]
+					;
+
+// Multiple used productions
+ident<uchar*>	->	'A-Za-z_' ident_tail
+						[*	@@ = rb_str_append_char( (uchar*)NULL, @1 );
+							@@ = rb_str_append_str( @@, @2, TRUE );
+						*]
+					;
+
+ident_tail
+<uchar*>			->	ident_tail 'A-Za-z0-9_'
+						[*	@@ = rb_str_append_char( @1, @2 ); *]
+					
+					|
+						[* 	@@ = (uchar*)NULL; *]
+					;
+
+// Whitespace Definitions
+whitespace			->	' \t\r\v'
+					| '_' ' \t\r\v'* '\n'
+					| "REM" !'\n'* '\n'
+					;
+
+// Code-generator and symbol table management-related nonterms
+
+stack_var_scope
+<symbol*>			->	//This will save the current variable scope pointer
+						//on the stack and reset it for a new scope.	
+						[*	@@ = cur_var_scope;
+							cur_var_scope = (symbol*)NULL;
+						*]
+					;
+
+stack_last_parm
+<symbol*>			->	//This will get the last symbol of the scope
+						//and put it onto the stack. It is used to
+						//save a pointer to the end of the parameter
+						//list of a function.
+						[*	symbol*		list;
+							for( list = cur_var_scope;
+								list && list->scope_next;
+									list = list->scope_next )
+								/* NOP */
+								;
+							
+							@@ = list;
+						*]
+					;
+
+stack_current_line
+<size_t>			->	//This will stack the current line number ;)
+						[*	@@ = cur_line;	*]
+					;
+
+stack_next_addr		->	//This stacks the next upcoming address
+						[*	@@ = cur_prog.code_cnt; *]
+					;
+					
+stack_jmp
+<vm_addr>			->	//Perform a jump
+						[*	@@ = rb_vm_next_addr( &cur_prog, VMC_JMP );		*]
+					;
+
+stack_jmp_false
+<vm_addr>			->	//Perform a jump on false condition result
+						[*	@@ = rb_vm_next_addr( &cur_prog, VMC_JMPFALSE );*]
+					;
+					
+stack_jmp_true
+<vm_addr>			->	//Perform a jump on true condition result
+						[*	@@ = rb_vm_next_addr( &cur_prog, VMC_JMPTRUE );	*]
+					;
+					
+stack_region_for_iteration
+<REGION>			->	//Stack current region, setup new region for iterations
+						[*
+							memcpy( &@@, &cur_region, sizeof( REGION ) );
+
+							memset( &cur_region, 0, sizeof( REGION ) );
+							cur_region.type = REGION_ITERATION;
+							cur_region.begin = cur_prog.code_cnt;
+						*]
+					;

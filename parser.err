@@ -1,0 +1,21 @@
+
+
+  Warning: No end of input token defined, assuming "\0"
+
+
+  Warning: Non-terminal "cur_var_scope" is used but never defined
+
+  Warning: Non-terminal "stack_current_scope" is used but never defined
+
+  Warning: Non-terminal "stack_cur_var_scope" is defined but never used
+
+
+  Warning: State 131: Shift-reduce conflict on lookahead: ')'
+	  expression -> expression .#' expression 
+	  expression -> expression .+' expression 
+	  expression -> expression .-' expression 
+	  expression -> expression .*' expression 
+	  expression -> expression ./' expression 
+	  expression -> expression .~' expression 
+	  parameters -> expression .      { ')' ',' }
+	  factor -> (' expression .)' 

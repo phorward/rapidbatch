@@ -1,0 +1,318 @@
+Phorward LALR(1) Compiler-Compiler v0.10 stable [build Jun 13 2008 22:40:23]
+Copyright (C) 2006-2008 by Phorward Software, Jan Max Meyer
+http://www.phorward-software.com ++ mail@phorward-software.com
+!!!THIS IS A DEVELOPMENT VERSION: NOT FOR PUBLIC RELEASE!!!
+
+Parsing source grammar...Done
+Goal symbol detection...Succeeded
+Setting up single goal symbol...
+
+  Warning: No end of input token defined, assuming "\0"
+
+Rewriting grammar...Done
+Fixing precedences...Done
+Computing FIRST-sets...Done
+Recursive rule detection...Done
+Building parse tables...
+
+  Warning: State 30: Shift-reduce conflict on lookahead >0-9<
+	  string -> 0-9+ .   { '_' "REM" ' ' '\9\11\13' '\n' '#' '+' '-' '*' '/' '~' "IF" "REPEAT" "BREAK" "CONT" "RET" "DEC" "RESET" "GOSUB" "GOTO" "RESUME" '%' "FUNC" "PROC" '[' ''' '(' '0-9' 'A-Za-z' '.' '|' '&' '=' '!' '>' '<' ">=" "<=" ',' ')' ']' }
+	  0-9+ -> 0-9+ . '0-9'
+	  float -> 0-9+ . '.'0-9* 
+	  0-9* -> 0-9+ .   { '.' }
+
+  Warning: State 30: Shift-reduce conflict on lookahead >.<
+	  string -> 0-9+ .   { '_' "REM" ' ' '\9\11\13' '\n' '#' '+' '-' '*' '/' '~' "IF" "REPEAT" "BREAK" "CONT" "RET" "DEC" "RESET" "GOSUB" "GOTO" "RESUME" '%' "FUNC" "PROC" '[' ''' '(' '0-9' 'A-Za-z' '.' '|' '&' '=' '!' '>' '<' ">=" "<=" ',' ')' ']' }
+	  0-9+ -> 0-9+ . '0-9'
+	  float -> 0-9+ . '.'0-9* 
+	  0-9* -> 0-9+ .   { '.' }
+
+  Warning: State 46: Shift-reduce conflict on lookahead >[<
+	  procedurecall -> identifier' .parameters 
+	  parameters -> .   { '\n' '#' '+' '-' '*' '/' '~' "IF" "REPEAT" "BREAK" "CONT" "RET" "DEC" "RESET" "GOSUB" "GOTO" "RESUME" '%' "FUNC" "PROC" '[' ''' '(' '0-9' 'A-Za-z' '_' '.' '|' '&' '=' '!' '>' '<' ">=" "<=" ',' ')' ']' }
+	  0-9* -> .   { '.' }
+
+  Warning: State 46: Shift-reduce conflict on lookahead >'<
+	  procedurecall -> identifier' .parameters 
+	  parameters -> .   { '\n' '#' '+' '-' '*' '/' '~' "IF" "REPEAT" "BREAK" "CONT" "RET" "DEC" "RESET" "GOSUB" "GOTO" "RESUME" '%' "FUNC" "PROC" '[' ''' '(' '0-9' 'A-Za-z' '_' '.' '|' '&' '=' '!' '>' '<' ">=" "<=" ',' ')' ']' }
+	  0-9* -> .   { '.' }
+
+  Warning: State 46: Shift-reduce conflict on lookahead >(<
+	  procedurecall -> identifier' .parameters 
+	  parameters -> .   { '\n' '#' '+' '-' '*' '/' '~' "IF" "REPEAT" "BREAK" "CONT" "RET" "DEC" "RESET" "GOSUB" "GOTO" "RESUME" '%' "FUNC" "PROC" '[' ''' '(' '0-9' 'A-Za-z' '_' '.' '|' '&' '=' '!' '>' '<' ">=" "<=" ',' ')' ']' }
+	  0-9* -> .   { '.' }
+
+  Warning: State 46: Shift-reduce conflict on lookahead >0-9<
+	  procedurecall -> identifier' .parameters 
+	  parameters -> .   { '\n' '#' '+' '-' '*' '/' '~' "IF" "REPEAT" "BREAK" "CONT" "RET" "DEC" "RESET" "GOSUB" "GOTO" "RESUME" '%' "FUNC" "PROC" '[' ''' '(' '0-9' 'A-Za-z' '_' '.' '|' '&' '=' '!' '>' '<' ">=" "<=" ',' ')' ']' }
+	  0-9* -> .   { '.' }
+
+  Warning: State 46: Shift-reduce conflict on lookahead >A-Za-z<
+	  procedurecall -> identifier' .parameters 
+	  parameters -> .   { '\n' '#' '+' '-' '*' '/' '~' "IF" "REPEAT" "BREAK" "CONT" "RET" "DEC" "RESET" "GOSUB" "GOTO" "RESUME" '%' "FUNC" "PROC" '[' ''' '(' '0-9' 'A-Za-z' '_' '.' '|' '&' '=' '!' '>' '<' ">=" "<=" ',' ')' ']' }
+	  0-9* -> .   { '.' }
+
+  Warning: State 46: Shift-reduce conflict on lookahead >_<
+	  procedurecall -> identifier' .parameters 
+	  parameters -> .   { '\n' '#' '+' '-' '*' '/' '~' "IF" "REPEAT" "BREAK" "CONT" "RET" "DEC" "RESET" "GOSUB" "GOTO" "RESUME" '%' "FUNC" "PROC" '[' ''' '(' '0-9' 'A-Za-z' '_' '.' '|' '&' '=' '!' '>' '<' ">=" "<=" ',' ')' ']' }
+	  0-9* -> .   { '.' }
+
+  Warning: State 80: Shift-reduce conflict on lookahead >#<
+	  parameters -> expression .   { '\n' '#' '+' '-' '*' '/' '~' "IF" "REPEAT" "BREAK" "CONT" "RET" "DEC" "RESET" "GOSUB" "GOTO" "RESUME" '%' "FUNC" "PROC" '[' ''' '(' '0-9' 'A-Za-z' '_' '.' '|' '&' '=' '!' '>' '<' ">=" "<=" ',' ')' ']' }
+	  expression -> expression .#' expression 
+	  expression -> expression .+' expression 
+	  expression -> expression .-' expression 
+	  expression -> expression .*' expression 
+	  expression -> expression ./' expression 
+	  expression -> expression .~' expression 
+
+  Warning: State 80: Shift-reduce conflict on lookahead >+<
+	  parameters -> expression .   { '\n' '#' '+' '-' '*' '/' '~' "IF" "REPEAT" "BREAK" "CONT" "RET" "DEC" "RESET" "GOSUB" "GOTO" "RESUME" '%' "FUNC" "PROC" '[' ''' '(' '0-9' 'A-Za-z' '_' '.' '|' '&' '=' '!' '>' '<' ">=" "<=" ',' ')' ']' }
+	  expression -> expression .#' expression 
+	  expression -> expression .+' expression 
+	  expression -> expression .-' expression 
+	  expression -> expression .*' expression 
+	  expression -> expression ./' expression 
+	  expression -> expression .~' expression 
+
+  Warning: State 80: Shift-reduce conflict on lookahead >-<
+	  parameters -> expression .   { '\n' '#' '+' '-' '*' '/' '~' "IF" "REPEAT" "BREAK" "CONT" "RET" "DEC" "RESET" "GOSUB" "GOTO" "RESUME" '%' "FUNC" "PROC" '[' ''' '(' '0-9' 'A-Za-z' '_' '.' '|' '&' '=' '!' '>' '<' ">=" "<=" ',' ')' ']' }
+	  expression -> expression .#' expression 
+	  expression -> expression .+' expression 
+	  expression -> expression .-' expression 
+	  expression -> expression .*' expression 
+	  expression -> expression ./' expression 
+	  expression -> expression .~' expression 
+
+  Warning: State 80: Shift-reduce conflict on lookahead >*<
+	  parameters -> expression .   { '\n' '#' '+' '-' '*' '/' '~' "IF" "REPEAT" "BREAK" "CONT" "RET" "DEC" "RESET" "GOSUB" "GOTO" "RESUME" '%' "FUNC" "PROC" '[' ''' '(' '0-9' 'A-Za-z' '_' '.' '|' '&' '=' '!' '>' '<' ">=" "<=" ',' ')' ']' }
+	  expression -> expression .#' expression 
+	  expression -> expression .+' expression 
+	  expression -> expression .-' expression 
+	  expression -> expression .*' expression 
+	  expression -> expression ./' expression 
+	  expression -> expression .~' expression 
+
+  Warning: State 80: Shift-reduce conflict on lookahead >/<
+	  parameters -> expression .   { '\n' '#' '+' '-' '*' '/' '~' "IF" "REPEAT" "BREAK" "CONT" "RET" "DEC" "RESET" "GOSUB" "GOTO" "RESUME" '%' "FUNC" "PROC" '[' ''' '(' '0-9' 'A-Za-z' '_' '.' '|' '&' '=' '!' '>' '<' ">=" "<=" ',' ')' ']' }
+	  expression -> expression .#' expression 
+	  expression -> expression .+' expression 
+	  expression -> expression .-' expression 
+	  expression -> expression .*' expression 
+	  expression -> expression ./' expression 
+	  expression -> expression .~' expression 
+
+  Warning: State 80: Shift-reduce conflict on lookahead >~<
+	  parameters -> expression .   { '\n' '#' '+' '-' '*' '/' '~' "IF" "REPEAT" "BREAK" "CONT" "RET" "DEC" "RESET" "GOSUB" "GOTO" "RESUME" '%' "FUNC" "PROC" '[' ''' '(' '0-9' 'A-Za-z' '_' '.' '|' '&' '=' '!' '>' '<' ">=" "<=" ',' ')' ']' }
+	  expression -> expression .#' expression 
+	  expression -> expression .+' expression 
+	  expression -> expression .-' expression 
+	  expression -> expression .*' expression 
+	  expression -> expression ./' expression 
+	  expression -> expression .~' expression 
+
+  Warning: State 81: Shift-reduce conflict on lookahead >,<
+	  parameters -> parameters .,' expression 
+	  procedurecall -> identifier' parameters .   { '\n' '#' '+' '-' '*' '/' '~' "IF" "REPEAT" "BREAK" "CONT" "RET" "DEC" "RESET" "GOSUB" "GOTO" "RESUME" '%' "FUNC" "PROC" '[' ''' '(' '0-9' 'A-Za-z' '_' '.' '|' '&' '=' '!' '>' '<' ">=" "<=" ',' ')' ']' }
+
+  Warning: State 97: Shift-reduce conflict on lookahead >0-9<
+	  0-9+ -> 0-9+ . '0-9'
+	  float -> 0-9*  '.'0-9+ .   { '_' "REM" ' ' '\9\11\13' '\n' '#' '+' '-' '*' '/' '~' "IF" "REPEAT" "BREAK" "CONT" "RET" "DEC" "RESET" "GOSUB" "GOTO" "RESUME" '%' "FUNC" "PROC" '[' ''' '(' '0-9' 'A-Za-z' '.' '|' '&' '=' '!' '>' '<' ">=" "<=" ',' ')' ']' }
+
+  Warning: State 105: Shift-reduce conflict on lookahead >IF<
+	  statement -> \n' .   { '\0' "IF" "REPEAT" "BREAK" "CONT" "RET" "DEC" "RESET" "GOSUB" "GOTO" "RESUME" '%' '\n' "FUNC" "PROC" '[' ''' '(' '0-9' 'A-Za-z' '_' '.' "UNTIL" "ENDIF" "ELSE" "ELSEIF" "ENDPROC" "ENDFUNC" }
+	  statement -> IF' condition \n' .if_block ENDIF' \n' 
+	  stmts -> .   { "ENDIF" "ELSE" "ELSEIF" }
+	  0-9* -> .   { '.' }
+
+  Warning: State 105: Shift-reduce conflict on lookahead >REPEAT<
+	  statement -> \n' .   { '\0' "IF" "REPEAT" "BREAK" "CONT" "RET" "DEC" "RESET" "GOSUB" "GOTO" "RESUME" '%' '\n' "FUNC" "PROC" '[' ''' '(' '0-9' 'A-Za-z' '_' '.' "UNTIL" "ENDIF" "ELSE" "ELSEIF" "ENDPROC" "ENDFUNC" }
+	  statement -> IF' condition \n' .if_block ENDIF' \n' 
+	  stmts -> .   { "ENDIF" "ELSE" "ELSEIF" }
+	  0-9* -> .   { '.' }
+
+  Warning: State 105: Shift-reduce conflict on lookahead >BREAK<
+	  statement -> \n' .   { '\0' "IF" "REPEAT" "BREAK" "CONT" "RET" "DEC" "RESET" "GOSUB" "GOTO" "RESUME" '%' '\n' "FUNC" "PROC" '[' ''' '(' '0-9' 'A-Za-z' '_' '.' "UNTIL" "ENDIF" "ELSE" "ELSEIF" "ENDPROC" "ENDFUNC" }
+	  statement -> IF' condition \n' .if_block ENDIF' \n' 
+	  stmts -> .   { "ENDIF" "ELSE" "ELSEIF" }
+	  0-9* -> .   { '.' }
+
+  Warning: State 105: Shift-reduce conflict on lookahead >CONT<
+	  statement -> \n' .   { '\0' "IF" "REPEAT" "BREAK" "CONT" "RET" "DEC" "RESET" "GOSUB" "GOTO" "RESUME" '%' '\n' "FUNC" "PROC" '[' ''' '(' '0-9' 'A-Za-z' '_' '.' "UNTIL" "ENDIF" "ELSE" "ELSEIF" "ENDPROC" "ENDFUNC" }
+	  statement -> IF' condition \n' .if_block ENDIF' \n' 
+	  stmts -> .   { "ENDIF" "ELSE" "ELSEIF" }
+	  0-9* -> .   { '.' }
+
+  Warning: State 105: Shift-reduce conflict on lookahead >RET<
+	  statement -> \n' .   { '\0' "IF" "REPEAT" "BREAK" "CONT" "RET" "DEC" "RESET" "GOSUB" "GOTO" "RESUME" '%' '\n' "FUNC" "PROC" '[' ''' '(' '0-9' 'A-Za-z' '_' '.' "UNTIL" "ENDIF" "ELSE" "ELSEIF" "ENDPROC" "ENDFUNC" }
+	  statement -> IF' condition \n' .if_block ENDIF' \n' 
+	  stmts -> .   { "ENDIF" "ELSE" "ELSEIF" }
+	  0-9* -> .   { '.' }
+
+  Warning: State 105: Shift-reduce conflict on lookahead >DEC<
+	  statement -> \n' .   { '\0' "IF" "REPEAT" "BREAK" "CONT" "RET" "DEC" "RESET" "GOSUB" "GOTO" "RESUME" '%' '\n' "FUNC" "PROC" '[' ''' '(' '0-9' 'A-Za-z' '_' '.' "UNTIL" "ENDIF" "ELSE" "ELSEIF" "ENDPROC" "ENDFUNC" }
+	  statement -> IF' condition \n' .if_block ENDIF' \n' 
+	  stmts -> .   { "ENDIF" "ELSE" "ELSEIF" }
+	  0-9* -> .   { '.' }
+
+  Warning: State 105: Shift-reduce conflict on lookahead >RESET<
+	  statement -> \n' .   { '\0' "IF" "REPEAT" "BREAK" "CONT" "RET" "DEC" "RESET" "GOSUB" "GOTO" "RESUME" '%' '\n' "FUNC" "PROC" '[' ''' '(' '0-9' 'A-Za-z' '_' '.' "UNTIL" "ENDIF" "ELSE" "ELSEIF" "ENDPROC" "ENDFUNC" }
+	  statement -> IF' condition \n' .if_block ENDIF' \n' 
+	  stmts -> .   { "ENDIF" "ELSE" "ELSEIF" }
+	  0-9* -> .   { '.' }
+
+  Warning: State 105: Shift-reduce conflict on lookahead >GOSUB<
+	  statement -> \n' .   { '\0' "IF" "REPEAT" "BREAK" "CONT" "RET" "DEC" "RESET" "GOSUB" "GOTO" "RESUME" '%' '\n' "FUNC" "PROC" '[' ''' '(' '0-9' 'A-Za-z' '_' '.' "UNTIL" "ENDIF" "ELSE" "ELSEIF" "ENDPROC" "ENDFUNC" }
+	  statement -> IF' condition \n' .if_block ENDIF' \n' 
+	  stmts -> .   { "ENDIF" "ELSE" "ELSEIF" }
+	  0-9* -> .   { '.' }
+
+  Warning: State 105: Shift-reduce conflict on lookahead >GOTO<
+	  statement -> \n' .   { '\0' "IF" "REPEAT" "BREAK" "CONT" "RET" "DEC" "RESET" "GOSUB" "GOTO" "RESUME" '%' '\n' "FUNC" "PROC" '[' ''' '(' '0-9' 'A-Za-z' '_' '.' "UNTIL" "ENDIF" "ELSE" "ELSEIF" "ENDPROC" "ENDFUNC" }
+	  statement -> IF' condition \n' .if_block ENDIF' \n' 
+	  stmts -> .   { "ENDIF" "ELSE" "ELSEIF" }
+	  0-9* -> .   { '.' }
+
+  Warning: State 105: Shift-reduce conflict on lookahead >RESUME<
+	  statement -> \n' .   { '\0' "IF" "REPEAT" "BREAK" "CONT" "RET" "DEC" "RESET" "GOSUB" "GOTO" "RESUME" '%' '\n' "FUNC" "PROC" '[' ''' '(' '0-9' 'A-Za-z' '_' '.' "UNTIL" "ENDIF" "ELSE" "ELSEIF" "ENDPROC" "ENDFUNC" }
+	  statement -> IF' condition \n' .if_block ENDIF' \n' 
+	  stmts -> .   { "ENDIF" "ELSE" "ELSEIF" }
+	  0-9* -> .   { '.' }
+
+  Warning: State 105: Shift-reduce conflict on lookahead >%<
+	  statement -> \n' .   { '\0' "IF" "REPEAT" "BREAK" "CONT" "RET" "DEC" "RESET" "GOSUB" "GOTO" "RESUME" '%' '\n' "FUNC" "PROC" '[' ''' '(' '0-9' 'A-Za-z' '_' '.' "UNTIL" "ENDIF" "ELSE" "ELSEIF" "ENDPROC" "ENDFUNC" }
+	  statement -> IF' condition \n' .if_block ENDIF' \n' 
+	  stmts -> .   { "ENDIF" "ELSE" "ELSEIF" }
+	  0-9* -> .   { '.' }
+
+  Warning: State 105: Shift-reduce conflict on lookahead >\n<
+	  statement -> \n' .   { '\0' "IF" "REPEAT" "BREAK" "CONT" "RET" "DEC" "RESET" "GOSUB" "GOTO" "RESUME" '%' '\n' "FUNC" "PROC" '[' ''' '(' '0-9' 'A-Za-z' '_' '.' "UNTIL" "ENDIF" "ELSE" "ELSEIF" "ENDPROC" "ENDFUNC" }
+	  statement -> IF' condition \n' .if_block ENDIF' \n' 
+	  stmts -> .   { "ENDIF" "ELSE" "ELSEIF" }
+	  0-9* -> .   { '.' }
+
+  Warning: State 105: Shift-reduce conflict on lookahead >FUNC<
+	  statement -> \n' .   { '\0' "IF" "REPEAT" "BREAK" "CONT" "RET" "DEC" "RESET" "GOSUB" "GOTO" "RESUME" '%' '\n' "FUNC" "PROC" '[' ''' '(' '0-9' 'A-Za-z' '_' '.' "UNTIL" "ENDIF" "ELSE" "ELSEIF" "ENDPROC" "ENDFUNC" }
+	  statement -> IF' condition \n' .if_block ENDIF' \n' 
+	  stmts -> .   { "ENDIF" "ELSE" "ELSEIF" }
+	  0-9* -> .   { '.' }
+
+  Warning: State 105: Shift-reduce conflict on lookahead >PROC<
+	  statement -> \n' .   { '\0' "IF" "REPEAT" "BREAK" "CONT" "RET" "DEC" "RESET" "GOSUB" "GOTO" "RESUME" '%' '\n' "FUNC" "PROC" '[' ''' '(' '0-9' 'A-Za-z' '_' '.' "UNTIL" "ENDIF" "ELSE" "ELSEIF" "ENDPROC" "ENDFUNC" }
+	  statement -> IF' condition \n' .if_block ENDIF' \n' 
+	  stmts -> .   { "ENDIF" "ELSE" "ELSEIF" }
+	  0-9* -> .   { '.' }
+
+  Warning: State 105: Shift-reduce conflict on lookahead >[<
+	  statement -> \n' .   { '\0' "IF" "REPEAT" "BREAK" "CONT" "RET" "DEC" "RESET" "GOSUB" "GOTO" "RESUME" '%' '\n' "FUNC" "PROC" '[' ''' '(' '0-9' 'A-Za-z' '_' '.' "UNTIL" "ENDIF" "ELSE" "ELSEIF" "ENDPROC" "ENDFUNC" }
+	  statement -> IF' condition \n' .if_block ENDIF' \n' 
+	  stmts -> .   { "ENDIF" "ELSE" "ELSEIF" }
+	  0-9* -> .   { '.' }
+
+  Warning: State 105: Shift-reduce conflict on lookahead >'<
+	  statement -> \n' .   { '\0' "IF" "REPEAT" "BREAK" "CONT" "RET" "DEC" "RESET" "GOSUB" "GOTO" "RESUME" '%' '\n' "FUNC" "PROC" '[' ''' '(' '0-9' 'A-Za-z' '_' '.' "UNTIL" "ENDIF" "ELSE" "ELSEIF" "ENDPROC" "ENDFUNC" }
+	  statement -> IF' condition \n' .if_block ENDIF' \n' 
+	  stmts -> .   { "ENDIF" "ELSE" "ELSEIF" }
+	  0-9* -> .   { '.' }
+
+  Warning: State 105: Shift-reduce conflict on lookahead >(<
+	  statement -> \n' .   { '\0' "IF" "REPEAT" "BREAK" "CONT" "RET" "DEC" "RESET" "GOSUB" "GOTO" "RESUME" '%' '\n' "FUNC" "PROC" '[' ''' '(' '0-9' 'A-Za-z' '_' '.' "UNTIL" "ENDIF" "ELSE" "ELSEIF" "ENDPROC" "ENDFUNC" }
+	  statement -> IF' condition \n' .if_block ENDIF' \n' 
+	  stmts -> .   { "ENDIF" "ELSE" "ELSEIF" }
+	  0-9* -> .   { '.' }
+
+  Warning: State 105: Shift-reduce conflict on lookahead >0-9<
+	  statement -> \n' .   { '\0' "IF" "REPEAT" "BREAK" "CONT" "RET" "DEC" "RESET" "GOSUB" "GOTO" "RESUME" '%' '\n' "FUNC" "PROC" '[' ''' '(' '0-9' 'A-Za-z' '_' '.' "UNTIL" "ENDIF" "ELSE" "ELSEIF" "ENDPROC" "ENDFUNC" }
+	  statement -> IF' condition \n' .if_block ENDIF' \n' 
+	  stmts -> .   { "ENDIF" "ELSE" "ELSEIF" }
+	  0-9* -> .   { '.' }
+
+  Warning: State 105: Shift-reduce conflict on lookahead >A-Za-z<
+	  statement -> \n' .   { '\0' "IF" "REPEAT" "BREAK" "CONT" "RET" "DEC" "RESET" "GOSUB" "GOTO" "RESUME" '%' '\n' "FUNC" "PROC" '[' ''' '(' '0-9' 'A-Za-z' '_' '.' "UNTIL" "ENDIF" "ELSE" "ELSEIF" "ENDPROC" "ENDFUNC" }
+	  statement -> IF' condition \n' .if_block ENDIF' \n' 
+	  stmts -> .   { "ENDIF" "ELSE" "ELSEIF" }
+	  0-9* -> .   { '.' }
+
+  Warning: State 105: Shift-reduce conflict on lookahead >_<
+	  statement -> \n' .   { '\0' "IF" "REPEAT" "BREAK" "CONT" "RET" "DEC" "RESET" "GOSUB" "GOTO" "RESUME" '%' '\n' "FUNC" "PROC" '[' ''' '(' '0-9' 'A-Za-z' '_' '.' "UNTIL" "ENDIF" "ELSE" "ELSEIF" "ENDPROC" "ENDFUNC" }
+	  statement -> IF' condition \n' .if_block ENDIF' \n' 
+	  stmts -> .   { "ENDIF" "ELSE" "ELSEIF" }
+	  0-9* -> .   { '.' }
+
+  Warning: State 105: Reduce-reduce conflict on lookahead >ENDIF<
+	  statement -> \n' .   { '\0' "IF" "REPEAT" "BREAK" "CONT" "RET" "DEC" "RESET" "GOSUB" "GOTO" "RESUME" '%' '\n' "FUNC" "PROC" '[' ''' '(' '0-9' 'A-Za-z' '_' '.' "UNTIL" "ENDIF" "ELSE" "ELSEIF" "ENDPROC" "ENDFUNC" }
+	  statement -> IF' condition \n' .if_block ENDIF' \n' 
+	  stmts -> .   { "ENDIF" "ELSE" "ELSEIF" }
+	  0-9* -> .   { '.' }
+
+  Warning: State 105: Reduce-reduce conflict on lookahead >ELSE<
+	  statement -> \n' .   { '\0' "IF" "REPEAT" "BREAK" "CONT" "RET" "DEC" "RESET" "GOSUB" "GOTO" "RESUME" '%' '\n' "FUNC" "PROC" '[' ''' '(' '0-9' 'A-Za-z' '_' '.' "UNTIL" "ENDIF" "ELSE" "ELSEIF" "ENDPROC" "ENDFUNC" }
+	  statement -> IF' condition \n' .if_block ENDIF' \n' 
+	  stmts -> .   { "ENDIF" "ELSE" "ELSEIF" }
+	  0-9* -> .   { '.' }
+
+  Warning: State 105: Reduce-reduce conflict on lookahead >ELSEIF<
+	  statement -> \n' .   { '\0' "IF" "REPEAT" "BREAK" "CONT" "RET" "DEC" "RESET" "GOSUB" "GOTO" "RESUME" '%' '\n' "FUNC" "PROC" '[' ''' '(' '0-9' 'A-Za-z' '_' '.' "UNTIL" "ENDIF" "ELSE" "ELSEIF" "ENDPROC" "ENDFUNC" }
+	  statement -> IF' condition \n' .if_block ENDIF' \n' 
+	  stmts -> .   { "ENDIF" "ELSE" "ELSEIF" }
+	  0-9* -> .   { '.' }
+
+  Warning: State 136: Shift-reduce conflict on lookahead >#<
+	  expression -> expression .#' expression 
+	  expression -> expression .+' expression 
+	  expression -> expression .-' expression 
+	  expression -> expression .*' expression 
+	  expression -> expression ./' expression 
+	  expression -> expression .~' expression 
+	  parameters -> parameters ,' expression .   { '\n' '#' '+' '-' '*' '/' '~' "IF" "REPEAT" "BREAK" "CONT" "RET" "DEC" "RESET" "GOSUB" "GOTO" "RESUME" '%' "FUNC" "PROC" '[' ''' '(' '0-9' 'A-Za-z' '_' '.' '|' '&' '=' '!' '>' '<' ">=" "<=" ',' ')' ']' }
+
+  Warning: State 136: Shift-reduce conflict on lookahead >+<
+	  expression -> expression .#' expression 
+	  expression -> expression .+' expression 
+	  expression -> expression .-' expression 
+	  expression -> expression .*' expression 
+	  expression -> expression ./' expression 
+	  expression -> expression .~' expression 
+	  parameters -> parameters ,' expression .   { '\n' '#' '+' '-' '*' '/' '~' "IF" "REPEAT" "BREAK" "CONT" "RET" "DEC" "RESET" "GOSUB" "GOTO" "RESUME" '%' "FUNC" "PROC" '[' ''' '(' '0-9' 'A-Za-z' '_' '.' '|' '&' '=' '!' '>' '<' ">=" "<=" ',' ')' ']' }
+
+  Warning: State 136: Shift-reduce conflict on lookahead >-<
+	  expression -> expression .#' expression 
+	  expression -> expression .+' expression 
+	  expression -> expression .-' expression 
+	  expression -> expression .*' expression 
+	  expression -> expression ./' expression 
+	  expression -> expression .~' expression 
+	  parameters -> parameters ,' expression .   { '\n' '#' '+' '-' '*' '/' '~' "IF" "REPEAT" "BREAK" "CONT" "RET" "DEC" "RESET" "GOSUB" "GOTO" "RESUME" '%' "FUNC" "PROC" '[' ''' '(' '0-9' 'A-Za-z' '_' '.' '|' '&' '=' '!' '>' '<' ">=" "<=" ',' ')' ']' }
+
+  Warning: State 136: Shift-reduce conflict on lookahead >*<
+	  expression -> expression .#' expression 
+	  expression -> expression .+' expression 
+	  expression -> expression .-' expression 
+	  expression -> expression .*' expression 
+	  expression -> expression ./' expression 
+	  expression -> expression .~' expression 
+	  parameters -> parameters ,' expression .   { '\n' '#' '+' '-' '*' '/' '~' "IF" "REPEAT" "BREAK" "CONT" "RET" "DEC" "RESET" "GOSUB" "GOTO" "RESUME" '%' "FUNC" "PROC" '[' ''' '(' '0-9' 'A-Za-z' '_' '.' '|' '&' '=' '!' '>' '<' ">=" "<=" ',' ')' ']' }
+
+  Warning: State 136: Shift-reduce conflict on lookahead >/<
+	  expression -> expression .#' expression 
+	  expression -> expression .+' expression 
+	  expression -> expression .-' expression 
+	  expression -> expression .*' expression 
+	  expression -> expression ./' expression 
+	  expression -> expression .~' expression 
+	  parameters -> parameters ,' expression .   { '\n' '#' '+' '-' '*' '/' '~' "IF" "REPEAT" "BREAK" "CONT" "RET" "DEC" "RESET" "GOSUB" "GOTO" "RESUME" '%' "FUNC" "PROC" '[' ''' '(' '0-9' 'A-Za-z' '_' '.' '|' '&' '=' '!' '>' '<' ">=" "<=" ',' ')' ']' }
+
+  Warning: State 136: Shift-reduce conflict on lookahead >~<
+	  expression -> expression .#' expression 
+	  expression -> expression .+' expression 
+	  expression -> expression .-' expression 
+	  expression -> expression .*' expression 
+	  expression -> expression ./' expression 
+	  expression -> expression .~' expression 
+	  parameters -> parameters ,' expression .   { '\n' '#' '+' '-' '*' '/' '~' "IF" "REPEAT" "BREAK" "CONT" "RET" "DEC" "RESET" "GOSUB" "GOTO" "RESUME" '%' "FUNC" "PROC" '[' ''' '(' '0-9' 'A-Za-z' '_' '.' '|' '&' '=' '!' '>' '<' ">=" "<=" ',' ')' ']' }
+
+
+Building keyword recognition...Done
+Invoking code generator...Done
+
+rb6.par produced 157 states (0 errors, 46 warnings)

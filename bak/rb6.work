@@ -1,0 +1,224 @@
+#whitespaces				whitespace;
+#lexeme						string ident varbegin pointer_varbegin;
+
+// Precedence definitions
+#left						'|';
+#left						'&';
+#left						'=' '!' '>' '<' ">=" "<=";
+#left						'#';
+#left						'+' '-';
+#left						'*' '/' '~';
+
+#default action				[* @@ = @1; *];
+
+// Parser description
+#parser						"RapidBATCH";
+#prefix						"rb";
+#version					"6.0";
+#copyright					"2008 by Phorward Software Technologies, Jan Max Meyer";
+#description				"";
+#language					"C";
+
+// Syntactical adjustments
+#case insensitive keywords	on;
+#lexem separation			on;
+#invalid keyword suffix		'A-Za-z0-9_';
+
+// Prologue definition
+#prologue
+[*
+#include "rb_global.h"
+#include "rb_string.h"
+#include "rb_comp.h"
+#ifndef MAKE_PROTOTYPES
+#include "rb_proto.h"
+#endif
+*];
+
+//Start symbol
+program$			->	stmts
+					;
+
+// General program structure
+stmts				-> stmtsx
+					|
+					;
+
+stmtsx				-> stmtsx stmt
+					| stmt
+					;
+
+stmt				->	statement
+					;
+
+statement			->	"IF" condition '\n' if_block "ENDIF" '\n'		[* printf( "stmt: Extended IF\n" ); *]
+					| "IF" condition statement							[* printf( "stmt: Simple IF\n" ); *]
+					| "REPEAT" '\n' stmts "UNTIL" condition '\n'		[* printf( "stmt: Loop\n" ); *]
+					| "BREAK" '\n'										[* printf( "stmt: Break\n" ); *]
+					| "CONT" '\n'										[* printf( "stmt: Cont\n" ); *]
+					| "RET" '\n'										[* printf( "stmt: Ret\n" ); *]
+					| "DEC" decparms '\n'								[* printf( "stmt: Dec\n" ); *]
+					| "RESET" decparms '\n'								[* printf( "stmt: Reset\n" ); *]
+					| "GOSUB" mark '\n'									[* printf( "stmt: Gosub\n" ); *]
+					| "GOTO" mark '\n'									[* printf( "stmt: Goto\n" ); *]
+					| "RESUME" '\n'										[* printf( "stmt: Resume\n" ); *]
+					| funcdef											[* printf( "stmt: Func-Definition\n" ); *]
+					| procdef											[* printf( "stmt: Proc-Definition\n" ); *]
+					| variable '=' expression '\n'						[* printf( "stmt: Assignment\n" ); *]
+					| expression '\n'									[* printf( "stmt: Expression\n" ); *]
+					| '%' ident '\n'									[* printf( "stmt: MARK\n" ); *]
+					| func_call '\n'							[* printf( "stmt: old-style function call\n" ); *]
+					| proc_call '\n'							[* printf( "stmt: old-style function call\n" ); *]
+					;
+					
+
+if_block			->	stmts
+					|	stmts "ELSE" '\n' stmts
+					|	stmts "ELSEIF" expression '\n' if_block
+					;
+					
+decparms			-> decparms ',' variable
+					| variable
+					;
+					
+mark				-> expression
+					;
+				
+// Procedure- and Function declarations
+funcdef				-> "FUNC" ident procparmdef '\n' stmts "ENDFUNC" '\n'
+					;
+
+procdef				-> "PROC" ident procparmdef '\n' stmts "ENDPROC" '\n'
+					;
+
+
+procparmdef			-> ':' parms
+					|
+					;
+					
+procparms			-> procparms ',' procparm
+					| procparm
+					;
+					
+procparm			->	simple_variable
+					| pointer_variable
+					;
+
+
+// Variables
+varname				->	'A-Za-z_ ' 'A-Za-z0-9_ '*
+					;
+
+varindex			->	varindex ','? expression	[* printf( "Varindex 1\n" ); *]
+					|	expression					[* printf( "Varindex 2\n" ); *]
+					;
+
+varbegin			-> '[' varname
+					;
+					
+pointer_varbegin	-> '*' varname
+					;
+
+simple_variable		-> varbegin ']'					[* printf( "Simple Variable\n" ); *]
+					;
+					
+complex_variable	->	varbegin ':'? varindex ']'	[* printf( "Complex Variable\n" ); *]
+					;
+					
+pointer_variable	-> '[' pointer_varbegin ']'		[* printf( "Pointer Variable\n" ); *]
+					;
+
+variable			->	simple_variable
+					| complex_variable
+					;
+					
+parm_variable		-> simple_variable
+					| pointer_variable
+					;
+
+// Function/procedure calls
+in_expr_func_call	->	ident '(' parameters ')'	[* printf( "Procedure/Function CALL OK\n" ); *]
+					;
+
+parameters			->	parameters ',' expression
+					|	expression
+					|
+					;
+
+func_call			->	ident variable '=' parameters
+					;
+
+proc_call			->	ident parameters
+					;
+
+// Expressions
+string				->	'\'' string_content '\''	[* printf( "String >%s<\n", @2->string ); *]
+					|	integer						[* printf( "Integer >%s<\n", @1->string ); *]
+					|	float						[* printf( "Float >%s<\n", @1->string ); *]
+					;
+					
+integer<rbstring*>	-> 	integer '0-9'				[*	@@ = rbstring_add_char( @1, (uchar)@2 ); *]
+					|	'0-9'						[*	@@ = rbstring_add_char( (rbstring*)NULL, @1 ); *]
+					;
+
+float<rbstring*>	-> 	float_opt '.' integer		[*	@@ = rbstring_add_char( @1, '.' );
+														@@ = rbstring_merge( @@, @3, TRUE );
+													*]
+					|	integer '.' float_opt		[*	@@ = rbstring_add_char( @1, '.' );
+														@@ = rbstring_merge( @@, @3, TRUE );
+													*]
+					;
+
+
+float_opt
+<rbstring*>			->	integer
+					|								[*	@@ = (rbstring*)NULL; *]
+					;
+
+string_content
+<rbstring*>			-> string_content !'\''			[*	@@ = rbstring_add_char( @1, (uchar)@2 ); *]
+					|								[*	@@ = (rbstring*)NULL; *]
+					;
+
+factor				->	string
+					|	variable					[* printf( "Variable OK\n" ); *]
+					|	'(' expression ')'
+					|	in_expr_func_call
+					;
+				
+expression			-> expression '#' expression	[* printf( "join\n" ); *]
+					| expression '+' expression		[* printf( "add\n" ); *]
+					| expression '-' expression		[* printf( "sub\n" ); *]
+					| expression '*' expression		[* printf( "mul\n" ); *]
+					| expression '/' expression		[* printf( "div\n" ); *]
+					| expression '~' expression		[* printf( "mod\n" ); *]
+					| factor
+					;
+					
+condition			-> condition '|' condition		[* printf( "or\n" ); *]
+					| condition '&' condition		[* printf( "and\n" ); *]
+					| condition '=' condition		[* printf( "equ\n" ); *]
+					| condition '!' condition		[* printf( "not\n" ); *]
+					| condition '>' condition		[* printf( "grt\n" ); *]
+					| condition '<' condition		[* printf( "lot\n" ); *]
+					| condition ">=" condition		[* printf( "gre\n" ); *]
+					| condition "<=" condition		[* printf( "loe\n" ); *]
+					| expression
+					;
+
+// Multiple used productions
+ident<rbstring*>	->	'A-Za-z_' ident_tail		[*	@@ = rbstring_add_char( (rbstring*)NULL, @1 );
+														@@ = rbstring_merge( @@, @2, TRUE );
+													*]
+					;
+
+ident_tail
+<rbstring*>			->	ident_tail 'A-Za-z0-9_'		[*	@@ = rbstring_add_char( @1, @2 ); *]
+					|								[* 	@@ = (rbstring*)NULL; *]
+					;
+
+// Whitespace Definitions
+whitespace			->	' \t\r\v'
+					| '_' ' \t\r\v'* '\n'
+					| "REM" !'\n'* '\n'
+					;

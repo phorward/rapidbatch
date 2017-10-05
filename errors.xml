@@ -1,0 +1,23 @@
+<?xml version="1.0" standalone="yes"?>
+<error-messages>
+	<msg id="parse_error_single_token">'##token' expected!</msg>
+	<msg id="parse_error_multi_token">Expecting one of the following tokens: ##token</msg>
+
+	<msg id="func_already_defined">The function/procedure '##function' is already defined!</msg>
+	<msg id="func_undefined">Call to undefined function '##name'</msg>
+	<msg id="proc_undefined">Call to undefined procedure '##name'</msg>
+	<msg id="proc_called_as_func">Procedure '##name' is called as a function</msg>
+	<msg id="pointer_required">Parameter mismatch; '##name' requires argument on parameter ##parm</msg>
+	<msg id="too_many_args">Too many arguments on call to '##name'</msg>
+	<msg id="too_less_args">Too less arguments on call to '##name'</msg>
+	<msg id="compiletime_func_with_var_parm">Compile-time function '##name' is called with variable arguments</msg>
+	<msg id="cont_in_illegal_context">'CONT' is used in an illegal context</msg>
+	<msg id="break_in_illegal_context">'BREAK' is used in an illegal context</msg>
+	<msg id="native_var_no_assign">System variable '##var' can't be assigned</msg>
+	<msg id="native_var_no_read">System variable '##var' can't be accessed</msg>
+	<msg id="native_var_no_array">System variable '##var' can't be accessed as an array</msg>
+	<msg id="constant_assign">Constant '##var' can't be assigned</msg>
+	<msg id="constant_array_access">Constant '##var' can't be accessed as an array</msg>
+	<msg id="label_already_defined">Label '##label' is already defined in this scope</msg>
+	<msg id="label_not_defined">Label '##label' is not defined or reachable</msg>
+</error-messages>
