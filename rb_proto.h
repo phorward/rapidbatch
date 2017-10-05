@@ -1,5 +1,12 @@
 /* rb_comp.parser.c */
-#if 1854 == 0
+#if 1851 == 0
+#else
+void rb_comp_current_srcpos( srcpos* pos );
+srcpos* rb_comp_cur_pos( void );
+#endif
+
+/* rb_comp.parser.c */
+#if 1851 == 0
 #else
 void rb_comp_current_srcpos( srcpos* pos );
 srcpos* rb_comp_cur_pos( void );

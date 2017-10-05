@@ -7,20 +7,21 @@
 # Author:		Jan Max Meyer
 #-------------------------------------------------------------------------------
 
+RAPIDBATCH	=	rb6
+LIBPHORWARD	=	../phorward/src/libphorward.a
+
 PATHEXT		=	PATH="../unicc:../phorward/run:$(PATH)"
 
 RB_BASE		=	rapidbatch
 RB_BASE_LIB	=	$(RB_BASE).a
 RB_SDK_H	=	$(RB_BASE).h
 
-LIBNAME		=	$(RB_BASE_LIB)
-LIBTEST		=	rb6test
 
 PARSER		=	rb6.par
 PARSER_BASE	=	rb_comp.parser
 PARSER_OUT	= 	$(PARSER_BASE).c
 
-SOURCE		=	rb_comp.parser.c \
+SOURCE		=	$(PARSER_OUT) \
 				rb_comp.util.c \
 				rb_comp.symtab.c \
 				rb_comp.codegen.c \
@@ -60,55 +61,14 @@ PROTOFILE	=	rb_proto.h
 
 #-------------------------------------------------------------------------------
 
-all: sdk
-	@echo
-	@echo --- Compilation succeeded! ---
-	
-$(LIBNAME): $(PROTOFILE) $(PARSER_OUT) $(SOURCE) $(HEADERS) Makefile
-	@echo
-	@echo Compiling...
-	$(CC) $(CLIBOPTS) $(DEBUG) $(SOURCE)
-	@echo
-	@echo Linking library...
-	$(LLIB) $(LIBOPTS)$@ $(OBJECTS)
-	
-$(LIBTEST): $(PROTOFILE) $(PARSER_OUT) Makefile
-	@echo
-	@echo Linking executable...
-	$(LLINK) $(LINKOPTS)$@ $(OBJECTS) $(LIBS) $(LIBNAME)
+all: $(RAPIDBATCH)
 
+$(RAPIDBATCH):  $(OBJECTS) $(LIBPHORWARD)
+	$(CC) -o $(RAPIDBATCH) $+
+	
 $(PARSER_OUT): $(PARSER)
 	$(PATHEXT) unicc -s -v -w -o $(PARSER_BASE) $(PARSER)
 	
 $(PROTOFILE): $(SOURCE) $(HEADERS)
 	$(PATHEXT) pproto $(SOURCE) >$@
-
-$(RB_SDK_H): $(SOURCE) $(HEADERS) $(PROTOFILE)
-	@echo
-	@echo Exporting header for external SDK...
-	mk_sdk_h >$(RB_SDK_H)
-
-#$(RB_SDK_H): $(SOURCE) $(HEADERS) $(PROTOFILE)
-#	@echo
-#	@echo Exporting header for internal SDK...
-#	export.sc internal >$(RB_SDK_H)
-
-sdk sdkext: $(LIBNAME) $(RB_SDK_H)
-	@echo
-	@echo Removing debug informations...
-	-strip --strip-unneeded $(LIBNAME)
-
-sdkint: $(RB_SDK_H) $(LIBNAME)
-
-clean:
-	-@$(RM) $(RB_SDK_H)
-	-@$(RM) $(PARSER_OUT)
-	-@$(RM) $(LIBNAME)
-	-@$(RM) $(LIBTEST)
-	-@$(RM) $(OBJECTS)
-	-@$(RM) cscope.out
-
-backup: clean
-	-@$(RM) ../rb6lib.tar
-	tar cvf ../rb6lib.tar ../rb6lib 
 

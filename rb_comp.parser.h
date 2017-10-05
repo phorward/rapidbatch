@@ -139,7 +139,7 @@ typedef union rb_VTYPE
 	vm_addr value_1;
 	symbol* value_2;
 	plist* value_3;
-	uchar* value_4;
+	char* value_4;
 	char value_5;
 	VAR_INFO value_6;
 	VAR_INFO_SYM value_7;

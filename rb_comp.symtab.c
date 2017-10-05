@@ -413,10 +413,10 @@ int rb_symtab_scope_pos( symbol* begin, symbol* find )
 ----------------------------------------------------------------------------- */
 void rb_symtab_dump( FILE* stream )
 {
-	int		i;
-	symbol*	sym;
-	symbol* parm;
-	LIST*	l;
+	int			i;
+	symbol*		sym;
+	symbol* 	parm;
+	plistel*	e;
 	
 	if( !stream )
 		stream = stderr;
@@ -462,9 +462,9 @@ void rb_symtab_dump( FILE* stream )
 					fprintf( stream, "\n           Signature >%s<",
 								sym->parmdef );
 
-					for( l = sym->parmsym; l; l = list_next( l ) )
+					plist_for( sym->parmsym, e )
 					{
-						parm = (symbol*)list_access( l );
+						parm = (symbol*)plist_access( e );
 
 						fprintf( stream, "\n           Parameter [%s%s]",
 							parm->pointer ? "*" : "", parm->name );

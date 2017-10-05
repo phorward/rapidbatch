@@ -54,11 +54,12 @@ Usage:	Parser for the RapidBATCH (Version 6) scripting language core
 
 #define UNICC_GETINPUT			*( cur.src++ )
 //#define UNICC_SRC_MOVE( s, l )	move_src( s, l )
+/*
 #define UNICC_PARSE_ERROR( pcb ) \
-	parse_error( ( pcb )->line, ( pcb )->sym, *( ( pcb )->tos ), \
-		&( *( @@prefix_act[ *( ( pcb )->tos ) ] ) ), @@prefix_symbol_names, \
+	parse_error( ( pcb )->line, ( pcb )->sym, ( pcb )->tos->state, \
+		&( *( @@prefix_act[ ( pcb )->tos->state ] ) ), @@prefix_symbol_names, \
 			@@prefix_whitespaces )
-
+*/
 /*
  * Global variables
  */
@@ -103,12 +104,13 @@ static void move_src( char* s, int l )
 	*/
 }
 
+#if 0
 static void parse_error( int line, int sym, int state,
 	int* act, char** names, int* white )
 {
 	int i;
-	uchar*	tokens	= (uchar*)NULL;
-	uchar*	tmp;
+	char*	tokens	= (char*)NULL;
+	char*	tmp;
 	srcpos	pos;
 	
 	rb_comp_current_srcpos( &pos );
@@ -117,15 +119,15 @@ static void parse_error( int line, int sym, int state,
 	if( *act == 1 )
 	{
 		rb_comp_error( &pos, "parse_error_single_token",
-			"token", names[ act[ 1 ] ], (uchar*)NULL );
+			"token", names[ act[ 1 ] ], (char*)NULL );
 	}
 	else
 	{
 		for( i = 1; i < *act * 3; i += 3 )
 		{
-			if( !( tmp = (uchar*)pmalloc(
+			if( !( tmp = (char*)pmalloc(
 					( pstrlen(  names[ act[ i ] ] )
-						+ 2 + 1 ) * sizeof( uchar ) ) ) )
+						+ 2 + 1 ) * sizeof( char ) ) ) )
 			{
 				RB_OUT_OF_MEMORY;
 			}
@@ -133,15 +135,16 @@ static void parse_error( int line, int sym, int state,
 			sprintf( tmp, "%s%s", names[ act[ i ] ],
 				( ( i+3 < *act * 3 ) ? ", " : "" ) );
 			
-			tokens = pstr_append_str( tokens, tmp, TRUE );
+			tokens = pstrcatstr( tokens, tmp, TRUE );
 		}
 
 		rb_comp_error( &pos, "parse_error_multi_token",
-			"token", tokens, (uchar*)NULL );
+			"token", tokens, (char*)NULL );
 			
 		pfree( tokens );
 	}
 }
+#endif
 
 *];
 
@@ -273,7 +276,7 @@ statement			->
 						*]
 					
 					| "RET" '\n'
-						[*	uchar*	str;
+						[*	char*	str;
 						
 							if( !cur.proc )
 							{
@@ -334,7 +337,7 @@ statement			->
 									rb_comp_error( &( cur.stmt_begin ),
 										"native_var_no_assign",
 											"var", @var.varsym->name,
-												(uchar*)NULL );
+												(char*)NULL );
 								}
 								
 								rb_comp_gen( &cur.prog, VMC_NSTORE,
@@ -345,7 +348,7 @@ statement			->
 								rb_comp_error( &( cur.stmt_begin ),
 									"constant_assign",
 										"var", @var.varsym->name,
-											(uchar*)NULL );
+											(char*)NULL );
 							}
 							else
 								rb_comp_gen( &cur.prog, VMC_STORE,
@@ -535,18 +538,18 @@ procparm<symbol*>	-> param_variable
 					;
 
 // Variables
-varname_tail<uchar*>
+varname_tail<char*>
 					-> varname_tail 'A-Za-z0-9_ '
-						[* @@ = pstr_append_char( @1, @2 );
+						[* @@ = pstrcatchar( @1, @2 );
 						*]
 					| 'A-Za-z0-9_ '
-						[* @@ = pstr_append_char( (uchar*)NULL, @1 );
+						[* @@ = pstrcatchar( (char*)NULL, @1 );
 						*]
 					;
 					
-varname<uchar*>		-> 'A-Za-z_ ' varname_tail?
-						[*	@@ = pstr_append_char( (uchar*)NULL, @1 );
-							@@ = pstr_append_str( @@, @2, TRUE );
+varname<char*>		-> 'A-Za-z_ ' varname_tail?
+						[*	@@ = pstrcatchar( (char*)NULL, @1 );
+							@@ = pstrcatstr( @@, @2, TRUE );
 						*]
 					;
 
@@ -633,14 +636,14 @@ variable
 								rb_comp_error( &( cur.stmt_begin ),
 									"constant_array_access",
 										"var", @@.varsym->name,
-											(uchar*)NULL );
+											(char*)NULL );
 							}
 							else if( @@.varsym->native )
 							{
 								rb_comp_error( &( cur.stmt_begin ),
 									"native_var_no_array",
 										"var", @@.varsym->name,
-											(uchar*)NULL );
+											(char*)NULL );
 							}
 							
 							@@.pointer = @1.pointer;
@@ -722,12 +725,14 @@ proc_call			->	fct parameters:parameters
 							
 							/* Special case function call:
 								Function with no parameters */
-							if( ( sym = rb_symtab_find( @fct.proc,
-									SYM_PROC ) )
-								&& list_count( @parameters ) == 1 )
+							if( ( sym = rb_symtab_find( @fct.proc->name,
+										SYM_PROC ) )
+									&& plist_count( @parameters ) == 1 )
 							{
-								parm = (struct param*)list_access(
-										@parameters );
+								parm = (struct param*)
+										plist_access(
+											plist_first(
+												@parameters ) );
 								
 								if( parm->var && sym->function )
 								{
@@ -737,8 +742,7 @@ proc_call			->	fct parameters:parameters
 										parm->push_code ), VMC_NOP,
 											(void*)NULL );
 									
-									@parameters = list_free(
-										@parameters );
+									@parameters = plist_free( @parameters );
 									pfree( parm );
 								}
 							}
@@ -762,7 +766,7 @@ parameters<plist*>	->	 parameter_list
 parameter_list<plist*>
 					->	parameter_list ',' expression
 					
-						[*	list_push( @1,
+						[*	plist_push( @1,
 								(void*)rb_memdup( &@3,
 									sizeof( struct param ) ) );
 							@@ = @1;
@@ -821,30 +825,34 @@ integer<long>	-> 	integer '0-9'
 					
 					;
 
-float<uchar*>	-> 	float_opt '.' integer
-						[*	@@ = pstr_append_char( @1, '.' );
-							@@ = pstr_append_str( @@, @3, TRUE );
+float<char*>	-> 	float_opt '.' integer
+						/*
+						[*	@@ = pstrcatchar( @1, '.' );
+							@@ = pstrcatstr( @@, @3, TRUE );
 						*]
+						*/
 
 					|	integer '.' float_opt
-						[*	@@ = pstr_append_char( @1, '.' );
-							@@ = pstr_append_str( @@, @3, TRUE );
+						/*
+						[*	@@ = pstrcatchar( @1, '.' );
+							@@ = pstrcatstr( @@, @3, TRUE );
 						*]
+						*/
 					;
 
 float_opt
-<uchar*>			->	integer
+<char*>			->	integer
 					
 					|
-						[*	@@ = (uchar*)NULL; *]
+						[*	@@ = (char*)NULL; *]
 					;
 
 string_content
-<uchar*>			-> string_content !'\''
-						[*	@@ = pstr_append_char( @1, (uchar)@2 ); *]
+<char*>			-> string_content !'\''
+						[*	@@ = pstrcatchar( @1, (char)@2 ); *]
 					
 					|
-						[*	@@ = (uchar*)NULL; *]
+						[*	@@ = (char*)NULL; *]
 					;
 
 factor
@@ -867,7 +875,7 @@ factor
 									rb_comp_error( &( cur.stmt_begin ),
 										"native_var_no_read",
 											"var", @1.varsym->name,
-												(uchar*)NULL );
+												(char*)NULL );
 								}
 
 								@@.push_code = rb_comp_gen( &cur.prog, VMC_NLOAD,
@@ -1042,18 +1050,18 @@ condition
 					;
 
 // Multiple used productions
-ident<uchar*>	->	'A-Za-z_' ident_tail
-						[*	@@ = pstr_append_char( (uchar*)NULL, @1 );
-							@@ = pstr_append_str( @@, @2, TRUE );
+ident<char*>	->	'A-Za-z_' ident_tail
+						[*	@@ = pstrcatchar( (char*)NULL, @1 );
+							@@ = pstrcatstr( @@, @2, TRUE );
 						*]
 					;
 
 ident_tail
-<uchar*>			->	ident_tail 'A-Za-z0-9_'
-						[*	@@ = pstr_append_char( @1, @2 ); *]
+<char*>			->	ident_tail 'A-Za-z0-9_'
+						[*	@@ = pstrcatchar( @1, @2 ); *]
 					
 					|
-						[* 	@@ = (uchar*)NULL; *]
+						[* 	@@ = (char*)NULL; *]
 					;
 
 // Whitespace Definitions

@@ -134,7 +134,7 @@ symbol* rb_comp_proc_header( char* ident,
 		
 		/* Build parameter signature */
 		if( !( parmdef = sym->parmdef = (char*)pmalloc(
-				( list_count( parameters ) + 1 ) * sizeof( char ) ) ) )
+				( plist_count( parameters ) + 1 ) * sizeof( char ) ) ) )
 		{
 			RB_OUT_OF_MEMORY;
 		}
@@ -279,7 +279,7 @@ int rb_comp_proc_call_perform( struct proc_call* pc, boolean free_call )
 				"name", pc->proc->name, (char*)NULL );
 		}
 		
-		for( e = plist_first( pc->param_signature )i = 0;
+		for( e = plist_first( pc->param_signature ), i = 0;
 				e; e = plist_next( e ) )
 		{
 			cpar = (struct param*)plist_access( e );
@@ -309,7 +309,8 @@ int rb_comp_proc_call_perform( struct proc_call* pc, boolean free_call )
 						MSG( "Patching pointer code" );
 
 						/* Patch the code */
-						rb_comp_patch( VM_GET_CODE( &cur.prog, cpar->push_code ),
+						rb_comp_patch( VM_GET_CODE( &cur.prog,
+														cpar->push_code ),
 							VMC_PTRLOAD, (void*)NULL );
 					}
 				}
@@ -329,7 +330,7 @@ int rb_comp_proc_call_perform( struct proc_call* pc, boolean free_call )
 			}
 		}
 		
-		if( !l && i < strlen( pc->proc->parmdef ) &&
+		if( !e && i < strlen( pc->proc->parmdef ) &&
 				!( pc->proc->parmdef[ i ] == PARAM_VARG_VAL_ONLY
 					|| pc->proc->parmdef[ i ] == PARAM_VARG_ANY ) )
 		{
@@ -408,8 +409,8 @@ void rb_comp_backpatch_proc_calls( symbol* proc )
 		{
 			rb_comp_proc_call_perform( pc_ptr, TRUE );
 			
-			cur.implicit_proc_calls =
-				list_remove( cur.implicit_proc_calls, pc_ptr );
+			plist_remove( cur.implicit_proc_calls,
+				plist_get_by_ptr( cur.implicit_proc_calls, pc_ptr ) );
 			pfree( pc_ptr );
 		}
 	}
@@ -430,7 +431,7 @@ void rb_comp_proc_call( symbol* proc, boolean as_function,
 	struct 	proc_call	pc;
 
 	/* TODO Check for calls with more than 128 parameters!! */
-	char				param_count = (char)list_count( params );
+	char				param_count = (char)plist_count( params );
 	
 	PROC( "rb_comp_proc_call" );
 	PARMS( "proc", "%p", proc );
@@ -746,8 +747,8 @@ void rb_comp_backpatch_label_calls( symbol* label )
 		{
 			rb_comp_label_call_perform( lc_ptr );
 			
-			cur.implicit_lbl_calls =
-				list_remove( cur.implicit_lbl_calls, lc_ptr );
+			plist_remove( cur.implicit_lbl_calls,
+				plist_get_by_ptr( cur.implicit_lbl_calls, lc_ptr ) );
 			pfree( lc_ptr );
 		}
 	}
