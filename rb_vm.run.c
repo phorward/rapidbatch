@@ -347,7 +347,7 @@ void rb_vm_item_memdup( vm_stackitem* item )
 	~~~ CHANGES & NOTES ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	Date:		Author:			Note:
 ----------------------------------------------------------------------------- */
-void rb_vm_stack_dump( uchar* file, int line, vm_stack* stack )
+void rb_vm_stack_dump( char* file, int line, vm_stack* stack )
 {
 	int				i;
 	vm_stackitem*	item;
@@ -523,15 +523,15 @@ int rb_vm_run( vm_stack* stack, vm_code* code, vm_addr code_cnt )
 			switch( *CP )
 			{
 				case VMC_JOIN:
-					ITEM_VAL_SET_STR( &item,  pstr_append_str(
+					ITEM_VAL_SET_STR( &item,  pstrcatstr(
 								pstrdup( ITEM_VAL_GET_STR( &( op[1] ) ) ),
 									ITEM_VAL_GET_STR( &( op[0] ) ),
 										FALSE ) );
 					break;
 				
 				case VMC_EQU:
-					/* TODO: One or both of them can be (uchar*)NULL!!! */
-					if( pstrcmp( ITEM_VAL_GET_STR( &op[0] ),
+					/* TODO: One or both of them can be (char*)NULL!!! */
+					if( strcmp( ITEM_VAL_GET_STR( &op[0] ),
 							ITEM_VAL_GET_STR( &op[1] ) ) == 0 )
 						ITEM_VAL_SET_LONG( &item, RB_TRUE );
 					else
@@ -540,7 +540,7 @@ int rb_vm_run( vm_stack* stack, vm_code* code, vm_addr code_cnt )
 					break;
 			
 				case VMC_NEQ:
-					if( pstrcmp( ITEM_VAL_GET_STR( &op[0] ),
+					if( strcmp( ITEM_VAL_GET_STR( &op[0] ),
 							ITEM_VAL_GET_STR( &op[1] ) ) == 0 )
 						ITEM_VAL_SET_LONG( &item, RB_FALSE );
 					else
@@ -565,28 +565,28 @@ int rb_vm_run( vm_stack* stack, vm_code* code, vm_addr code_cnt )
 							switch( *CP )
 							{
 								case VMC_GRT:
-									if( pstrcmp( ITEM_VAL_GET_STR( &op[0] ),
+									if( strcmp( ITEM_VAL_GET_STR( &op[0] ),
 										ITEM_VAL_GET_STR( &op[1] ) ) < 0 )
 										ITEM_VAL_SET_LONG( &item, RB_TRUE );
 									else
 										ITEM_VAL_SET_LONG( &item, RB_FALSE );
 									break;
 								case VMC_LWR:
-									if( pstrcmp( ITEM_VAL_GET_STR( &op[0] ),
+									if( strcmp( ITEM_VAL_GET_STR( &op[0] ),
 										ITEM_VAL_GET_STR( &op[1] ) ) > 0 )
 										ITEM_VAL_SET_LONG( &item, RB_TRUE );
 									else
 										ITEM_VAL_SET_LONG( &item, RB_FALSE );
 									break;
 								case VMC_GRE:
-									if( pstrcmp( ITEM_VAL_GET_STR( &op[0] ),
+									if( strcmp( ITEM_VAL_GET_STR( &op[0] ),
 										ITEM_VAL_GET_STR( &op[1] ) ) <= 0 )
 										ITEM_VAL_SET_LONG( &item, RB_TRUE );
 									else
 										ITEM_VAL_SET_LONG( &item, RB_FALSE );
 									break;
 								case VMC_LWE:
-									if( pstrcmp( ITEM_VAL_GET_STR( &op[0] ),
+									if( strcmp( ITEM_VAL_GET_STR( &op[0] ),
 										ITEM_VAL_GET_STR( &op[1] ) ) >= 0 )
 										ITEM_VAL_SET_LONG( &item, RB_TRUE );
 									else
@@ -874,7 +874,7 @@ int rb_vm_run( vm_stack* stack, vm_code* code, vm_addr code_cnt )
 					{
 						/* TODO: Is this secure?? */
 						ITEM_VAL_SET_CSTR( &item,
-							(uchar*)ITEM_VAL_GET_ADDR( &item ) );
+							(char*)ITEM_VAL_GET_ADDR( &item ) );
 					}
 					
 					CP += skip;

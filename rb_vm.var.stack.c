@@ -320,7 +320,7 @@ status rb_vm_stack_var_push( vm_stack* stack, vm_var* var )
 	else
 	{
 		MSG( "Variable does not exist, pushing empty string" );
-		ITEM_VAL_SET_CSTR( &val, (uchar*)NULL );
+		ITEM_VAL_SET_CSTR( &val, (char*)NULL );
 		
 		if( rb_vm_stack_push( stack, &val ) )
 			RETURN( RB_ERR_OK );

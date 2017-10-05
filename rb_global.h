@@ -23,26 +23,16 @@ Usage:	Global declarations
 #include <limits.h>
 
 /* Phorward DevEnv includes */
-#include <uchar.h>
-#include <boolean.h>
-
-/*ENDEXPORT*/
-#include <llist.h>
-#include <dbg.h>
-#include <pmalloc.h>
-#include <pstring.h>
-#include <xml.h>
-/*EXPORT*/
-/*ENDEXPORT*/
+#include <phorward.h>
+#include "xml.h"
 
 /*
  * Defines
  */
 
-/*EXPORT::Several defines*/
 #define RB_TRUE				0
 #define RB_FALSE			-1
- 
+
 #define RB_ERR_OK			0		/* OK */
 #define RB_ERR_FAILURE		-1		/* Failure */
 #define RB_ERR_PARMS		-2		/* Wrong parameters */
@@ -50,7 +40,6 @@ Usage:	Global declarations
 #define RB_ERR_SYSTEM		-4		/* System call error */
 #define RB_ERR_UNIMPL		-5		/* Unimplemented */
 #define RB_ERR_OTHER		-6		/* Any other error */
-/*ENDEXPORT*/
 
 /* Default allocation step size in bytes */
 #define SYMTAB_SIZE			64
@@ -66,18 +55,14 @@ typedef		char			byte;
 typedef		unsigned long	vm_addr;
 #define VM_ADDR				vm_addr
 
-#if 0
-/*EXPORT:internal*/
 #define		vm_addr			unsigned long
-/*ENDEXPORT*/
-#endif
 
 /*
  * Macro definitions
  */
 
 /* memory management */
-#define RB_OUT_OF_MEMORY			do {} while( 0 ) //Will be defined later!
+#define RB_OUT_OF_MEMORY			OUTOFMEM
 
 #endif
 

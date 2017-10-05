@@ -62,7 +62,7 @@ void* rb_memdup( void* ptr, size_t size )
 	
 	Usage:			Duplicates a memory entry onto the heap.
 					
-	Parameters:		uchar*		str				String value to be hashed
+	Parameters:		char*		str				String value to be hashed
 					int			size			Hash table size
 	
 	Returns:		int							The hashed index value
@@ -70,10 +70,10 @@ void* rb_memdup( void* ptr, size_t size )
 	~~~ CHANGES & NOTES ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	Date:		Author:			Note:
 ----------------------------------------------------------------------------- */
-int hash_from_str( uchar* str, int size )
+int hash_from_str( char* str, int size )
 {
 	int		v = 0;
-	uchar*	p;
+	char*	p;
 
 	for( p = str; *str; str++ )
 		v += (int)*str;

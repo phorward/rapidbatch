@@ -267,7 +267,7 @@ void rb_vm_dump( FILE* stream, vm_prog* prog, vm_addr begin_at )
 			
 				case VMC_PUSHSTR:
 					fprintf( stream, " (string) >%s<", 
-								*( (uchar**)( prog->code + i + 1 ) ) );
+								*( (char**)( prog->code + i + 1 ) ) );
 					break;
 
 				default:

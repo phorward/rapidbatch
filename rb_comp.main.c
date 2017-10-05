@@ -37,10 +37,10 @@ CINFO	cur;
 					from a given context. At first call, the context is 
 					intialized to zero - no context at all!
 	
-	Parameters:		uchar*		filename		Filename of source file, only
+	Parameters:		char*		filename		Filename of source file, only
 												for error reporting; This can
-												be left (uchar*)NULL.
-					uchar*		src				Source to be compiled.
+												be left (char*)NULL.
+					char*		src				Source to be compiled.
 					
 	Returns:		int			0				No errors, all is fine
 								>0				errors where found, number of
@@ -49,7 +49,7 @@ CINFO	cur;
 	~~~ CHANGES & NOTES ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	Date:		Author:			Note:
 ----------------------------------------------------------------------------- */
-int rb_comp_compile( uchar* filename, uchar* src )
+int rb_comp_compile( char* filename, char* src )
 {
 	static int	calls		= 0;
 	

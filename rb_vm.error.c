@@ -39,14 +39,14 @@ Usage:	Virtual machine error messaging
 	
 	Usage:			Virtual machine runtime error reporting and abort.
 					
-	Parameters:		uchar*		msg			Error message identifier
+	Parameters:		char*		msg			Error message identifier
 
 	Returns:		void
   
 	~~~ CHANGES & NOTES ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	Date:		Author:			Note:
 ----------------------------------------------------------------------------- */
-void rb_vm_error( uchar* msg )
+void rb_vm_error( char* msg )
 {
 	fprintf( stderr, "\n*** RUNTIME ERROR ***\n%s\n\naborting...", msg );
 	exit( 1 );

@@ -35,29 +35,29 @@ static XML_T	errors;
 	
 	Usage:			Compile-time error reporting function.
 					
-	Parameters:		uchar*				file		Filename
+	Parameters:		char*				file		Filename
 					int					line		Line number in filename
-					uchar*				id			Error message catalog
+					char*				id			Error message catalog
 													identifier
-					...								Parameter pairs of uchar*:
+					...								Parameter pairs of char*:
 													- Wildcard-Identifier
 													- Value
 													
 													Last parameter must be
-													(uchar*)NULL;
+													(char*)NULL;
 
 	Returns:		void
 							
 	~~~ CHANGES & NOTES ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	Date:		Author:			Note:
 ----------------------------------------------------------------------------- */
-void rb_comp_error( srcpos* pos, uchar* id, ... )
+void rb_comp_error( srcpos* pos, char* id, ... )
 {
 	struct
 	{
-		uchar	wildcard[ 80 + 1 ];
-		uchar*	value;
-		uchar*	_match;
+		char	wildcard[ 80 + 1 ];
+		char*	value;
+		char*	_match;
 	} values[64];
 
 	XML_T	ident;
@@ -66,8 +66,8 @@ void rb_comp_error( srcpos* pos, uchar* id, ... )
 	int		i;
 	int		vcount;
 	int		match;
-	uchar*	tpl_ptr;
-	uchar*	result			= (uchar*)NULL;
+	char*	tpl_ptr;
+	char*	result			= (char*)NULL;
 	long	copy_size;
 	long	prev_size;
 	long	size			= 0L;
@@ -80,11 +80,11 @@ void rb_comp_error( srcpos* pos, uchar* id, ... )
 
 	for( vcount = 0; vcount < 64; vcount++ )
 	{
-		if( !( values[vcount].value = va_arg( args, uchar* ) ) )
+		if( !( values[vcount].value = va_arg( args, char* ) ) )
 			break;
 		
 		sprintf( values[vcount].wildcard, "##%.78s", values[vcount].value );
-		values[vcount].value = va_arg( args, uchar* );
+		values[vcount].value = va_arg( args, char* );
 
 		if( !values[vcount].value )
 			values[vcount].value = pstrdup( "" );
@@ -103,7 +103,7 @@ void rb_comp_error( srcpos* pos, uchar* id, ... )
 	/* Find error message */
 	for( ident = xml_child( errors, "msg" ); ident; ident = xml_next( ident ) )
 	{
-		if( !pstrcmp( (uchar*)xml_attr( ident, "id" ), id ) )
+		if( !strcmp( (char*)xml_attr( ident, "id" ), id ) )
 		{
 			tpl_ptr = xml_txt( ident );
 
@@ -115,7 +115,7 @@ void rb_comp_error( srcpos* pos, uchar* id, ... )
 				match = vcount;
 				for( i = 0; i < vcount; i++ )
 				{
-					if( values[i]._match != (uchar*)NULL )
+					if( values[i]._match != (char*)NULL )
 					{
 						if( match == vcount ||
 								values[match]._match > values[i]._match )
@@ -135,18 +135,18 @@ void rb_comp_error( srcpos* pos, uchar* id, ... )
 				size += copy_size;
 		
 				if( result )
-					result = (uchar*)prealloc( (uchar*)result, 
-						( size + 1 ) * sizeof( uchar ) );
+					result = (char*)prealloc( (char*)result, 
+						( size + 1 ) * sizeof( char ) );
 				else
-					result = (uchar*)pmalloc( ( size + 1 ) * sizeof( uchar ) );
+					result = (char*)pmalloc( ( size + 1 ) * sizeof( char ) );
 		
 				memcpy( result + prev_size, tpl_ptr,
-					copy_size * sizeof( uchar ) );
+					copy_size * sizeof( char ) );
 		
 				if( match < vcount )
 					memcpy( result + prev_size + copy_size,
 						values[match].value, strlen( values[match].value )
-							* sizeof( uchar ) );
+							* sizeof( char ) );
 		
 				result[size] = '\0';
 		

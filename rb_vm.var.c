@@ -52,7 +52,7 @@ vm_var* rb_vm_var_get_idx( vm_var* var, vm_val* idx, boolean alloc )
 {
 	vm_addr		prev	= 0;
 	vm_addr		off		= 0;
-	uchar*		key		= (uchar*)NULL;
+	char*		key		= (char*)NULL;
 	int			hash;
 
 	PROC( "rb_vm_var_get_idx" );
@@ -92,7 +92,7 @@ vm_var* rb_vm_var_get_idx( vm_var* var, vm_val* idx, boolean alloc )
 			for( off = var->ht[ hash ]; off;
 					prev = off, off = var->begin[ off ].next )
 			{
-				if( pstrcmp( var->begin[ off - 1 ].key, key ) == 0 )
+				if( strcmp( var->begin[ off - 1 ].key, key ) == 0 )
 				{
 					MSG( "Found index by key, fine" );
 					RETURN( var->begin + off - 1 );

@@ -7,14 +7,18 @@
 # Author:		Jan Max Meyer
 #-------------------------------------------------------------------------------
 
-include		../../include/Make.inc
-include		Make.inc
+PATHEXT		=	PATH="../unicc:../phorward/run:$(PATH)"
+
+RB_BASE		=	rapidbatch
+RB_BASE_LIB	=	$(RB_BASE).a
+RB_SDK_H	=	$(RB_BASE).h
 
 LIBNAME		=	$(RB_BASE_LIB)
-LIBTEST		=	rb6test$(EXEEXT)
+LIBTEST		=	rb6test
 
 PARSER		=	rb6.par
-PARSER_OUT	=	rb_comp.parser.c
+PARSER_BASE	=	rb_comp.parser
+PARSER_OUT	= 	$(PARSER_BASE).c
 
 SOURCE		=	rb_comp.parser.c \
 				rb_comp.util.c \
@@ -34,27 +38,10 @@ SOURCE		=	rb_comp.parser.c \
 				rb_vm.error.c \
 				rb_vm.dbg.c \
 				rb_string.c \
-				rb_util.c
+				rb_util.c \
+				xml.c
 				
-OBJECTS		=	rb_comp.parser$(OBJEXT) \
-				rb_comp.util$(OBJEXT) \
-				rb_comp.symtab$(OBJEXT) \
-				rb_comp.codegen$(OBJEXT) \
-				rb_comp.opt$(OBJEXT) \
-				rb_comp.error$(OBJEXT) \
-				rb_comp.native$(OBJEXT) \
-				rb_comp.main$(OBJEXT) \
-				rb_vm.run$(OBJEXT) \
-				rb_vm.var$(OBJEXT) \
-				rb_vm.var.tool$(OBJEXT) \
-				rb_vm.var.stack$(OBJEXT) \
-				rb_vm.val$(OBJEXT) \
-				rb_vm.util$(OBJEXT) \
-				rb_vm.native$(OBJEXT) \
-				rb_vm.error$(OBJEXT) \
-				rb_vm.dbg$(OBJEXT) \
-				rb_string$(OBJEXT) \
-				rb_util$(OBJEXT)
+OBJECTS		=	$(patsubst %.c,%.o,$(SOURCE))
 
 LIBS		=	$(DBG_LIB) \
 				$(LLIST_LIB) \
@@ -66,7 +53,8 @@ HEADERS		=	rb_comp.h \
 				rb_val.h \
 				rb_var.h \
 				rb_vm.h \
-				rb_native.h
+				rb_native.h \
+				xml.h
 				
 PROTOFILE	=	rb_proto.h
 
@@ -90,14 +78,10 @@ $(LIBTEST): $(PROTOFILE) $(PARSER_OUT) Makefile
 	$(LLINK) $(LINKOPTS)$@ $(OBJECTS) $(LIBS) $(LIBNAME)
 
 $(PARSER_OUT): $(PARSER)
-	@echo
-	@echo Building parser...
-	$(UNICC) -s -v -w -o $@ $(PARSER)
+	$(PATHEXT) unicc -s -v -w -o $(PARSER_BASE) $(PARSER)
 	
 $(PROTOFILE): $(SOURCE) $(HEADERS)
-	@echo
-	@echo Making prototypes...
-	cproto_all "$(SOURCE)" $(INCLUDE_DIR) $@
+	$(PATHEXT) pproto $(SOURCE) >$@
 
 $(RB_SDK_H): $(SOURCE) $(HEADERS) $(PROTOFILE)
 	@echo

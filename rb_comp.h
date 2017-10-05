@@ -76,14 +76,14 @@ typedef		unsigned long			srcline;
 
 struct _srcpos
 {
-	uchar*		filename;			/* Name of file; References
+	char*		filename;			/* Name of file; References
 										memory in srcfile */
 	srcline		line;				/* Line of occurence */
 };
  
 struct _symbol
 {
-	uchar*		name;				/* Symbol identifier */
+	char*		name;				/* Symbol identifier */
 	symtype		type;				/* Symbol type */
 
 	union
@@ -102,15 +102,15 @@ struct _symbol
 			rb_native_var	set;		/* Native variable setter */
 		}					variable;	/* Native callback variable */
 		
-		uchar*				constant;	/* Constant */
+		char*				constant;	/* Constant */
 
 	} offset;
 	
 	/* Symbol related additionals */
-	LIST*		parmsym;		/* For function-calls:
+	plist*		parmsym;		/* For function-calls:
 									symbol-pointers to the parameter
 										value definitions */
-	uchar*		parmdef;		/* For native function calls:
+	char*		parmdef;		/* For native function calls:
 									a string defining the value
 										definition styles */
 
@@ -144,7 +144,7 @@ struct _symbol
 */
 struct var_info
 {
-	uchar*		varname;			/* Name of variable */
+	char*		varname;			/* Name of variable */
 	boolean		pointer;			/* Pointer indicator */
 };
 
@@ -164,7 +164,7 @@ struct var_info_sym
 struct scope_info
 {
 	symbol*		scope;				/* Previous scope */
-	LIST*		implicit_lbl_calls;	/* Previuos list of implicit
+	plist*		implicit_lbl_calls;	/* Previuos list of implicit
 										label calls */
 };
 #define SCOPE_INFO		struct scope_info
@@ -205,7 +205,7 @@ struct proc_call
 {
 	symbol*		proc;				/* Procedure/Function symbol table entry */
 	boolean		as_function;		/* Symbol is called like a function */
-	LIST*		param_signature;	/* Parameter signature */
+	plist*		param_signature;	/* Parameter signature */
 	
 	/* Code addresses */
 	vm_addr		call;				/* Address to code, for backpatching
@@ -255,8 +255,8 @@ struct cinfo
 {
 	srcpos		stmt_begin;
 	srcline		line;
-	uchar*		src;
-	uchar*		filename;
+	char*		src;
+	char*		filename;
 	
 	symbol*		scope;
 	symbol*		proc;
@@ -266,8 +266,8 @@ struct cinfo
 	
 	boolean 	is_global_scope;
 	
-	LIST*		implicit_proc_calls;
-	LIST*		implicit_lbl_calls;
+	plist*		implicit_proc_calls;
+	plist*		implicit_lbl_calls;
 	REGION		region;
 };
 #define CINFO			struct cinfo

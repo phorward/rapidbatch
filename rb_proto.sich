@@ -12,7 +12,7 @@ Usage:	Prototype definitions
 #define RB_PROTO_H
 
 /* rb_string.c */
-rbstring* rbstring_add_char( rbstring* pstr, uchar chr );
+rbstring* rbstring_add_char( rbstring* pstr, char chr );
 rbstring* rbstring_merge( rbstring* pstr, rbstring* pstr_add, boolean cleanup );
 rbstring* rbstring_free( rbstring* pstr );
 

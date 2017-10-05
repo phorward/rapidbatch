@@ -128,7 +128,7 @@ Usage:	Header Template for the Native Function SDK
 #define RB_PARM_VAL_GET_STR( parm ) 	( RB_PARM_VAL( parm ) ? \
 											RB_VAL_GET_STR( \
 												RB_PARM_VAL( parm ) ) : \
-													(uchar*)NULL )
+													(char*)NULL )
 
 #define RB_PARM_VAL_SET_ULONG( parm, v ) ( RB_PARM_VAL( parm ) ? \
 											RB_VAL_SET_ADDR( RB_PARM_VAL( \
@@ -163,7 +163,7 @@ Usage:	Header Template for the Native Function SDK
 												parm ) ) : 0.0 )
 #define RB_PARM_VAR_GET_STR( parm ) 	( RB_PARM_VAR( parm ) ? \
 											RB_VAR_GET_STR( RB_PARM_VAR( \
-												parm ) ) : (uchar*)NULL )
+												parm ) ) : (char*)NULL )
 
 #define RB_PARM_VAR_SET_ULONG( parm, v ) ( RB_PARM_VAR( parm ) ? \
 											RB_VAR_SET_ADDR( RB_PARM_VAR( \

@@ -175,7 +175,7 @@ static BOOLEAN rb_symtab_drop( symbol* sym, boolean drop_sym )
 					symbol table, or creates a new symbol table entry and
 					returns this entry.
 					
-	Parameters:		uchar*		name			The symbol's identifying name
+	Parameters:		char*		name			The symbol's identifying name
 					symtype		type			The symbol type
 	
 	Returns:		symbol*						Pointer to the symbol,
@@ -185,7 +185,7 @@ static BOOLEAN rb_symtab_drop( symbol* sym, boolean drop_sym )
 	~~~ CHANGES & NOTES ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	Date:		Author:			Note:
 ----------------------------------------------------------------------------- */
-symbol* rb_symtab_find( uchar* name, symtype type )
+symbol* rb_symtab_find( char* name, symtype type )
 {
 	symbol*		link;
 
@@ -218,7 +218,7 @@ symbol* rb_symtab_find( uchar* name, symtype type )
 					a scope, that is defined by begin.
 					
 	Parameters:		symbol*		begin			Begin node of the scope.
-					uchar*		name			The symbol's identifying name
+					char*		name			The symbol's identifying name
 					symtype		type			The symbol type
 	
 	Returns:		symbol*						Pointer to the symbol,
@@ -228,7 +228,7 @@ symbol* rb_symtab_find( uchar* name, symtype type )
 	~~~ CHANGES & NOTES ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	Date:		Author:			Note:
 ----------------------------------------------------------------------------- */
-symbol* rb_symtab_find_in_scope( symbol* begin, uchar* name, symtype type )
+symbol* rb_symtab_find_in_scope( symbol* begin, char* name, symtype type )
 {
 	PROC( "rb_symtab_find_in_scope" );
 	PARMS( "begin", "%p", begin );
@@ -256,7 +256,7 @@ symbol* rb_symtab_find_in_scope( symbol* begin, uchar* name, symtype type )
 	Usage:			Creates a new symbol table entry and inserts it into the
 					symbol database.
 					
-	Parameters:		uchar*		name			The symbol's identifying name
+	Parameters:		char*		name			The symbol's identifying name
 					symtype		type			The symbol type
 	
 	Returns:		symbol*						Pointer to the desired symbol,
@@ -266,7 +266,7 @@ symbol* rb_symtab_find_in_scope( symbol* begin, uchar* name, symtype type )
 	~~~ CHANGES & NOTES ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	Date:		Author:			Note:
 ----------------------------------------------------------------------------- */
-symbol* rb_symtab_new( uchar* name, symtype type )
+symbol* rb_symtab_new( char* name, symtype type )
 {
 	symbol*		sym;
 	

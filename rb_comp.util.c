@@ -53,7 +53,7 @@ extern CINFO	cur;
 	~~~ CHANGES & NOTES ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	Date:		Author:			Note:
 ----------------------------------------------------------------------------- */
-symbol* rb_comp_get_symbol( uchar* ident, symtype type, boolean auto_create )
+symbol* rb_comp_get_symbol( char* ident, symtype type, boolean auto_create )
 {
 	symbol*	sym;
 
@@ -113,14 +113,14 @@ long rb_comp_get_var_count_of_scope( symbol* begin )
 	Semantic action function:
 	Fill symbol table entry with procedure-related information
 */
-symbol* rb_comp_proc_header( uchar* ident,
-	boolean is_function, LIST* parameters )
+symbol* rb_comp_proc_header( char* ident,
+	boolean is_function, plist* parameters )
 {
-	uchar*	parmdef;
-	symbol*	sym			= (symbol*)NULL;
-	symbol* parm;
-	long	parm_cnt;
-	LIST*	l;
+	char*		parmdef;
+	symbol*		sym			= (symbol*)NULL;
+	symbol* 	parm;
+	long		parm_cnt;
+	plistel*	e;
 					
 	sym = rb_comp_get_symbol( ident, SYM_PROC, TRUE );
 	if( !( sym->defined ) )
@@ -133,20 +133,21 @@ symbol* rb_comp_proc_header( uchar* ident,
 		sym->parmsym = parameters;
 		
 		/* Build parameter signature */
-		if( !( parmdef = sym->parmdef = (uchar*)pmalloc(
-				( list_count( parameters ) + 1 ) * sizeof( uchar ) ) ) )
+		if( !( parmdef = sym->parmdef = (char*)pmalloc(
+				( list_count( parameters ) + 1 ) * sizeof( char ) ) ) )
 		{
 			RB_OUT_OF_MEMORY;
 		}
 		
-		for( l = parameters; l; l = list_next( l ), parmdef++ )
+		plist_for( parameters, e )
 		{
-			parm = list_access( l );
+			parm = plist_access( e );
 			if( parm->pointer )
-				*parmdef = PARAM_BY_REF;
+				*(parmdef++) = PARAM_BY_REF;
 			else
-				*parmdef = PARAM_BY_VAL;
+				*(parmdef++) = PARAM_BY_VAL;
 		}
+
 		*parmdef = '\0';
 		/* VARS( "parmdef", "%s", sym->parmdef ); */
 		
@@ -160,7 +161,7 @@ symbol* rb_comp_proc_header( uchar* ident,
 	}
 	else
 		rb_comp_error( &( cur.stmt_begin ), "func_already_defined",
-				"function", ident, (uchar*)NULL );
+				"function", ident, (char*)NULL );
 		
 	pfree( ident );
 	
@@ -253,9 +254,9 @@ int rb_comp_proc_call_perform( struct proc_call* pc, boolean free_call )
 {
 	int				error	= 0;
 	int				i;
-	LIST*			l;
+	plistel*		e;
 	struct	param*	cpar;
-	uchar			parm	= (uchar)0;
+	char			parm	= (char)0;
 	
 	PROC( "rb_comp_proc_call_perform" );
 	PARMS( "pc", "%p", pc );
@@ -265,23 +266,23 @@ int rb_comp_proc_call_perform( struct proc_call* pc, boolean free_call )
 	{
 		if( pc->as_function )
 			rb_comp_error( &( pc->pos ), "func_undefined",
-				"name", pc->proc->name, (uchar*)NULL );
+				"name", pc->proc->name, (char*)NULL );
 		else
 			rb_comp_error( &( pc->pos ), "proc_undefined",
-				"name", pc->proc->name, (uchar*)NULL );
+				"name", pc->proc->name, (char*)NULL );
 	}
 	else
 	{
 		if( !( pc->proc->function ) && pc->as_function )
 		{
 			rb_comp_error( &( pc->pos ), "proc_called_as_func",
-				"name", pc->proc->name, (uchar*)NULL );
+				"name", pc->proc->name, (char*)NULL );
 		}
 		
-		for( l = pc->param_signature, i = 0;
-				l; l = list_next( l ) )
+		for( e = plist_first( pc->param_signature )i = 0;
+				e; e = plist_next( e ) )
 		{
-			cpar = (struct param*)list_access( l );
+			cpar = (struct param*)plist_access( e );
 			
 			parm = pc->proc->parmdef[ i ];
 			if( !( parm == PARAM_VARG_VAL_ONLY
@@ -297,11 +298,11 @@ int rb_comp_proc_call_perform( struct proc_call* pc, boolean free_call )
 				{
 					if( !( cpar->var ) )
 					{
-						uchar	num[ 10 + 1];
+						char	num[ 10 + 1];
 
 						sprintf( num, "%d", i+1 );
 						rb_comp_error( &( pc->pos ), "pointer_required",
-							"name", pc->proc->name, "parm", num, (uchar*)NULL );
+							"name", pc->proc->name, "parm", num, (char*)NULL );
 					}
 					else
 					{
@@ -322,7 +323,7 @@ int rb_comp_proc_call_perform( struct proc_call* pc, boolean free_call )
 			else
 			{
 				rb_comp_error( &( pc->pos ), "too_many_args",
-					"name", pc->proc->name, (uchar*)NULL );
+					"name", pc->proc->name, (char*)NULL );
 				
 				break;
 			}
@@ -333,7 +334,7 @@ int rb_comp_proc_call_perform( struct proc_call* pc, boolean free_call )
 					|| pc->proc->parmdef[ i ] == PARAM_VARG_ANY ) )
 		{
 			rb_comp_error( &( pc->pos ), "too_less_args",
-				"name", pc->proc->name, (uchar*)NULL );
+				"name", pc->proc->name, (char*)NULL );
 		}
 	}
 	
@@ -366,13 +367,13 @@ int rb_comp_proc_call_perform( struct proc_call* pc, boolean free_call )
 	{
 		MSG( "Freeing up memory" );
 		
-		for( l = pc->param_signature; l; l = list_next( l ) )
+		plist_for( pc->param_signature, e )
 		{
-			cpar = (struct param*)list_access( l );
+			cpar = (struct param*)plist_access( e );
 			pfree( cpar );
 		}
 
-		list_free( pc->param_signature );
+		plist_free( pc->param_signature );
 	}
 	
 	RETURN( error );
@@ -387,22 +388,23 @@ int rb_comp_proc_call_perform( struct proc_call* pc, boolean free_call )
 */
 void rb_comp_backpatch_proc_calls( symbol* proc )
 {
-	LIST*		l;
-	struct 	proc_call*	pc_ptr;
+	plistel* 	e;
+	struct 
+	proc_call*	pc_ptr;
 	
 	PROC( "rb_comp_backpatch_proc_calls" );
 	PARMS( "proc", "%p", proc );
 	
 	do
 	{
-		for( l = cur.implicit_proc_calls; l; l = l->next )
+		plist_for( cur.implicit_proc_calls, e )
 		{
-			pc_ptr = (struct proc_call*)list_access( l );
+			pc_ptr = (struct proc_call*)plist_access( e );
 			if( !proc || pc_ptr->proc == proc );
 				break;
 		}
 		
-		if( l )
+		if( e )
 		{
 			rb_comp_proc_call_perform( pc_ptr, TRUE );
 			
@@ -411,7 +413,7 @@ void rb_comp_backpatch_proc_calls( symbol* proc )
 			pfree( pc_ptr );
 		}
 	}
-	while( l );
+	while( e );
 	
 	VOIDRET;
 }
@@ -422,7 +424,7 @@ void rb_comp_backpatch_proc_calls( symbol* proc )
 	signatures to be processed later.
 */
 void rb_comp_proc_call( symbol* proc, boolean as_function,
-	LIST* params, vm_addr begin )
+	plist* params, vm_addr begin )
 {
 	struct 	proc_call*	pc_ptr;
 	struct 	proc_call	pc;
@@ -459,8 +461,10 @@ void rb_comp_proc_call( symbol* proc, boolean as_function,
 				&pc, sizeof( struct proc_call ) ) ) )
 			RB_OUT_OF_MEMORY;
 		
-		cur.implicit_proc_calls = list_push( cur.implicit_proc_calls,
-								(void*)pc_ptr );
+		if( !cur.implicit_proc_calls )
+			cur.implicit_proc_calls = plist_create( 0, PLIST_MOD_PTR );
+					
+		plist_push( cur.implicit_proc_calls, (void*)pc_ptr );
 	}
 	else
 	{
@@ -479,7 +483,7 @@ void rb_comp_proc_call( symbol* proc, boolean as_function,
 				if( proc->constant == RB_FUNC_AT_COMPTIME )
 				{				
 					rb_comp_error( &( pc.pos ), "compiletime_func_with_var_parm",
-						"name", pc.proc->name, (uchar*)NULL );
+						"name", pc.proc->name, (char*)NULL );
 					VOIDRET;
 				}
 			}
@@ -569,9 +573,9 @@ boolean rb_comp_region_branch( boolean cont )
 	}
 
 	if( cont )
-		rb_comp_error( &( cur.stmt_begin ), "cont_in_illegal_context", (uchar*)NULL );
+		rb_comp_error( &( cur.stmt_begin ), "cont_in_illegal_context", (char*)NULL );
 	else
-		rb_comp_error( &( cur.stmt_begin ), "break_in_illegal_context", (uchar*)NULL );
+		rb_comp_error( &( cur.stmt_begin ), "break_in_illegal_context", (char*)NULL );
 	
 	RETURN( FALSE );
 }
@@ -613,7 +617,7 @@ void rb_comp_region_close( REGION* prev,
 	Semantic action function:
 	Add label to symbol table
 */
-symbol* rb_comp_get_label( uchar* ident, boolean at_definition )
+symbol* rb_comp_get_label( char* ident, boolean at_definition )
 {
 	symbol*		label;
 	
@@ -624,7 +628,7 @@ symbol* rb_comp_get_label( uchar* ident, boolean at_definition )
 	{
 		rb_comp_error( &( cur.stmt_begin ),
 			"label_already_defined",
-				"label", ident, (uchar*)NULL );
+				"label", ident, (char*)NULL );
 	}
 	else
 	{
@@ -652,7 +656,7 @@ symbol* rb_comp_get_label( uchar* ident, boolean at_definition )
 	Semantic action function:
 	Call label, or remember call on implicit call
 */
-void rb_comp_label_call( uchar* ident )
+void rb_comp_label_call( char* ident )
 {
 	symbol*		label;
 	LBL_CALL	lc;
@@ -683,8 +687,10 @@ void rb_comp_label_call( uchar* ident )
 			VOIDRET;
 		}
 		
-		cur.implicit_lbl_calls = list_push(
-			cur.implicit_lbl_calls, (void*)lcp );
+		if( !cur.implicit_lbl_calls )
+			cur.implicit_lbl_calls = plist_create( 0, PLIST_MOD_PTR );
+
+		plist_push( cur.implicit_lbl_calls, (void*)lcp );
 	}
 	
 	VOIDRET;
@@ -701,7 +707,7 @@ void rb_comp_label_call_perform( LBL_CALL*	lc )
 	if( !( lc->sym->defined ) )
 	{
 		rb_comp_error( &lc->pos, "label_not_defined",
-			"label", lc->sym->name, (uchar*)NULL );
+			"label", lc->sym->name, (char*)NULL );
 			
 		rb_comp_patch( VM_GET_CODE( &cur.prog, lc->call ),
 			VMC_NOP, 0 );
@@ -721,7 +727,7 @@ void rb_comp_label_call_perform( LBL_CALL*	lc )
 */
 void rb_comp_backpatch_label_calls( symbol* label )
 {
-	LIST*		l;
+	plistel*	e;
 	LBL_CALL*	lc_ptr;
 	
 	PROC( "rb_comp_backpatch_label_calls" );
@@ -729,14 +735,14 @@ void rb_comp_backpatch_label_calls( symbol* label )
 	
 	do
 	{
-		for( l = cur.implicit_lbl_calls; l; l = l->next )
+		plist_for( cur.implicit_lbl_calls, e )
 		{
-			lc_ptr = (LBL_CALL*)list_access( l );
+			lc_ptr = (LBL_CALL*)plist_access( e );
 			if( !label || lc_ptr->sym == label );
 				break;
 		}
 		
-		if( l )
+		if( e )
 		{
 			rb_comp_label_call_perform( lc_ptr );
 			
@@ -745,7 +751,7 @@ void rb_comp_backpatch_label_calls( symbol* label )
 			pfree( lc_ptr );
 		}
 	}
-	while( l );
+	while( e );
 	
 	VOIDRET;
 }
@@ -791,17 +797,17 @@ void rb_comp_optimize_operator( PARAM* ret, PARAM* operand1, PARAM* operand2 )
 	Usage:			Generates a push on a constant value as the most suitable
 					value.
 
-	Parameters:		uchar*		constval		The constant to be pushed
+	Parameters:		char*		constval		The constant to be pushed
 
 	Returns:		void
 	~~~ CHANGES & NOTES ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	Date:		Author:			Note:
 ----------------------------------------------------------------------------- */
-void rb_comp_push_constant( uchar* constval )
+void rb_comp_push_constant( char* constval )
 {
 	long	v[2];
-	uchar	dot, empty;
-	uchar*	str;
+	char	dot, empty;
+	char*	str;
 	
 	PROC( "rb_comp_push_constant" );
 	PARMS( "constval", "%s", constval );
@@ -821,7 +827,7 @@ void rb_comp_push_constant( uchar* constval )
 
 				MSG( "Three correct matches - converting to double" );
 				
-				tmp_d = patof( constval );
+				tmp_d = atof( constval );
 				VARS( "tmp_d", "%lf", tmp_d );
 				
 				rb_comp_gen( &cur.prog, VMC_PUSHDBL, (void*)&tmp_d );
@@ -838,7 +844,7 @@ void rb_comp_push_constant( uchar* constval )
 			
 			if( v[0] >= 0 && v[0] <= UCHAR_MAX )
 			{
-				empty = (uchar)v[0];
+				empty = (char)v[0];
 				rb_comp_gen( &cur.prog, VMC_PUSHCHR, (void*)&empty );				
 			}
 			else

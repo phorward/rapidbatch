@@ -8,7 +8,7 @@ BEGIN			{
 					structs[ "vm_addr" ] = "unsigned long"
 					structs[ "srcpos" ] = "void"
 					structs[ "srcline" ] = "unsigned long"
-					structs[ "char" ] = "uchar"
+					structs[ "char" ] = "char"
 
 					#Functions
 					while( ( getline line < "EXPORT.FCT" ) > 0 )

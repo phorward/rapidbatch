@@ -130,12 +130,12 @@ vm_addr rb_vm_get_addr_val( vm_val* val, boolean convert ) /*SDK_EXT*/
 												FALSE: Don't convert
 
 	Returns:		Returns the string value. If no conversation is done,
-					and the value is not of type string, (uchar*)NULL is
+					and the value is not of type string, (char*)NULL is
 					returned.
 	~~~ CHANGES & NOTES ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	Date:		Author:			Note:
 ----------------------------------------------------------------------------- */
-uchar* rb_vm_get_str_val( vm_val* val, boolean convert ) /*SDK_EXT*/
+char* rb_vm_get_str_val( vm_val* val, boolean convert ) /*SDK_EXT*/
 {
 	if( val->type != VAL_CSTR
 		&& val->type != VAL_STR )
@@ -143,7 +143,7 @@ uchar* rb_vm_get_str_val( vm_val* val, boolean convert ) /*SDK_EXT*/
 		if( convert )
 			rb_vm_convert_value( val, VAL_STR );
 		else
-			return (uchar*)NULL;
+			return (char*)NULL;
 	}
 	
 	if( val->type == VAL_CSTR )

@@ -35,12 +35,12 @@ Usage:	Provides functions for rbstring-datatype management and manipulation
 					within the pool, it is not inserted, and a pointer to the
 					existing string will be returned.
 					
-	Parameters:		uchar***	pool				Pointer to the string pool
-					uchar*		insert				The string to be inserted
+	Parameters:		char***	pool				Pointer to the string pool
+					char*		insert				The string to be inserted
 					boolean		do_copy				Copy 'insert' if it is
 													engaged into the pool
-	Returns:		uchar*							Returns the pointer to the
-													string. (uchar*)NULL will
+	Returns:		char*							Returns the pointer to the
+													string. (char*)NULL will
 													be returned on error case.
 													
 													If do_copy is FALSE, and
@@ -53,9 +53,9 @@ Usage:	Provides functions for rbstring-datatype management and manipulation
 	~~~ CHANGES & NOTES ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	Date:		Author:			Note:
 ----------------------------------------------------------------------------- */
-uchar* rb_str_pool_append( uchar*** pool, uchar* insert, boolean do_copy )
+char* rb_str_pool_append( char*** pool, char* insert, boolean do_copy )
 {
-	uchar**			p;
+	char**			p;
 	unsigned int	cnt;
 	
 	PROC( "rb_str_pool_append" );
@@ -66,13 +66,13 @@ uchar* rb_str_pool_append( uchar*** pool, uchar* insert, boolean do_copy )
 	if( !( pool && insert ) )
 	{
 		MSG( "pool is null!" );
-		RETURN( (uchar*)NULL );
+		RETURN( (char*)NULL );
 	}
 	
 	for( p = *pool, cnt = 0; p && *p; p++, cnt++ )
 	{
 		VARS( "*p", "%s", *p );
-		if( !pstrcmp( *p, insert ) )
+		if( !strcmp( *p, insert ) )
 			break;
 	}
 	
@@ -85,18 +85,18 @@ uchar* rb_str_pool_append( uchar*** pool, uchar* insert, boolean do_copy )
 			VARS( "( cnt + MALLOC_STEP + 1 )", "%d",
 					( cnt + MALLOC_STEP + 1 ) );
 
-			if( !( *pool = (uchar**)prealloc( (uchar**)*pool,
-					( cnt + MALLOC_STEP + 1 ) * sizeof( uchar* ) ) ) )
+			if( !( *pool = (char**)prealloc( (char**)*pool,
+					( cnt + MALLOC_STEP + 1 ) * sizeof( char* ) ) ) )
 			{
 				MSG( "Can't reserve storage - out of memory?" );
-				RETURN( (uchar*)NULL );
+				RETURN( (char*)NULL );
 			}
 			
 			p = *pool + cnt;
 			
 			VARS( "p", "%p", p );
 			VARS( "*p", "%p", *p );
-			memset( p, 0, ( MALLOC_STEP + 1 ) * sizeof( uchar* ) );
+			memset( p, 0, ( MALLOC_STEP + 1 ) * sizeof( char* ) );
 		}
 		
 		if( do_copy )

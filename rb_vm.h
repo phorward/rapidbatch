@@ -63,7 +63,7 @@ Usage:	Virtual machine related defintions
 /*
  * Typedefs
  */
-typedef		char					vm_code;
+typedef		unsigned char			vm_code;
 #define VM_CODE		vm_code
 /*EXPORT:internal*/
 typedef		struct	_vm_prog		vm_prog;
@@ -194,7 +194,7 @@ typedef		int 					(*rb_native_var)( rb_param );
 /*EXPORT:internal*/
 struct _vm_stackitem
 {
-	uchar			type;
+	char			type;
 
 	union
 	{
@@ -237,7 +237,7 @@ struct _vm_stackitem
 #define ITEM_VAL_GET_STR( item ) 	( ( (item)->type == ITEM_VAL ) ? \
 										VAL_GET_STR( \
 											ITEM_VAL_STRUCT( item ) ) : \
-												(uchar*)NULL )
+												(char*)NULL )
 
 #define ITEM_VAL_SET_ADDR( item, v ) \
 									(item)->type = ITEM_VAL, \
@@ -271,7 +271,7 @@ struct _vm_prog
 	vm_addr			cur_addr;
 	vm_addr			code_next;
 
-	uchar**			cstr;		/* String constants */
+	char**			cstr;		/* String constants */
 };
 
 #endif

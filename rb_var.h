@@ -95,7 +95,7 @@ typedef	struct	_vm_var	vm_var;
 struct _vm_var
 {
 	vm_val			value;		/* The variable's value */
-	uchar*			key;		/* Pointer to key value
+	char*			key;		/* Pointer to key value
 									(only associative array) */
 
 	vm_addr*		ht;			/* Hash-table for subsequent elements */

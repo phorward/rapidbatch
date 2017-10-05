@@ -8,6 +8,7 @@ Author:	Jan Max Meyer
 Usage:	Parser for the RapidBATCH (Version 6) scripting language core
 ----------------------------------------------------------------------------- */
 
+#!language					"C";
 #whitespaces				whitespace;
 #lexeme						value ident
 							;
@@ -31,10 +32,9 @@ Usage:	Parser for the RapidBATCH (Version 6) scripting language core
 #language					"C";
 
 // Syntactical adjustments
-#case insensitive keywords	on;
+#case insensitive strings	on;
 #lexeme separation			on;
-#invalid keyword suffix		'A-Za-z0-9_';
-#reserve keywords			on;
+#reserve terminals			on;
 
 // Prologue definition
 #prologue
@@ -153,7 +153,7 @@ static void parse_error( int line, int sym, int state,
 
 // Start symbol
 program$			->	global_statement*
-						%( "END" '\n'* )?
+						( "END" '\n'* )?
 					;
 
 // General program structure
@@ -183,20 +183,20 @@ statement			->
 					
 					| 	"REPEAT"
 
-						%<REGION>
+						<REGION>(
 						[*
 							memcpy( &@@, &cur.region, sizeof( REGION ) );
 
 							memset( &cur.region, 0, sizeof( REGION ) );
 							cur.region.type = REGION_ITERATION;
 							cur.region.begin = cur.prog.code_next;
-						*]:prev_region
+						*]):prev_region
 						
 						'\n' statement_or_empty*
 						"UNTIL"
 						
-						%<vm_addr>
-						[* @@ = cur.prog.code_next; *]:cont_target
+						<vm_addr>(
+						[* @@ = cur.prog.code_next; *]):cont_target
 							
 						condition stack_jmp:jmp '\n'
 						
@@ -210,14 +210,14 @@ statement			->
 						
 					| "WHILE" 
 					
-						%<REGION>
+						<REGION>(
 						[*
 							memcpy( &@@, &cur.region, sizeof( REGION ) );
 
 							memset( &cur.region, 0, sizeof( REGION ) );
 							cur.region.type = REGION_ITERATION;
 							cur.region.begin = cur.prog.code_next;
-						*]:prev_region
+						*]):prev_region
 					
 						condition stack_jmp:jmp_false '\n'
 							statement_or_empty*
@@ -236,18 +236,18 @@ statement			->
 
 					| "EACH" 
 					
-						%<REGION>
+						<REGION>(
 						[*
 							memcpy( &@@, &cur.region, sizeof( REGION ) );
 
 							memset( &cur.region, 0, sizeof( REGION ) );
 							cur.region.type = REGION_ITERATION;
 							cur.region.begin = cur.prog.code_next;
-						*]:prev_region
+						*]):prev_region
 
 						variable_address:cont_var
 
-						%<VAR_INFO_SYM>(
+						<VAR_INFO_SYM>(
 							"BY" variable_address 							
 								[* @@ = @2; *]
 							| 
@@ -366,16 +366,16 @@ statement			->
 					| proc_call '\n'
 						[**]
 					
-					| #error '\n'
+					| &error '\n'
 						[* /* UNICC_CLEARIN(); */ *]
 					;
 					
 if_block			->	"IF" condition
 
-						%<vm_addr>
+						<vm_addr>(
 						[*
 							@@ = rb_comp_next_addr( &cur.prog, VMC_JMPFALSE );
-						*]:jmp
+						*]):jmp
 						
 						'\n' statement_or_empty*
 							elseif_block?:next
@@ -404,9 +404,9 @@ if_block			->	"IF" condition
 elseif_block<vm_addr>
 					->	"ELSEIF" stack_jmp:skip condition
 					
-						%<vm_addr>
+						<vm_addr>(
 						[*	@@ = rb_comp_next_addr( &cur.prog, VMC_JMPFALSE );
-						*]:jmp
+						*]):jmp
 
 							'\n' statement_or_empty*
 								elseif_block?:next
@@ -503,18 +503,21 @@ procdef				-> "PROC" stack_jmp:jmp stack_scope:prev_scope
 						*]
 					;
 
-procparmdef<LIST*>
+procparmdef<plist*>
 					-> ':' procparms
 						[*	@@ = @2; *]
 					|	
-						[*	@@ = (LIST*)NULL; *]
+						[*	@@ = (plist*)NULL; *]
 					;
 					
-procparms<LIST*>	-> procparms ',' procparm
-						[*	@@ = list_push( @1, (void*)@3 ); *]
+procparms<plist*>	-> procparms ',' procparm
+						[*	plist_push( @1, (void*)@3 );
+							@@ = @1;
+						*]
 
 					| procparm
-						[*	@@ = list_push( (LIST*)NULL, (void*)@1 ); *]
+						[*	@@ = plist_create( 0, PLIST_MOD_PTR );
+							plist_push( @@, (void*)@1 ); *]
 					;
 					
 procparm<symbol*>	-> param_variable
@@ -748,25 +751,27 @@ proc_call			->	fct parameters:parameters
 						*]
 					;
 
-parameters<LIST*>	->	 parameter_list
+parameters<plist*>	->	 parameter_list
 						[* @@ = @1; *]
 						
 					|
 
-						[* @@ = (LIST*)NULL; *]
+						[* @@ = (plist*)NULL; *]
 					;
 
-parameter_list<LIST*>
+parameter_list<plist*>
 					->	parameter_list ',' expression
 					
-						[*	@@ = list_push( @1,
+						[*	list_push( @1,
 								(void*)rb_memdup( &@3,
 									sizeof( struct param ) ) );
+							@@ = @1;
 						*]
 					
 					|	expression
 
-						[*	@@ = list_push( (LIST*)NULL,
+						[*	@@ = plist_create( 0, PLIST_MOD_PTR );
+							plist_push( @@,
 								(void*)rb_memdup( &@1,
 									sizeof( struct param ) ) );
 						*]
@@ -805,7 +810,7 @@ value<struct param>	->	'\'' string_content '\''
 							@@.var = (symbol*)NULL;
 						*]
 						
-					|	#error
+					|	&error
 					;
 					
 integer<long>	-> 	integer '0-9'
@@ -1067,7 +1072,7 @@ stack_scope
 							cur.scope = (symbol*)NULL;
 
 							@@.implicit_lbl_calls = cur.implicit_lbl_calls;
-							cur.implicit_lbl_calls = (LIST*)NULL;
+							cur.implicit_lbl_calls = (plist*)NULL;
 						*]
 					;
 

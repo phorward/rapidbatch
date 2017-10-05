@@ -34,7 +34,7 @@ Usage:	Native scripting function management
 	Usage:			Sets up a new native function to be called from within
 					RapidBATCH scripts.
 					
-	Parameters:		uchar*				name	The name of the native
+	Parameters:		char*				name	The name of the native
 													build-in function
 					rb_native_func		fct		Pointer to the build-in
 													function
@@ -70,7 +70,7 @@ Usage:	Native scripting function management
 	~~~ CHANGES & NOTES ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	Date:		Author:			Note:
 ----------------------------------------------------------------------------- */
-int rb_add_native_function( uchar* name, rb_native_func fct,
+int rb_add_native_function( char* name, rb_native_func fct,
 	boolean isfunc, char* parmdef, int run_at )
 {
 	symbol*			sym;
@@ -132,7 +132,7 @@ int rb_add_native_function( uchar* name, rb_native_func fct,
 	Usage:			Sets up a new native variable to be called from within
 					RapidBATCH scripts.
 					
-	Parameters:		uchar*			name			The name of the native
+	Parameters:		char*			name			The name of the native
 													build-in variable.
 					rb_native_var	get				Pointer to the variable
 													get function
@@ -150,7 +150,7 @@ int rb_add_native_function( uchar* name, rb_native_func fct,
 	~~~ CHANGES & NOTES ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	Date:		Author:			Note:
 ----------------------------------------------------------------------------- */
-int rb_add_native_var( uchar* name, rb_native_var get, rb_native_var set )
+int rb_add_native_var( char* name, rb_native_var get, rb_native_var set )
 {
 	symbol*			sym;
 
@@ -199,9 +199,9 @@ int rb_add_native_var( uchar* name, rb_native_var get, rb_native_var set )
 	Usage:			Sets up a new native constant variable for its usage within
 					scripts.
 					
-	Parameters:		uchar*			name			The name of the native
+	Parameters:		char*			name			The name of the native
 													build-in variable.
-					uchar*			value			The constant value; This
+					char*			value			The constant value; This
 													is always string, and will
 													be converted to a better
 													suiting type (if possible!)
@@ -221,7 +221,7 @@ int rb_add_native_var( uchar* name, rb_native_var get, rb_native_var set )
 	~~~ CHANGES & NOTES ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	Date:		Author:			Note:
 ----------------------------------------------------------------------------- */
-int rb_add_native_const( uchar* name, uchar* value, boolean dup_val )
+int rb_add_native_const( char* name, char* value, boolean dup_val )
 {
 	symbol*			sym;
 

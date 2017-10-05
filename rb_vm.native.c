@@ -116,7 +116,7 @@ void rb_vmwrap_VAL_SET_STR( vm_val* val, char* v ) /*SDK_EXT*/
 	RB_VAL_SET_STR( val, v );
 }
 
-uchar rb_vmwrap_VAL_TYPE( vm_val* val ) /*SDK_EXT*/
+char rb_vmwrap_VAL_TYPE( vm_val* val ) /*SDK_EXT*/
 {
 	return RB_VAL_TYPE( val );
 }
@@ -127,7 +127,7 @@ vm_val* rb_vmwrap_VAR_VAL_STRUCT( vm_var* var ) /*SDK_EXT*/
 	return RB_VAR_VAL_STRUCT( var );
 }
 
-uchar rb_vmwrap_VAR_VAL_TYPE( vm_var* var ) /*SDK_EXT*/
+char rb_vmwrap_VAR_VAL_TYPE( vm_var* var ) /*SDK_EXT*/
 {
 	return RB_VAR_VAL_TYPE( var );
 }

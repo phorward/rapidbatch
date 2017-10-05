@@ -52,7 +52,7 @@ RB_FCT( getlen )
 
 RBDOC*/
 
-	uchar*		str;
+	char*		str;
 
 	PROC( "getlen" );
 	RB_FCT_DUMP_PARMS();
@@ -111,8 +111,8 @@ RB_FCT( charat )
 	der Funktion ein Leerstring.
 
 RBDOC*/
-	uchar		temp	[ 1 + 1 ];
-	uchar*		str;
+	char		temp	[ 1 + 1 ];
+	char*		str;
 	long		cnt;
 
 	PROC( "charat" );
@@ -161,7 +161,7 @@ RB_FCT( print )
 	%%notice:ge
 
 RBDOC*/
-	uchar*	str;
+	char*	str;
 	int		i;
 
 	PROC( "print" );
@@ -181,7 +181,7 @@ RBDOC*/
 RB_FCT( getchr )
 {
 	long	asciiCode;
-	uchar	asciiSign [ 1 + 1 ];
+	char	asciiSign [ 1 + 1 ];
 	
 	PROC( "getchr" );
 	RB_FCT_DUMP_PARMS();
@@ -197,7 +197,7 @@ RB_FCT( getchr )
 
 RB_FCT( getasc )
 {
-	uchar*	asciiSign;
+	char*	asciiSign;
 	
 	PROC( "getasc" );
 	RB_FCT_DUMP_PARMS();
@@ -211,9 +211,9 @@ RB_FCT( getasc )
 
 RB_FCT( getpos )
 {
-	uchar*	sourceString;
-	uchar*	targetString;
-	uchar*	tempString;
+	char*	sourceString;
+	char*	targetString;
+	char*	tempString;
 	long	position;
 	
 	PROC( "getpos" );
@@ -242,8 +242,8 @@ RB_FCT( getpos )
 
 RB_FCT( lowvar )
 {
-	uchar*	ptr;
-	uchar*	sourceString;
+	char*	ptr;
+	char*	sourceString;
 	
 	PROC( "lowvar" );
 	RB_FCT_DUMP_PARMS();
@@ -263,8 +263,8 @@ RB_FCT( lowvar )
 
 RB_FCT( upvar )
 {
-	uchar*	ptr;
-	uchar*	sourceString;
+	char*	ptr;
+	char*	sourceString;
 	
 	PROC( "upvar" );
 	RB_FCT_DUMP_PARMS();
@@ -285,9 +285,9 @@ RB_FCT( upvar )
 RB_FCT( replacevar )
 {
 /*RBAUTOIMPORT function replacevar vvv*/
-	uchar*	str;
-	uchar*	find;
-	uchar*	replace;
+	char*	str;
+	char*	find;
+	char*	replace;
 	
 	PROC( "lowvar" );
 	RB_FCT_DUMP_PARMS();
@@ -340,9 +340,9 @@ RB_FCT( trimvar )
 
 RBDOC*/
 
-	uchar*	bgnstr;
-	uchar*	endstr;
-	uchar*	sourceString;
+	char*	bgnstr;
+	char*	endstr;
+	char*	sourceString;
 	
 	PROC( "trimvar" );
 	RB_FCT_DUMP_PARMS();
@@ -414,7 +414,7 @@ RBDOC*/
 RB_FCT( include )
 {
 /*RBAUTOIMPORT function include v*/
-	uchar*	filename;
+	char*	filename;
 	srcfile	file;
 	
 	PROC( "compiletime_test" );
@@ -453,7 +453,7 @@ RB_FCT( include )
 int rb_NATIVE_strlen_TEST( vm_stackitem* ret,
 	vm_stackitem* parms, vm_addr parms_cnt )
 {
-	uchar*		mystr;
+	char*		mystr;
 	
 	PROC( "rb_NATIVE_strlen_TEST" );
 	PARMS( "ret", "%p", ret );

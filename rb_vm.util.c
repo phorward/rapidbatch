@@ -29,7 +29,7 @@ static byte parm_size[]	=
 		(char)sizeof( vm_addr ),		/* PUSHADR */
 		(char)sizeof( char ),			/* PUSHCHR */
 		(char)sizeof( double ),			/* PUSHDBL */
-		(char)sizeof( uchar* ),			/* PUSHSTR */
+		(char)sizeof( char* ),			/* PUSHSTR */
 		(char)sizeof( vm_addr ),		/* RESERVE */
 		(char)sizeof( vm_addr ),		/* JMP */
 		(char)sizeof( vm_addr ),		/* JMPTRUE */
@@ -68,8 +68,8 @@ static byte parm_size[]	=
 ----------------------------------------------------------------------------- */
 boolean rb_vm_convert_value( vm_val* val, char to_type )
 {
-	uchar*		ptr;
-	uchar		tmp_s	[ 32 ];
+	char*		ptr;
+	char		tmp_s	[ 32 ];
 
 	PROC( "rb_vm_convert_value" );
 	PARMS( "val", "%p", val );
@@ -141,12 +141,12 @@ boolean rb_vm_convert_value( vm_val* val, char to_type )
 				
 				case VAL_STR:
 					ptr = val->value.vstr.str;
-					val->value.vlong = patol( val->value.vstr.str );
+					val->value.vlong = atol( val->value.vstr.str );
 					pfree( ptr );
 					break;
 
 				case VAL_CSTR:
-					val->value.vlong = patol( val->value.vcstr );
+					val->value.vlong = atol( val->value.vcstr );
 					break;
 				
 				default:
@@ -167,14 +167,12 @@ boolean rb_vm_convert_value( vm_val* val, char to_type )
 					break;
 				
 				case VAL_STR:
-					val->value.vaddr = (vm_addr)patol(
-										val->value.vstr.str );
+					val->value.vaddr = (vm_addr)atol( val->value.vstr.str );
 					pfree( val->value.vstr.str );
 					break;
 
 				case VAL_CSTR:
-					val->value.vaddr = (vm_addr)patol(
-										val->value.vcstr );
+					val->value.vaddr = (vm_addr)atol( val->value.vcstr );
 					break;
 				
 				default:
@@ -195,12 +193,12 @@ boolean rb_vm_convert_value( vm_val* val, char to_type )
 					break;
 				
 				case VAL_STR:
-					val->value.vdbl = patof( val->value.vstr.str );
+					val->value.vdbl = atof( val->value.vstr.str );
 					pfree( val->value.vstr.str );
 					break;
 
 				case VAL_CSTR:
-					val->value.vdbl = patof( val->value.vcstr );
+					val->value.vdbl = atof( val->value.vcstr );
 					break;
 				
 				default:
@@ -239,9 +237,9 @@ boolean rb_vm_convert_value( vm_val* val, char to_type )
 ----------------------------------------------------------------------------- */
 boolean rb_vm_optimal_value( vm_val* val )
 {
-	uchar*	str;
+	char*	str;
 	int		v[2];
-	uchar	dot, empty;
+	char	dot, empty;
 	
 	PROC( "rb_vm_optimal_value" );
 	PARMS( "val", "%p", val );
@@ -285,7 +283,7 @@ boolean rb_vm_optimal_value( vm_val* val )
 			{
 				MSG( "Three correct matches - converting to double" );
 				val->type = VAL_DBL;
-				val->value.vdbl = patof( str );
+				val->value.vdbl = atof( str );
 			}
 			else
 			{
