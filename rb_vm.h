@@ -14,15 +14,13 @@ Usage:	Virtual machine related defintions
 /*
  * Includes
  */
-/*EXPORT:internal*/
 #include "rb_val.h"
 #include "rb_var.h"
-/*ENDEXPORT*/
 
 /*
  * Defines
  */
- 
+
 /* Size of an activation record (begin of local variables!) */
 #define VM_ACTREC_SIZE		2				/* Activation record exists of:
 												[ * Return value ]
@@ -32,7 +30,7 @@ Usage:	Virtual machine related defintions
 												1 Previous Frame Pointer
 												* Local variables
 											*/
- 
+
 /* Command class definitions */
 #define CCLASS_UNDEFINED	0				/* Undefined command */
 #define CCLASS_PROGRAM_FLOW	16				/* Program flow/Memory
@@ -180,7 +178,7 @@ typedef		int 					(*rb_native_var)( rb_param );
 
 #define VM_GET_CODE( prog, addr ) \
 	( (prog)->code + (addr) )
-	
+
 #define VM_NEXT_OF( prog, addr ) \
 	( addr + rb_vm_get_parm_size( \
 		*VM_GET_CODE( prog, addr ) ) + 1 )

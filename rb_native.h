@@ -1,7 +1,3 @@
-/* * * * * * * * * * * * * * * * * * * * * * *
- * W A R N I N G :: THIS IS ONLY A TEMPLATE! *
- * * * * * * * * * * * * * * * * * * * * * * */
-
 /* -HEADER----------------------------------------------------------------------
 RapidBATCH
 Copyright (C) 2008, 2009 by Phorward Software Technologies, Jan Max Meyer
@@ -10,27 +6,22 @@ http://www.phorward-software.com ++ mail@phorward-software.com
 File:	rb_native.h
 Author:	Jan Max Meyer
 Usage:	Header Template for the Native Function SDK
-		
+
 		WARNING:	THIS IS A HEADER FILE THAT IS USED TO GENERATED THE NATIVE
 					FUNCTION SDK FOR BOTH THE EXTERNAL AND INTERNAL BUILD.
-					
+
 					DO NEVER USE THIS FILE DIRECTLY!
 ----------------------------------------------------------------------------- */
 
-/* * * * * * * * * * * * * * * * * * * * * * *
- * W A R N I N G :: THIS IS ONLY A TEMPLATE! *
- * * * * * * * * * * * * * * * * * * * * * * */
+#include "rb_vm.h"
 
-/*EXPORT:internal*/
 #define rb_param		vm_stackitem*
 #define rb_var			vm_var*
-/*ENDEXPORT*/
 
-/*EXPORT*/
 /*
  * Macros
  */
- 
+
 /********************************
 	NATIVE FUNCTION RELATED
 ********************************/
@@ -48,17 +39,9 @@ Usage:	Header Template for the Native Function SDK
 /* Native function param access */
 #define RB_FCT_PARM_COUNT() \
 	( _RB_PARMS_COUNT )
-/*ENDEXPORT*/
-/*EXPORT:internal*/
 #define RB_FCT_PARM_ACCESS( num ) \
 	( ( ( num ) < _RB_PARMS_COUNT ) ? \
 		_RB_PARMS + (num) : (rb_param)NULL )
-/*ENDEXPORT*/
-/*EXPORT:external*/
-#define RB_FCT_PARM_ACCESS( num ) \
-	rb_vmwrap_GET_PARAM( _RB_PARMS, (num), _RB_PARMS_COUNT )
-/*ENDEXPORT*/
-/*EXPORT*/
 #define RB_FCT_RET \
 	( _RB_RET )
 
@@ -100,17 +83,9 @@ Usage:	Header Template for the Native Function SDK
 	PARAMETER VALUE ACCESS
 ********************************/
 
-/*ENDEXPORT*/
-/*EXPORT:internal*/
 #define RB_PARM_VAL( parm )			ITEM_GET_VAL( parm )
 #define RB_PARM_VAR( parm )			ITEM_GET_VAR( parm )
-/*ENDEXPORT*/
-/*EXPORT:external*/
-#define RB_PARM_VAL( parm )			rb_vmwrap_ITEM_GET_VAL( parm )
-#define RB_PARM_VAR( parm )			rb_vmwrap_ITEM_GET_VAR( parm )
-/*ENDEXPORT*/
 
-/*EXPORT*/
 #define RB_PARM_IS_VAL( parm )		RB_PARM_VAL( parm )
 #define RB_PARM_IS_VAR( parm )		RB_PARM_VAR( parm )
 
@@ -132,24 +107,24 @@ Usage:	Header Template for the Native Function SDK
 
 #define RB_PARM_VAL_SET_ULONG( parm, v ) ( RB_PARM_VAL( parm ) ? \
 											RB_VAL_SET_ADDR( RB_PARM_VAL( \
- 												parm ), v ), RB_ERR_OK : \
- 													RB_ERR_FAILURE )
+ 												parm ), v ), 0 : \
+ 													-1 )
 #define RB_PARM_VAL_SET_LONG( parm, v ) ( RB_PARM_VAL( parm ) ? \
 											RB_VAL_SET_LONG( RB_PARM_VAL( \
-												parm ), v ), RB_ERR_OK : \
-													RB_ERR_FAILURE )
+												parm ), v ), 0 : \
+													-1 )
 #define RB_PARM_VAL_SET_DBL( parm, v ) 	( RB_PARM_VAL( parm ) ? \
 											RB_VAL_SET_DBL( RB_PARM_VAL( \
-												parm ), v ), RB_ERR_OK : \
-													RB_ERR_FAILURE )
+												parm ), v ), 0 : \
+													-1 )
 #define RB_PARM_VAL_SET_CSTR( parm, v )	( RB_PARM_VAL( parm ) ? \
 											RB_VAL_SET_CSTR( RB_PARM_VAL( \
-												parm ), v ), RB_ERR_OK : \
-													RB_ERR_FAILURE )
+												parm ), v ), 0 : \
+													-1 )
 #define RB_PARM_VAL_SET_STR( parm, v ) 	( RB_PARM_VAL( parm ) ? \
 											RB_VAL_SET_STR( RB_PARM_VAL( \
-												parm ), v ), RB_ERR_OK : \
-													RB_ERR_FAILURE )
+												parm ), v ), 0 : \
+													-1 )
 
 /* Variable structure access (getter/setter macros) */
 #define RB_PARM_VAR_GET_ULONG( parm )	( RB_PARM_VAR( parm ) ? \
@@ -168,17 +143,16 @@ Usage:	Header Template for the Native Function SDK
 #define RB_PARM_VAR_SET_ULONG( parm, v ) ( RB_PARM_VAR( parm ) ? \
 											RB_VAR_SET_ADDR( RB_PARM_VAR( \
 												parm ), v ), \
-												RB_ERR_OK : RB_ERR_FAILURE )
+												0 : -1 )
 #define RB_PARM_VAR_SET_LONG( parm, v ) ( RB_PARM_VAR( parm ) ? \
 											RB_VAR_SET_LONG( RB_PARM_VAR( \
 												parm ), v ), \
-												RB_ERR_OK : RB_ERR_FAILURE )
+												0 : -1 )
 #define RB_PARM_VAR_SET_DBL( parm, v ) 	( RB_PARM_VAR( parm ) ? \
 											RB_VAR_SET_DBL( RB_PARM_VAR( \
 												parm ), v ), \
-												RB_ERR_OK : RB_ERR_FAILURE )
+												0 : -1 )
 #define RB_PARM_VAR_SET_STR( parm, v ) 	( RB_PARM_VAR( parm ) ? \
 											RB_VAR_SET_STR( RB_PARM_VAR( \
 												parm ), v ), \
-												RB_ERR_OK : RB_ERR_FAILURE )
-/*ENDEXPORT*/
+												0 : -1 )

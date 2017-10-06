@@ -40,7 +40,20 @@ SOURCE		=	$(PARSER_OUT) \
 				rb_vm.dbg.c \
 				rb_string.c \
 				rb_util.c \
-				xml.c
+				xml.c \
+				\
+				comptime.c \
+				file.c \
+				getcharat.c \
+				getlen.c \
+				getpos.c \
+				gettok.c \
+				replacevar.c \
+				string.c \
+				trimvar.c \
+				\
+				_std.c \
+				main.c
 				
 OBJECTS		=	$(patsubst %.c,%.o,$(SOURCE))
 
@@ -70,5 +83,10 @@ $(PARSER_OUT): $(PARSER)
 	$(PATHEXT) unicc -s -v -w -o $(PARSER_BASE) $(PARSER)
 	
 $(PROTOFILE): $(SOURCE) $(HEADERS)
-	$(PATHEXT) pproto $(SOURCE) >$@
+	$(PATHEXT) ./pproto $(SOURCE) >$@
+
+clean:
+	rm $(OBJECTS)
+	rm $(PARSER_BASE).c
+	rm $(PARSER_BASE).h
 

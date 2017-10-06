@@ -14,7 +14,7 @@ Usage:	Global declarations
 /*
  * Includes
  */
-/*EXPORT*/
+
 /* System includes */
 #include <stdlib.h>
 #include <stdio.h>
@@ -63,6 +63,10 @@ typedef		unsigned long	vm_addr;
 
 /* memory management */
 #define RB_OUT_OF_MEMORY			OUTOFMEM
+
+#include "rb_comp.h"
+#include "rb_vm.h"
+#include "rb_proto.h"
 
 #endif
 

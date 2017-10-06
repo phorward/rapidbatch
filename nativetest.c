@@ -15,7 +15,7 @@ Usage:	This is a test file for native function development;
  */
  
 /* #define __WITH_TRACE */
-#include "rb_native.intl.h"
+#include "rb_native.h"
 
 /*
  * Global variables

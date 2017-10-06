@@ -1,12 +1,5 @@
 /* rb_comp.parser.c */
-#if 1851 == 0
-#else
-void rb_comp_current_srcpos( srcpos* pos );
-srcpos* rb_comp_cur_pos( void );
-#endif
-
-/* rb_comp.parser.c */
-#if 1851 == 0
+#if 1864 == 0
 #else
 void rb_comp_current_srcpos( srcpos* pos );
 srcpos* rb_comp_cur_pos( void );
@@ -166,4 +159,27 @@ XML_T xml_set_flag( XML_T xml, short flag );
 int xml_count( XML_T xml );
 int xml_count_all( XML_T xml );
 XML_T xml_cut( XML_T xml );
+
+/* comptime.c */
+
+/* file.c */
+int rb_read_file( char** cont, char* filename );
+
+/* getcharat.c */
+
+/* getlen.c */
+
+/* getpos.c */
+
+/* gettok.c */
+
+/* replacevar.c */
+
+/* string.c */
+
+/* trimvar.c */
+
+/* _std.c */
+
+/* main.c */
 
