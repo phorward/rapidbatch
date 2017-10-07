@@ -2,7 +2,6 @@
 		MANUAL EDITING NOT RECOMMENDED! */
 
 #include "rb_global.h"
-#include "rb_native.h"
 
 int rb_register_std( void )
 {

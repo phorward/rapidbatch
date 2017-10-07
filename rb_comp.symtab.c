@@ -11,10 +11,8 @@ Usage:	Symbol table management functions
 /*
  * Includes
  */
-#include "rb_comp.h"
-#ifndef MAKE_PROTOTYPES
-#include "rb_proto.h"
-#endif
+
+#include "rb_global.h"
 
 /*
  * Global variables

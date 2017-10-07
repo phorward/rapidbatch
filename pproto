@@ -132,6 +132,11 @@ END					{
 						same_line = 1
 					}
 
+/RB_FCT/			{
+						akt_proto = akt_proto $0
+						same_line = 1
+					}
+
 /^{[ \t]*$/			{
 						if( akt_proto != "" )
 						{

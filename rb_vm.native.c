@@ -13,12 +13,6 @@ Usage:	Virtual machine utility functions
  */
 /* #define __WITH_TRACE */
 #include "rb_global.h"
-#include "rb_comp.h"
-#include "rb_vm.h"
-
-#ifndef MAKE_PROTOTYPES
-#include "rb_proto.h"
-#endif
 
 /*
  * Global variables

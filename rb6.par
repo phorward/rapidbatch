@@ -43,10 +43,7 @@ Usage:	Parser for the RapidBATCH (Version 6) scripting language core
 /*
  * Includes
  */
-#include "rb_comp.h"
-#ifndef MAKE_PROTOTYPES
-#include "rb_proto.h"
-#endif
+#include "rb_global.h"
 
 /* C parser configuration defines */
 #define UNICC_DEBUG				0
@@ -95,7 +92,7 @@ static void move_src( char* s, int l )
 		/*
 		printf( ">%c< %ld\n", *s, cur.line );
 		*/
-		
+
 		s++;
 		l--;
 	}
@@ -104,7 +101,7 @@ static void move_src( char* s, int l )
 	*/
 }
 
-#if 0
+#if 0 /* JMM Oct, 2017 temporarily removed.
 static void parse_error( int line, int sym, int state,
 	int* act, char** names, int* white )
 {
@@ -112,9 +109,9 @@ static void parse_error( int line, int sym, int state,
 	char*	tokens	= (char*)NULL;
 	char*	tmp;
 	srcpos	pos;
-	
+
 	rb_comp_current_srcpos( &pos );
-	
+
 	/* Only one token? Then use other error message! */
 	if( *act == 1 )
 	{
@@ -131,16 +128,16 @@ static void parse_error( int line, int sym, int state,
 			{
 				RB_OUT_OF_MEMORY;
 			}
-			
+
 			sprintf( tmp, "%s%s", names[ act[ i ] ],
 				( ( i+3 < *act * 3 ) ? ", " : "" ) );
-			
+
 			tokens = pstrcatstr( tokens, tmp, TRUE );
 		}
 
 		rb_comp_error( &pos, "parse_error_multi_token",
 			"token", tokens, (char*)NULL );
-			
+
 		pfree( tokens );
 	}
 }
@@ -160,7 +157,7 @@ program$			->	global_statement*
 					;
 
 // General program structure
-					
+
 global_statement	->	statement_or_empty
 
 					| funcdef
@@ -168,22 +165,22 @@ global_statement	->	statement_or_empty
 					| procdef
 
 					;
-					
+
 statement_or_empty	-> statement
-					
+
 					| '\n'
 
 					;
 
 statement			->
-					
+
 					if_block
 
 					| "IF" condition stack_jmp:jmp statement
 						[*
 							rb_comp_patch_jmp( &cur.prog, VMC_JMPFALSE, @jmp );
 						*]
-					
+
 					| 	"REPEAT"
 
 						<REGION>(
@@ -194,15 +191,15 @@ statement			->
 							cur.region.type = REGION_ITERATION;
 							cur.region.begin = cur.prog.code_next;
 						*]):prev_region
-						
+
 						'\n' statement_or_empty*
 						"UNTIL"
-						
+
 						<vm_addr>(
 						[* @@ = cur.prog.code_next; *]):cont_target
-							
+
 						condition stack_jmp:jmp '\n'
-						
+
 						[*
 							rb_comp_patch( VM_GET_CODE( &cur.prog, @jmp ),
 								VMC_JMPFALSE, &( cur.region.begin ) );
@@ -210,9 +207,9 @@ statement			->
 							rb_comp_region_close( &@prev_region,
 								cur.prog.code_next, @cont_target );
 						*]
-						
-					| "WHILE" 
-					
+
+					| "WHILE"
+
 						<REGION>(
 						[*
 							memcpy( &@@, &cur.region, sizeof( REGION ) );
@@ -221,11 +218,11 @@ statement			->
 							cur.region.type = REGION_ITERATION;
 							cur.region.begin = cur.prog.code_next;
 						*]):prev_region
-					
+
 						condition stack_jmp:jmp_false '\n'
 							statement_or_empty*
 						"WEND" '\n'
-						
+
 						[*
 							rb_comp_gen( &cur.prog, VMC_JMP, &( cur.region.begin ) );
 							rb_comp_patch( VM_GET_CODE( &cur.prog, @jmp_false ),
@@ -237,8 +234,8 @@ statement			->
 
 /* TODO: EACH-LOOP
 
-					| "EACH" 
-					
+					| "EACH"
+
 						<REGION>(
 						[*
 							memcpy( &@@, &cur.region, sizeof( REGION ) );
@@ -251,33 +248,33 @@ statement			->
 						variable_address:cont_var
 
 						<VAR_INFO_SYM>(
-							"BY" variable_address 							
+							"BY" variable_address
 								[* @@ = @2; *]
-							| 
+							|
 								[* @@.varsym = (symbol*)NULL; *]
-								
+
 								):index_var
-							
+
 						"IN" variable_address:array_var '\n'
-							
+
 							statement_or_empty*
-						
+
 						"NEXT" '\n'
 */
-					
+
 					| "BREAK" '\n'
 						[*
 							 rb_comp_region_branch( FALSE );
 						*]
-					
+
 					| "CONT" '\n'
 						[*
 							rb_comp_region_branch( TRUE );
 						*]
-					
+
 					| "RET" '\n'
 						[*	char*	str;
-						
+
 							if( !cur.proc )
 							{
 								printf( "Error: RET used not within "
@@ -295,11 +292,11 @@ statement			->
 									rb_comp_gen( &cur.prog,
 											VMC_PUSHSTR, (void*)&str );
 								}
-								
+
 								rb_comp_proc_return( cur.proc );
 							}
-						*]					
-						
+						*]
+
 					| "RET" expression '\n'
 						[*	if( !cur.proc )
 							{
@@ -314,20 +311,20 @@ statement			->
 							else
 								rb_comp_proc_return( cur.proc );
 						*]
-					
+
 					| "DEC" dec_parms '\n'
-					
+
 					| "RESET" reset_parms '\n'
-					
+
 					| "GOSUB" ident '\n'
 						[* printf( "stmt: Gosub\n" ); *]
-					
+
 					| "GOTO" ident '\n'
 						[* rb_comp_label_call( @ident ); *]
-					
+
 					| "RESUME" '\n'
 						[* printf( "stmt: Resume\n" ); *]
-					
+
 					| "LET"? variable_address:var '=' expression '\n'
 						[*
 							if( @var.varsym->native )
@@ -339,7 +336,7 @@ statement			->
 											"var", @var.varsym->name,
 												(char*)NULL );
 								}
-								
+
 								rb_comp_gen( &cur.prog, VMC_NSTORE,
 									&( @var.varsym->offset.variable.set ) );
 							}
@@ -358,28 +355,28 @@ statement			->
 					| '%' ident '\n'
 						[*
 							symbol* lbl;
-							
+
 							lbl = rb_comp_get_label( @ident, TRUE );
 							rb_comp_backpatch_label_calls( lbl );
 						*]
-					
+
 					| func_call '\n'
 						[**]
-					
+
 					| proc_call '\n'
 						[**]
-					
+
 					| &error '\n'
 						[* /* UNICC_CLEARIN(); */ *]
 					;
-					
+
 if_block			->	"IF" condition
 
 						<vm_addr>(
 						[*
 							@@ = rb_comp_next_addr( &cur.prog, VMC_JMPFALSE );
 						*]):jmp
-						
+
 						'\n' statement_or_empty*
 							elseif_block?:next
 								"ENDIF" '\n'
@@ -403,10 +400,10 @@ if_block			->	"IF" condition
 										&( cur.prog.code_next ) );
 						*]
 					;
-									
+
 elseif_block<vm_addr>
 					->	"ELSEIF" stack_jmp:skip condition
-					
+
 						<vm_addr>(
 						[*	@@ = rb_comp_next_addr( &cur.prog, VMC_JMPFALSE );
 						*]):jmp
@@ -434,13 +431,13 @@ elseif_block<vm_addr>
 
 							@@ = @skip;
 						*]
-						
+
 					|	"ELSE" stack_jmp:skip '\n'
 							statement_or_empty*
 
 						[*
 							@@ = @skip;
-						*]			
+						*]
 					;
 
 // Variable declarations
@@ -448,7 +445,7 @@ dec_parms			-> dec_parms ',' variable_address
 						[*
 							rb_comp_gen( &cur.prog, VMC_INIT, (void*)NULL );
 						*]
-					
+
 					| variable_address
 						[*
 							rb_comp_gen( &cur.prog, VMC_INIT, (void*)NULL );
@@ -460,16 +457,16 @@ reset_parms			-> reset_parms ',' variable_address
 						[*
 							rb_comp_gen( &cur.prog, VMC_FREE, (void*)NULL );
 						*]
-					
+
 					| variable_address
 						[*
 							rb_comp_gen( &cur.prog, VMC_FREE, (void*)NULL );
 						*]
 					;
-				
+
 // Procedure- and Function declarations
 funcdef_entry
-	<symbol*>		->  ident:ident procparmdef:parameter 
+	<symbol*>		->  ident:ident procparmdef:parameter
 
 						[*	@@ = rb_comp_proc_header( @ident,
 									TRUE, @parameter );
@@ -509,10 +506,10 @@ procdef				-> "PROC" stack_jmp:jmp stack_scope:prev_scope
 procparmdef<plist*>
 					-> ':' procparms
 						[*	@@ = @2; *]
-					|	
+					|
 						[*	@@ = (plist*)NULL; *]
 					;
-					
+
 procparms<plist*>	-> procparms ',' procparm
 						[*	plist_push( @1, (void*)@3 );
 							@@ = @1;
@@ -522,7 +519,7 @@ procparms<plist*>	-> procparms ',' procparm
 						[*	@@ = plist_create( 0, PLIST_MOD_PTR );
 							plist_push( @@, (void*)@1 ); *]
 					;
-					
+
 procparm<symbol*>	-> param_variable
 
 						[*	@@ = rb_symtab_new( @1.varname, SYM_VAR );
@@ -530,7 +527,7 @@ procparm<symbol*>	-> param_variable
 								cur.scope, @@ );
 
 							pfree( @1.varname );
-							
+
 							@@->global = FALSE;
 							@@->defined = TRUE;
 							@@->pointer = @1.pointer;
@@ -546,7 +543,7 @@ varname_tail<char*>
 						[* @@ = pstrcatchar( (char*)NULL, @1 );
 						*]
 					;
-					
+
 varname<char*>		-> 'A-Za-z_ ' varname_tail?
 						[*	@@ = pstrcatchar( (char*)NULL, @1 );
 							@@ = pstrcatstr( @@, @2, TRUE );
@@ -559,10 +556,10 @@ varindex<char>		->	varindex ','? expression
 					|	expression
 						[* @@ = 1; *]
 					;
-					
+
 param_variable
 	<VAR_INFO>		-> '[' '*'? varname:name ']'
-						
+
 							[*
 								@@.varname = @name;
 
@@ -575,7 +572,7 @@ param_variable
 
 simple_variable
 	<VAR_INFO>		-> '[' '&'? varname:name ']'
-						
+
 							[*
 								@@.varname = @name;
 
@@ -585,7 +582,7 @@ simple_variable
 									@@.pointer = FALSE;
 							*]
 					;
-					
+
 complex_variable
 	<VAR_INFO>		->	'[' '&'? varname:name ':'? varindex:index ']'
 
@@ -593,14 +590,14 @@ complex_variable
 									This is required by the VMC_LOAD_ARRAY */
 								rb_comp_gen( &cur.prog, VMC_PUSHCHR, &@index );
 								@@.varname = @name;
-								
+
 								if( @2 == '&' )
 									@@.pointer = TRUE;
 								else
 									@@.pointer = FALSE;
 							*]
 					;
-					
+
 variable
 	<VAR_INFO_SYM>	-> 	simple_variable
 
@@ -614,25 +611,25 @@ variable
 							if( !( @@.varsym->constant || @@.varsym->native ) )
 							{
 								char null_depth	= 0;
-								
+
 								/* We push a 0 as indicator that no variable
 										dimensions are accessed here! */
 								rb_comp_gen( &cur.prog,
 									VMC_PUSHCHR, &null_depth );
 							}
-							
+
 							@@.pointer = @1.pointer;
 						*]
-						
+
 					| complex_variable
-					
+
 						[*	@@.varsym = rb_comp_get_symbol(
 								@1.varname, SYM_VAR, TRUE );
 							@@.varsym->used = TRUE;
 							pfree( @1.varname );
-							
+
 							if( @@.varsym->constant )
-							{									
+							{
 								rb_comp_error( &( cur.stmt_begin ),
 									"constant_array_access",
 										"var", @@.varsym->name,
@@ -645,7 +642,7 @@ variable
 										"var", @@.varsym->name,
 											(char*)NULL );
 							}
-							
+
 							@@.pointer = @1.pointer;
 						*]
 					;
@@ -661,10 +658,10 @@ variable_address
 							else if( !( @1.varsym->global ) )
 							{
 								long	addr = @1.varsym->offset._long;
-								
+
 								if( addr >= 0 )
 									addr += VM_ACTREC_SIZE;
-								
+
 								rb_comp_gen( &cur.prog, VMC_PUSHINT, &addr );
 								rb_comp_gen( &cur.prog, VMC_PUSHFRM,
 									(void*)NULL );
@@ -676,7 +673,7 @@ variable_address
 								rb_comp_gen( &cur.prog, VMC_PUSHINT,
 									&( @1.varsym->offset._long ) );
 							}
-							
+
 							@@ = @1;
 						*]
 					;
@@ -685,7 +682,7 @@ variable_address
 // Function/procedure calls
 
 fct<PROC_INFO>		->	ident:procname
-						
+
 						[*
 							if( !( @@.proc = rb_comp_get_symbol(
 										@procname, SYM_PROC, TRUE  ) ))
@@ -693,16 +690,16 @@ fct<PROC_INFO>		->	ident:procname
 								pfree( @procname );
 								RB_OUT_OF_MEMORY;
 							}
-							
+
 							pfree( @procname );
-							
+
 							@@.begin = cur.prog.code_next;
 						*]
 					;
 
 
 in_expr_func_call	->	fct '(' parameters:parameters ')'
-						
+
 						[*	rb_comp_proc_call( @fct.proc, TRUE,
 								@parameters, @fct.begin );
 						*]
@@ -710,7 +707,7 @@ in_expr_func_call	->	fct '(' parameters:parameters ')'
 					;
 
 func_call			->	fct '=' parameters:parameters
-						
+
 						[*	rb_comp_proc_call( @fct.proc, TRUE,
 								@parameters, @fct.begin );
 							rb_comp_gen( &cur.prog, VMC_STORE, (void*)NULL );
@@ -718,11 +715,11 @@ func_call			->	fct '=' parameters:parameters
 					;
 
 proc_call			->	fct parameters:parameters
-						
+
 						[*	boolean			call_as_func	= FALSE;
 							symbol*			sym;
 							struct param*	parm;
-							
+
 							/* Special case function call:
 								Function with no parameters */
 							if( ( sym = rb_symtab_find( @fct.proc->name,
@@ -733,15 +730,15 @@ proc_call			->	fct parameters:parameters
 										plist_access(
 											plist_first(
 												@parameters ) );
-								
+
 								if( parm->var && sym->function )
 								{
 									call_as_func = TRUE;
-									
+
 									rb_comp_patch( VM_GET_CODE( &cur.prog,
 										parm->push_code ), VMC_NOP,
 											(void*)NULL );
-									
+
 									@parameters = plist_free( @parameters );
 									pfree( parm );
 								}
@@ -749,7 +746,7 @@ proc_call			->	fct parameters:parameters
 
 							rb_comp_proc_call( @fct.proc, call_as_func,
 								@parameters, @fct.begin );
-							
+
 							if( call_as_func )
 								rb_comp_gen( &cur.prog, VMC_STORE, (void*)NULL );
 						*]
@@ -757,7 +754,7 @@ proc_call			->	fct parameters:parameters
 
 parameters<plist*>	->	 parameter_list
 						[* @@ = @1; *]
-						
+
 					|
 
 						[* @@ = (plist*)NULL; *]
@@ -765,13 +762,13 @@ parameters<plist*>	->	 parameter_list
 
 parameter_list<plist*>
 					->	parameter_list ',' expression
-					
+
 						[*	plist_push( @1,
 								(void*)rb_memdup( &@3,
 									sizeof( struct param ) ) );
 							@@ = @1;
 						*]
-					
+
 					|	expression
 
 						[*	@@ = plist_create( 0, PLIST_MOD_PTR );
@@ -798,7 +795,7 @@ value<struct param>	->	'\'' string_content '\''
 									(void*)&@1 );
 							@@.code_base = rb_comp_cur_addr( &cur.prog );
 							@@.is_const = TRUE;
-							@@.var = (symbol*)NULL;	
+							@@.var = (symbol*)NULL;
 						*]
 
 					|	float
@@ -806,23 +803,23 @@ value<struct param>	->	'\'' string_content '\''
 							double d;
 							d = atof( @1 );
 							pfree( @1 );
-							
+
 							@@.push_code = rb_comp_gen( &cur.prog, VMC_PUSHDBL,
 									(void*)&d );
 							@@.code_base = rb_comp_cur_addr( &cur.prog );
 							@@.is_const = TRUE;
 							@@.var = (symbol*)NULL;
 						*]
-						
+
 					|	&error
 					;
-					
+
 integer<long>	-> 	integer '0-9'
 						[*	@@ = @1 * 10 + @2 - '0'; *]
-					
+
 					|	'0-9'
 						[*	@@ = @1 - '0'; *]
-					
+
 					;
 
 float<char*>	-> 	float_opt '.' integer
@@ -842,7 +839,7 @@ float<char*>	-> 	float_opt '.' integer
 
 float_opt
 <char*>			->	integer
-					
+
 					|
 						[*	@@ = (char*)NULL; *]
 					;
@@ -850,7 +847,7 @@ float_opt
 string_content
 <char*>			-> string_content !'\''
 						[*	@@ = pstrcatchar( @1, (char)@2 ); *]
-					
+
 					|
 						[*	@@ = (char*)NULL; *]
 					;
@@ -860,7 +857,7 @@ factor
 						[*
 							@@ = @1;
 						*]
-					
+
 					|	variable_address
 						[*
 							if( @1.varsym->constant )
@@ -898,11 +895,11 @@ factor
 									@@.ptrload = FALSE;
 								}
 							}
-							
+
 							@@.var = @1.varsym;
 							@@.is_const = FALSE;
 						*]
-					
+
 					|	in_expr_func_call
 						[*
 							@@.var = (symbol*)NULL; /* Erstmal nicht! */
@@ -916,25 +913,25 @@ factor
 expression
 <struct param>	-> 	expression '#' expression
 						[*	rb_comp_gen( &cur.prog, VMC_JOIN, (void*)NULL );
-							
+
 							@@ = @1;
-							@@.var = (symbol*)NULL;							
+							@@.var = (symbol*)NULL;
 
 							rb_comp_optimize_operator( &@@, &@1, &@3 );
 						*]
 
 					| expression '+' expression
 						[* 	rb_comp_gen( &cur.prog, VMC_ADD, (void*)NULL );
-							
+
 							@@ = @1;
 							@@.var = (symbol*)NULL;
-							
+
 							rb_comp_optimize_operator( &@@, &@1, &@3 );
 						*]
 
 					| expression '-' expression
 						[* 	rb_comp_gen( &cur.prog, VMC_SUB, (void*)NULL );
-						
+
 							@@ = @1;
 							@@.var = (symbol*)NULL;
 
@@ -943,34 +940,34 @@ expression
 
 					| expression '*' expression
 						[*	rb_comp_gen( &cur.prog, VMC_MUL, (void*)NULL );
-							
+
 							@@ = @1;
 							@@.var = (symbol*)NULL;
-							
+
 							rb_comp_optimize_operator( &@@, &@1, &@3 );
 						*]
 
 					| expression '/' expression
 						[* 	rb_comp_gen( &cur.prog, VMC_DIV, (void*)NULL );
-							
+
 							@@ = @1;
 							@@.var = (symbol*)NULL;
-							
+
 							rb_comp_optimize_operator( &@@, &@1, &@3 );
 						*]
 
 					| expression '~' expression
 						[* 	rb_comp_gen( &cur.prog, VMC_MOD, (void*)NULL );
-							
+
 							@@ = @1;
 							@@.var = (symbol*)NULL;
-							
+
 							rb_comp_optimize_operator( &@@, &@1, &@3 );
 						*]
-						
+
 					| '!' expression
 						[* 	rb_comp_gen( &cur.prog, VMC_NOT, (void*)NULL );
-							
+
 							@@ = @2;
 							@@.var = (symbol*)NULL;
 							@@.is_const = @2.is_const;
@@ -979,14 +976,14 @@ expression
 					| factor
 
 					;
-					
+
 condition
 <struct param>		-> condition '|' condition
 						[*
 							rb_comp_gen( &cur.prog, VMC_LOR, (void*)NULL );
-						
+
 							@@ = @1;
-							rb_comp_optimize_operator( &@@, &@1, &@3 );						
+							rb_comp_optimize_operator( &@@, &@1, &@3 );
 						*]
 
 					| condition '&' condition
@@ -994,7 +991,7 @@ condition
 							rb_comp_gen( &cur.prog, VMC_LAND, (void*)NULL );
 
 							@@ = @1;
-							rb_comp_optimize_operator( &@@, &@1, &@3 );						
+							rb_comp_optimize_operator( &@@, &@1, &@3 );
 						*]
 
 					| condition '=' condition
@@ -1002,7 +999,7 @@ condition
 							rb_comp_gen( &cur.prog, VMC_EQU, (void*)NULL );
 
 							@@ = @1;
-							rb_comp_optimize_operator( &@@, &@1, &@3 );	
+							rb_comp_optimize_operator( &@@, &@1, &@3 );
 						*]
 
 					| condition '!' condition
@@ -1010,7 +1007,7 @@ condition
 							rb_comp_gen( &cur.prog, VMC_NEQ, (void*)NULL );
 
 							@@ = @1;
-							rb_comp_optimize_operator( &@@, &@1, &@3 );	
+							rb_comp_optimize_operator( &@@, &@1, &@3 );
 						*]
 
 					| condition '>' condition
@@ -1018,7 +1015,7 @@ condition
 							rb_comp_gen( &cur.prog, VMC_GRT, (void*)NULL );
 
 							@@ = @1;
-							rb_comp_optimize_operator( &@@, &@1, &@3 );							
+							rb_comp_optimize_operator( &@@, &@1, &@3 );
 						*]
 
 					| condition '<' condition
@@ -1026,7 +1023,7 @@ condition
 							rb_comp_gen( &cur.prog, VMC_LWR, (void*)NULL );
 
 							@@ = @1;
-							rb_comp_optimize_operator( &@@, &@1, &@3 );	
+							rb_comp_optimize_operator( &@@, &@1, &@3 );
 						*]
 
 					| condition ">=" condition
@@ -1034,7 +1031,7 @@ condition
 							rb_comp_gen( &cur.prog, VMC_GRE, (void*)NULL );
 
 							@@ = @1;
-							rb_comp_optimize_operator( &@@, &@1, &@3 );	
+							rb_comp_optimize_operator( &@@, &@1, &@3 );
 						*]
 
 					| condition "<=" condition
@@ -1042,7 +1039,7 @@ condition
 							rb_comp_gen( &cur.prog, VMC_LWE, (void*)NULL );
 
 							@@ = @1;
-							rb_comp_optimize_operator( &@@, &@1, &@3 );	
+							rb_comp_optimize_operator( &@@, &@1, &@3 );
 						*]
 
 					| expression
@@ -1059,7 +1056,7 @@ ident<char*>	->	'A-Za-z_' ident_tail
 ident_tail
 <char*>			->	ident_tail 'A-Za-z0-9_'
 						[*	@@ = pstrcatchar( @1, @2 ); *]
-					
+
 					|
 						[* 	@@ = (char*)NULL; *]
 					;
@@ -1095,7 +1092,7 @@ stack_last_parm
 									list = list->scope_next )
 								/* NOP */
 								;
-							
+
 							@@ = list;
 						*]
 					;

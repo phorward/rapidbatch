@@ -13,7 +13,6 @@ Usage:	Compile-time functions
  */
 
 #include "rb_global.h"
-#include "rb_native.h"
 
 /*
  * Global variables
@@ -49,7 +48,7 @@ static int include_file( char* filename, boolean once )
 
 	for( i = 0; i < all_incl_cnt; i++ )
 	{
-		if( pstrcmp( all_incl[ i ].filename, filename ) == 0 )
+		if( strcmp( all_incl[ i ].filename, filename ) == 0 )
 		{
 			MSG( "This file has already been included... check" );
 			if( once )
@@ -74,9 +73,12 @@ static int include_file( char* filename, boolean once )
 			case 1:
 				MSG( "Printing file-not-found error" );
 
+				/*
 				rb_error( rb_comp_cur_pos(),
 					"include_not_found", "filename", filename,
 						(char*)NULL );
+				*/
+				fprintf( stderr, "Include file not found: %s\n", filename );
 
 				RETURN( 0 ); /* Compiler gets: All right ;) */
 

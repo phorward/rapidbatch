@@ -12,10 +12,7 @@ Usage:	Provides functions for rbstring-datatype management and manipulation
  * Includes
  */
 /* #define __WITH_TRACE */
-#include "rb_comp.h"
-#ifndef MAKE_PROTOTYPES
-#include "rb_proto.h"
-#endif
+#include "rb_global.h"
 
 /*
  * Global variables

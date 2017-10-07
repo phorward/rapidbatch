@@ -12,7 +12,6 @@ Usage:
  * Includes
  */
 #include "rb_global.h"
-#include "rb_native.h"
 
 /*
  * Global variables

@@ -15,7 +15,6 @@ Usage:	String modification functions
 
 /* #define __WITH_TRACE */
 #include "rb_global.h"
-#include "rb_native.h"
 
 /*
  * Global variables

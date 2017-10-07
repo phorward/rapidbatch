@@ -14,8 +14,6 @@ Usage:	Virtual machine related defintions
 /*
  * Includes
  */
-#include "rb_val.h"
-#include "rb_var.h"
 
 /*
  * Defines

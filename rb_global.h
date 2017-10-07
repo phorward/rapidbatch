@@ -64,8 +64,14 @@ typedef		unsigned long	vm_addr;
 /* memory management */
 #define RB_OUT_OF_MEMORY			OUTOFMEM
 
-#include "rb_comp.h"
+#include "rb_val.h"
+#include "rb_var.h"
 #include "rb_vm.h"
+#include "rb_comp.h"
+#include "rb_comp.parser.h"
+#include "rb_native.h"
+#include "xml.h"
+
 #include "rb_proto.h"
 
 #endif

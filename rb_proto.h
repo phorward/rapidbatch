@@ -1,9 +1,10 @@
 /* rb_comp.parser.c */
-#if 1864 == 0
+#if 1838 == 0
 #else
 void rb_comp_current_srcpos( srcpos* pos );
 srcpos* rb_comp_cur_pos( void );
 #endif
+int rb_parse( rb_pcb* pcb );
 
 /* rb_comp.util.c */
 symbol* rb_comp_get_symbol( char* ident, symtype type, boolean auto_create );
@@ -161,25 +162,35 @@ int xml_count_all( XML_T xml );
 XML_T xml_cut( XML_T xml );
 
 /* comptime.c */
+RB_FCT( include );
+RB_FCT( include_once );
 
 /* file.c */
 int rb_read_file( char** cont, char* filename );
 
 /* getcharat.c */
+RB_FCT( getcharat );
 
 /* getlen.c */
+RB_FCT( getlen );
 
 /* getpos.c */
+RB_FCT( getpos );
 
 /* gettok.c */
+RB_FCT( gettok );
 
 /* replacevar.c */
+RB_FCT( replacevar );
 
 /* string.c */
+RB_FCT( print );
 
 /* trimvar.c */
+RB_FCT( trimvar );
 
 /* _std.c */
+int rb_register_std( void );
 
 /* main.c */
 

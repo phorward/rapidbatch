@@ -36,8 +36,7 @@ Usage:	XML processing functions (based on ezXML)
 /*
  * Includes
  */
-#include "rb_comp.h"
-#include "rb_proto.h"
+#include "rb_global.h"
 
 /*
  * Global variables

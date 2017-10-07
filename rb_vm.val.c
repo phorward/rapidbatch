@@ -12,12 +12,6 @@ Usage:	Virtual machine kernel
  * Includes
  */
 #include "rb_global.h"
-#include "rb_comp.h"
-#include "rb_vm.h"
-#include "rb_var.h"
-#ifndef MAKE_PROTOTYPES
-#include "rb_proto.h"
-#endif
 
 /*
  * Global variables

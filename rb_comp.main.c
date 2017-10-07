@@ -11,11 +11,8 @@ Usage:	Compiler entry / main function
 /*
  * Includes
  */
-/* #define __WITH_TRACE 1 */
-#include "rb_comp.h"
-#ifndef MAKE_PROTOTYPES
-#include "rb_proto.h"
-#endif
+
+#include "rb_global.h"
 
 /*
  * Global variables
@@ -77,7 +74,7 @@ int rb_comp_compile( char* filename, char* src )
 	MSG( "-----------------------------------" );
 	VARS( "src", "%s", src );
 	cur.src = src;
-	ret = rb_parse();
+	ret = rb_parse( (rb_pcb*)NULL );
 	MSG( "-----------------------------------" );
 	
 	if( !--calls )

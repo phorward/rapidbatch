@@ -12,7 +12,6 @@ Usage:		Implements the TRIMVAR standard function
  * Includes
  */
 #include "rb_global.h"
-#include "rb_native.h"
 
 /*
  * Global variables
@@ -67,7 +66,7 @@ RB_FCT( trimvar )
 	sourceString = RB_PARM_VAL_GET_STR( RB_FCT_PARM_ACCESS( 0 ) );
 	VARS( "sourceString", "%s", sourceString );
 
-	if( !( ret = pstrdup( pstr_strip( sourceString ) ) ) )
+	if( !( ret = pstrdup( pstrtrim( sourceString ) ) ) )
 		RB_OUT_OF_MEMORY;
 
 	/*

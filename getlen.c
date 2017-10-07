@@ -12,7 +12,6 @@ Usage:		Implements the function GETLEN.
  * Includes
  */
 #include "rb_global.h"
-#include "rb_native.h"
 
 /*
  * Global variables

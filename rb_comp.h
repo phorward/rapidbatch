@@ -14,8 +14,6 @@ Usage:	Compiler-related structs and definitions
 /*
  * Includes
  */
-#include "rb_global.h"
-#include "rb_vm.h"
 
 /*
  * Defines
