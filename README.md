@@ -16,6 +16,41 @@ Starting RapidBATCH, both the language and its vision behind, as an open source 
 
 This repository currently has only one simple Makefile that runs best when [libphorward](https://github.com/phorward/phorward) and [UniCC](https://github.com/phorward/unicc) are installed. You have to manually patch C.tlt from patch/ in UniCC to get it to run.
 
+On Linux with gcc or clang, this will work:
+
+```
+# setup a project dir
+mkdir dev
+cd dev
+
+# libphorward
+git clone https://github.com/phorward/phorward.git
+cd phorward
+make -f Makefile.gnu
+cd ..
+
+# min_lalr1
+git clone https://github.com/phorward/min_lalr1.git
+cd min_lalr1
+make -f Makefile.gnu
+cd ..
+
+# unicc
+git clone https://github.com/phorward/unicc.git
+cd unicc
+make -f Makefile.gnu
+cd ..
+
+# rapidbatch
+git clone https://github.com/phorward/rapidbatch.git
+cd rapidbatch
+export UNICC_TPLDIR=./tlt
+make
+
+# Run test file
+./rb6 test/test1.rb
+```
+
 ## Examples
 
 Example programs are in test/. Some of the programs there run, some are freezing, so there is still much work to do.
