@@ -18,7 +18,7 @@ This repository currently has only one simple Makefile that runs best when [libp
 
 On Linux with gcc or clang, this will work:
 
-```
+```bash
 # setup a project dir
 mkdir dev
 cd dev
@@ -72,7 +72,7 @@ RapidBATCH is developed and maintained by Jan Max Meyer, Phorward Software Techn
 Some other projects by the author are:
 
 - [libphorward](https://github.com/phorward/phorward), a free toolkit for parser development, lexical analysis, regular expressions and more.
-- [UniCC](https://github.com/phorward/phorward), a universal, target-language independent LALR(1) parser generator.
+- [UniCC](https://github.com/phorward/unicc), a universal, target-language independent LALR(1) parser generator.
 - [pynetree](https://github.com/phorward/pynetree), a light-weight parsing toolkit written in pure Python.
 - [JS/CC](https://jscc.brobston.com), the JavaScript parser generator.
 
