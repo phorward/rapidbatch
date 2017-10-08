@@ -57,11 +57,6 @@ SOURCE		=	$(PARSER_OUT) \
 				
 OBJECTS		=	$(patsubst %.c,%.o,$(SOURCE))
 
-LIBS		=	$(DBG_LIB) \
-				$(LLIST_LIB) \
-				$(XML_LIB) \
-				$(PSTRING_LIB)
-
 HEADERS		=	rb_comp.h \
 				rb_global.h \
 				rb_val.h \
