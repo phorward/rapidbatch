@@ -24,7 +24,7 @@ struct srcfile
 };
 
 static	struct srcfile*		all_incl;
-static	uint				all_incl_cnt;
+static	unsigned int		all_incl_cnt;
 
 #define SRCFILE_MALLOC_STEP			16	/* Hold 16 files in line */
 
@@ -37,10 +37,9 @@ static	uint				all_incl_cnt;
 /* Execution function to include a file */
 static int include_file( char* filename, pboolean once )
 {
-	uint	i;
-	char*	src		= (char*)NULL;
-	struct
-	srcfile*	sf	= (struct srcfile*)NULL;
+	unsigned int	i;
+	char*			src	= (char*)NULL;
+	struct srcfile*	sf	= (struct srcfile*)NULL;
 
 	PROC( "include_file" );
 	PARMS( "filename", "%s", filename );

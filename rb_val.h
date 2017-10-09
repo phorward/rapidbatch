@@ -30,10 +30,7 @@ Usage:	Universal value structure
  */
  
 #define RB_VAL_TYPE( val )		( (val)->type )
-
-/*EXPORT:external*/
 #define RB_VAL_FREE( val )		rb_vm_free_val( val )
-/*ENDEXPORT*/
 
 #define RB_VAL_GET_ADDR( val ) 	rb_vm_get_addr_val( ( val ), TRUE )
 #define RB_VAL_GET_LONG( val ) 	rb_vm_get_long_val( ( val ), TRUE )								
