@@ -86,7 +86,7 @@ RB_FCT( replacevar )
 	{
 		MSG( "Calling Turbo-mode string replacer" );
 		if( !( str = pstrreplace( str, find, replace ) ) )
-			RB_OUT_OF_MEMORY;
+			OUTOFMEM;
 	}
 	else
 	{

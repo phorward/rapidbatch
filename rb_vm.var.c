@@ -185,12 +185,12 @@ status rb_vm_var_set( vm_var* var, vm_val* value, pboolean no_dup )
 	if( !var )
 	{
 		MSG( "Arguments invalid!" );
-		RETURN( RB_ERR_PARMS );
+		RETURN( -1 );
 	}
 	
 	rb_vm_copy_val( VAR_VAL_STRUCT( var ), value, !no_dup );
 
-	RETURN( RB_ERR_OK );
+	RETURN( 0 );
 }
 
 /* -FUNCTION--------------------------------------------------------------------
@@ -222,7 +222,7 @@ status rb_vm_var_get( vm_val* value, vm_var* var, pboolean no_dup )
 	if( !( var && value ) )
 	{
 		MSG( "Arguments invalid!" );
-		RETURN( RB_ERR_PARMS );
+		RETURN( -1 );
 	}
 	
 	/* rb_vm_var_dump( var, 0, 0 ); */
@@ -230,7 +230,7 @@ status rb_vm_var_get( vm_val* value, vm_var* var, pboolean no_dup )
 	/* rb_vm_dump_val( VAR_VAL_STRUCT( var ) ); */
 
 	VARS( "Returning pointer", "%p", value );
-	RETURN( RB_ERR_OK );
+	RETURN( 0 );
 }
 
 /* -FUNCTION--------------------------------------------------------------------

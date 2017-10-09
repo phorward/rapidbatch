@@ -91,7 +91,7 @@ RB_FCT( gettok )
 	{
 		MSG( "Calling Turbo-mode string tokenizer" );
 		if( ( res = pstrsplit( &result, string, separator, count ) ) < 0 )
-			RB_OUT_OF_MEMORY;
+			OUTOFMEM;
 
 		if( res == count )
 			RB_PARM_VAL_SET_STR( RB_FCT_RET, pstrdup( result[ res - 1 ] ) );
@@ -105,14 +105,14 @@ RB_FCT( gettok )
 		/*
 		MSG( "Calling Power-mode regular expression string splitter" );
 		if( ( res = pregex_split( separator, string, flags, &parts ) ) < 0 )
-			RB_OUT_OF_MEMORY;
+			OUTOFMEM;
 
 		if( res >= count )
 		{
 			if( !( string = (char*)pmalloc(
 					( parts[ count - 1 ].end - parts[ count - 1 ].begin + 1 )
 						* sizeof( char ) ) ) )
-				RB_OUT_OF_MEMORY;
+				OUTOFMEM;
 
 			pstrncpy( string, parts[ count - 1 ].begin,
 					parts[ count - 1 ].end - parts[ count - 1 ].begin );

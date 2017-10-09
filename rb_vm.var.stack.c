@@ -296,7 +296,7 @@ status rb_vm_stack_var_push( vm_stack* stack, vm_var* var )
 	PARMS( "var", "%p", var );
 	
 	if( !( stack ) )
-		RETURN( RB_ERR_PARMS );
+		RETURN( -1 );
 		
 	memset( &val, 0, sizeof( vm_stackitem ) );
 	val.type = ITEM_VAL;
@@ -305,10 +305,10 @@ status rb_vm_stack_var_push( vm_stack* stack, vm_var* var )
 	{
 		MSG( "Var exists, reading content" );
 		if( rb_vm_var_get( ITEM_VAL_STRUCT( &val ),
-				var, FALSE ) == RB_ERR_OK )
+				var, FALSE ) == 0 )
 		{
 			if( rb_vm_stack_push( stack, &val ) )
-				RETURN( RB_ERR_OK );
+				RETURN( 0 );
 		}
 	}
 	else
@@ -317,8 +317,8 @@ status rb_vm_stack_var_push( vm_stack* stack, vm_var* var )
 		ITEM_VAL_SET_CSTR( &val, (char*)NULL );
 		
 		if( rb_vm_stack_push( stack, &val ) )
-			RETURN( RB_ERR_OK );
+			RETURN( 0 );
 	}
 	
-	RETURN( RB_ERR_FAILURE );
+	RETURN( -1 );
 }

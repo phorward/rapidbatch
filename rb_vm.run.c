@@ -1014,7 +1014,7 @@ int rb_vm_run( vm_stack* stack, vm_code* code, vm_addr code_cnt )
 					rb_vm_stack_pop( STACK, &item );
 					if( !( var = rb_vm_stack_var_resolve( 
 							STACK, TRUE, (pboolean*)NULL ) ) )
-						RB_OUT_OF_MEMORY;
+						OUTOFMEM;
 
 					/* Here, we have to decide between value to variable
 						and variable to variable store! */
@@ -1081,7 +1081,7 @@ int rb_vm_run( vm_stack* stack, vm_code* code, vm_addr code_cnt )
 					if( !rb_vm_var_copy( &( item.attribute.var ), var ) )
 					{
 						MSG( "Fatal error on var copying" );
-						RB_OUT_OF_MEMORY;
+						OUTOFMEM;
 					}
 					
 					rb_vm_stack_push( STACK, &item );
@@ -1119,5 +1119,5 @@ int rb_vm_run( vm_stack* stack, vm_code* code, vm_addr code_cnt )
 
 	RB_VM_STACK_DUMP( STACK );
 
-	RETURN( RB_ERR_OK );
+	RETURN( 0 );
 }

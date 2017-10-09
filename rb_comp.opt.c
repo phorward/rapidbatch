@@ -46,7 +46,7 @@ Usage:	Virtual machine code optimizer and compile-time code execution
 					pboolean		with_return		TRUE: Expression returns a value
 												FALSE: If not!
 
-	Returns:		int			RB_ERR_OK		on success
+	Returns:		int			0		on success
 								RB_ERR...		on failure
   
 	~~~ CHANGES & NOTES ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -72,7 +72,7 @@ int rb_comp_opt_expr( vm_prog* prog, vm_addr begin_opt, pboolean with_return )
 	if( !( exec = (vm_code*)pmalloc( size * sizeof( vm_code ) ) ) )
 	{
 		MSG( "Failed to reserve temporary virtual machine" );
-		RB_OUT_OF_MEMORY;
+		OUTOFMEM;
 	}
 	
 	memcpy( exec, prog->code + begin_opt,
@@ -84,13 +84,12 @@ int rb_comp_opt_expr( vm_prog* prog, vm_addr begin_opt, pboolean with_return )
 	prog->code_next = begin_opt;
 	
 	/* Run this machine! */
-	if( rb_vm_run( &stack, exec, size )
-			!= RB_ERR_OK )
+	if( rb_vm_run( &stack, exec, size ) < 0 )
 	{
 		MSG( "Fatal error on virtual machine execution!" );
 		
 		pfree( exec );
-		RETURN( RB_ERR_FAILURE );
+		RETURN( -1 );
 	}
 	
 	/* Use return value as optimization result? */
@@ -103,7 +102,7 @@ int rb_comp_opt_expr( vm_prog* prog, vm_addr begin_opt, pboolean with_return )
 			MSG( "Fatal error, stack contains too many values!" );
 			
 			pfree( exec );
-			RETURN( RB_ERR_FAILURE );
+			RETURN( -1 );
 		}
 
 		rb_comp_push_constant( ITEM_VAL_GET_STR( &item ) );
@@ -112,7 +111,7 @@ int rb_comp_opt_expr( vm_prog* prog, vm_addr begin_opt, pboolean with_return )
 
 	pfree( exec );
 
-	RETURN( RB_ERR_OK );
+	RETURN( 0 );
 }
 
 /* -FUNCTION--------------------------------------------------------------------

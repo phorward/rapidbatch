@@ -64,7 +64,7 @@ RBDOC*/
 		
 	VARS( "Length", "%ld", pstrlen( str ) );
 	
-	RETURN( RB_ERR_OK );
+	RETURN( 0 );
 }
 
 RB_FCT( charat )
@@ -132,7 +132,7 @@ RBDOC*/
 	VARS( "temp", "%s", temp );
 
 	RB_PARM_VAL_SET_STR( RB_FCT_RET, pstrdup( temp ) );
-	RETURN( RB_ERR_OK );
+	RETURN( 0 );
 }
 
 RB_FCT( print )
@@ -175,7 +175,7 @@ RBDOC*/
 		printf( "%s\n", str );
 	}
 	
-	RETURN( RB_ERR_OK );
+	RETURN( 0 );
 }
 
 RB_FCT( getchr )
@@ -192,7 +192,7 @@ RB_FCT( getchr )
 	sprintf( asciiSign, "%c", (char) asciiCode );
 	
 	RB_PARM_VAL_SET_STR( RB_FCT_RET, pstrdup( asciiSign ) );
-	RETURN( RB_ERR_OK );
+	RETURN( 0 );
 }
 
 RB_FCT( getasc )
@@ -206,7 +206,7 @@ RB_FCT( getasc )
 	VARS( "asciiSign", "%s", asciiSign);
 	
 	RB_PARM_VAL_SET_LONG( RB_FCT_RET, (long) *asciiSign );
-	RETURN( RB_ERR_OK );
+	RETURN( 0 );
 }
 
 RB_FCT( getpos )
@@ -237,7 +237,7 @@ RB_FCT( getpos )
 	else
 		RB_PARM_VAL_SET_LONG( RB_FCT_RET, 0 );
 	
-	RETURN( RB_ERR_OK );
+	RETURN( 0 );
 }
 
 RB_FCT( lowvar )
@@ -258,7 +258,7 @@ RB_FCT( lowvar )
 	}
 	
 	RB_PARM_VAL_SET_STR( RB_FCT_RET, pstrdup( sourceString ) );
-	RETURN( RB_ERR_OK );
+	RETURN( 0 );
 }
 
 RB_FCT( upvar )
@@ -279,7 +279,7 @@ RB_FCT( upvar )
 	}
 	
 	RB_PARM_VAL_SET_STR( RB_FCT_RET, pstrdup( sourceString ) );
-	RETURN( RB_ERR_OK );
+	RETURN( 0 );
 }
 
 RB_FCT( replacevar )
@@ -302,7 +302,7 @@ RB_FCT( replacevar )
 	str = pstr_replace( str, find, replace );
 	
 	RB_PARM_VAL_SET_STR( RB_FCT_RET, str );
-	RETURN( RB_ERR_OK );
+	RETURN( 0 );
 }
 
 RB_FCT( trimvar )
@@ -366,7 +366,7 @@ RBDOC*/
 		
 	RB_PARM_VAL_SET_STR( RB_FCT_RET, pstrdup( bgnstr ) );
 		
-	RETURN( RB_ERR_OK );
+	RETURN( 0 );
 }
 
 
@@ -380,7 +380,7 @@ RB_VARFCT( get_test )
 	RB_PARM_VAL_SET_STR( RB_VARFCT_VAL,
 		pstrdup( "Hello World, das ist ausm System :D" ) );
 
-	RETURN( RB_ERR_OK );
+	RETURN( 0 );
 }
 
 RB_VARFCT( set_test )
@@ -391,7 +391,7 @@ RB_VARFCT( set_test )
 	
 	printf( "My var value >%s<\n", RB_PARM_VAL_GET_STR( RB_VARFCT_VAL ) );
 
-	RETURN( RB_ERR_OK );
+	RETURN( 0 );
 }
 
 
@@ -424,7 +424,7 @@ RB_FCT( include )
 
 	switch( rb_comp_read_file( &file, filename ) )
 	{			
-		case RB_ERR_OK:
+		case 0:
 			break;
 			
 		default:
@@ -441,7 +441,7 @@ RB_FCT( include )
 	//pfree( file.filename );
 	//pfree( file.content );
 
-	RETURN( RB_ERR_OK );
+	RETURN( 0 );
 }
 #endif
 
@@ -465,6 +465,6 @@ int rb_NATIVE_strlen_TEST( vm_stackitem* ret,
 	
 	ITEM_VAL_SET_LONG( ret, pstrlen( mystr ) );
 		
-	RETURN( RB_ERR_OK );
+	RETURN( 0 );
 }
 */

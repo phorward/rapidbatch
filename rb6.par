@@ -126,7 +126,7 @@ static void parse_error( int line, int sym, int state,
 					( pstrlen(  names[ act[ i ] ] )
 						+ 2 + 1 ) * sizeof( char ) ) ) )
 			{
-				RB_OUT_OF_MEMORY;
+				OUTOFMEM;
 			}
 
 			sprintf( tmp, "%s%s", names[ act[ i ] ],
@@ -688,7 +688,7 @@ fct<PROC_INFO>		->	ident:procname
 										@procname, SYM_PROC, TRUE  ) ))
 							{
 								pfree( @procname );
-								RB_OUT_OF_MEMORY;
+								OUTOFMEM;
 							}
 
 							pfree( @procname );

@@ -58,7 +58,7 @@ symbol* rb_comp_get_symbol( char* ident, symtype type, pboolean auto_create )
 	{
 		if( !( sym = rb_symtab_new( ident, type ) ) )
 		{
-			RB_OUT_OF_MEMORY;
+			OUTOFMEM;
 			return (symbol*)NULL;
 		}
 		
@@ -133,7 +133,7 @@ symbol* rb_comp_proc_header( char* ident,
 		if( !( parmdef = sym->parmdef = (char*)pmalloc(
 				( plist_count( parameters ) + 1 ) * sizeof( char ) ) ) )
 		{
-			RB_OUT_OF_MEMORY;
+			OUTOFMEM;
 		}
 		
 		plist_for( parameters, e )
@@ -457,7 +457,7 @@ void rb_comp_proc_call( symbol* proc, pboolean as_function,
 		
 		if( !( pc_ptr = (struct proc_call*)pmemdup(
 				&pc, sizeof( struct proc_call ) ) ) )
-			RB_OUT_OF_MEMORY;
+			OUTOFMEM;
 		
 		if( !cur.implicit_proc_calls )
 			cur.implicit_proc_calls = plist_create( 0, PLIST_MOD_PTR );
@@ -517,7 +517,7 @@ void rb_comp_cache_address( ADDR_CACHE* cache, vm_addr addr )
 	if( !( cache->addr ) )
 	{
 		MSG( "Out of memory, shit" );
-		RB_OUT_OF_MEMORY;
+		OUTOFMEM;
 	}
 
 	cache->addr[ cache->addr_cnt++ ] = addr;
@@ -681,7 +681,7 @@ void rb_comp_label_call( char* ident )
 		
 		if( !( lcp = (LBL_CALL*)pmemdup( &lc, sizeof( LBL_CALL ) ) ) )
 		{
-			RB_OUT_OF_MEMORY;
+			OUTOFMEM;
 			VOIDRET;
 		}
 		

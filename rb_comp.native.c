@@ -55,13 +55,13 @@ Usage:	Native scripting function management
 															function and is exe-
 															cuted at run-time
 
-	Returns:		long							Returns RB_ERR_OK on
+	Returns:		long							Returns 0 on
 													success.
 													
-													Else, RB_ERR_FAILURE is
+													Else, -1 is
 													returned in case if the
 													function already exists,
-													and RB_ERR_PARAMS when
+													and -1 when
 													parameters are missing.
 	~~~ CHANGES & NOTES ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	Date:		Author:			Note:
@@ -81,7 +81,7 @@ int rb_add_native_function( char* name, rb_native_func fct,
 	if( !( name && *name && fct && parmdef ) )
 	{
 		MSG( "There is something wrong with your parameters" );
-		RETURN( RB_ERR_PARMS );
+		RETURN( -1 );
 	}
 	
 	MSG( "Adding symbol table entry" );
@@ -92,7 +92,7 @@ int rb_add_native_function( char* name, rb_native_func fct,
 		if( !( sym = rb_symtab_new( name, SYM_PROC ) ) )
 		{
 			MSG( "Failed to create new symbol" );
-			RETURN( RB_ERR_MEM );
+			RETURN( -1 );
 		}
 
 		sym->native = TRUE;
@@ -110,14 +110,14 @@ int rb_add_native_function( char* name, rb_native_func fct,
 		if( !( sym->parmdef = (char*)pstrdup( parmdef ) ) )
 		{
 			MSG( "Failed to allocate memory for parmdef" );
-			RETURN( RB_ERR_MEM );
+			RETURN( -1 );
 		}
 
-		RETURN( RB_ERR_OK );
+		RETURN( 0 );
 	}
 
 	MSG( "The function already exists!" );
-	RETURN( RB_ERR_FAILURE );
+	RETURN( -1 );
 }
 
 /* -FUNCTION--------------------------------------------------------------------
@@ -135,13 +135,13 @@ int rb_add_native_function( char* name, rb_native_func fct,
 					rb_native_var	set				Pointer to the variable
 													set function
 
-	Returns:		int								Returns RB_ERR_OK on
+	Returns:		int								Returns 0 on
 													success.
 													
-													Else, RB_ERR_FAILURE is
+													Else, -1 is
 													returned in case if the
 													function already exists,
-													and RB_ERR_PARAMS when
+													and -1 when
 													parameters are missing.
 	~~~ CHANGES & NOTES ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	Date:		Author:			Note:
@@ -158,7 +158,7 @@ int rb_add_native_var( char* name, rb_native_var get, rb_native_var set )
 	if( !( name && *name ) )
 	{
 		MSG( "There is something wrong with your parameters" );
-		RETURN( RB_ERR_PARMS );
+		RETURN( -1 );
 	}
 	
 	MSG( "Adding symbol table entry" );
@@ -169,7 +169,7 @@ int rb_add_native_var( char* name, rb_native_var get, rb_native_var set )
 		if( !( sym = rb_symtab_new( name, SYM_VAR ) ) )
 		{
 			MSG( "Failed to create new symbol" );
-			RETURN( RB_ERR_MEM );
+			RETURN( -1 );
 		}
 
 		sym->native = TRUE;
@@ -181,10 +181,10 @@ int rb_add_native_var( char* name, rb_native_var get, rb_native_var set )
 		sym->offset.variable.get = get;
 		sym->offset.variable.set = set;
 		
-		RETURN( RB_ERR_OK );
+		RETURN( 0 );
 	}
 
-	RETURN( RB_ERR_FAILURE );
+	RETURN( -1 );
 }
 
 /* -FUNCTION--------------------------------------------------------------------
@@ -206,13 +206,13 @@ int rb_add_native_var( char* name, rb_native_var get, rb_native_var set )
 													be duplicated into a newly 
 													allocated address.
 
-	Returns:		int								Returns RB_ERR_OK on
+	Returns:		int								Returns 0 on
 													success.
 													
-													Else, RB_ERR_FAILURE is
+													Else, -1 is
 													returned in case if the
 													function already exists,
-													and RB_ERR_PARAMS when
+													and -1 when
 													parameters are missing.
 	~~~ CHANGES & NOTES ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	Date:		Author:			Note:
@@ -228,7 +228,7 @@ int rb_add_native_const( char* name, char* value, pboolean dup_val )
 	if( !( name && *name && value ) )
 	{
 		MSG( "There is something wrong with your parameters" );
-		RETURN( RB_ERR_PARMS );
+		RETURN( -1 );
 	}
 	
 	MSG( "Adding symbol table entry" );
@@ -239,7 +239,7 @@ int rb_add_native_const( char* name, char* value, pboolean dup_val )
 		if( !( sym = rb_symtab_new( name, SYM_VAR ) ) )
 		{
 			MSG( "Failed to create new symbol" );
-			RETURN( RB_ERR_MEM );
+			RETURN( -1 );
 		}
 
 		sym->native = TRUE;
@@ -254,8 +254,8 @@ int rb_add_native_const( char* name, char* value, pboolean dup_val )
 		else
 			sym->offset.constant = value;
 		
-		RETURN( RB_ERR_OK );
+		RETURN( 0 );
 	}
 
-	RETURN( RB_ERR_FAILURE );
+	RETURN( -1 );
 }

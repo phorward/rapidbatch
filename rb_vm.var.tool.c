@@ -170,14 +170,14 @@ pboolean rb_vm_var_copy( vm_var* dest, vm_var* src )
 	rb_vm_var_free( dest );
 	
 	if( !( dest->key = pstrdup( src->key ) ) )
-		RB_OUT_OF_MEMORY;
+		OUTOFMEM;
 		
 	rb_vm_copy_val( VAR_VAL_STRUCT( dest ),
 		VAR_VAL_STRUCT( src ), TRUE );  
 
 	if( !( dest->begin = (vm_var*)pmalloc(
 			src->begin_cnt * sizeof( vm_var ) ) ) )
-		RB_OUT_OF_MEMORY;
+		OUTOFMEM;
 
 	dest->begin_cnt = src->begin_cnt;
 
@@ -187,7 +187,7 @@ pboolean rb_vm_var_copy( vm_var* dest, vm_var* src )
 	{
 		if( !( dest->ht = (vm_addr*)pmemdup( src->ht,
 				VM_ASSOC_HASH_SIZE * sizeof( vm_addr ) ) ) )
-			RB_OUT_OF_MEMORY;
+			OUTOFMEM;
 	}
 	
 	for( i = 0; i < src->begin_cnt; i++ )

@@ -74,7 +74,7 @@ vm_addr rb_comp_next_addr( vm_prog* prog, vm_code instr )
 		}
 		
 		if( !( prog->code ) )
-			RB_OUT_OF_MEMORY;
+			OUTOFMEM;
 		
 		prog->code[ prog->code_next++ ] = 0;
 	}

@@ -67,7 +67,7 @@ RB_FCT( trimvar )
 	VARS( "sourceString", "%s", sourceString );
 
 	if( !( ret = pstrdup( pstrtrim( sourceString ) ) ) )
-		RB_OUT_OF_MEMORY;
+		OUTOFMEM;
 
 	/*
 	TIMEDUMP;

@@ -117,7 +117,7 @@ pboolean rb_vm_convert_value( vm_val* val, char to_type )
 
 			val->type = VAL_STR;
 			if( !( val->value.vstr.str = pstrdup( ptr ) ) )
-				RB_OUT_OF_MEMORY;
+				OUTOFMEM;
 			val->value.vstr.len = pstrlen( ptr );
 
 			break;

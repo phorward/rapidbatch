@@ -95,7 +95,7 @@ static int include_file( char* filename, pboolean once )
 
 		if( !all_incl )
 		{
-			RB_OUT_OF_MEMORY;
+			OUTOFMEM;
 			RETURN( 1 );
 		}
 
@@ -105,7 +105,7 @@ static int include_file( char* filename, pboolean once )
 
 		if( !( sf->filename = pstrdup( filename ) ) )
 		{
-			RB_OUT_OF_MEMORY;
+			OUTOFMEM;
 			RETURN( 1 );
 		}
 	}

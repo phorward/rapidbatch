@@ -183,7 +183,7 @@ int main( int argc, char** argv )
 			fprintf( stderr, "%s: File not found: %s\n", *argv, argv[1] );
 			return EXIT_FAILURE;
 			
-		case RB_ERR_OK:
+		case 0:
 			break;
 			
 		default:
