@@ -65,26 +65,18 @@ static int include_file( char* filename, boolean once )
 	if( !sf )
 	{
 		MSG( "File has not been included yet, mapping now" );
-		switch( rb_read_file( &src, filename ) )
+		if( !pfiletostr( &src, filename ) )
 		{
-			case 0:
-				break;
+			MSG( "Printing file-not-found error" );
 
-			case 1:
-				MSG( "Printing file-not-found error" );
+			/*
+			rb_error( rb_comp_cur_pos(),
+				"include_not_found", "filename", filename,
+					(char*)NULL );
+			*/
+			fprintf( stderr, "Include file not found: %s\n", filename );
 
-				/*
-				rb_error( rb_comp_cur_pos(),
-					"include_not_found", "filename", filename,
-						(char*)NULL );
-				*/
-				fprintf( stderr, "Include file not found: %s\n", filename );
-
-				RETURN( 0 ); /* Compiler gets: All right ;) */
-
-			default:
-				MSG( "undefineable error" );
-				RETURN( 1 );
+			RETURN( 0 ); /* Compiler gets: All right ;) */
 		}
 
 		/* Put this file into cache */

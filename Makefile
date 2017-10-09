@@ -43,7 +43,6 @@ SOURCE		=	$(PARSER_OUT) \
 				xml.c \
 				\
 				comptime.c \
-				file.c \
 				getcharat.c \
 				getlen.c \
 				getpos.c \

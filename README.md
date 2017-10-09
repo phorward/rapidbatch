@@ -44,7 +44,7 @@ cd ..
 # rapidbatch
 git clone https://github.com/phorward/rapidbatch.git
 cd rapidbatch
-export UNICC_TPLDIR=./tlt
+export UNICC_TPLDIR=./patch
 make
 
 # Run test file

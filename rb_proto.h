@@ -165,9 +165,6 @@ XML_T xml_cut( XML_T xml );
 RB_FCT( include );
 RB_FCT( include_once );
 
-/* file.c */
-int rb_read_file( char** cont, char* filename );
-
 /* getcharat.c */
 RB_FCT( getcharat );
 

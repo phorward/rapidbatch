@@ -27,18 +27,10 @@ int main( int argc, char** argv )
 		return EXIT_FAILURE;
 	}
 
-	switch( rb_read_file( &filecont, argv[1] ) )
+	if( !pfiletostr( &filecont, argv[1] ) )
 	{
-		case 1:
-			fprintf( stderr, "%s: File not found: %s\n", *argv, argv[1] );
-			return EXIT_FAILURE;
-
-		case 0:
-			break;
-
-		default:
-			return EXIT_FAILURE;
-			break;
+		fprintf( stderr, "%s: File not found: %s\n", *argv, argv[1] );
+		return EXIT_FAILURE;
 	}
 
 	if( !rb_comp_compile( argv[1], filecont ) )
