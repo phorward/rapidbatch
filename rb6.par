@@ -716,7 +716,7 @@ func_call			->	fct '=' parameters:parameters
 
 proc_call			->	fct parameters:parameters
 
-						[*	boolean			call_as_func	= FALSE;
+						[*	pboolean			call_as_func	= FALSE;
 							symbol*			sym;
 							struct param*	parm;
 

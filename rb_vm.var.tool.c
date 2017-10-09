@@ -36,7 +36,7 @@ Usage:	Virtual machine variable access tool functions
 												array. This must be dynamically
 												allocated.
 					int			idx_depth		Number/depth of elements in idx.
-					boolean		allocate		Performs a variable allocation
+					pboolean		allocate		Performs a variable allocation
 												if required.
 
 	Returns:		Returns the vm_var-pointer of the desired index, or
@@ -47,7 +47,7 @@ Usage:	Virtual machine variable access tool functions
 ----------------------------------------------------------------------------- */
 /*SDK_EXT:rb_resolve_var*/
 vm_var* rb_vm_var_resolve( vm_var* var, vm_val* idx,
-	int idx_depth, boolean allocate )
+	int idx_depth, pboolean allocate )
 {
 	int		i;
 
@@ -92,7 +92,7 @@ vm_var* rb_vm_var_resolve( vm_var* var, vm_val* idx,
 												array. This must be dynamically
 												allocated.
 					int			idx_depth		Number/depth of elements in idx.
-					boolean		allocate		Performs a variable allocation
+					pboolean		allocate		Performs a variable allocation
 												if required.
 
 	Returns:		Returns the vm_var-pointer of the desired index, or
@@ -103,7 +103,7 @@ vm_var* rb_vm_var_resolve( vm_var* var, vm_val* idx,
 ----------------------------------------------------------------------------- */
 /*SDK_EXT:rb_dim_var*/
 vm_var* rb_vm_var_dim( vm_var* var, vm_val* idx,
-	int idx_depth, boolean allocate )
+	int idx_depth, pboolean allocate )
 {
 	int		i;
 
@@ -146,14 +146,14 @@ vm_var* rb_vm_var_dim( vm_var* var, vm_val* idx,
 	Parameters:		vm_var*		dest			Pointer to target variable.
 					vm_var*		src				Pointer to source variable.
 
-	Returns:		boolean						TRUE on success,
+	Returns:		pboolean						TRUE on success,
 												FALSE on error.
 
 	~~~ CHANGES & NOTES ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	Date:		Author:			Note:
 ----------------------------------------------------------------------------- */
 /*SDK_EXT:rb_copy_var*/
-boolean rb_vm_var_copy( vm_var* dest, vm_var* src )
+pboolean rb_vm_var_copy( vm_var* dest, vm_var* src )
 {
 	vm_addr		i;
 

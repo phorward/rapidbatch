@@ -30,7 +30,7 @@ Usage:	Virtual machine kernel
 					converts it, if desired.
 					
 	Parameters:		vm_val*		val				Pointer to the value structure
-					boolean		convert			TRUE: Convert if required
+					pboolean		convert			TRUE: Convert if required
 												FALSE: Don't convert
 
 	Returns:		Returns the double value. If no conversation is done,
@@ -38,7 +38,7 @@ Usage:	Virtual machine kernel
 	~~~ CHANGES & NOTES ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	Date:		Author:			Note:
 ----------------------------------------------------------------------------- */
-double rb_vm_get_dbl_val( vm_val* val, boolean convert ) /*SDK_EXT*/
+double rb_vm_get_dbl_val( vm_val* val, pboolean convert ) /*SDK_EXT*/
 {
 	if( val->type != VAL_DBL )
 	{
@@ -60,7 +60,7 @@ double rb_vm_get_dbl_val( vm_val* val, boolean convert ) /*SDK_EXT*/
 					it, if desired.
 					
 	Parameters:		vm_val*		val				Pointer to the value structure
-					boolean		convert			TRUE: Convert if required
+					pboolean		convert			TRUE: Convert if required
 												FALSE: Don't convert
 
 	Returns:		Returns the long value. If no conversation is done,
@@ -68,7 +68,7 @@ double rb_vm_get_dbl_val( vm_val* val, boolean convert ) /*SDK_EXT*/
 	~~~ CHANGES & NOTES ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	Date:		Author:			Note:
 ----------------------------------------------------------------------------- */
-long rb_vm_get_long_val( vm_val* val, boolean convert ) /*SDK_EXT*/
+long rb_vm_get_long_val( vm_val* val, pboolean convert ) /*SDK_EXT*/
 {
 	if( val->type != VAL_LONG )
 	{
@@ -90,7 +90,7 @@ long rb_vm_get_long_val( vm_val* val, boolean convert ) /*SDK_EXT*/
 					it, if desired.
 					
 	Parameters:		vm_val*		val				Pointer to the value structure
-					boolean		convert			TRUE: Convert if required
+					pboolean		convert			TRUE: Convert if required
 												FALSE: Don't convert
 
 	Returns:		Returns the vm_addr value. If no conversation is done,
@@ -98,7 +98,7 @@ long rb_vm_get_long_val( vm_val* val, boolean convert ) /*SDK_EXT*/
 	~~~ CHANGES & NOTES ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	Date:		Author:			Note:
 ----------------------------------------------------------------------------- */
-vm_addr rb_vm_get_addr_val( vm_val* val, boolean convert ) /*SDK_EXT*/
+vm_addr rb_vm_get_addr_val( vm_val* val, pboolean convert ) /*SDK_EXT*/
 {
 	if( val->type != VAL_ADDR )
 	{
@@ -120,7 +120,7 @@ vm_addr rb_vm_get_addr_val( vm_val* val, boolean convert ) /*SDK_EXT*/
 					it, if desired.
 					
 	Parameters:		vm_val*		val				Pointer to the value structure
-					boolean		convert			TRUE: Convert if required
+					pboolean		convert			TRUE: Convert if required
 												FALSE: Don't convert
 
 	Returns:		Returns the string value. If no conversation is done,
@@ -129,7 +129,7 @@ vm_addr rb_vm_get_addr_val( vm_val* val, boolean convert ) /*SDK_EXT*/
 	~~~ CHANGES & NOTES ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	Date:		Author:			Note:
 ----------------------------------------------------------------------------- */
-char* rb_vm_get_str_val( vm_val* val, boolean convert ) /*SDK_EXT*/
+char* rb_vm_get_str_val( vm_val* val, pboolean convert ) /*SDK_EXT*/
 {
 	if( val->type != VAL_CSTR
 		&& val->type != VAL_STR )
@@ -178,12 +178,12 @@ void rb_vm_free_val( vm_val* val ) /*SDK_EXT*/
 													value structure
 					vm_val*		src				Pointer to the source value
 													structure
-	Returns:		boolean						TRUE on success,
+	Returns:		pboolean						TRUE on success,
 												FALSE on error
 	~~~ CHANGES & NOTES ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	Date:		Author:			Note:
 ----------------------------------------------------------------------------- */
-boolean rb_vm_copy_val( vm_val* dst, vm_val* src, boolean withdup ) /*SDK_EXT*/
+pboolean rb_vm_copy_val( vm_val* dst, vm_val* src, pboolean withdup ) /*SDK_EXT*/
 {
 	PROC( "rb_vm_copy_val" );
 	PARMS( "dst", "%p", dst );

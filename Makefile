@@ -80,7 +80,7 @@ $(PROTOFILE): $(SOURCE) $(HEADERS)
 	$(PATHEXT) ./pproto $(SOURCE) >$@
 
 clean:
-	rm $(OBJECTS)
-	rm $(PARSER_BASE).c
-	rm $(PARSER_BASE).h
+	-rm $(OBJECTS)
+	-rm $(PARSER_BASE).c
+	-rm $(PARSER_BASE).h
 

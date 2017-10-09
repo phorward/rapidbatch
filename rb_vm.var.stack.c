@@ -89,14 +89,14 @@ vm_var* rb_vm_stack_get_var_base( vm_stack* stack )
 					to the stacked index and index depth information.
 
 	Parameters:		vm_stack*		stack		Stack to be used
-					boolean			allocate	TRUE: Memory will be (re-)allo-
+					pboolean			allocate	TRUE: Memory will be (re-)allo-
 												cated to the desired index, if
 												required
 												FALSE: Memory will not be re-
 												allocated, if memory does not
 												exists, the function immedia-
 												telly returns (vm_var*)NULL.
-					boolean			drop_index	TRUE: Drops all index variables
+					pboolean			drop_index	TRUE: Drops all index variables
 												FALSE: Doesn't modify the stack
 
 	Returns:		vm_var*						Pointer to the variable
@@ -108,14 +108,14 @@ vm_var* rb_vm_stack_get_var_base( vm_stack* stack )
 								accessing element zero.
 ----------------------------------------------------------------------------- */
 vm_var* rb_vm_stack_var_resolve( vm_stack* stack,
-	boolean allocate, boolean* get_size )
+	pboolean allocate, pboolean* get_size )
 {
 	int				i;
 	vm_var*			var;
 	vm_var*			prev_var;
 	vm_stackitem*	ptr;
 	vm_stackitem*	count;
-	boolean			set_size	= FALSE;
+	pboolean			set_size	= FALSE;
 	
 	PROC( "rb_vm_stack_var_resolve" );
 	PARMS( "stack", "%p", stack );
@@ -206,14 +206,14 @@ vm_var* rb_vm_stack_var_resolve( vm_stack* stack,
 					int				depth		The current recursion depth;
 												only for the recursion.
 
-	Returns:		boolean						TRUE: On success,
+	Returns:		pboolean						TRUE: On success,
 												FALSE: else
 					
 
 	~~~ CHANGES & NOTES ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	Date:		Author:			Note:
 ----------------------------------------------------------------------------- */
-boolean rb_vm_stack_init_var( vm_stack* stack, vm_var* var, int max, int depth )
+pboolean rb_vm_stack_init_var( vm_stack* stack, vm_var* var, int max, int depth )
 {
 	vm_addr			i		= TRUE;
 	vm_stackitem*	index;

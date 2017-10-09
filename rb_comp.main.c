@@ -108,7 +108,7 @@ int rb_comp_compile( char* filename, char* src )
 	
 	Usage:			Resets the compiler (symbol table) and current program.
 	
-	Parameters:		boolean		keep_natives	If keep_natives is TRUE, all
+	Parameters:		pboolean		keep_natives	If keep_natives is TRUE, all
 												native-related functions,
 												variables and constants are
 												hold in the symbol table, to
@@ -120,7 +120,7 @@ int rb_comp_compile( char* filename, char* src )
 	~~~ CHANGES & NOTES ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	Date:		Author:			Note:
 ----------------------------------------------------------------------------- */
-void rb_comp_reset( boolean keep_natives )
+void rb_comp_reset( pboolean keep_natives )
 {
 	PROC( "rb_comp_reset" );
 	PARMS( "keep_natives", "%d", keep_natives );

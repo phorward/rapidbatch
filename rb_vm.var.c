@@ -33,7 +33,7 @@ Usage:	Virtual machine variable access
 												in current dimension
 					vm_val*		idx				Pointer to vm_val structure,
 												that contains the value
-					boolean		alloc			Allocates memory that fits to
+					pboolean		alloc			Allocates memory that fits to
 												the desired index, if true.					
 
 	Returns:		Returns the vm_var-pointer of the desired index, or
@@ -42,7 +42,7 @@ Usage:	Virtual machine variable access
 	~~~ CHANGES & NOTES ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	Date:		Author:			Note:
 ----------------------------------------------------------------------------- */
-vm_var* rb_vm_var_get_idx( vm_var* var, vm_val* idx, boolean alloc )
+vm_var* rb_vm_var_get_idx( vm_var* var, vm_val* idx, pboolean alloc )
 {
 	vm_addr		prev	= 0;
 	vm_addr		off		= 0;
@@ -165,7 +165,7 @@ vm_var* rb_vm_var_get_idx( vm_var* var, vm_val* idx, boolean alloc )
 					
 	Parameters:		vm_var*			var				Pointer to vm_var structure
 					vm_val			value			The value to be used
-					boolean			no_dup			TRUE: No duplication if
+					pboolean			no_dup			TRUE: No duplication if
 														string value
 													FALSE: Duplicate string
 														values
@@ -175,7 +175,7 @@ vm_var* rb_vm_var_get_idx( vm_var* var, vm_val* idx, boolean alloc )
 	~~~ CHANGES & NOTES ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	Date:		Author:			Note:
 ----------------------------------------------------------------------------- */
-status rb_vm_var_set( vm_var* var, vm_val* value, boolean no_dup )
+status rb_vm_var_set( vm_var* var, vm_val* value, pboolean no_dup )
 {
 	PROC( "rb_vm_var_set" );
 	PARMS( "var", "%p", var );
@@ -202,7 +202,7 @@ status rb_vm_var_set( vm_var* var, vm_val* value, boolean no_dup )
 					
 	Parameters:		vm_val*			value			Return pointer for the value
 					vm_var*			var				Pointer to vm_var structure
-					boolean			no_dup			TRUE: No duplication if
+					pboolean			no_dup			TRUE: No duplication if
 														string value
 													FALSE: Duplicate string
 														values
@@ -212,7 +212,7 @@ status rb_vm_var_set( vm_var* var, vm_val* value, boolean no_dup )
 	~~~ CHANGES & NOTES ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	Date:		Author:			Note:
 ----------------------------------------------------------------------------- */
-status rb_vm_var_get( vm_val* value, vm_var* var, boolean no_dup )
+status rb_vm_var_get( vm_val* value, vm_var* var, pboolean no_dup )
 {
 	PROC( "rb_vm_var_get" );
 	PARMS( "var", "%p", var );

@@ -7,18 +7,18 @@ srcpos* rb_comp_cur_pos( void );
 int rb_parse( rb_pcb* pcb );
 
 /* rb_comp.util.c */
-symbol* rb_comp_get_symbol( char* ident, symtype type, boolean auto_create );
+symbol* rb_comp_get_symbol( char* ident, symtype type, pboolean auto_create );
 long rb_comp_get_var_count_of_scope( symbol* begin );
-symbol* rb_comp_proc_header( char* ident, boolean is_function, plist* parameters );
+symbol* rb_comp_proc_header( char* ident, pboolean is_function, plist* parameters );
 void rb_comp_proc_complete( symbol* proc, symbol* last_param, SCOPE_INFO* prev_scope, vm_addr jmp );
 void rb_comp_proc_return( symbol* proc );
-int rb_comp_proc_call_perform( struct proc_call* pc, boolean free_call );
+int rb_comp_proc_call_perform( struct proc_call* pc, pboolean free_call );
 void rb_comp_backpatch_proc_calls( symbol* proc );
-void rb_comp_proc_call( symbol* proc, boolean as_function, plist* params, vm_addr begin );
+void rb_comp_proc_call( symbol* proc, pboolean as_function, plist* params, vm_addr begin );
 void rb_comp_cache_address( ADDR_CACHE* cache, vm_addr addr );
-boolean rb_comp_region_branch( boolean cont );
+pboolean rb_comp_region_branch( pboolean cont );
 void rb_comp_region_close( REGION* prev, vm_addr break_target, vm_addr cont_target );
-symbol* rb_comp_get_label( char* ident, boolean at_definition );
+symbol* rb_comp_get_label( char* ident, pboolean at_definition );
 void rb_comp_label_call( char* ident );
 void rb_comp_label_call_perform( LBL_CALL* lc );
 void rb_comp_backpatch_label_calls( symbol* label );
@@ -30,40 +30,40 @@ symbol* rb_symtab_find( char* name, symtype type );
 symbol* rb_symtab_find_in_scope( symbol* begin, char* name, symtype type );
 symbol* rb_symtab_new( char* name, symtype type );
 symbol* rb_symtab_engage_scope( symbol* begin, symbol* engage );
-symbol* rb_symtab_drop_scope( symbol* begin, boolean drop_sym );
+symbol* rb_symtab_drop_scope( symbol* begin, pboolean drop_sym );
 int rb_symtab_scope_pos( symbol* begin, symbol* find );
 void rb_symtab_dump( FILE* stream );
-void rb_symtab_drop_all( boolean keep_native );
+void rb_symtab_drop_all( pboolean keep_native );
 
 /* rb_comp.codegen.c */
 vm_addr rb_comp_next_addr( vm_prog* prog, vm_code instr );
 void rb_comp_patch_jmp( vm_prog* prog, vm_code instr, vm_addr call );
 vm_addr rb_comp_cur_addr( vm_prog* prog );
-boolean rb_comp_patch( vm_code* code, int instr, void* parm );
+pboolean rb_comp_patch( vm_code* code, int instr, void* parm );
 vm_addr rb_comp_gen( vm_prog* prog, vm_code instr, void* parm );
 
 /* rb_comp.opt.c */
-int rb_comp_opt_expr( vm_prog* prog, vm_addr begin_opt, boolean with_return );
-boolean rb_comp_opt_test( vm_code* code, vm_addr code_cnt );
+int rb_comp_opt_expr( vm_prog* prog, vm_addr begin_opt, pboolean with_return );
+pboolean rb_comp_opt_test( vm_code* code, vm_addr code_cnt );
 
 /* rb_comp.error.c */
 void rb_comp_error( srcpos* pos, char* id, ... );
 
 /* rb_comp.native.c */
-int rb_add_native_function( char* name, rb_native_func fct, boolean isfunc, char* parmdef, int run_at );
+int rb_add_native_function( char* name, rb_native_func fct, pboolean isfunc, char* parmdef, int run_at );
 int rb_add_native_var( char* name, rb_native_var get, rb_native_var set );
-int rb_add_native_const( char* name, char* value, boolean dup_val );
+int rb_add_native_const( char* name, char* value, pboolean dup_val );
 
 /* rb_comp.main.c */
 int rb_comp_compile( char* filename, char* src );
-void rb_comp_reset( boolean keep_natives );
+void rb_comp_reset( pboolean keep_natives );
 void rb_run( void );
 
 /* rb_vm.run.c */
-boolean rb_vm_stack_push( vm_stack* stack, vm_stackitem* item );
-boolean rb_vm_stack_pop( vm_stack* stack, vm_stackitem* item );
+pboolean rb_vm_stack_push( vm_stack* stack, vm_stackitem* item );
+pboolean rb_vm_stack_pop( vm_stack* stack, vm_stackitem* item );
 vm_stackitem* rb_vm_stack_access( vm_stack* stack, vm_addr offset );
-boolean rb_vm_stack_put( vm_stack* stack, vm_stackitem* item, vm_addr offset );
+pboolean rb_vm_stack_put( vm_stack* stack, vm_stackitem* item, vm_addr offset );
 void rb_vm_stack_drop( vm_stack* stack, vm_addr count );
 void rb_vm_item_free( vm_stackitem* item );
 void rb_vm_item_memdup( vm_stackitem* item );
@@ -72,36 +72,36 @@ int rb_vm_nice_type( vm_stackitem* first, vm_stackitem* last );
 int rb_vm_run( vm_stack* stack, vm_code* code, vm_addr code_cnt );
 
 /* rb_vm.var.c */
-vm_var* rb_vm_var_get_idx( vm_var* var, vm_val* idx, boolean alloc );
-status rb_vm_var_set( vm_var* var, vm_val* value, boolean no_dup );
-status rb_vm_var_get( vm_val* value, vm_var* var, boolean no_dup );
+vm_var* rb_vm_var_get_idx( vm_var* var, vm_val* idx, pboolean alloc );
+status rb_vm_var_set( vm_var* var, vm_val* value, pboolean no_dup );
+status rb_vm_var_get( vm_val* value, vm_var* var, pboolean no_dup );
 void rb_vm_var_free( vm_var* var );
 void rb_vm_var_dump( vm_var* var, int tabs, vm_addr cnt );
 
 /* rb_vm.var.tool.c */
-vm_var* rb_vm_var_resolve( vm_var* var, vm_val* idx, int idx_depth, boolean allocate );
-vm_var* rb_vm_var_dim( vm_var* var, vm_val* idx, int idx_depth, boolean allocate );
-boolean rb_vm_var_copy( vm_var* dest, vm_var* src );
+vm_var* rb_vm_var_resolve( vm_var* var, vm_val* idx, int idx_depth, pboolean allocate );
+vm_var* rb_vm_var_dim( vm_var* var, vm_val* idx, int idx_depth, pboolean allocate );
+pboolean rb_vm_var_copy( vm_var* dest, vm_var* src );
 vm_var* rb_vm_make_var( vm_stackitem* item );
 
 /* rb_vm.var.stack.c */
 vm_var* rb_vm_stack_get_var_base( vm_stack* stack );
-vm_var* rb_vm_stack_var_resolve( vm_stack* stack, boolean allocate, boolean* get_size );
-boolean rb_vm_stack_init_var( vm_stack* stack, vm_var* var, int max, int depth );
+vm_var* rb_vm_stack_var_resolve( vm_stack* stack, pboolean allocate, pboolean* get_size );
+pboolean rb_vm_stack_init_var( vm_stack* stack, vm_var* var, int max, int depth );
 status rb_vm_stack_var_push( vm_stack* stack, vm_var* var );
 
 /* rb_vm.val.c */
-double rb_vm_get_dbl_val( vm_val* val, boolean convert ) ;
-long rb_vm_get_long_val( vm_val* val, boolean convert ) ;
-vm_addr rb_vm_get_addr_val( vm_val* val, boolean convert ) ;
-char* rb_vm_get_str_val( vm_val* val, boolean convert ) ;
+double rb_vm_get_dbl_val( vm_val* val, pboolean convert ) ;
+long rb_vm_get_long_val( vm_val* val, pboolean convert ) ;
+vm_addr rb_vm_get_addr_val( vm_val* val, pboolean convert ) ;
+char* rb_vm_get_str_val( vm_val* val, pboolean convert ) ;
 void rb_vm_free_val( vm_val* val ) ;
-boolean rb_vm_copy_val( vm_val* dst, vm_val* src, boolean withdup ) ;
+pboolean rb_vm_copy_val( vm_val* dst, vm_val* src, pboolean withdup ) ;
 void rb_vm_dump_val( FILE* stream, vm_val* val ) ;
 
 /* rb_vm.util.c */
-boolean rb_vm_convert_value( vm_val* val, char to_type );
-boolean rb_vm_optimal_value( vm_val* val );
+pboolean rb_vm_convert_value( vm_val* val, char to_type );
+pboolean rb_vm_optimal_value( vm_val* val );
 char rb_vm_get_parm_size( vm_code instr );
 
 /* rb_vm.native.c */
@@ -124,7 +124,7 @@ void rb_vm_error( char* msg );
 void rb_vm_dump( FILE* stream, vm_prog* prog, vm_addr begin_at );
 
 /* rb_string.c */
-char* rb_str_pool_append( char*** pool, char* insert, boolean do_copy );
+char* rb_str_pool_append( char*** pool, char* insert, pboolean do_copy );
 
 /* rb_util.c */
 int hash_from_str( char* str, int size );

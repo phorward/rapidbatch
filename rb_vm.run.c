@@ -38,13 +38,13 @@ Usage:	Virtual machine kernel
 	Parameters:		vm_stack*		stack			Stack to be used
 					vm_stackitem*	item			Item to be stacked			
 
-	Returns:		boolean							TRUE: Item was successfully
+	Returns:		pboolean							TRUE: Item was successfully
 															pushed
 													FALSE: If not ;)
 	~~~ CHANGES & NOTES ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	Date:		Author:			Note:
 ----------------------------------------------------------------------------- */
-boolean rb_vm_stack_push( vm_stack* stack, vm_stackitem* item )
+pboolean rb_vm_stack_push( vm_stack* stack, vm_stackitem* item )
 {	
 	PROC( "rb_vm_stack_push" );
 	PARMS( "stack", "%p", stack );
@@ -102,13 +102,13 @@ boolean rb_vm_stack_push( vm_stack* stack, vm_stackitem* item )
 					vm_stackitem*	item		Pointer to item, where the
 												item is copied to.
 
-	Returns:		boolean						TRUE: Item was popped
+	Returns:		pboolean						TRUE: Item was popped
 												FALSE: No more items stacked
 
 	~~~ CHANGES & NOTES ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	Date:		Author:			Note:
 ----------------------------------------------------------------------------- */
-boolean rb_vm_stack_pop( vm_stack* stack, vm_stackitem* item )
+pboolean rb_vm_stack_pop( vm_stack* stack, vm_stackitem* item )
 {
 	PROC( "rb_vm_stack_pop" );
 	PARMS( "stack", "%p", stack );
@@ -162,13 +162,13 @@ vm_stackitem* rb_vm_stack_access( vm_stack* stack, vm_addr offset )
 												item is copied to
 					vm_addr			offset		Offset of the stack item
 
-	Returns:		boolean						TRUE: Item was popped
+	Returns:		pboolean						TRUE: Item was popped
 												FALSE: No more items stacked
 
 	~~~ CHANGES & NOTES ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	Date:		Author:			Note:
 ----------------------------------------------------------------------------- */
-boolean rb_vm_stack_put( vm_stack* stack, vm_stackitem* item, vm_addr offset )
+pboolean rb_vm_stack_put( vm_stack* stack, vm_stackitem* item, vm_addr offset )
 {
 	PROC( "rb_vm_stack_put" );
 	PARMS( "stack", "%p", stack );
@@ -193,7 +193,7 @@ boolean rb_vm_stack_put( vm_stack* stack, vm_stackitem* item, vm_addr offset )
 	Parameters:		vm_stack*		stack		Stack to be used
 					vm_addr			count		Number of elements.
 
-	Returns:		boolean						TRUE: Item was popped
+	Returns:		pboolean						TRUE: Item was popped
 												FALSE: No more items stacked
 
 	~~~ CHANGES & NOTES ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -235,7 +235,7 @@ void rb_vm_stack_drop( vm_stack* stack, vm_addr count )
 												is <0, all elements are popped
 												and dropped.
 
-	Returns:		boolean						TRUE: Item was popped
+	Returns:		pboolean						TRUE: Item was popped
 												FALSE: No more items stacked
 
 	~~~ CHANGES & NOTES ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -282,7 +282,7 @@ void rb_vm_item_free( vm_stackitem* item )
 												is <0, all elements are popped
 												and dropped.
 
-	Returns:		boolean						TRUE: Item was popped
+	Returns:		pboolean						TRUE: Item was popped
 												FALSE: No more items stacked
 
 	~~~ CHANGES & NOTES ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -1013,7 +1013,7 @@ int rb_vm_run( vm_stack* stack, vm_code* code, vm_addr code_cnt )
 
 					rb_vm_stack_pop( STACK, &item );
 					if( !( var = rb_vm_stack_var_resolve( 
-							STACK, TRUE, (boolean*)NULL ) ) )
+							STACK, TRUE, (pboolean*)NULL ) ) )
 						RB_OUT_OF_MEMORY;
 
 					/* Here, we have to decide between value to variable
@@ -1043,7 +1043,7 @@ int rb_vm_run( vm_stack* stack, vm_code* code, vm_addr code_cnt )
 			
 				case VMC_LOAD:
 				{
-					boolean		get_size = TRUE;
+					pboolean		get_size = TRUE;
 					vm_var*		var;
 					
 					var = rb_vm_stack_var_resolve( STACK, FALSE, &get_size );
@@ -1064,7 +1064,7 @@ int rb_vm_run( vm_stack* stack, vm_code* code, vm_addr code_cnt )
 				case VMC_PTRLOAD:
 					item.type = ITEM_PTR;
 					item.attribute.var_ptr = rb_vm_stack_var_resolve(
-							STACK, TRUE, (boolean*)NULL );
+							STACK, TRUE, (pboolean*)NULL );
 					rb_vm_stack_push( STACK, &item );
 					break;
 					
@@ -1073,7 +1073,7 @@ int rb_vm_run( vm_stack* stack, vm_code* code, vm_addr code_cnt )
 					vm_var*	var;
 
 					var = rb_vm_stack_var_resolve(
-							STACK, TRUE, (boolean*)NULL );
+							STACK, TRUE, (pboolean*)NULL );
 				
 					memset( &item, 0, sizeof( vm_stackitem ) );
 					item.type = ITEM_VAR;
@@ -1093,7 +1093,7 @@ int rb_vm_run( vm_stack* stack, vm_code* code, vm_addr code_cnt )
 
 				case VMC_FREE:
 					rb_vm_var_free( rb_vm_stack_var_resolve(
-						STACK, FALSE, (boolean*)NULL ) );
+						STACK, FALSE, (pboolean*)NULL ) );
 					break;			
 
 				case VMC_MOV:

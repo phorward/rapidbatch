@@ -41,7 +41,7 @@ extern CINFO	cur;
 					
 	Parameters:		symbol*		ident			Identifier for the symbol
 					symtype		type			The symbol type
-					boolean		auto_create		Automatically create symbol
+					pboolean		auto_create		Automatically create symbol
 												if it does not exist
 	
 	Returns:		symbol*						pointer to symbol on success,
@@ -50,7 +50,7 @@ extern CINFO	cur;
 	~~~ CHANGES & NOTES ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	Date:		Author:			Note:
 ----------------------------------------------------------------------------- */
-symbol* rb_comp_get_symbol( char* ident, symtype type, boolean auto_create )
+symbol* rb_comp_get_symbol( char* ident, symtype type, pboolean auto_create )
 {
 	symbol*	sym;
 
@@ -111,7 +111,7 @@ long rb_comp_get_var_count_of_scope( symbol* begin )
 	Fill symbol table entry with procedure-related information
 */
 symbol* rb_comp_proc_header( char* ident,
-	boolean is_function, plist* parameters )
+	pboolean is_function, plist* parameters )
 {
 	char*		parmdef;
 	symbol*		sym			= (symbol*)NULL;
@@ -247,7 +247,7 @@ void rb_comp_proc_return( symbol* proc )
 	according to the procedure's signature and
 	address.
 */
-int rb_comp_proc_call_perform( struct proc_call* pc, boolean free_call )
+int rb_comp_proc_call_perform( struct proc_call* pc, pboolean free_call )
 {
 	int				error	= 0;
 	int				i;
@@ -421,7 +421,7 @@ void rb_comp_backpatch_proc_calls( symbol* proc )
 	Validates a procedure signature, or remembers
 	signatures to be processed later.
 */
-void rb_comp_proc_call( symbol* proc, boolean as_function,
+void rb_comp_proc_call( symbol* proc, pboolean as_function,
 	plist* params, vm_addr begin )
 {
 	struct 	proc_call*	pc_ptr;
@@ -531,7 +531,7 @@ void rb_comp_cache_address( ADDR_CACHE* cache, vm_addr addr )
 	
 	Parameter cont is TRUE for a CONT, and FALSE for a BREAK.
 */
-boolean rb_comp_region_branch( boolean cont )
+pboolean rb_comp_region_branch( pboolean cont )
 {
 	vm_addr		jmp;
 
@@ -615,7 +615,7 @@ void rb_comp_region_close( REGION* prev,
 	Semantic action function:
 	Add label to symbol table
 */
-symbol* rb_comp_get_label( char* ident, boolean at_definition )
+symbol* rb_comp_get_label( char* ident, pboolean at_definition )
 {
 	symbol*		label;
 	

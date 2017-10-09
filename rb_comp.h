@@ -113,20 +113,20 @@ struct _symbol
 										definition styles */
 
 	/* Flags */
-	boolean		native;				/* Flag for natively implemented functions,
+	pboolean		native;				/* Flag for natively implemented functions,
 										variables, and constants */
 
-	boolean		global;				/* Identifier for global or local
+	pboolean		global;				/* Identifier for global or local
 										scope */
 	int			constant;			/* Flag for constants/compile-time
 										functions TODO <rename this> */
 
-	boolean		defined;			/* Defined flag */
-	boolean		used;				/* Used flag */
-	boolean		patched;			/* Backpatched flag */
+	pboolean		defined;			/* Defined flag */
+	pboolean		used;				/* Used flag */
+	pboolean		patched;			/* Backpatched flag */
 
-	boolean		pointer;			/* Pointer variable (SYM_VAR only) */
-	boolean		function;			/* Function flag (SYM_PROC only) */
+	pboolean		pointer;			/* Pointer variable (SYM_VAR only) */
+	pboolean		function;			/* Function flag (SYM_PROC only) */
 	
 	/* List links */
 	symbol*		next;				/* Next symbol in bucket */
@@ -143,7 +143,7 @@ struct _symbol
 struct var_info
 {
 	char*		varname;			/* Name of variable */
-	boolean		pointer;			/* Pointer indicator */
+	pboolean		pointer;			/* Pointer indicator */
 };
 
 #define VAR_INFO		struct var_info
@@ -151,7 +151,7 @@ struct var_info
 struct var_info_sym
 {
 	symbol*		varsym;				/* Symbol of variable */
-	boolean		pointer;			/* Pointer indicator */
+	pboolean		pointer;			/* Pointer indicator */
 };
 #define VAR_INFO_SYM	struct var_info_sym
 
@@ -187,14 +187,14 @@ struct proc_info
 */
 struct param
 {
-	boolean		is_const;			/* Flag, for constant parameters */
+	pboolean		is_const;			/* Flag, for constant parameters */
 	vm_addr		code_base;			/* Code-base for a parameter;
 										This is used for optimizations
 										on constant values */
 	symbol*		var;				/* Variable index */
 	vm_addr		push_code;			/* Address to code that may cause a
 										push of a value or an address */
-	boolean		ptrload;			/* Load as pointer */
+	pboolean		ptrload;			/* Load as pointer */
 	
 	srcpos		pos;				/* Position of parameter */
 };
@@ -202,7 +202,7 @@ struct param
 struct proc_call
 {
 	symbol*		proc;				/* Procedure/Function symbol table entry */
-	boolean		as_function;		/* Symbol is called like a function */
+	pboolean		as_function;		/* Symbol is called like a function */
 	plist*		param_signature;	/* Parameter signature */
 	
 	/* Code addresses */
@@ -262,7 +262,7 @@ struct cinfo
 	vm_prog 	prog;
 	vm_code*	last_stmt;
 	
-	boolean 	is_global_scope;
+	pboolean 	is_global_scope;
 	
 	plist*		implicit_proc_calls;
 	plist*		implicit_lbl_calls;

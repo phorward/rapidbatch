@@ -116,16 +116,16 @@ static int rb_symtab_engage( symbol* sym )
 	Usage:			Drops a symbol pointer from the symbol database.
 					
 	Parameters:		symbol*		sym				The symbol to be dropped.
-					boolean		drop_sym		If true, the sym pointer is
+					pboolean		drop_sym		If true, the sym pointer is
 												freed.
 
-	Returns:		boolean						TRUE, if the symbol was dropped,
+	Returns:		pboolean						TRUE, if the symbol was dropped,
 												FALSE if ot could not be found.
   
 	~~~ CHANGES & NOTES ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	Date:		Author:			Note:
 ----------------------------------------------------------------------------- */
-static BOOLEAN rb_symtab_drop( symbol* sym, boolean drop_sym )
+static BOOLEAN rb_symtab_drop( symbol* sym, pboolean drop_sym )
 {
 	symbol*		prev	= (symbol*)NULL;
 	symbol*		link;
@@ -338,7 +338,7 @@ symbol* rb_symtab_engage_scope( symbol* begin, symbol* engage )
 	Usage:			Drops an entire scope.
 					
 	Parameters:		symbol*		begin			The scope begin node
-					boolean		drop_sym		Drop the symbol's memory, if
+					pboolean		drop_sym		Drop the symbol's memory, if
 												TRUE.
 	
 	Returns:		symbol*						Always a pointer to
@@ -347,7 +347,7 @@ symbol* rb_symtab_engage_scope( symbol* begin, symbol* engage )
 	~~~ CHANGES & NOTES ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	Date:		Author:			Note:
 ----------------------------------------------------------------------------- */
-symbol* rb_symtab_drop_scope( symbol* begin, boolean drop_sym )
+symbol* rb_symtab_drop_scope( symbol* begin, pboolean drop_sym )
 {
 	symbol*	del;
 	
@@ -497,7 +497,7 @@ void rb_symtab_dump( FILE* stream )
 	~~~ CHANGES & NOTES ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	Date:		Author:			Note:
 ----------------------------------------------------------------------------- */
-void rb_symtab_drop_all( boolean keep_native )
+void rb_symtab_drop_all( pboolean keep_native )
 {
 	int		i;
 	symbol*	sym;

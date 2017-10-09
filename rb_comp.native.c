@@ -34,7 +34,7 @@ Usage:	Native scripting function management
 													build-in function
 					rb_native_func		fct		Pointer to the build-in
 													function
-					boolean				isfunc		Defines if the user-function
+					pboolean				isfunc		Defines if the user-function
 													is threaded as a function
 													or a procedure.
 					char*				parmdef		Parameter definition; This
@@ -47,7 +47,7 @@ Usage:	Native scripting function management
 														"p" Parameter by ref
 														"+" Variable list of
 															parameters following
-					boolean				compiletime	TRUE: Function is a compile-
+					pboolean				compiletime	TRUE: Function is a compile-
 															time function and is
 															executed at compile
 															time
@@ -67,7 +67,7 @@ Usage:	Native scripting function management
 	Date:		Author:			Note:
 ----------------------------------------------------------------------------- */
 int rb_add_native_function( char* name, rb_native_func fct,
-	boolean isfunc, char* parmdef, int run_at )
+	pboolean isfunc, char* parmdef, int run_at )
 {
 	symbol*			sym;
 
@@ -202,7 +202,7 @@ int rb_add_native_var( char* name, rb_native_var get, rb_native_var set )
 													be converted to a better
 													suiting type (if possible!)
 													during compile time.
-					boolean			dup_val			Specifies if 'value' shall
+					pboolean			dup_val			Specifies if 'value' shall
 													be duplicated into a newly 
 													allocated address.
 
@@ -217,7 +217,7 @@ int rb_add_native_var( char* name, rb_native_var get, rb_native_var set )
 	~~~ CHANGES & NOTES ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	Date:		Author:			Note:
 ----------------------------------------------------------------------------- */
-int rb_add_native_const( char* name, char* value, boolean dup_val )
+int rb_add_native_const( char* name, char* value, pboolean dup_val )
 {
 	symbol*			sym;
 

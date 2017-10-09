@@ -20,7 +20,7 @@ Usage:	Virtual machine code generator
 static vm_prog*		patch_prog;
 static vm_code		patch_instr;
 static vm_addr		patch_addr;
-static boolean		patch_required	= FALSE;
+static pboolean		patch_required	= FALSE;
 
 /*
  * Functions
@@ -159,15 +159,15 @@ vm_addr rb_comp_cur_addr( vm_prog* prog )
 					void*		parm			Parameter pointer; This must be
 												of a type instr requires.
 
-	Returns:		boolean						TRUE, if all worked fine,
+	Returns:		pboolean						TRUE, if all worked fine,
 												FALSE, in case param contained
 												invalid data for the instr.
   
 	~~~ CHANGES & NOTES ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	Date:		Author:			Note:
 ----------------------------------------------------------------------------- */
-/* boolean rb_comp_patch_d( char* file, int line, vm_code* code, int instr, void* parm ) */
-boolean rb_comp_patch( vm_code* code, int instr, void* parm )
+/* pboolean rb_comp_patch_d( char* file, int line, vm_code* code, int instr, void* parm ) */
+pboolean rb_comp_patch( vm_code* code, int instr, void* parm )
 {
 	char	size;
 

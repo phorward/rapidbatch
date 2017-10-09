@@ -54,13 +54,13 @@ static byte parm_size[]	=
 	Parameters:		vm_val*		val				Pointer to value structure
 					char		to_type			Type of conversion
 
-	Returns:		boolean						TRUE if the value has been
+	Returns:		pboolean						TRUE if the value has been
 													converted
 												FALSE if not
 	~~~ CHANGES & NOTES ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	Date:		Author:			Note:
 ----------------------------------------------------------------------------- */
-boolean rb_vm_convert_value( vm_val* val, char to_type )
+pboolean rb_vm_convert_value( vm_val* val, char to_type )
 {
 	char*		ptr;
 	char		tmp_s	[ 32 ];
@@ -223,13 +223,13 @@ boolean rb_vm_convert_value( vm_val* val, char to_type )
 
 	Parameters:		vm_val*		val				Pointer to value structure
 
-	Returns:		boolean						TRUE if the string has been
+	Returns:		pboolean						TRUE if the string has been
 													converted
 												FALSE if not
 	~~~ CHANGES & NOTES ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	Date:		Author:			Note:
 ----------------------------------------------------------------------------- */
-boolean rb_vm_optimal_value( vm_val* val )
+pboolean rb_vm_optimal_value( vm_val* val )
 {
 	char*	str;
 	int		v[2];

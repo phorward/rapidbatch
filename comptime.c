@@ -35,7 +35,7 @@ static	uint				all_incl_cnt;
 /* Free up this module */
 
 /* Execution function to include a file */
-static int include_file( char* filename, boolean once )
+static int include_file( char* filename, pboolean once )
 {
 	uint	i;
 	char*	src		= (char*)NULL;

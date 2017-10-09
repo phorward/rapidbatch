@@ -43,7 +43,7 @@ Usage:	Virtual machine code optimizer and compile-time code execution
 					vm_code		instr			The command which should be
 												allocated (including a possible
 												parameter)
-					boolean		with_return		TRUE: Expression returns a value
+					pboolean		with_return		TRUE: Expression returns a value
 												FALSE: If not!
 
 	Returns:		int			RB_ERR_OK		on success
@@ -52,7 +52,7 @@ Usage:	Virtual machine code optimizer and compile-time code execution
 	~~~ CHANGES & NOTES ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	Date:		Author:			Note:
 ----------------------------------------------------------------------------- */
-int rb_comp_opt_expr( vm_prog* prog, vm_addr begin_opt, boolean with_return )
+int rb_comp_opt_expr( vm_prog* prog, vm_addr begin_opt, pboolean with_return )
 {
 	vm_stack		stack;
 	vm_stackitem	item;
@@ -128,7 +128,7 @@ int rb_comp_opt_expr( vm_prog* prog, vm_addr begin_opt, boolean with_return )
 												test from
 					vm_addr		code_cnt		End of code
 
-	Returns:		boolean						TRUE: If optimization can be
+	Returns:		pboolean						TRUE: If optimization can be
 														performed
 												FALSE: If there are instructions
 														used which can't be
@@ -137,7 +137,7 @@ int rb_comp_opt_expr( vm_prog* prog, vm_addr begin_opt, boolean with_return )
 	~~~ CHANGES & NOTES ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	Date:		Author:			Note:
 ----------------------------------------------------------------------------- */
-boolean rb_comp_opt_test( vm_code* code, vm_addr code_cnt )
+pboolean rb_comp_opt_test( vm_code* code, vm_addr code_cnt )
 {
 	vm_code*		cp;
 	

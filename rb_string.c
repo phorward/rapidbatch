@@ -34,7 +34,7 @@ Usage:	Provides functions for rbstring-datatype management and manipulation
 					
 	Parameters:		char***	pool				Pointer to the string pool
 					char*		insert				The string to be inserted
-					boolean		do_copy				Copy 'insert' if it is
+					pboolean		do_copy				Copy 'insert' if it is
 													engaged into the pool
 	Returns:		char*							Returns the pointer to the
 													string. (char*)NULL will
@@ -50,7 +50,7 @@ Usage:	Provides functions for rbstring-datatype management and manipulation
 	~~~ CHANGES & NOTES ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	Date:		Author:			Note:
 ----------------------------------------------------------------------------- */
-char* rb_str_pool_append( char*** pool, char* insert, boolean do_copy )
+char* rb_str_pool_append( char*** pool, char* insert, pboolean do_copy )
 {
 	char**			p;
 	unsigned int	cnt;
