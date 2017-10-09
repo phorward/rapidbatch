@@ -764,8 +764,7 @@ parameter_list<plist*>
 					->	parameter_list ',' expression
 
 						[*	plist_push( @1,
-								(void*)rb_memdup( &@3,
-									sizeof( struct param ) ) );
+								(void*)pmemdup( &@3, sizeof( struct param ) ) );
 							@@ = @1;
 						*]
 
@@ -773,8 +772,7 @@ parameter_list<plist*>
 
 						[*	@@ = plist_create( 0, PLIST_MOD_PTR );
 							plist_push( @@,
-								(void*)rb_memdup( &@1,
-									sizeof( struct param ) ) );
+								(void*)pmemdup( &@1, sizeof( struct param ) ) );
 						*]
 					;
 

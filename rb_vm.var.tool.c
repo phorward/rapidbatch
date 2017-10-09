@@ -185,7 +185,7 @@ boolean rb_vm_var_copy( vm_var* dest, vm_var* src )
 
 	if( src->ht )
 	{
-		if( !( dest->ht = (vm_addr*)rb_memdup( src->ht,
+		if( !( dest->ht = (vm_addr*)pmemdup( src->ht,
 				VM_ASSOC_HASH_SIZE * sizeof( vm_addr ) ) ) )
 			RB_OUT_OF_MEMORY;
 	}

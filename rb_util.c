@@ -8,49 +8,7 @@ Author:	Jan Max Meyer
 Usage:	General usage utility functions
 ----------------------------------------------------------------------------- */
 
-/*
- * Includes
- */
-
 #include "rb_global.h"
-
-/*
- * Global variables
- */
-
-/*
- * Functions
- */
-
-/* -FUNCTION--------------------------------------------------------------------
-	Function:		memdup()
-	
-	Author:			Jan Max Meyer
-	
-	Usage:			Duplicates a memory entry onto the heap.
-					
-	Parameters:		void*		ptr				Pointer to memory
-					size_t		size			Size of pointer
-	
-	Returns:		void*						Pointer to memory copy.
-												Cast this with your type!
-												Returns (void*)NULL on error!
-  
-	~~~ CHANGES & NOTES ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	Date:		Author:			Note:
------------------------------------------------------------------------------ */
-void* rb_memdup( void* ptr, size_t size )
-{
-	void*	ret;
-	
-	if( !( ptr || size ) )
-		return (void*)NULL;
-		
-	ret = pmalloc( size );
-	memcpy( ret, ptr, size );
-		
-	return ret;
-}
 
 /* -FUNCTION--------------------------------------------------------------------
 	Function:		hash_from_str()

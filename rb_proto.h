@@ -127,7 +127,6 @@ void rb_vm_dump( FILE* stream, vm_prog* prog, vm_addr begin_at );
 char* rb_str_pool_append( char*** pool, char* insert, boolean do_copy );
 
 /* rb_util.c */
-void* rb_memdup( void* ptr, size_t size );
 int hash_from_str( char* str, int size );
 
 /* xml.c */

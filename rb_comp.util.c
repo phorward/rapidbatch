@@ -455,7 +455,7 @@ void rb_comp_proc_call( symbol* proc, boolean as_function,
 		MSG( "It seems, that this procedure is not defined, yet" );
 		MSG( "No problem here, we save it as implicit procedure call" );
 		
-		if( !( pc_ptr = (struct proc_call*)rb_memdup(
+		if( !( pc_ptr = (struct proc_call*)pmemdup(
 				&pc, sizeof( struct proc_call ) ) ) )
 			RB_OUT_OF_MEMORY;
 		
@@ -679,7 +679,7 @@ void rb_comp_label_call( char* ident )
 		MSG( "It seems, that this label is not defined, yet" );
 		MSG( "No problem here, we save it as implicit label call" );
 		
-		if( !( lcp = (LBL_CALL*)rb_memdup( &lc, sizeof( LBL_CALL ) ) ) )
+		if( !( lcp = (LBL_CALL*)pmemdup( &lc, sizeof( LBL_CALL ) ) ) )
 		{
 			RB_OUT_OF_MEMORY;
 			VOIDRET;
