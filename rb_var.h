@@ -14,10 +14,6 @@ Usage:	Variable system
 #include "rb_val.h"
 
 /*
- * Includes
- */
-
-/*
  * Defines
  */
 #define VM_ASSOC_HASH_SIZE	64
@@ -28,29 +24,9 @@ Usage:	Variable system
  * Macros
  */
  
-/*EXPORT*/
-/* Variable access macros and functions */
-/*ENDEXPORT*/
-
-#if 0
-/*EXPORT:internal*/
-#include "rb_var.h"
-/*ENDEXPORT*/
-#endif
-
-/*EXPORT:internal*/
 #define RB_VAR_VAL_STRUCT( var )	( &( (var)->value ) )
 #define RB_VAR_VAL_TYPE( var )		( (var)->value.type )
-/*ENDEXPORT*/
 
-#if 0
-/*EXPORT:external*/
-#define RB_VAR_VAL_STRUCT( var )	rb_vmwrap_VAR_VAL_STRUCT( var )
-#define RB_VAR_VAL_TYPE( var )		rb_vmwrap_VAR_VAL_TYPE( var )
-/*ENDEXPORT*/
-#endif
-
-/*EXPORT*/
 #define RB_VAR_GET_ADDR( var ) 		RB_VAL_GET_ADDR( RB_VAR_VAL_STRUCT( var ) )
 #define RB_VAR_GET_LONG( var ) 		RB_VAL_GET_LONG( RB_VAR_VAL_STRUCT( var ) )
 #define RB_VAR_GET_DBL( var ) 		RB_VAL_GET_DBL( RB_VAR_VAL_STRUCT( var ) )
@@ -61,7 +37,6 @@ Usage:	Variable system
 #define RB_VAR_SET_DBL( var, v ) 	RB_VAL_SET_DBL( RB_VAR_VAL_STRUCT( var ), v )
 #define RB_VAR_SET_CSTR( var, v )	RB_VAL_SET_CSTR( RB_VAR_VAL_STRUCT( var ), v )
 #define RB_VAR_SET_STR( var, v )	RB_VAL_SET_STR( RB_VAR_VAL_STRUCT( var ), v )
-/*ENDEXPORT*/
 
 /* Internal, old-style macro names */
 #define VAR_VAL_GET_ADDR			RB_VAR_GET_ADDR
@@ -81,12 +56,8 @@ Usage:	Variable system
 /*
  * Typedefs
  */
-typedef	struct	_vm_var	vm_var;
-#define VM_VAR			vm_var
 
-/*
- * Enumerators
- */
+typedef	struct	_vm_var	vm_var;
 
 /*
  * Structs & Unions

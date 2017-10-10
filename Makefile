@@ -35,7 +35,6 @@ SOURCE		=	$(PARSER_OUT) \
 				rb_vm.var.stack.c \
 				rb_vm.val.c \
 				rb_vm.util.c \
-				rb_vm.native.c \
 				rb_vm.error.c \
 				rb_vm.dbg.c \
 				rb_string.c \
