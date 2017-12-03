@@ -29,12 +29,6 @@ cd phorward
 make -f Makefile.gnu
 cd ..
 
-# min_lalr1
-git clone https://github.com/phorward/min_lalr1.git
-cd min_lalr1
-make -f Makefile.gnu
-cd ..
-
 # unicc
 git clone https://github.com/phorward/unicc.git
 cd unicc

@@ -80,6 +80,7 @@ $(PROTOFILE): $(SOURCE) $(HEADERS)
 
 clean:
 	-rm $(OBJECTS)
+
+clean-all: clean
 	-rm $(PARSER_BASE).c
 	-rm $(PARSER_BASE).h
-
