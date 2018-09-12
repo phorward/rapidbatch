@@ -81,8 +81,8 @@ int rb_comp_compile( char* filename, char* src )
 	{
 		vm_addr		global_vars;
 
-		rb_comp_backpatch_proc_calls( (symbol*)NULL );
-		rb_comp_backpatch_label_calls( (symbol*)NULL );
+		ret += rb_comp_backpatch_proc_calls( (symbol*)NULL );
+		ret += rb_comp_backpatch_label_calls( (symbol*)NULL );
 		
 		global_vars = (vm_addr)rb_comp_get_var_count_of_scope( cur.scope );
 		rb_comp_patch( VM_GET_CODE( &cur.prog, 0 ),

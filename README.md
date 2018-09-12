@@ -14,7 +14,7 @@ Starting RapidBATCH, both the language and its vision behind, as an open source 
 
 ## Building
 
-This repository currently has only one simple Makefile that runs best when [libphorward](https://github.com/phorward/phorward) and [UniCC](https://github.com/phorward/unicc) are installed. You have to manually patch C.tlt from patch/ in UniCC to get it to run.
+This repository currently has only one simple Makefile that runs best when [libphorward](https://github.com/phorward/phorward) and [UniCC](https://github.com/phorward/unicc) are installed.
 
 On Linux with gcc or clang, this will work:
 
@@ -52,7 +52,7 @@ Example programs are in test/. Some of the programs there run, some are freezing
 
 Contributions, ideas, concepts and code is always welcome!
 
-Well, this source code base currently is not a good point to start from. It is the 2017 ported, slightly running state of a project that stopped in 2009. There are many parts in these sources that are already reflected in the current [libphorward](https://github.com/phorward/phorward) toolchain and are obsolete here, but have to be rewritten. This can be a good place to start from. These are array processing functions, linked lists, hash tables (the symbol table, for example!) and many of the string and regex processing function.
+This is the 2017 ported, slightly running state of a project that stopped in 2009. There are many parts in these sources that are already reflected in the current [libphorward](https://github.com/phorward/phorward) toolchain and are obsolete here, but have to be rewritten. This can be a good place to start from. These are array processing functions, linked lists, hash tables (the symbol table, for example!) and many of the string and regex processing function.
 
 But anyway, its better to have it saved here GitHub and released to the public, instead of forgetting it on an encrypted, old device where somebody in some time will forget the last password to access it.
 

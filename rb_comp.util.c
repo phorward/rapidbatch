@@ -262,11 +262,17 @@ int rb_comp_proc_call_perform( struct proc_call* pc, pboolean free_call )
 	if( !( pc->proc->defined ) )
 	{
 		if( pc->as_function )
+		{
 			rb_comp_error( &( pc->pos ), "func_undefined",
 				"name", pc->proc->name, (char*)NULL );
+			error++;
+		}
 		else
+		{
 			rb_comp_error( &( pc->pos ), "proc_undefined",
 				"name", pc->proc->name, (char*)NULL );
+			error++;
+		}
 	}
 	else
 	{
@@ -274,6 +280,7 @@ int rb_comp_proc_call_perform( struct proc_call* pc, pboolean free_call )
 		{
 			rb_comp_error( &( pc->pos ), "proc_called_as_func",
 				"name", pc->proc->name, (char*)NULL );
+			error++;
 		}
 		
 		for( e = plist_first( pc->param_signature ), i = 0;
@@ -300,6 +307,7 @@ int rb_comp_proc_call_perform( struct proc_call* pc, pboolean free_call )
 						sprintf( num, "%d", i+1 );
 						rb_comp_error( &( pc->pos ), "pointer_required",
 							"name", pc->proc->name, "parm", num, (char*)NULL );
+						error++;
 					}
 					else
 					{
@@ -384,8 +392,9 @@ int rb_comp_proc_call_perform( struct proc_call* pc, pboolean free_call )
 	This function reports errors, when calls to
 	undefined procedures exist.
 */
-void rb_comp_backpatch_proc_calls( symbol* proc )
+int rb_comp_backpatch_proc_calls( symbol* proc )
 {
+	int			errors = 0;
 	plistel* 	e;
 	struct 
 	proc_call*	pc_ptr;
@@ -404,8 +413,8 @@ void rb_comp_backpatch_proc_calls( symbol* proc )
 		
 		if( e )
 		{
-			rb_comp_proc_call_perform( pc_ptr, TRUE );
-			
+			errors += rb_comp_proc_call_perform( pc_ptr, TRUE );
+
 			plist_remove( cur.implicit_proc_calls,
 				plist_get_by_ptr( cur.implicit_proc_calls, pc_ptr ) );
 			pfree( pc_ptr );
@@ -413,7 +422,7 @@ void rb_comp_backpatch_proc_calls( symbol* proc )
 	}
 	while( e );
 	
-	VOIDRET;
+	RETURN( errors );
 }
 
 /*
@@ -698,7 +707,7 @@ void rb_comp_label_call( char* ident )
 	Semantic action function:
 	Perform label call
 */
-void rb_comp_label_call_perform( LBL_CALL*	lc )
+int rb_comp_label_call_perform( LBL_CALL*	lc )
 {
 	PROC( "rb_comp_label_call_perform" );
 	
@@ -710,21 +719,22 @@ void rb_comp_label_call_perform( LBL_CALL*	lc )
 		rb_comp_patch( VM_GET_CODE( &cur.prog, lc->call ),
 			VMC_NOP, 0 );
 
-		VOIDRET;
+		RETURN( 1 );
 	}
 	
 	rb_comp_patch( VM_GET_CODE( &cur.prog, lc->call ),
 			VMC_JMP, &( lc->sym->offset._addr ) );
 	
-	VOIDRET;
+	RETURN( 0 );
 }
 
 /*
 	Semantic action function:
 	Backpatch implicit label calls
 */
-void rb_comp_backpatch_label_calls( symbol* label )
+int rb_comp_backpatch_label_calls( symbol* label )
 {
+	int			errors = 0;
 	plistel*	e;
 	LBL_CALL*	lc_ptr;
 	
@@ -742,7 +752,7 @@ void rb_comp_backpatch_label_calls( symbol* label )
 		
 		if( e )
 		{
-			rb_comp_label_call_perform( lc_ptr );
+			errors += rb_comp_label_call_perform( lc_ptr );
 			
 			plist_remove( cur.implicit_lbl_calls,
 				plist_get_by_ptr( cur.implicit_lbl_calls, lc_ptr ) );
@@ -751,7 +761,7 @@ void rb_comp_backpatch_label_calls( symbol* label )
 	}
 	while( e );
 	
-	VOIDRET;
+	RETURN( errors );
 }
 
 /* -FUNCTION--------------------------------------------------------------------

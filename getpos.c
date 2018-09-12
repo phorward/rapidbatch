@@ -97,7 +97,7 @@ RB_FCT( getpos )
 		if( tempString )
 		{
 			for( ptr = sourceString; ptr < tempString;
-					ptr += u8_seqlen( ptr ) )
+					ptr += putf8_seqlen( ptr ) )
 				offset++;
 		}
 	}
@@ -114,7 +114,7 @@ RB_FCT( getpos )
 			if( position <= matches_cnt )
 			{
 				pr = (prange*)parray_get( matches, position - 1 );
-				offset = pr->begin - targetString;
+				offset = pr->start - targetString;
 			}
 
 			parray_free( matches );
