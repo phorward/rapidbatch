@@ -176,7 +176,7 @@ symbol* rb_comp_proc_header( char* ident,
 void rb_comp_proc_complete( symbol* proc,
 	symbol* last_param, SCOPE_INFO* prev_scope, vm_addr jmp )
 {
-	int		size;
+	vm_addr		size;
 	
 	if( last_param )
 		size = rb_comp_get_var_count_of_scope( last_param->scope_next );

@@ -1,6 +1,7 @@
 [str]  = 'Hello World'
 [p] = getlen( [str] )
-print 'Die länge von "' # [str] # '" beträgt ' # [p] # ' Zeichen!'
+print [p]
+print 'Die laenge von "' # [str] # '" ist ' # [p] # ' Zeichen!'
 print 'Und das Zeichen an Offset 4 ist "' # getcharat( [str], 4 ) # '"'
 
 [i] = 0

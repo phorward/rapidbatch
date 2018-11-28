@@ -9,7 +9,7 @@
 
 RAPIDBATCH	=	rb6
 
-CFLAGS		=	-I ../phorward/src
+CFLAGS		=	-g -DDEBUG -I ../phorward/src
 LIBPHORWARD	=	../phorward/src/libphorward.a
 
 PATHEXT		=	PATH="../unicc:../phorward/run:$(PATH)"

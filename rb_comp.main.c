@@ -207,6 +207,8 @@ void rb_run( void )
 {
 	vm_stack	stack;
 
+	memset( &stack, 0, sizeof( vm_stack ) );
+
 	rb_vm_run( &stack, cur.prog.code,
 		cur.prog.code_next );
 }

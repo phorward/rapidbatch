@@ -524,9 +524,8 @@ int rb_vm_run( vm_stack* stack, vm_code* code, vm_addr code_cnt )
 					break;
 				
 				case VMC_EQU:
-					/* TODO: One or both of them can be (char*)NULL!!! */
-					if( strcmp( ITEM_VAL_GET_STR( &op[0] ),
-							ITEM_VAL_GET_STR( &op[1] ) ) == 0 )
+					if( strcmp( pstrget( ITEM_VAL_GET_STR( &op[0] ) ),
+					        pstrget( ITEM_VAL_GET_STR( &op[1] ) ) ) == 0 )
 						ITEM_VAL_SET_LONG( &item, RB_TRUE );
 					else
 						ITEM_VAL_SET_LONG( &item, RB_FALSE );

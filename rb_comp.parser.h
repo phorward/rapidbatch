@@ -85,7 +85,7 @@
 
 /* Call this when running out of memory during memory allocation */
 #ifndef UNICC_OUTOFMEM
-#define UNICC_OUTOFMEM			fprintf( stderr, \
+#define UNICC_OUTOFMEM( pcb )	fprintf( stderr, \
 									"Fatal error, ran out of memory\n" ), \
 								exit( 1 )
 #endif
@@ -104,21 +104,19 @@
 #ifndef UNICC_ERROR
 #define UNICC_ERROR				0
 #endif
+#ifndef UNICC_REDUCE
+#define UNICC_REDUCE			1
+#endif
 #ifndef UNICC_SHIFT
 #define UNICC_SHIFT				2
 #endif
-#ifndef UNICC_REDUCE
-#define UNICC_REDUCE			1
+#ifndef UNICC_SUCCESS
+#define UNICC_SUCCESS			4
 #endif
 
 /* Error delay after recovery */
 #ifndef UNICC_ERROR_DELAY
 #define UNICC_ERROR_DELAY		3
-#endif
-
-/* Syntax tree construction */
-#ifndef UNICC_SYNTAXTREE
-#define UNICC_SYNTAXTREE		0
 #endif
 
 /* Enable/Disable terminal selection in semantic actions */
@@ -195,26 +193,12 @@ typedef struct
 } rb_tok;
 
 
-#if UNICC_SYNTAXTREE
-/* Parse tree node */
-typedef struct rb_SYNTREE rb_syntree;
-
-struct rb_SYNTREE
-{
-	rb_tok		symbol;
-	UNICC_SCHAR*		token;
-
-	rb_syntree*	parent;
-	rb_syntree*	child;
-	rb_syntree*	prev;
-	rb_syntree*	next;
-};
-#endif
-
-
 /* Parser Control Block */
 typedef struct
 {
+	/* Is this PCB allocated by parser? */
+	char				is_internal;
+
 	/* Stack */
 	rb_tok*		stack;
 	rb_tok*		tos;
@@ -254,10 +238,7 @@ typedef struct
 	unsigned int		line;
 	unsigned int		column;
 
-#if UNICC_SYNTAXTREE
-	/* Syntax tree */
-	rb_syntree*	syntax_tree;
-#endif
+	/* Abstract Syntax Tree */
 	rb_ast*		ast;
 
 	/* User-defined components */

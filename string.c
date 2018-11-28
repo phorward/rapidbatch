@@ -58,7 +58,7 @@ RBDOC*/
 
 	for( i = 0; i < RB_FCT_PARM_COUNT(); i++ )
 	{
-		str = RB_PARM_VAL_GET_STR( RB_FCT_PARM_ACCESS( i ) );
+		str = pstrget( RB_PARM_VAL_GET_STR( RB_FCT_PARM_ACCESS( i ) ) );
 		VARS( "str", "%s", str );
 
 		printf( "%s\n", str );

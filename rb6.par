@@ -367,7 +367,7 @@ statement			->
 						[**]
 
 					| &error '\n'
-						[* /* UNICC_CLEARIN(); */ *]
+						[* UNICC_CLEARIN(pcb); *]
 					;
 
 if_block			->	"IF" condition
