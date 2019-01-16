@@ -71,8 +71,8 @@ PROTOFILE	=	rb_proto.h
 
 all: $(RAPIDBATCH)
 
-$(RAPIDBATCH):  $(OBJECTS) $(LIBPHORWARD)
-	$(CC) -o $(RAPIDBATCH) $+
+$(RAPIDBATCH):  $(OBJECTS)
+	$(CC) -static -o $(RAPIDBATCH) $+ -lphorward
 	
 $(PARSER_OUT): $(PARSER)
 	$(PATHEXT) unicc -s -v -w -o $(PARSER_BASE) $(PARSER)

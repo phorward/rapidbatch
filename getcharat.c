@@ -68,7 +68,7 @@ RB_FCT( getcharat )
 
 	char		temp	[ 4 + 1 ];
 	char*		str;
-	u_long		cnt;
+	long		cnt;
 
 	PROC( "getcharat" );
 	RB_FCT_DUMP_PARMS();
