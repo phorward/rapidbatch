@@ -58,8 +58,8 @@ RB_FCT( getlen )
 	VARS( "str", "%s", str );
 
 #ifdef UTF8
-	RB_PARM_VAL_SET_LONG( RB_FCT_RET, ( (unsigned long)u8_strlen( str ) ) );
-	VARS( "Length", "%ld", u8_strlen( str ) );
+	RB_PARM_VAL_SET_LONG( RB_FCT_RET, ( (unsigned long)putf8_strlen( str ) ) );
+	VARS( "Length", "%ld", putf8_strlen( str ) );
 #else
 	RB_PARM_VAL_SET_LONG( RB_FCT_RET, ( (unsigned long)pstrlen( str ) ) );
 	VARS( "Length", "%ld", pstrlen( str ) );

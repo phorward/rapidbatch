@@ -80,7 +80,7 @@ RB_FCT( getcharat )
 	VARS( "cnt", "%ld", cnt );
 
 #ifdef UTF8
-	for( cnt--; *str && cnt; str += u8_seqlen( str ), cnt-- )
+	for( cnt--; *str && cnt; str += putf8_seqlen( str ), cnt-- )
 		;
 #else
 	for( cnt--; *str && cnt; str++, cnt-- )

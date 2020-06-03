@@ -9,10 +9,9 @@
 
 RAPIDBATCH	=	rb6
 
-CFLAGS		=	-g -DDEBUG -I ../phorward/src
-LIBPHORWARD	=	../phorward/src/libphorward.a
+CFLAGS		=	-g -DDEBUG -DUTF8 -DUNICODE -I lib
 
-PATHEXT		=	PATH="../unicc:../phorward/run:$(PATH)"
+PATHEXT		=	PATH="../unicc:lib"
 
 RB_BASE		=	rapidbatch
 RB_BASE_LIB	=	$(RB_BASE).a
@@ -23,7 +22,9 @@ PARSER		=	rb6.par
 PARSER_BASE	=	rb_comp.parser
 PARSER_OUT	= 	$(PARSER_BASE).c
 
-SOURCE		=	$(PARSER_OUT) \
+SOURCE		=	lib/phorward.c \
+				\
+				$(PARSER_OUT) \
 				rb_comp.util.c \
 				rb_comp.symtab.c \
 				rb_comp.codegen.c \
@@ -72,13 +73,16 @@ PROTOFILE	=	rb_proto.h
 all: $(RAPIDBATCH)
 
 $(RAPIDBATCH):  $(OBJECTS)
-	$(CC) -static -o $(RAPIDBATCH) $+ -lphorward
+	$(CC) -static -o $(RAPIDBATCH) $+ 
 	
 $(PARSER_OUT): $(PARSER)
-	$(PATHEXT) unicc -s -v -w -o $(PARSER_BASE) $(PARSER)
+	$(PATHEXT) unicc -svwo $(PARSER_BASE) $(PARSER)
 	
 $(PROTOFILE): $(SOURCE) $(HEADERS)
 	$(PATHEXT) ./pproto $(SOURCE) >$@
+
+test: $(RAPIDBATCH)
+	for i in test/*.rb; do echo "--- $$i ---"; sh ./$(RAPIDBATCH) $$i; done
 
 clean:
 	-rm $(OBJECTS)

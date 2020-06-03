@@ -15,14 +15,6 @@ Usage:	Global declarations
  * Includes
  */
 
-/* System includes */
-#include <stdlib.h>
-#include <stdio.h>
-#include <string.h>
-#include <stdarg.h>
-#include <limits.h>
-
-/* Phorward DevEnv includes */
 #include <phorward.h>
 #include "xml.h"
 
