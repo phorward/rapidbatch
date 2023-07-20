@@ -1,0 +1,62 @@
+;RapidBATCH 5.0 Menu Designer
+;Copyright (C) 2005 by J.M.K S.F., Jan Max Meyer
+;German Language Definition
+
+;Titles
+main_title=RapidBATCH Menü Designer
+preview_title=Menüvorschau - Bitte Fenster schließen, um fortzufahren...
+
+;User Interface Buttons
+button_add=&Hinzufügen
+button_edit=&Bearbeiten
+button_del=&Entfernen
+button_generate=Code &generieren
+button_preview=Menü-&Vorschau
+button_new=&Neu
+
+btn_next=&Weiter ->
+
+;Tooltips
+tip_button_add=Einen neuen Menüpunkt hinzufügen
+tip_button_edit=Den aktuell ausgewählten Menüpunkt umbenennen
+tip_button_del=Den aktuell ausgewählten Menüpunkt entfernen
+tip_button_preview=Menü-Vorschau zum betrachten des Menüaufbaus
+tip_button_generate=RapidBATCH-Sourcecode zur Menüdefinition erzeugen
+tip_button_mup=Den aktuell ausgewählten Menüpunkt nach oben verschieben
+tip_button_mdown=Den aktuell ausgewählten Menüpunkt nach unten verschieben
+tip_button_mleft=Den aktuell ausgewählten Menüpunkt eine Ebene nach links verschieben
+tip_button_mright=Den aktuell ausgewählten Menüpunkt eine Ebene nach rechts verschieben
+tip_button_new=Neues Menü erstellen
+
+;Edit-Dialog
+editlabel_title_new=Neuen Menüpunkt hinzufügen
+editlabel_title_edit=Menüpunkt umbenennen
+editlabel_prompt=Bezeichnung des Menüpunktes:
+
+;Menu definitions
+menu_genwhat_title=Script Generator
+menu_genwhat_def=Lauffähigen Script-Code generieren|Nur Menüdeskriptor erzeugen
+menu_genscript_title=Ereignisbehandlungs-Routine als...
+menu_genscript_def=GOSUB...RESUME-Konstruktion
+menu_genscript_def=IF...ELSEIF...ENDIF-Konstruktion
+menu_gennext_title=Generierten Code...
+menu_gennext_def=...in Zwischenablage kopieren|...jetzt anzeigen|...in Datei speichern
+
+;Code Generator
+codegen_codeview=Generierten Code / Menüdeskriptor anzeigen
+codegen_windowname=Name des Dialog-Widgets, welches das Menü erhalten soll:
+codegen_selectfile=Bitte Zeildateinamen eingeben:
+codegen_filesaved=Datei wurde erfolgreich gespeichert.
+codegen_filenotsaved=Beim Speichern der Datei trat ein Fehler auf.
+
+codegen_insertcodehere=*** Code für den Menüpunkt "%item" ***
+
+;Messages
+error_menutree=Das Element "%item" hat keinen Vorgänger!
+msg_copiedtoclipboard=Der Generierte Code/Menüdeskriptor wurde in die Zwischenablage kopiert!
+ask_newmenu=Aktuelle Menüdefinition verwerfen?
+
+
+
+
+

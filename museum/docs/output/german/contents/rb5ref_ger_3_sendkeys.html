@@ -1,0 +1,40 @@
+<html>
+	<head>
+		<title>RapidBATCH Befehlsreferenz :: SENDKEYS</title>
+		<link rel="stylesheet" href="jmksf.css" type="text/css" />
+	</head>
+	<body>
+		<div id="top">
+			<img src="rb5.png" alt="RapidBATCH Logo" />
+			SENDKEYS
+		</div>
+	
+		<div class="line">&nbsp;</div>
+	
+		<table cellspacing="10" width="100%">
+			<tr>
+				<td class="ref_label">Syntax:</td>
+				<td class="ref_syntax">SENDKEYS Fenstertitel, Fernsteuerungsbefehle</td>
+			</tr>
+			<tr>
+				<td class="ref_label">Beschreibung:</td>
+				<td>Sendet Tastaturbefehle an das Fenster mit dem jeweiligen Fenstertitel. Diese Anweisung erm&ouml;glicht somit das Fernsteuern beliebiger Windows-Programme mit Hilfe einer einfach definierten Makrosprache.<br /><br />Im Grunde ist diese Fernsteuerungs-Makrosprache (SENDKEYS-Script) sehr einfach aufgebaut: Man muss die Tastenkombinationen so angeben wie man sie selber dr&uuml;cken w&uuml;rde, da RapidBATCH hier die Eingabe eines Benutzers simuliert, d.h. so tut, als ob der Benutzer das fernzusteuernde Programm bedient.<ul>  <li>Einfache Buchstaben, Zahlen und Satzzeichen (also W&ouml;rter oder ganze Texte) werden direkt angegeben, wie z.B. &quot;abc&quot; oder &quot;Hallo Welt!&quot;.</li>  <li>Sondertasten wie STRG, ALT, SHIFT, ENTER, etc. werden geklammert und mit der englischen Bezeichnung angegeben. Wird z.B. das Kommando &quot;Zeile 1(enter)Zeile 2&quot; per SENDKEYS an eine Anwendung gesendet (z.B. einen Texteditor), so wird ein Zeilenumbruch zwischen &quot;Zeile 1&quot; und &quot;Zeile 2&quot; erzeugt.  <li>Um eine Taste gedr&uuml;ckt zu halten, wird ihr ein Zirkumflexzeichen (^) vorangestellt. Das gedr&uuml;ckthalten von Tasten ist bei Sondertasten, z.B. STRG oder ALT in Verbindung mit anderen Tasten m&ouml;glich. Um mehrere Tasten gleichzeitig zu dr&uuml;cken, muss das Zirkumflexzeichen vor jedes der gew&uuml;nschten Zeichen geschrieben werden. Das dr&uuml;cken wird automatisch aufgehoben, wenn ein nicht-gedr&uuml;cktes Zeichen folgt oder der Tastaturkommando-String endet. Beispiel: &quot;^(alt)f&quot; sendet ein ALT+F, &quot;^(alt)^(strg)^(del)&quot; dr&uuml;ckt ALT+STRG+ENTF gleichzeitig, &quot;^(alt)(f1)&quot; sendet ein ALT+F1. &quot;^a&quot; w&uuml;rde ein gedr&uuml;ckthalten der Taste &quot;a&quot; hervorrufen. Beachten Sie bitte, daﬂ alle gedr&uuml;ckten Tasten nach der Abarbeitung der Anweisung SENDKEYS wieder automatisch &quot;losgelassen&quot; werden.</li><li>M&ouml;chte man ein Zeichen der Makrosprache wie z.B. eine Klammer auf oder Klammer zu senden, stellt man ihr ein Tilde-Zeichen (~) voran. So z.B. ~( f&uuml;r ein &quot;(&quot;. Mit ~^ wird ein Zirkumflexzeichen selber gesendet. Um ein einzelnes Tilde-Zeichen zu senden muss ein ~~ angegeben werden.</li></ul>Als Sondertasten k&ouml;nnen folgende Tasten angegeben werden.<ul>	<li><b>(back)</b><br />	Backspace-Taste</li>	<li><b>(tab)</b><br />	Tabulator-Taste</li>	<li><b>(clear)</b><br />	Entfernen-Taste</li>	<li><b>(enter)</b> oder <b>(return)</b><br />	Enter-Taste</li>	<li><b>(shift)</b><br />	Umschalt-Taste</li>	<li><b>(ctrl)</b> oder <b>(control)</b><br />	Strg-Taste</li>	<li><b>(alt)</b><br />	Alt-Taste</li>	<li><b>(pause)</b><br />	Pause-Taste</li>	<li><b>(capslock)</b><br />	Capslock-Taste</li>	<li><b>(esc)</b><br />	Escape-Taste</li>	<li><b>(space)</b><br />	Leertaste</li>	<li><b>(pageup)</b><br />	Bild-hoch Taste</li>	<li><b>(pagedown)</b><br />	Bild-runter Taste</li>	<li><b>(end)</b><br />	Zeilenende</li>	<li><b>(home)</b><br />	Zeilenanfang</li>	<li><b>(left)</b><br />	Pfeiltaste Links</li>	<li><b>(up)</b><br />	Pfeiltaste hoch</li>	<li><b>(right)</b><br />	Pfeiltaste rechts</li>	<li><b>(down)</b><br />	Pfeiltaste runter</li>	<li><b>(select)</b><br />	Auswahl-Taste</li>	<li><b>(print)</b><br />	Druck-Taste</li>	<li><b>(snapshot)</b><br />	Bildschirm-Schnappschuss</li>	<li><b>(insert)</b><br />	Einf&uuml;gen-Taste</li>	<li><b>(delete)</b><br />	Entfernen-Taste</li>	<li><b>(help)</b><br />	Hilfe-taste</li>	<li><b>(lwin)</b><br />	Linke Windows-Taste</li>	<li><b>(rwin)</b><br />	Rechte Windows-Taste</li>	<li><b>(apps)</b><br />	Anwendungs-Taste</li>	<li><b>(f1)</b><br />	F1-Taste</li>	<li><b>(f2)</b><br />	F2-Taste</li>	<li><b>(f3)</b><br />	F3-Taste</li>	<li><b>(f4)</b><br />	F4-Taste</li>	<li><b>(f5)</b><br />	F5-Taste</li>	<li><b>(f6)</b><br />	F6-Taste</li>	<li><b>(f7)</b><br />	F7-Taste</li>	<li><b>(f8)</b><br />	F8-Taste</li>	<li><b>(f9)</b><br />	F9-Taste</li>	<li><b>(f10)</b><br />	F10-Taste</li>	<li><b>(f11)</b><br />	F11-Taste</li>	<li><b>(f12)</b><br />	F12-Taste</li>	<li><b>(f13)</b><br />	F13-Taste</li>	<li><b>(f14)</b><br />	F14-Taste</li>	<li><b>(f15)</b><br />	F15-Taste</li>	<li><b>(f16)</b><br />	F16-Taste</li>	<li><b>(numlock)</b><br />	NumLock-Taste</li>	<li><b>(scroll)</b><br />	Scroll-Taste</li>	<li><b>(lshift)</b><br />	Linke Umschalt-Taste</li>	<li><b>(rshift)</b><br />	Rechte Umschalt-Taste</li>	<li><b>(lcontrol)</b><br />	Linke Strg-Taste</li>	<li><b>(rcontrol)</b><br />	Rechte Strg-Taste</li>	<li><b>(lalt)</b><br />	Linke Alt-Taste</li>	<li><b>(ralt)</b><br />	Rechte Alt-Taste</li></ul><br />Als Fenstertitel k&ouml;nnen auch die Prozess-ID einer Windows-Anwendung oder die build-in Konstanten &quot;DESKTOP&quot; (sendet Tastenanschl&auml;ge an den Desktop), &quot;SHELL&quot; (sendet Tastenanschl&auml;ge an die Shell) und &quot;FOREGROUND&quot; (sendet Tastenanschl&auml;ge an das aktuelle Vordergrundfenster) &uuml;bergeben werden.</td>
+			</tr>
+			<tr>
+				<td class="ref_label">Beispiele:</td>
+				<td class="ref_code"><font color="#808080">rem Notepad starten</font><br />shell <font color="#000080">[windir]</font> # <font color="#0000ff">'\notepad.exe'</font>, <font color="#0000ff">'show'</font><br /><br /><font color="#808080">rem Tastenkombinationen senden</font><br />sendkeys <font color="#0000ff">'Unbenannt - Editor'</font>, <font color="#0000ff">'Hello World^(alt)fstest.txt(enter)'</font><br /><b>end</b></td>
+			</tr>
+			<tr>
+				<td class="ref_label">Bemerkungen:</td>
+				<td>[errorcode] erh&auml;lt -1, wenn ein Fehler auftrat (z.B. wenn das Fenster nicht gefunden wurde), ansonsten 0.</td>
+			</tr>
+		</table>
+	
+		<div class="line">&nbsp;</div>
+	
+		<div id="copyright">
+			Copyright &copy; 2000-2006 by J.M.K S.F. Software Technologies, Jan Max Meyer<br />
+			All rights reserved.
+		</div>
+	</body>
+</html>

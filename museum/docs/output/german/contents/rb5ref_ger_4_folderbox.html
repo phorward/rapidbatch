@@ -1,0 +1,40 @@
+<html>
+	<head>
+		<title>RapidBATCH Befehlsreferenz :: FOLDERBOX</title>
+		<link rel="stylesheet" href="jmksf.css" type="text/css" />
+	</head>
+	<body>
+		<div id="top">
+			<img src="rb5.png" alt="RapidBATCH Logo" />
+			FOLDERBOX
+		</div>
+	
+		<div class="line">&nbsp;</div>
+	
+		<table cellspacing="10" width="100%">
+			<tr>
+				<td class="ref_label">Syntax:</td>
+				<td class="ref_syntax">FOLDERBOX Verzeichnis = Aufforderungstext, Vorgabepfad</td>
+			</tr>
+			<tr>
+				<td class="ref_label">Beschreibung:</td>
+				<td>FOLDERBOX zeigt einen Standard-Auswahldialog zum Ausw&auml;hlen eines Verzeichnisses an.<br /><br />Als Parameter erwartet diese Funktion einen Aufforderungstext sowie einen optionalen Vorgabepfad. R&uuml;ckgabewert ist das gew&auml;hlte Verzeichnis oder ein Leerstring, wenn kein Ordner gew&auml;hlt wurde oder der Benutzer den "Abbrechen"-Button klickt.<br /><img style="padding-top: 30px;" src="img/folderbox.gif" alt="Bild eines Verzeichnisauswahldialoges mit der FOLDERBOX" title="Screenshot" /></td>
+			</tr>
+			<tr>
+				<td class="ref_label">Beispiele:</td>
+				<td class="ref_code">folderbox <font color="#000080">[pfad]</font> = <font color="#0000ff">'Bitte w&auml;hlen Sie ein Verzeichnis!'</font>, <font color="#0000ff">'C:\jmksf\rb5'</font><br /><br /><b>if</b> <font color="#000080">[pfad]</font> ! <font color="#0000ff">''</font><br />&nbsp;&nbsp;&nbsp;&nbsp;echo <font color="#0000ff">'Das gew&auml;hlte Verzeichnis lautet: '</font> # <font color="#000080">[pfad]</font><br /><b>else</b><br />&nbsp;&nbsp;&nbsp;&nbsp;echo <font color="#0000ff">'Kein Verzeichnis gew&auml;hlt.'</font><br /><b>endif</b></td>
+			</tr>
+			<tr>
+				<td class="ref_label">Bemerkungen:</td>
+				<td>Verwenden Sie die Dialoge OPENBOX und SAVEBOX, um die Auswahl einer Datei zu erm&ouml;glichen.</td>
+			</tr>
+		</table>
+	
+		<div class="line">&nbsp;</div>
+	
+		<div id="copyright">
+			Copyright &copy; 2000-2006 by J.M.K S.F. Software Technologies, Jan Max Meyer<br />
+			All rights reserved.
+		</div>
+	</body>
+</html>

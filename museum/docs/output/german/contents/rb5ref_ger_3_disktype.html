@@ -1,0 +1,40 @@
+<html>
+	<head>
+		<title>RapidBATCH Befehlsreferenz :: DISKTYPE</title>
+		<link rel="stylesheet" href="jmksf.css" type="text/css" />
+	</head>
+	<body>
+		<div id="top">
+			<img src="rb5.png" alt="RapidBATCH Logo" />
+			DISKTYPE
+		</div>
+	
+		<div class="line">&nbsp;</div>
+	
+		<table cellspacing="10" width="100%">
+			<tr>
+				<td class="ref_label">Syntax:</td>
+				<td class="ref_syntax">DISKTYPE Laufwerkstypen-ID = Laufwerksbuchstabe</td>
+			</tr>
+			<tr>
+				<td class="ref_label">Beschreibung:</td>
+				<td>Gibt Auskunft &uuml;ber den Typ eines Speichermediums. Der R&uuml;ckgabewert ist einer der folgenden Werte:<br /><br />0 = Unbekanntes Medium<br />1 = Wechselspeicher<br />2 = Fixiertes Laufwerk (z.B. Festplatte)<br />3 = Remote Laufwerk<br />4 = CD-ROM<br />5 = RAM-Disk (z.B. USB-Stick)</td>
+			</tr>
+			<tr>
+				<td class="ref_label">Beispiele:</td>
+				<td class="ref_code">disktype <font color="#000080">[type]</font> = <font color="#0000ff">'C:\'</font><br /><b>if</b> <font color="#000080">[type]</font> = <font color="#0000ff">'0'</font> <font color="#000080">[type]</font> = <font color="#0000ff">'unbekanntes '</font><br /><b>if</b> <font color="#000080">[type]</font> = <font color="#0000ff">'1'</font> <font color="#000080">[type]</font> = <font color="#0000ff">'Wechselspeicher-'</font><br /><b>if</b> <font color="#000080">[type]</font> = <font color="#0000ff">'2'</font> <font color="#000080">[type]</font> = <font color="#0000ff">'fixiertes '</font><br /><b>if</b> <font color="#000080">[type]</font> = <font color="#0000ff">'3'</font> <font color="#000080">[type]</font> = <font color="#0000ff">'Remote-'</font><br /><b>if</b> <font color="#000080">[type]</font> = <font color="#0000ff">'4'</font> <font color="#000080">[type]</font> = <font color="#0000ff">'CD-ROM-'</font><br /><b>if</b> <font color="#000080">[type]</font> = <font color="#0000ff">'5'</font> <font color="#000080">[type]</font> = <font color="#0000ff">'RAM-Disk-'</font><br /><br />echo <font color="#0000ff">'Laufwerk C: ist ein '</font> # <font color="#000080">[type]</font> # <font color="#0000ff">'Medium'</font><br /><b>end</b></td>
+			</tr>
+			<tr>
+				<td class="ref_label">Bemerkungen:</td>
+				<td>keine</td>
+			</tr>
+		</table>
+	
+		<div class="line">&nbsp;</div>
+	
+		<div id="copyright">
+			Copyright &copy; 2000-2006 by J.M.K S.F. Software Technologies, Jan Max Meyer<br />
+			All rights reserved.
+		</div>
+	</body>
+</html>

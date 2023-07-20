@@ -1,0 +1,112 @@
+;Language Definition file for RapidBATCH Builder, version 4.0.0
+;LANGUAGE: GERMAN
+
+language=german
+default_file=Unbenannt
+
+Menu_File=&Datei
+Menu_File_New=&Neu	Strg+N
+Menu_File_Open=Ö&ffnen	Strg+O
+Menu_File_Recent=&Letzte Dateien
+Menu_File_Save=&Speichern	Strg+S
+Menu_File_Save_as=Speichern &unter...
+Menu_File_Print=&Drucken	Strg+P
+Menu_File_Quit=B&eenden	Strg+Q
+
+Menu_Edit=&Bearbeiten
+Menu_Edit_Undo=&Rückgängig	Strg+Z
+Menu_Edit_Redo=&Wiederholen	Strg+Y
+Menu_Edit_Copy=&Kopieren	Strg+C
+Menu_Edit_Cut=&Ausschneiden	Strg+X
+Menu_Edit_Paste=&Einfügen	Strg+V
+Menu_Edit_Delete=&Entfernen	Del
+Menu_Edit_Select_all=&Alles markieren	Strg+A
+Menu_Edit_Find=&Suchen	Strg+F
+Menu_Edit_Find_next=&Weitersuchen...	F3
+Menu_Edit_Comment_Selection=Kommenta&re setzen/entfernen	Strg+R
+Menu_Edit_Goto_Line=Gehe zu &Zeile	Strg+G
+
+Menu_Script=&Script
+Menu_Script_Run=&Start	F5
+Menu_Script_Compile=&Compilieren	F9
+Menu_Script_DebuggerProperties=&Debug-Optionen
+Menu_Script_SetCommand=&Setze [command]...
+
+Menu_Tools=&Werkzeuge
+Menu_Tools_Configure=Menü &konfigurieren...
+
+Menu_Help=&Hilfe
+Menu_Help_Manual=Programmier&handbuch
+Menu_Help_Whatsnew=&Was ist neu?
+Menu_Help_Reference=Befehls&referenz
+Menu_Help_License=&Lizenzvereinbarung
+Menu_Help_Website=&rapidbatch.com
+Menu_Help_About=Ü&ber RapidBATCH...
+
+Dialog_FileOpen_Title=RapidBATCH-Script öffnen
+Dialog_FileSave_Title=RapidBATCH-Script speichern unter...
+
+Dialog_Find_Title=Suche
+Dialog_Find_OkButton=&OK
+Dialog_Find_CancelButton=&Abbruch
+
+Dialog_GotoLine_Title=Gehe zu Zeile...
+Dialog_GotoLine_OkButton=&OK
+Dialog_GotoLine_CancelButton=&Abbruch
+Dialog_GotoLine_Prompt=Gehe zu Zeilennummer:
+
+Tooltip_NewFile=Neues Script erstellen (Strg+N)
+Tooltip_OpenFile=Vorhandenes Script öffnen (Strg+O)
+Tooltip_SaveFile=Aktuelles Script speichern (Strg+S)
+Tooltip_Find=Suchen (Strg+F)
+Tooltip_Copy=Kopieren (Strg+C)
+Tooltip_Cut=Ausschneiden (Strg+X)
+Tooltip_Paste=Einfügen (Strg+V)
+Tooltip_Run=Script ausführen (F5)
+Tooltip_Help=Befehlsreferenz (F1)
+Tooltip_Delete=Entfernen (Entf)
+Tooltip_Undo=Rückgängig (Strg+Z)
+Tooltip_Redo=Wiederholen (Strg+Y)
+
+Dialog_SetCommand_Title=Script-Kommandozeilenparameter setzen
+Dialog_SetCommand_OkButton=&OK
+Dialog_SetCommand_CloseButton=&Abbruch
+
+Dialog_Compile_Title=Script compilieren
+Dialog_Compile_CompileButton=&Compilieren
+Dialog_Compile_CancelButton=&Abbrechen
+Dialog_Compile_OpenIcon=Bitte wählen Sie eine Icon-Datei
+Dialog_Compile_AutoLink=Automatisches &linken
+Dialog_Compile_LinkIcon=&Icon-Datei hinzulinken
+Dialog_Compile_RunAfterHalt=EXE &starten
+
+Dialog_Debug_Title=Debug-Optionen
+Dialog_Debug_OkButton=&Ok
+Dialog_Debug_CancelButton=&Abbrechen
+Dialog_Debug_DebugScript=Script &debuggen
+Dialog_Debug_StepMode=&Step-Modus
+Dialog_Debug_TraceMode=&Trace-Modus
+Dialog_Debug_None=&Keine
+Dialog_Debug_Automatic=&Automatisch
+Dialog_Debug_Manual=&Manuell
+Dialog_Debug_DebugMode=Debug-Modus
+Dialog_Debug_VariableMonitoring=Variablenbeobachtung
+
+Dialog_About_ReferLicense=Für weitere Informationen lesen Sie bitte die Datei LICENSE.TXT.
+
+MessageBox_SaveAnyChanges=Möchten Sie Änderungen speichern?
+MessageBox_NoResultsFound=Keine Ergebnisse gefunden.
+MessageBox_FileExits=Die angegebene Datei existiert bereits. Überschreiben?
+MessageBox_CompileError=Bei der Compilierung Ihres Scripts trat ein Fehler auf.~Bitte prüfen Sie die Compiler-Ausgaben um die evtl. Fehlerquelle zu lokalisieren.
+MessageBox_CompileSucceeded=Die EXE-Datei wurde erfolgreich erzeugt!
+
+;MessageBox_CreateNewFile=Wollen Sie die aktuelle Datei verwerfen?
+;MessageBox_OpenOtherFile=Wollen Sie die aktuelle Datei verwerfen?
+;MessageBox_QuitWithoutSaving=Möchten Sie wirklich ohne speichern beenden?
+;MessageBox_StringNotFound=Suchstring wurde nicht gefunden.
+;MessageBox_NoMoreResults=Keine weiteren Suchergebnisse.
+;MessageBox_Overwrite=Die angegebene Datei existiert bereits. Möchten Sie die Datei wirklich überschreiben?
+
+
+
+;End of definiton

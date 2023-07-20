@@ -1,0 +1,40 @@
+<html>
+	<head>
+		<title>RapidBATCH Befehlsreferenz :: FUNC...ENDFUNC</title>
+		<link rel="stylesheet" href="jmksf.css" type="text/css" />
+	</head>
+	<body>
+		<div id="top">
+			<img src="rb5.png" alt="RapidBATCH Logo" />
+			FUNC...ENDFUNC
+		</div>
+	
+		<div class="line">&nbsp;</div>
+	
+		<table cellspacing="10" width="100%">
+			<tr>
+				<td class="ref_label">Syntax:</td>
+				<td class="ref_syntax">FUNC Funktionsname [:Parameter-Liste]<br />&nbsp;&nbsp;{Anweisungsblock}<br />&nbsp;&nbsp;&nbsp;&nbsp;[RET [R&uuml;ckgabewert] ]<br />&nbsp;&nbsp;{Anweisungsblock}<br />ENDFUNC</td>
+			</tr>
+			<tr>
+				<td class="ref_label">Beschreibung:</td>
+				<td>Definiert eine benutzerdefinierte Funktion.<br /><br />Funktionen werden implementiert, um mehrere RapidBATCH-Anweisungen zu einer neuen Funktion zusammenzufassen, die im Script verwendet werden kann. Eine Funktion kann einen beliebigen Namen sowie eine optionale und beliebige Anzahl an Parametervariablen besitzen, die beim Aufruf der Funktion als lokale Funktionsvariablen behandelt werden. Mit Hilfe der Pointerfunktionalit&auml;t k&ouml;nnen auch Zeiger auf Arrays und Variablen an die Funktion als lokale Variablen &uuml;bergeben und verarbeitet werden.<br />Funktionen haben Grunds&auml;tzlich einen R&uuml;ckgabewert, d.h. beim Aufruf einer benutzerdefinierten Funktion muss eine R&uuml;ckgabevariable (Return-Variable) &auml;quivalent Funktionsaufrufen von RapidBATCH build-in Funktionen angegeben werden.<br />Um einen Wert zur&uuml;ckzugeben, verwenden Sie die RET-Anweisung, die als Parameter den zur&uuml;ckzugebenden Wert erwartet. Wird in einer Funktion eine RET-Anweisung ohne Parameter verwendet, so gibt die Funktion einen Leerstring an die R&uuml;ckgabevariable zur&uuml;ck.<br /><br />Eine Funktion kann wiederum andere Funktionen/Prozeduren oder sich selbst rekursiv aufrufen. Funktions-/Prozedurdeklarationen in Funktionen sind nicht erlaubt.</td>
+			</tr>
+			<tr>
+				<td class="ref_label">Beispiele:</td>
+				<td class="ref_code"><!-- CODE BEGIN --><font color="#808080">rem Definition der Funktion "quadrat"</font><br /><b>func</b> quadrat: <font color="#000080">[wert]</font><br />&nbsp;&nbsp;&nbsp;&nbsp;<b>ret</b> <font color="#000080">[wert]</font> * <font color="#000080">[wert]</font><br /><b>endfunc</b><br /><br /><font color="#808080">rem Aufruf der Funktion "quadrat"</font><br />quadrat <font color="#000080">[ergebnis]</font> = <font color="#0000ff">'4'</font><br />echo <font color="#0000ff">'Ergebnis: '</font> # <font color="#000080">[ergebnis]</font><br /><br /><font color="#808080">rem Definition der Funktion "fakultaet"</font><br /><b>func</b> fakultaet: <font color="#000080">[x]</font><br />&nbsp;&nbsp;&nbsp;&nbsp;<b>dec</b> <font color="#000080">[res]</font><br /><br />&nbsp;&nbsp;&nbsp;&nbsp;<b>if</b> <font color="#000080">[x]</font> = <font color="#0000ff">'0'</font><br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#000080">[res]</font> = <font color="#0000ff">'1'</font><br />&nbsp;&nbsp;&nbsp;&nbsp;<b>else</b><br /><font color="#808080">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;rem Rekursiver Aufruf von "fakultaet"</font><br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;fakultaet <font color="#000080">[res]</font> = <font color="#000080">[x]</font> - <font color="#0000ff">'1'</font><br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#000080">[res]</font> * <font color="#000080">[x]</font><br />&nbsp;&nbsp;&nbsp;&nbsp;<b>endif</b><br /><br />&nbsp;&nbsp;&nbsp;&nbsp;<b>ret</b> <font color="#000080">[res]</font><br /><b>endfunc</b><br /><br /><font color="#808080">rem Aufruf der Funktion "fakultaet"</font><br />fakultaet <font color="#000080">[ergebnis]</font> = <font color="#0000ff">'4'</font><br /><br />echo <font color="#0000ff">'Die Fakult&auml;t von 4 ist '</font> # <font color="#000080">[ergebnis]</font><br /><b>end</b><br /><!-- CODE END --></td>
+			</tr>
+			<tr>
+				<td class="ref_label">Bemerkungen:</td>
+				<td>Um eine Prozedur zu definieren, verwenden Sie <a href="rb5ref_ger_1_proc_endproc.html">PROC...ENDPROC</a>.<br /><br />Mehrere Prozeduren und Funktionen k&ouml;nnen als Bibliothek in eine Script-Datei implementiert werden, die dann mit Hilfe der <a href="rb5ref_ger_1_include.html">INCLUDE</a>-Anweisung in andere RapidBATCH-Scripts, die diese Prozeduren/Funktionen verwenden, eingebunden wird.<br /><br />Eine Funktion kann nicht vor ihrer Definition aufgerufen werden.<br /><br />RET kann nicht ausserhalb einer Prozedur oder Funktion verwendet werden.</td>
+			</tr>
+		</table>
+	
+		<div class="line">&nbsp;</div>
+	
+		<div id="copyright">
+			Copyright &copy; 2000-2006 by J.M.K S.F. Software Technologies, Jan Max Meyer<br />
+			All rights reserved.
+		</div>
+	</body>
+</html>

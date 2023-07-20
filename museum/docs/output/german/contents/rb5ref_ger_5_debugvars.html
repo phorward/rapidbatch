@@ -1,0 +1,40 @@
+<html>
+	<head>
+		<title>RapidBATCH Befehlsreferenz :: DEBUGVARS</title>
+		<link rel="stylesheet" href="jmksf.css" type="text/css" />
+	</head>
+	<body>
+		<div id="top">
+			<img src="rb5.png" alt="RapidBATCH Logo" />
+			DEBUGVARS
+		</div>
+	
+		<div class="line">&nbsp;</div>
+	
+		<table cellspacing="10" width="100%">
+			<tr>
+				<td class="ref_label">Syntax:</td>
+				<td class="ref_syntax">DEBUGVARS var1,var2,var3 ... var<sup/>n</sup><br />DEBUGVARS Modus</td>
+			</tr>
+			<tr>
+				<td class="ref_label">Beschreibung:</td>
+				<td>F&uuml;gt die in einer Variablenliste angegebenen Variablen zum Debug-Dialog hinzu, um diese zu beobachten bzw. zu bearbeiten/modifizieren. Alle Variablen m&uuml;ssen durch Kommata (,) voneinander getrennt sein. Anstatt einer Variablenliste sind auch die zwei Werte AUTO und NONE m&ouml;glich. AUTO f&uuml;gt jede neu deklarierte Variable automatisch zur Beobachtung dem Debug-Dialog hinzu, NONE schaltet diese Option wieder aus.<br /><img style="padding-top: 30px;" src="img/debug_vars.gif" alt="RapidBATCH Debugger mit Variablen im Step-Modus" title="Screenshot" /></td>
+			</tr>
+			<tr>
+				<td class="ref_label">Beispiele:</td>
+				<td class="ref_code">debugmode step<br /><font color="#808080">rem Nur [a] und [b] &uuml;berwachen</font><br />debugvars <font color="#000080">[a]</font>, <font color="#000080">[b]</font><br /><font color="#000080">[a]</font> = <font color="#0000ff">'12'</font><br /><font color="#000080">[b]</font> = <font color="#000080">[a]</font> * <font color="#0000ff">'2'</font><br /><font color="#000080">[c]</font> = <font color="#000080">[a]</font> * <font color="#000080">[b]</font><br /><br /><font color="#808080">rem Automatisch alle neu deklarierten Variablen hinzuf&uuml;gen</font><br />debugvars auto<br /><br /><font color="#000080">[neu]</font> = <font color="#0000ff">'Neuer Wert'</font><br />echo <font color="#000080">[neu]</font></td>
+			</tr>
+			<tr>
+				<td class="ref_label">Bemerkungen:</td>
+				<td>Diese Anweisung ist nur im Interpreter der RapidBATCH Professional Edition enthalten.<br />DEBUGVARS wird vom Compiler ignoriert und ist nicht in compilierten Programmen verf&uuml;gbar.<br /><br />Sie k&ouml;nnen mit der Umgebungsvariablen RB_DEBUGVARS vor dem Starten des Interpreters bereits zu beobachtende Variablen festlegen. M&ouml;glich sind die selben Parameter/Werte wie bei DEBUGVARS.</td>
+			</tr>
+		</table>
+	
+		<div class="line">&nbsp;</div>
+	
+		<div id="copyright">
+			Copyright &copy; 2000-2006 by J.M.K S.F. Software Technologies, Jan Max Meyer<br />
+			All rights reserved.
+		</div>
+	</body>
+</html>

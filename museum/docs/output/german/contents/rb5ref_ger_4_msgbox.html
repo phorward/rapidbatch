@@ -1,0 +1,40 @@
+<html>
+	<head>
+		<title>RapidBATCH Befehlsreferenz :: MSGBOX</title>
+		<link rel="stylesheet" href="jmksf.css" type="text/css" />
+	</head>
+	<body>
+		<div id="top">
+			<img src="rb5.png" alt="RapidBATCH Logo" />
+			MSGBOX
+		</div>
+	
+		<div class="line">&nbsp;</div>
+	
+		<table cellspacing="10" width="100%">
+			<tr>
+				<td class="ref_label">Syntax:</td>
+				<td class="ref_syntax">MSGBOX Titel, Meldungstext, Style<br />MSGBOX Ergebnis = Titel, Meldungstext, Style</td>
+			</tr>
+			<tr>
+				<td class="ref_label">Beschreibung:</td>
+				<td>Zeigt ein individuelles Meldungsfenster an.<br /><br />MSGBOX kann sowohl als Funktion als auch als Anweisung verwendet werden.<br />Die Anweisung/Funktion erwartet einen Titel, einen Meldungstext sowie einen so genannten Meldungsfenster-Style, welcher entweder durch eine Zahl (was &auml;usserst individuelle M&ouml;glichkeiten zul&auml;sst) oder durch eine der build-in Konstanten, wie z.B. OK oder YESNOCANCEL repr&auml;sentiert wird.<br /><br />Welcher der Buttons gedr&uuml;ckt wurde wird an die Variable [errorcode] oder im Falle eines Funktionsaufrufes von MSGBOX an die Returnvariable &uuml;bergeben.<br />Die R&uuml;ckgabewerte der jeweiligen Buttons sowie die Buttontypen sind wie folgt definiert:<br /><br /><!-- MESSAGEBOX-BUTTON-STYLES ------------------------------------------------------------------><table class="std" style="margin-left: 20px;" cellspacing="10"><tr>  <td style="padding-right: 10px;"><b>Style-ID:</b></td>  <td><b>Beispiel:</b></td>  <td><b>Button-Style (jew. R&uuml;ckgabewert an [errorcode] bzw. Returnvariable in Klammern):</b></td></tr><tr>  <td>0</td><td style="padding-right: 10px;"><img src="img/msgbox_style0.gif" alt="Screenshot MSGBOX-Style 0" /></td><td>OK (1)</td></tr><tr>  <td>1</td><td style="padding-right: 10px;"><img src="img/msgbox_style1.gif" alt="Screenshot MSGBOX-Style 0" /></td><td>OK (1) + CANCEL (2)</td></tr><tr>  <td>2</td><td style="padding-right: 10px;"><img src="img/msgbox_style2.gif" alt="Screenshot MSGBOX-Style 0" /></td><td>CANCEL (3) + RETRY (4) + IGNORE (5)</td></tr><tr>  <td>3</td><td style="padding-right: 10px;"><img src="img/msgbox_style3.gif" alt="Screenshot MSGBOX-Style 0" /></td><td>YES (6) + NO (7) + CANCEL (2)</td></tr><tr>  <td>4</td><td style="padding-right: 10px;"><img src="img/msgbox_style4.gif" alt="Screenshot MSGBOX-Style 0" /></td><td>YES (6) + NO (7)</td></tr><tr>  <td>5</td><td style="padding-right: 10px;"><img src="img/msgbox_style5.gif" alt="Screenshot MSGBOX-Style 0" /></td><td>RETRY (4) + CANCEL (2)</td></tr></table><!-- END MESSAGEBOX-BUTTON-STYLES --------------------------------------------------------------><br /><br />Durch Addition eines der folgenden Icon-Styles kann auch ein individuelles Icon angezeigt werden.<br /><br /><!-- MESSAGEBOX-ICON-STYLES ------------------------------------------------------------------><table class="std" style="margin-left: 20px;" cellspacing="10"><tr>  <td style="padding-right: 10px;"><b>Icon-Style:</b></td>  <td><b>Beispiel:</b></td></tr><tr>  <td>0</td><td style="padding-right: 10px;"><img src="img/msgbox_icon0.gif" alt="Screenshot ohne Icon-Style" /></td></tr><tr>  <td>16</td><td style="padding-right: 10px;"><img src="img/msgbox_icon16.gif" alt="Screenshot MSGBOX-Icon-Style 16" /></td></tr><tr>  <td>32</td><td style="padding-right: 10px;"><img src="img/msgbox_icon32.gif" alt="Screenshot MSGBOX-Icon-Style 32" /></td></tr><tr>  <td>48</td><td style="padding-right: 10px;"><img src="img/msgbox_icon48.gif" alt="Screenshot MSGBOX-Icon-Style 48" /></td></tr><tr>  <td>64</td><td style="padding-right: 10px;"><img src="img/msgbox_icon64.gif" alt="Screenshot MSGBOX-Icon-Style 64" /></td></tr></table><!-- END MESSAGEBOX-BUTTON-STYLES --------------------------------------------------------------></td>
+			</tr>
+			<tr>
+				<td class="ref_label">Beispiele:</td>
+				<td class="ref_code"><font color="#808080">rem Einfaches Meldungsfenster (MSGBOX-Anweisung)</font><br />msgbox <font color="#0000ff">'Hallo!'</font>, <font color="#0000ff">'Herzlich Willkommen!'</font>, <font color="#0000ff">'64'</font><br /><br /><font color="#808080">rem Meldungsfenster mit Ja-Nein-Abbrechen-Option (MSGBOX-Funktion)</font><br />msgbox <font color="#000080">[antwort]</font> = <font color="#0000ff">'Script beenden?'</font>, <font color="#0000ff">'M&ouml;chten Sie die Datei &Uuml;berschreiben'</font>, <font color="#0000ff">'yesnocancel'</font><br /><b>if</b> <font color="#000080">[antwort]</font> = <font color="#0000ff">'6'</font><br />&nbsp;&nbsp;&nbsp;&nbsp;echo <font color="#0000ff">'Sie haben JA gew&auml;hlt.'</font><br /><b>elseif</b> <font color="#000080">[antwort]</font> = <font color="#0000ff">'7'</font><br />&nbsp;&nbsp;&nbsp;&nbsp;echo <font color="#0000ff">'Sie haben NEIN gew&auml;hlt.'</font><br /><b>else</b><br />&nbsp;&nbsp;&nbsp;&nbsp;echo <font color="#0000ff">'Sie haben ABBRECHEN gew&auml;hlt.'</font><br /><b>endif</b></td>
+			</tr>
+			<tr>
+				<td class="ref_label">Bemerkungen:</td>
+				<td>In RapidBATCH 2.0, 2.2 und 3.0 hiess diese Anweisung noch ECHOBOX. Alternativ kann auch weiterhin ECHOBOX benutzt werden, MSGBOX ist jedoch die moderne Variante ab RapidBATCH 4.0.</td>
+			</tr>
+		</table>
+	
+		<div class="line">&nbsp;</div>
+	
+		<div id="copyright">
+			Copyright &copy; 2000-2006 by J.M.K S.F. Software Technologies, Jan Max Meyer<br />
+			All rights reserved.
+		</div>
+	</body>
+</html>

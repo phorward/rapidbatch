@@ -1,0 +1,40 @@
+<html>
+	<head>
+		<title>RapidBATCH Befehlsreferenz :: DELREGVAL</title>
+		<link rel="stylesheet" href="jmksf.css" type="text/css" />
+	</head>
+	<body>
+		<div id="top">
+			<img src="rb5.png" alt="RapidBATCH Logo" />
+			DELREGVAL
+		</div>
+	
+		<div class="line">&nbsp;</div>
+	
+		<table cellspacing="10" width="100%">
+			<tr>
+				<td class="ref_label">Syntax:</td>
+				<td class="ref_syntax">DELREGVAL Hauptschl&uuml;ssel, Unterschl&uuml;ssel, Bezeichner</td>
+			</tr>
+			<tr>
+				<td class="ref_label">Beschreibung:</td>
+				<td>L&ouml;scht einen Registry-Wert.<br />DELREGVAL erwartet als Parameter einen Hauptschl&uuml;ssel, einen Unterschl&uuml;ssel sowie den Bezeichner des Wertes in der Registry, der gel&ouml;scht werden soll.<br /><br />Als Hauptschl&uuml;ssel sind folgende Werte als build-in Konstanten definiert:<br /><ul>  <li>'CLASSES_ROOT' f&uuml;r HKEY_CLASSES_ROOT</li>  <li>'CURRENT_CONFIG' f&uuml;r HKEY_CURRENT_CONFIG</li>  <li>'CURRENT_USER' f&uuml;r HKEY_CURRENT_USER</li>  <li>'LOCAL_MACHINE' f&uuml;r HKEY_LOCAL_MACHINE</li>  <li>'USERS' f&uuml;r HKEY_USERS</li>  <li>'DYN_DATA' f&uuml;r HKEY_DYN_DATA</li></ul>Der Unterschl&uuml;ssel gibt den Pfad des Unterschl&uuml;ssels, jeweils getrennt durch Backslash (\), an.<br />Als Wertbezeichner wird der in der Registry definierte Bezeichner angegeben, der gel&ouml;scht werden soll.</td>
+			</tr>
+			<tr>
+				<td class="ref_label">Beispiele:</td>
+				<td class="ref_code"><font color="#808080">rem Testwert schreiben</font><br />letregval <font color="#0000ff">'STRING'</font>, <font color="#0000ff">'CURRENT_USER'</font>, <font color="#0000ff">'Software\jmksf\RapidBATCH'</font>, <font color="#0000ff">'HelloWorld'</font>, <font color="#0000ff">'Hello World by RapidBATCH ;)'</font><br /><br /><b>if</b> <font color="#000080">[errorcode]</font> = <font color="#0000ff">'0'</font><br />&nbsp;&nbsp;&nbsp;&nbsp;echo <font color="#0000ff">'Wert wurde erfolgreich geschrieben!'</font><br /><b>else</b><br />&nbsp;&nbsp;&nbsp;&nbsp;echo <font color="#0000ff">'Fehler beim Schreiben.'</font><br />&nbsp;&nbsp;&nbsp;&nbsp;<b>halt</b><br /><b>endif</b><br /><br /><font color="#808080">rem Testwert wieder entfernen</font><br />delregval <font color="#0000ff">'CURRENT_USER'</font>, <font color="#0000ff">'Software\jmksf\RapidBATCH'</font>, <font color="#0000ff">'HelloWorld'</font><br /><b>if</b> <font color="#000080">[errorcode]</font> = <font color="#0000ff">'-1'</font> echo <font color="#0000ff">'Fehler beim L&ouml;schen von Registry-Wert'</font><br /><b>end</b></td>
+			</tr>
+			<tr>
+				<td class="ref_label">Bemerkungen:</td>
+				<td>Wenn das L&ouml;schen des Wertes fehlschlug, erh&auml;lt [errorcode] den Wert -1, ansonsten 0.<br /><br />Verwenden Sie LETREGVAL und GETREGVAL, um Registry-Werte zu lesen bzw. zu schreiben.</td>
+			</tr>
+		</table>
+	
+		<div class="line">&nbsp;</div>
+	
+		<div id="copyright">
+			Copyright &copy; 2000-2006 by J.M.K S.F. Software Technologies, Jan Max Meyer<br />
+			All rights reserved.
+		</div>
+	</body>
+</html>

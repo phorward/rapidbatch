@@ -1,0 +1,40 @@
+<html>
+	<head>
+		<title>RapidBATCH Language Reference :: PROC...RET...ENDPROC</title>
+		<link rel="stylesheet" href="jmksf.css" type="text/css" />
+	</head>
+	<body>
+		<div id="top">
+			<img src="rb5.png" alt="RapidBATCH Logo" />
+			PROC...RET...ENDPROC
+		</div>
+	
+		<div class="line">&nbsp;</div>
+	
+		<table cellspacing="10" width="100%">
+			<tr>
+				<td class="ref_label">Syntax:</td>
+				<td class="ref_syntax">PROC procedure-name[: list-of-parameters]<br />&nbsp;&nbsp;&nbsp;&nbsp;{block of code}<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[RET]<br />&nbsp;&nbsp;&nbsp;&nbsp;{block of code}<br />ENDPROC</td>
+			</tr>
+			<tr>
+				<td class="ref_label">Description:</td>
+				<td>Defines and implements a user-defined procedure.<br /><br />Procedures are implemented to merge a set of RapidBATCH script code, performing a certain operation, together to one new, single instruction that can be called like any other RapidBATCH instruction everywhere in the script. A procedure must be created under an arbitrary name (over that the procedure is called and identified) and can optionally receive a certain number of parameters from the position it is called from. These parameters are defined as a list of variables, which are locally declared and receive the values assigned as parameters. By using the pointer-functionality, it is also possible to assign pointers pointing to arrays and variables to the procedure, so the procedure is able to store data to the pointer or access array elements over it.<br /><br />Using the RET-instruction, the procedure can be dropped out before the procedure's end is reached and the script-execution is continued behind its last call. Whereas the use of RET in functions, it does not expect any parameters if it is used within a procedure.<br /><br />A procedure is able to call other user-defined procedures and functions or even itself recoursively. Function-/Procedure-declarations in procedures are not allowed.</td>
+			</tr>
+			<tr>
+				<td class="ref_label">Examples:</td>
+				<td class="ref_code"><font color="#808080">rem implementation of the procedure "calculate" with two parameters</font><br /><b>proc</b> calculate: <font color="#000080">[a]</font>, <font color="#000080">[b]</font><br /><font color="#808080">&nbsp;&nbsp;&nbsp;&nbsp;rem local declaration of [text]</font><br />&nbsp;&nbsp;&nbsp;&nbsp;<b>dec</b> <font color="#000080">[text]</font><br /><br />&nbsp;&nbsp;&nbsp;&nbsp;<font color="#000080">[text]</font> # <font color="#000080">[a]</font> # <font color="#0000ff">' + '</font> # <font color="#000080">[b]</font> # <font color="#0000ff">' = '</font> # (<font color="#000080">[a]</font> + <font color="#000080">[b]</font>) # <font color="#000080">[new_line]</font><br />&nbsp;&nbsp;&nbsp;&nbsp;<font color="#000080">[text]</font> # <font color="#000080">[a]</font> # <font color="#0000ff">' - '</font> # <font color="#000080">[b]</font> # <font color="#0000ff">' = '</font> # (<font color="#000080">[a]</font> - <font color="#000080">[b]</font>) # <font color="#000080">[new_line]</font><br />&nbsp;&nbsp;&nbsp;&nbsp;<font color="#000080">[text]</font> # <font color="#000080">[a]</font> # <font color="#0000ff">' * '</font> # <font color="#000080">[b]</font> # <font color="#0000ff">' = '</font> # (<font color="#000080">[a]</font> * <font color="#000080">[b]</font>) # <font color="#000080">[new_line]</font><br />&nbsp;&nbsp;&nbsp;&nbsp;<font color="#000080">[text]</font> # <font color="#000080">[a]</font> # <font color="#0000ff">' / '</font> # <font color="#000080">[b]</font> # <font color="#0000ff">' = '</font> # (<font color="#000080">[a]</font> / <font color="#000080">[b]</font>) # <font color="#000080">[new_line]</font><br />&nbsp;&nbsp;&nbsp;&nbsp;<font color="#000080">[text]</font> # <font color="#000080">[a]</font> # <font color="#0000ff">' ~ '</font> # <font color="#000080">[b]</font> # <font color="#0000ff">' = '</font> # (<font color="#000080">[a]</font> ~ <font color="#000080">[b]</font>)<br /><br /><font color="#808080">&nbsp;&nbsp;&nbsp;&nbsp;rem display the results</font><br />&nbsp;&nbsp;&nbsp;&nbsp;echo <font color="#000080">[text]</font><br /><b>endproc</b><br /><br /><font color="#808080">rem calling the procedure "calculate"</font><br />calculate <font color="#0000ff">'10'</font>, <font color="#0000ff">'5'</font><br /><br />inputbox <font color="#000080">[value1]</font> = <font color="#0000ff">'Value 1'</font>, <font color="#0000ff">'Please enter a value:'</font>, <font color="#0000ff">''</font><br />inputbox <font color="#000080">[value2]</font> = <font color="#0000ff">'Value 1'</font>, <font color="#0000ff">'Please enter a value:'</font>, <font color="#0000ff">''</font><br /><b>if</b> <font color="#000080">[value1]</font> ! <font color="#0000ff">''</font> & <font color="#000080">[value2]</font> ! <font color="#0000ff">''</font><br />&nbsp;&nbsp;&nbsp;&nbsp;calculate <font color="#000080">[value1]</font>, <font color="#000080">[value2]</font><br /><b>endif</b><br /><br /><font color="#808080">rem implementation of the procedure "output_array" using a pointer</font><br /><b>proc</b> output_array: <font color="#000080">[*array]</font><br /><font color="#808080">&nbsp;&nbsp;&nbsp;&nbsp;rem local variables</font><br />&nbsp;&nbsp;&nbsp;&nbsp;<b>dec</b> <font color="#000080">[i]</font>,<font color="#000080">[text]</font><br /><br /><font color="#808080">&nbsp;&nbsp;&nbsp;&nbsp;rem return if the array has no entries</font><br />&nbsp;&nbsp;&nbsp;&nbsp;<b>if</b> <font color="#000080">[array:'0']</font> = <font color="#0000ff">'0'</font> <b>ret</b><br /><br /><font color="#808080">&nbsp;&nbsp;&nbsp;&nbsp;rem build output string</font><br />&nbsp;&nbsp;&nbsp;&nbsp;<font color="#000080">[i]</font> = <font color="#0000ff">'0'</font><br />&nbsp;&nbsp;&nbsp;&nbsp;<b>repeat</b><br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#000080">[i]</font> + <font color="#0000ff">'1'</font><br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#000080">[text]</font> # <font color="#0000ff">'Index '</font> # <font color="#000080">[i]</font> # <font color="#0000ff">' contains "'</font> # <font color="#000080">[array[i]]</font> # <font color="#0000ff">'"'</font> # <font color="#000080">[new_line]</font><br />&nbsp;&nbsp;&nbsp;&nbsp;<b>until</b> <font color="#000080">[i]</font> = <font color="#000080">[array'0']</font><br /><br /><font color="#808080">&nbsp;&nbsp;&nbsp;&nbsp;rem output the list of entries</font><br />&nbsp;&nbsp;&nbsp;&nbsp;echo <font color="#000080">[text]</font><br /><b>endproc</b><br /><br /><font color="#000080">[dolphins:'1']</font> = <font color="#0000ff">'Orcinus Orca'</font><br /><font color="#000080">[dolphins:'2']</font> = <font color="#0000ff">'Delphinus Delphis'</font><br /><font color="#000080">[dolphins:'3']</font> = <font color="#0000ff">'Pseudorca crassidens'</font><br /><font color="#000080">[dolphins:'4']</font> = <font color="#0000ff">'Tursiops Truncatus'</font><br /><br /><font color="#808080">rem calling the procedure "output_array"</font><br />output_array <font color="#000080">[dolphins]</font></td>
+			</tr>
+			<tr>
+				<td class="ref_label">Remarks:</td>
+				<td>To implement user-defined functions, use the statements FUNC and ENDFUNC.<br /><br />A set of procedures and functions can be collected and explicitly saved into a library-script file, that is included to scripts using these functions over the INCLUDE-instruction. A procedure can not be called before its definition.<br />Calling RET is only allowed in procedures and functions.<br /><br />When declaring local variables in procedures, it is recommended to call the DEC-instruction explicitly before their first use, to avoid problems with global variables that are defined under the same name.</td>
+			</tr>
+		</table>
+	
+		<div class="line">&nbsp;</div>
+	
+		<div id="copyright">
+			Copyright &copy; 2000-2006 by J.M.K S.F. Software Technologies, Jan Max Meyer<br />
+			All rights reserved.
+		</div>
+	</body>
+</html>

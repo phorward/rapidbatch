@@ -1,0 +1,40 @@
+<html>
+	<head>
+		<title>RapidBATCH Befehlsreferenz :: DELDIALOG</title>
+		<link rel="stylesheet" href="jmksf.css" type="text/css" />
+	</head>
+	<body>
+		<div id="top">
+			<img src="rb5.png" alt="RapidBATCH Logo" />
+			DELDIALOG
+		</div>
+	
+		<div class="line">&nbsp;</div>
+	
+		<table cellspacing="10" width="100%">
+			<tr>
+				<td class="ref_label">Syntax:</td>
+				<td class="ref_syntax">DELDIALOG Widget-Label</td>
+			</tr>
+			<tr>
+				<td class="ref_label">Beschreibung:</td>
+				<td>Entfernt ein Widget aus dem Speicher.<br /><br />Wird als Widget-Label ein Dialogfenster angegeben, werden alle darauf befindlichen (= untergeordneten) Widgets automatisch mit entfernt.</td>
+			</tr>
+			<tr>
+				<td class="ref_label">Beispiele:</td>
+				<td class="ref_code"><font color="#808080">rem Dialogfenster erzeugen</font><br />newdialog <font color="#0000ff">'Fenster'</font>, <font color="#0000ff">'dialog'</font>, <font color="#0000ff">'1|1|640|480'</font><br /><br /><font color="#808080">rem Dialogtitel setzen und sichtbar machen</font><br />letdialog <font color="#0000ff">'Fenster'</font>, <font color="#0000ff">'caption'</font>, <font color="#0000ff">'Ein Dialog'</font><br />letdialog <font color="#0000ff">'Fenster'</font>, <font color="#0000ff">'visible'</font>, <font color="#000080">[true]</font><br /><br /><font color="#808080">rem Warten bis Benutzer den Schlieﬂen-Button dr&uuml;ckt...</font><br />rundialog <font color="#000080">[ereignis]</font> = <font color="#0000ff">'0'</font><br /><br /><font color="#808080">rem Dialog aus dem Speicher entfernen</font><br />deldialog <font color="#0000ff">'Fenster'</font><br /><br /><font color="#808080">rem Versuch, das caption-Attribut zu lesen</font><br />getdialog <font color="#000080">[titel]</font> = <font color="#0000ff">'Fenster'</font>, <font color="#0000ff">'caption'</font><br /><br /><b>if</b> <font color="#000080">[errorcode]</font> = <font color="#000080">[false]</font><br />&nbsp;&nbsp;&nbsp;&nbsp;echo <font color="#0000ff">'Huch, der Dialog existiert gar nicht mehr!'</font><br /><b>else</b><br />&nbsp;&nbsp;&nbsp;&nbsp;echo <font color="#0000ff">'Diese Meldung wird niemals eintreten ;)'</font><br /><b>endif</b></td>
+			</tr>
+			<tr>
+				<td class="ref_label">Bemerkungen:</td>
+				<td>Schl&auml;gt DELDIALOG fehl, erh&auml;lt [errorcode] den Wert -1, ansonsten 0.<br /><br />Die DELDIALOG-Anweisung hat einzig und allein den Zweck, den belegten Speicher eines Dialoges wieder freizugeben, der in einer Library oder Prozedur verwendet wurde. Um den Dialog erneut zu verwenden, muss er explizit neu erstellt werden. DELDIALOG entfernt ein Widget bzw. einen kompletten Dialog explizit aus dem Speicher! Dies erm&ouml;glicht das dynamische Verwalten von Dialogen in Prozeduren. DELDIALOG sollte daher nur verwendet werden, wenn ein Dialog in einer Prozedur bei jedem Prozeduraufruf neu erstellt wird.</td>
+			</tr>
+		</table>
+	
+		<div class="line">&nbsp;</div>
+	
+		<div id="copyright">
+			Copyright &copy; 2000-2006 by J.M.K S.F. Software Technologies, Jan Max Meyer<br />
+			All rights reserved.
+		</div>
+	</body>
+</html>

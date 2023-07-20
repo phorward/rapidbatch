@@ -1,0 +1,43 @@
+html
+{
+	font-family: Helvetica, Arial Narrow, Sans-Serif;
+	font-size: 12px;
+	text-decoration: none;
+}
+
+
+#menu_tree
+{
+	 border-collapse: collapse;
+	 font-size: 12px;
+	 
+}
+
+#menu_tree a:link, #menu_tree a:visited
+{
+	text-decoration: none;
+	color: #004891;
+}
+
+#menu_tree a:hover
+{
+	color: #FF9122;
+}
+
+td.icon
+{
+	width: 20px;
+	height: 20px;	
+}
+
+td.folder
+{
+	font-weight: bold;
+}
+
+.line
+{
+	margin: 5px 0px 5px 0px;
+	background-color: #000000;
+	line-height: 1px;
+}

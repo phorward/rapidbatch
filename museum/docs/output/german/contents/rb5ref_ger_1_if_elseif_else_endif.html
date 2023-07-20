@@ -1,0 +1,40 @@
+<html>
+	<head>
+		<title>RapidBATCH Befehlsreferenz :: IF...ELSEIF...ELSE...ENDIF</title>
+		<link rel="stylesheet" href="jmksf.css" type="text/css" />
+	</head>
+	<body>
+		<div id="top">
+			<img src="rb5.png" alt="RapidBATCH Logo" />
+			IF...ELSEIF...ELSE...ENDIF
+		</div>
+	
+		<div class="line">&nbsp;</div>
+	
+		<table cellspacing="10" width="100%">
+			<tr>
+				<td class="ref_label">Syntax:</td>
+				<td class="ref_syntax">IF Bedingung Anweisung<br /><br />IF Bedingung<br />&nbsp;&nbsp;{Anweisungsblock}<br />[ELSEIF Bedingung<br />&nbsp;&nbsp;{Anweisungsblock}]<br />[ELSE<br />&nbsp;&nbsp;{Anweisungsblock}]<br />ENDIF</td>
+			</tr>
+			<tr>
+				<td class="ref_label">Beschreibung:</td>
+				<td>Die IF-Anweisung erm&ouml;glicht es, Anweisungen bedingt auszuf&uuml;hren. Sie pr&uuml;ft, ob eine Bedingung das Ergebnis TRUE (wahr) zur&uuml;ckliefert. Ist dies der Fall, kann eine nachfolgende Anweisung oder ein so genannter Anweisungsblock ausgef&uuml;hrt werden. Soll nur eine Anweisung ausgef&uuml;hrt werden, so schreibt man diese direkt hinter die Bedingung, bei mehreren Anweisungen schreibt man den Anweisungsblock zwischen dem IF und einem ENDIF oder einem ELSE oder ELSEIF, wobei das ENDIF immer den gesamten IF-Block abschliesst. Wird ein ELSE angegeben, lassen sich alternativ Anweisungen ausf&uuml;hren, wenn die Bedingung des IFs das Ergebnis FALSE (falsch) liefert. Wird ein ELSEIF angegeben, lassen sich mehrere Bedingungen pr&uuml;fen, wenn die erste Bedingung das Ergebnis FALSE liefert.<br />Es k&ouml;nnen beliebig viele ELSEIF-Bl&ouml;cke in einem IF-Block vorkommen, jedoch ist nur ein IF und ein ELSE je Block erlaubt. Anweisungsbl&ouml;cke k&ouml;nnen weitere IF-Bl&ouml;cke beinhalten (verschachtelte IF-Bl&ouml;cke).<br /><br />Eine Bedingung ist ein Vergleich zweier Werte, wobei diese Werte auf gleich (=), ungleich (!), gr&ouml;sser-als (&gt;) und kleiner-als (&lt;) gepr&uuml;ft werden k&ouml;nnen. Zudem sind die Operatoren gr&ouml;ßer-gleich (&gt;=) und kleiner-gleich (&lt;=) m&ouml;glich.<br />Um mehr als zwei Bedingungen bei einer IF-Anweisung zu &uuml;berp&uuml;fen, lassen sich mehrere Bedingungen mit den logischen Operatoren UND (&) und ODER (|) verkn&uuml;pfen, wobei der &-Operator nur TRUE zur&uuml;ckgibt, wenn alle mit diesem Operator verkn&uuml;pften Bedingungen erfolgreich gepr&uuml;ft wurden. Beim |-Operator muss eine der beiden Bedingungen (oder auch beide) das Ergebnis TRUE liefern.</td>
+			</tr>
+			<tr>
+				<td class="ref_label">Beispiele:</td>
+				<td class="ref_code"><!-- CODE BEGIN --><b>if</b> <font color="#000080">[a]</font> = <font color="#000080">[b]</font> echo <font color="#0000ff">'A ist gleich B!'</font><br /><br /><b>if</b> <font color="#000080">[a]</font> &gt;= <font color="#000080">[b]</font> echo <font color="#0000ff">'A ist gr&ouml;ßer oder gleich B!'</font><br /><br /><b>if</b> <font color="#000080">[password]</font> = <font color="#0000ff">'swordfish'</font><br />&nbsp;&nbsp;&nbsp;&nbsp;echo <font color="#0000ff">'Login erfolgreich.'</font><br /><b>else</b><br />&nbsp;&nbsp;&nbsp;&nbsp;echo <font color="#0000ff">'Falsches Passwort.'</font><br />&nbsp;&nbsp;&nbsp;&nbsp;<b>halt</b><br /><b>endif</b><br /><br /><b>if</b> <font color="#000080">[a]</font> &lt; <font color="#0000ff">'10'</font><br />&nbsp;&nbsp;&nbsp;&nbsp;echo <font color="#0000ff">'Fehler!'</font><br />&nbsp;&nbsp;&nbsp;&nbsp;<b>halt</b><br /><b>elseif</b> <font color="#000080">[b]</font> &lt;= <font color="#0000ff">'5'</font><br />&nbsp;&nbsp;&nbsp;&nbsp;echo <font color="#0000ff">'Alles in Ordnung!'</font><br /><b>endif</b><br /><br /><font color="#808080">rem Logisches UND, liefert nur wahr, wenn beide Variablen den Wert 10 enthalten.</font><br /><font color="#000080">[a]</font> = <font color="#0000ff">'10'</font><br /><font color="#000080">[b]</font> = <font color="#000080">[a]</font><br /><b>if</b> <font color="#000080">[a]</font> = <font color="#0000ff">'10'</font> & <font color="#000080">[b]</font> = <font color="#0000ff">'10'</font><br />&nbsp;&nbsp;&nbsp;&nbsp;echo <font color="#0000ff">'A und B haben beide den Wert 10!'</font><br /><b>endif</b><br /><br /><font color="#808080">rem Logisches ODER, liefert nur wahr, wenn eine oder beide Variablen den Wert 10 enthalten.</font><br /><font color="#000080">[a]</font> = <font color="#0000ff">'11'</font><br /><font color="#000080">[b]</font> = <font color="#0000ff">'10'</font><br /><b>if</b> <font color="#000080">[a]</font> = <font color="#0000ff">'10'</font> | <font color="#000080">[b]</font> = <font color="#0000ff">'10'</font><br />&nbsp;&nbsp;&nbsp;&nbsp;echo <font color="#0000ff">'A oder B hat den Wert 10!'</font><br /><b>endif</b><br /><br /><font color="#808080">rem Komplexeres Beispiel zur Anwendung von logischen Operatoren</font><br /><b>if</b> <font color="#000080">[a]</font> = <font color="#0000ff">'10'</font> & <font color="#000080">[b]</font> = <font color="#0000ff">'10'</font> | <font color="#000080">[a]</font> = <font color="#0000ff">'9'</font> & <font color="#000080">[b]</font> = <font color="#0000ff">'12'</font><br />&nbsp;&nbsp;&nbsp;&nbsp;echo <font color="#0000ff">'Starte Taschenrechner...'</font><br />&nbsp;&nbsp;&nbsp;&nbsp;call <font color="#0000ff">'c:\windows\calc.exe'</font>, <font color="#0000ff">'show'</font><br /><b>endif</b><br /><!-- CODE END --></td>
+			</tr>
+			<tr>
+				<td class="ref_label">Bemerkungen:</td>
+				<td>IF-Bl&ouml;cke k&ouml;nnen beliebig ineinander verschachtelt werden.</td>
+			</tr>
+		</table>
+	
+		<div class="line">&nbsp;</div>
+	
+		<div id="copyright">
+			Copyright &copy; 2000-2006 by J.M.K S.F. Software Technologies, Jan Max Meyer<br />
+			All rights reserved.
+		</div>
+	</body>
+</html>

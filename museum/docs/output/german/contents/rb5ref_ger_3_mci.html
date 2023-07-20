@@ -1,0 +1,40 @@
+<html>
+	<head>
+		<title>RapidBATCH Befehlsreferenz :: MCI</title>
+		<link rel="stylesheet" href="jmksf.css" type="text/css" />
+	</head>
+	<body>
+		<div id="top">
+			<img src="rb5.png" alt="RapidBATCH Logo" />
+			MCI
+		</div>
+	
+		<div class="line">&nbsp;</div>
+	
+		<table cellspacing="10" width="100%">
+			<tr>
+				<td class="ref_label">Syntax:</td>
+				<td class="ref_syntax">MCI Befehlsausdruck</td>
+			</tr>
+			<tr>
+				<td class="ref_label">Beschreibung:</td>
+				<td>Sendet ein Kommando an das Windows Media Control Interface, mit dem sich Mediadaten aller Art abspielen lassen, z.B. MIDI, AVI, WAV, MP3, MPEG, usw.</td>
+			</tr>
+			<tr>
+				<td class="ref_label">Beispiele:</td>
+				<td class="ref_code">mci <font color="#0000ff">'open "music.mp3"'</font><br />mci <font color="#0000ff">'play "music.mp3" wait'</font><br />mci <font color="#0000ff">'close "music.mp3"'</font><br /><b>end</b></td>
+			</tr>
+			<tr>
+				<td class="ref_label">Bemerkungen:</td>
+				<td>Weitere Informationen zu MCI-Kommandos finden Sie in der englischsprachigen Hilfedatei MCI.HLP, die sich im \DOC-Verzeichnis Ihrer RapidBATCH-Installation befindet.<br />Die Variable [errorcode] erh&auml;lt das Ergebnis der API-Funktion mciSendString(), und kann somit auf evtl. Fehler abgefragt werden.</td>
+			</tr>
+		</table>
+	
+		<div class="line">&nbsp;</div>
+	
+		<div id="copyright">
+			Copyright &copy; 2000-2006 by J.M.K S.F. Software Technologies, Jan Max Meyer<br />
+			All rights reserved.
+		</div>
+	</body>
+</html>

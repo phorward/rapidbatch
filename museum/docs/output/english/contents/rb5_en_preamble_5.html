@@ -1,0 +1,24 @@
+<html>
+	<head>
+		<title>Improvements in Version 5.1</title>
+		<link rel="stylesheet" href="jmksf.css" type="text/css"></link>
+	</head>
+
+	<body>
+		<div id="top">
+			<img src="rb5.png" alt="RapidBATCH Logo" />
+			Improvements in Version 5.1
+		</div>
+		
+		<div class="line">&nbsp;</div>
+		
+		The current release 5.1 comes with numerous smaller bug- and hotfixes, and makes RapidBATCH more flexible and more proliferous than before.<ul>  <li>Point- before line-calculation now in all expressions: '5' + '2' * '3' is now 11 and not 21!</li>  <li>New PROGRESS-widget, enabling to visually show the progress of an operation or task using a standard progress-bar.</li>  <li>New STATIC_COMBO-widget, providing a combo-box-like widget with the only difference that this widget does not allow the change of a selected item - so the values to be selected are static.</li>  <li>Re-designed macro-language for the SENDKEYS-instruction. Write keystroke automation scripts in a more easier, powerful way now than before. Please note: The new macro language is now backward-compatible, so old scripts need to be rewritten.</li> <li>Call user-defined functions from an DLL file using the new EXT-function: Via the EXT-function, it is now possible to call external functions from Windows DLL-files; This feature makes it possible to let developers design extending or special libraries that can be called and used from any RapidBATCH script now.</li>  <li>Even to give external DLLs functions access to widgets created and running in the RapidBATCH scripting environment, GETDIALOG allows the access of the attributes HWND (for the Windows internal window handle) and TYPE (to retrieve the widget's control type) now. Especially the HWND value can then be passed to an external function and perform a desired operation on the widget.</li>  <li>GETFILEATT-problem solved in EXE-files.</li>  <li>A bug with global and local variables sharing the same name has been solved (this problem only existed on compiled executable files)</li>  <li>RapidBATCH Builder freeze-problem solved which happened when searching an already changed text pattern</li>  <li>Many fixes on the RapidBATCH extension library functions</li></ul>The many new features are described in the related parts of the user's manual. Enjoy RapidBATCH development with more power now than before!<br /><br />
+
+		<div class="line">&nbsp;</div>
+
+		<div id="copyright">
+			Copyright &copy; 2000-2006 by J.M.K S.F. Software Technologies, Jan Max Meyer<br />
+			All rights reserved.
+		</div>
+	</body>
+</html>

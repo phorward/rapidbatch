@@ -1,0 +1,40 @@
+<html>
+	<head>
+		<title>RapidBATCH Language Reference :: GETFILE</title>
+		<link rel="stylesheet" href="jmksf.css" type="text/css" />
+	</head>
+	<body>
+		<div id="top">
+			<img src="rb5.png" alt="RapidBATCH Logo" />
+			GETFILE
+		</div>
+	
+		<div class="line">&nbsp;</div>
+	
+		<table cellspacing="10" width="100%">
+			<tr>
+				<td class="ref_label">Syntax:</td>
+				<td class="ref_syntax">GETFILE list-of-charcodes = filename, start-position, number-of-bytes</td>
+			</tr>
+			<tr>
+				<td class="ref_label">Description:</td>
+				<td>Reads data from a file at binary-level.<br /><br />Next to the filename, this function expects a starting position (byte-position where the binary read should beginn) and a length of bytes that should be read (<i>number-of-bytes</i>-parameter) from <i>start-position</i>.The returned value is a list of ASCII-character codes, where each code is one byte (= character) in the file. This list uses the RapidBATCH list separation character that is specified in the variable [std_sep], and by default a pipe-character (|).</td>
+			</tr>
+			<tr>
+				<td class="ref_label">Examples:</td>
+				<td class="ref_code"><font color="#808080">rem example for writing and reading a file at byte-level</font><br />newfile <font color="#0000ff">'test.txt'</font><br /><font color="#808080">rem write: "Hello World"</font><br />putfile <font color="#0000ff">'test.txt'</font>, <font color="#0000ff">'1'</font>, <font color="#0000ff">'72|101|108|108|111|32|87|111|114|108|100'</font><br /><br /><font color="#808080">rem read the word "World" and convert it to plain text</font><br />getfile <font color="#000080">[word]</font> = <font color="#0000ff">'test.txt'</font>, <font color="#0000ff">'7'</font>, <font color="#0000ff">'5'</font><br />echo <font color="#0000ff">'List of ascii-charcodes: '</font> # <font color="#000080">[word]</font><br /><br /><font color="#808080">rem converting routine</font><br /><font color="#000080">[i]</font> = <font color="#0000ff">'0'</font><br /><b>repeat</b><br />&nbsp;&nbsp;&nbsp;&nbsp;<font color="#000080">[i]</font> + <font color="#0000ff">'1'</font><br />&nbsp;&nbsp;&nbsp;&nbsp;gettok <font color="#000080">[ch]</font> = <font color="#000080">[word]</font>, <font color="#0000ff">'|'</font>, <font color="#000080">[i]</font><br />&nbsp;&nbsp;&nbsp;&nbsp;<b>if</b> <font color="#000080">[ch]</font> ! <font color="#0000ff">''</font><br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;getchr <font color="#000080">[ch]</font> = <font color="#000080">[ch]</font><br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#000080">[plainword]</font> # <font color="#000080">[ch]</font><br />&nbsp;&nbsp;&nbsp;&nbsp;<b>endif</b><br /><b>until</b> <font color="#000080">[ch]</font> = <font color="#0000ff">''</font><br /><br /><font color="#808080">rem display the plain text</font><br />echo <font color="#0000ff">'Plain text: '</font> # <font color="#000080">[plainword]</font></td>
+			</tr>
+			<tr>
+				<td class="ref_label">Remarks:</td>
+				<td>Use the READFILE-function to read a text file's content line-by-line and in plain-text.</td>
+			</tr>
+		</table>
+	
+		<div class="line">&nbsp;</div>
+	
+		<div id="copyright">
+			Copyright &copy; 2000-2006 by J.M.K S.F. Software Technologies, Jan Max Meyer<br />
+			All rights reserved.
+		</div>
+	</body>
+</html>

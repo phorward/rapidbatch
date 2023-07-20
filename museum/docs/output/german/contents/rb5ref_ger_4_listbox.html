@@ -1,0 +1,40 @@
+<html>
+	<head>
+		<title>RapidBATCH Befehlsreferenz :: LISTBOX</title>
+		<link rel="stylesheet" href="jmksf.css" type="text/css" />
+	</head>
+	<body>
+		<div id="top">
+			<img src="rb5.png" alt="RapidBATCH Logo" />
+			LISTBOX
+		</div>
+	
+		<div class="line">&nbsp;</div>
+	
+		<table cellspacing="10" width="100%">
+			<tr>
+				<td class="ref_label">Syntax:</td>
+				<td class="ref_syntax">LISTBOX Eintrag = Titel, Elementenliste</td>
+			</tr>
+			<tr>
+				<td class="ref_label">Beschreibung:</td>
+				<td>Zeigt einen Listenauswahldialog an, der dem Benutzer das W&auml;hlen von einem oder mehreren Eintr&auml;gen aus einer vorgegebenen Liste an Elementen erm&ouml;glicht.<br /><br />Als Parameter erwartet diese Funktion einen Dialogtitel sowie eine Liste an Elementen, die zur Auswahl im Listenfeld angezeigt werden. Jedes Element wird dabei durch das in der Variablen [std_sep] definierte Separationszeichen getrennt, dies ist normalerweise das Pipe-Zeichen (|).<br /><br />R&uuml;ckgabewert der Funktion ist der gew&auml;hle Listeneintrag.<br />Klickt der Benutzer den Schlieﬂen-Button des Dialogfensters oder dr&uuml;ckt er auf "OK", ohne etwas auszuw&auml;hlen, wird ein Leerstring zur&uuml;ckgegeben.<br /><br />Standardm&auml;ﬂig erlaubt LISTBOX nur die Auswahl eines einzelnen Eintrags. Wenn jedoch die Variable [ListBox_MultiSel] den Wert 0 hat, so lassen sich auch mehrere Eintr&auml;ge selektieren. In diesem Fall gibt die Funktion eine Liste zur&uuml;ck, in der alle selektierten Elemente durch das in [std_sep] definierte Zeichen voneinander getrennt sind.<br /><img style="padding-top: 30px;" src="img/listbox.gif" alt="Bild eines LISTBOX-Dialoges" title="Screenshot" /></td>
+			</tr>
+			<tr>
+				<td class="ref_label">Beispiele:</td>
+				<td class="ref_code"><font color="#808080">rem LISTBOX mit einfacher Auswahl</font><br />listbox <font color="#000080">[menu]</font> = <font color="#0000ff">'Men&uuml;'</font>, <font color="#0000ff">'Pizza|Pommes Frites|D&ouml;ner|Hamburger|Hot Dog'</font><br /><b>if</b> <font color="#000080">[menu]</font> ! <font color="#0000ff">''</font><br />&nbsp;&nbsp;&nbsp;&nbsp;echo <font color="#0000ff">'Sie haben '</font> # <font color="#000080">[menu]</font> # <font color="#0000ff">' bestellt!'</font><br /><b>else</b><br />&nbsp;&nbsp;&nbsp;&nbsp;echo <font color="#0000ff">'Sie haben keine Auwahl getroffen.'</font><br /><b>endif</b><br /><br /><font color="#808080">rem LISTBOX mit Mehrfach-Auswahl</font><br /><font color="#000080">[ListBox_MultiSel]</font> = <font color="#000080">[true]</font><br />listbox <font color="#000080">[menu]</font> = <font color="#0000ff">'Men&uuml; 2'</font>, <font color="#0000ff">'Pizza|Pommes Frites|D&ouml;ner|Hamburger|Hot Dog'</font><br /><b>if</b> <font color="#000080">[menu]</font> ! <font color="#0000ff">''</font><br />&nbsp;&nbsp;&nbsp;&nbsp;replacevar <font color="#000080">[menu]</font> = <font color="#000080">[menu]</font>, <font color="#000080">[std_sep]</font>, <font color="#000080">[new_line]</font><br />&nbsp;&nbsp;&nbsp;&nbsp;echo <font color="#0000ff">'Ihre Bestellung: '</font> # <font color="#000080">[new_line]</font> # <font color="#000080">[new_line]</font> # <font color="#000080">[menu]</font><br /><b>else</b><br />&nbsp;&nbsp;&nbsp;&nbsp;echo <font color="#0000ff">'Sie haben keine Auwahl getroffen.'</font><br /><b>endif</b></td>
+			</tr>
+			<tr>
+				<td class="ref_label">Bemerkungen:</td>
+				<td>Die Beschriftung des OK-Buttons von LISTBOX kann &uuml;ber die Variable [ListBox_Ok] ge&auml;ndert werden. Wird die Beschriftung des Buttons auf einen Leerstring gesetzt, wird der Button aus dem Dialog ausgeblendet (nur Anzeige der Elemente in der Liste).<br /><br />Die Position des Dialogs kann mit Hilfe der Variablen [ListBox_X] und [ListBox_Y] ver&auml;ndert werden. Hat [ListBox_X] und/oder [ListBox_Y] den Wert 0 wird der Dialog automatisch jeweils horizontal oder vertikal zentriert (dies ist die Standard-Einstellung).<br /><br />Die Defaultgr&ouml;ﬂe des Dialogs l&auml;sst sich &uuml;ber die Variablen [ListBox_Width] (Breite) und [ListBox_Height] (H&ouml;he) setzen.<br /><br />Die Angabe bei Positionierungs-/Dimensionswerten erfolgt in Pixel.<br /><br />Das Dialog-Icon kann global f&uuml;r alle Dialoge &uuml;ber die Variable [app_icon] auf eine externe .ICO-Datei gesetzt werden.</td>
+			</tr>
+		</table>
+	
+		<div class="line">&nbsp;</div>
+	
+		<div id="copyright">
+			Copyright &copy; 2000-2006 by J.M.K S.F. Software Technologies, Jan Max Meyer<br />
+			All rights reserved.
+		</div>
+	</body>
+</html>

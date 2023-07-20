@@ -1,0 +1,40 @@
+<html>
+	<head>
+		<title>RapidBATCH Befehlsreferenz :: LOCKWORKSTATION</title>
+		<link rel="stylesheet" href="jmksf.css" type="text/css" />
+	</head>
+	<body>
+		<div id="top">
+			<img src="rb5.png" alt="RapidBATCH Logo" />
+			LOCKWORKSTATION
+		</div>
+	
+		<div class="line">&nbsp;</div>
+	
+		<table cellspacing="10" width="100%">
+			<tr>
+				<td class="ref_label">Syntax:</td>
+				<td class="ref_syntax">LOCKWORKSTATION</td>
+			</tr>
+			<tr>
+				<td class="ref_label">Beschreibung:</td>
+				<td>Sperrt eine Windows 2000 oder Windows XP Professional Workstation.<br />Diese Anweisung ist unter Windows 95/98/ME/NT sowie XP Home unwirksam.</td>
+			</tr>
+			<tr>
+				<td class="ref_label">Beispiele:</td>
+				<td class="ref_code"><font color="#808080">rem Arbeitsstation sperren?</font><br />confirm <font color="#000080">[sperren]</font> = <font color="#0000ff">'Computer sperren?'</font><br /><b>if</b> <font color="#000080">[sperren]</font> = <font color="#000080">[true]</font><br /><font color="#808080">&nbsp;&nbsp;&nbsp;&nbsp;rem Computer sperren!</font><br />&nbsp;&nbsp;&nbsp;&nbsp;lockworkstation<br /><b>endif</b><br /><b>end</b></td>
+			</tr>
+			<tr>
+				<td class="ref_label">Bemerkungen:</td>
+				<td>[errorcode] erh&auml;lt den Wert -1, wenn die Arbeitsstation nicht gesperrt werden konnte (z.B. wenn sie schon gesperrt ist oder das Betriebssystem diese Funktion nicht unterst&uuml;tzt). Wenn keine Fehler auftraten erh&auml;lt [errorcode] den Wert 0.</td>
+			</tr>
+		</table>
+	
+		<div class="line">&nbsp;</div>
+	
+		<div id="copyright">
+			Copyright &copy; 2000-2006 by J.M.K S.F. Software Technologies, Jan Max Meyer<br />
+			All rights reserved.
+		</div>
+	</body>
+</html>

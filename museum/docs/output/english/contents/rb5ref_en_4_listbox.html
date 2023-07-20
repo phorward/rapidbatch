@@ -1,0 +1,40 @@
+<html>
+	<head>
+		<title>RapidBATCH Language Reference :: LISTBOX</title>
+		<link rel="stylesheet" href="jmksf.css" type="text/css" />
+	</head>
+	<body>
+		<div id="top">
+			<img src="rb5.png" alt="RapidBATCH Logo" />
+			LISTBOX
+		</div>
+	
+		<div class="line">&nbsp;</div>
+	
+		<table cellspacing="10" width="100%">
+			<tr>
+				<td class="ref_label">Syntax:</td>
+				<td class="ref_syntax">LISTBOX selected-entry = titel, list-of-entries</td>
+			</tr>
+			<tr>
+				<td class="ref_label">Description:</td>
+				<td>Shows a possibility where the user can select one (or multiple) items from a list of defined items<br /><br />As parameters, the function first expects a dialog title displayed in the dialog's title bar and the list of items that can be selected. In this list, each entry that is displayed in the list box is separated by the RapidBATCH standard list separator ([std_sep], that is a pipe by default).<br /><br />Return value of the function is the selected entry, as it is displayed in the list.<br />If the user hits the dialog's close-button or if OK is clicked without selecting an entry, the function returns an empty string.<br /><br />By default, LISTBOX allows only the selection of one single entry from the list. By setting the pre-declared variable [ListBox_MultiSel] to [true] or '0', LISTBOX will also allow multiple selection of entries. In this case, the function itself returns a list of items, those which had been selected, each separated by the standard separator (|).<br /><br /><img style="padding-top: 30px;" src="img/listbox.gif" alt="Image of a LISTBOX-dialog" title="Screenshot" /></td>
+			</tr>
+			<tr>
+				<td class="ref_label">Examples:</td>
+				<td class="ref_code"><font color="#808080">rem LISTBOX with a single entry selection</font><br />listbox <font color="#000080">[menu]</font> = <font color="#0000ff">'Menu I'</font>, <font color="#0000ff">'Pizza|Hamburger|Hot Dog|Fries'</font><br /><b>if</b> <font color="#000080">[menu]</font> ! <font color="#0000ff">''</font><br />&nbsp;&nbsp;&nbsp;&nbsp;echo <font color="#0000ff">'Your order: '</font> # <font color="#000080">[menu]</font><br /><b>else</b><br />&nbsp;&nbsp;&nbsp;&nbsp;echo <font color="#0000ff">'You did not chose anything.'</font><br /><b>endif</b><br /><br /><font color="#808080">rem LISTBOX with multiple entry selection</font><br /><font color="#000080">[ListBox_MultiSel]</font> = <font color="#000080">[true]</font><br />listbox <font color="#000080">[menu]</font> = <font color="#0000ff">'Menu II'</font>, <font color="#0000ff">'Pizza|Hamburger|Hot Dog|Fries'</font><br /><b>if</b> <font color="#000080">[menu]</font> ! <font color="#0000ff">''</font><br />&nbsp;&nbsp;&nbsp;&nbsp;replacevar <font color="#000080">[menu]</font> = <font color="#000080">[menu]</font>, <font color="#000080">[std_sep]</font>, <font color="#000080">[new_line]</font><br />&nbsp;&nbsp;&nbsp;&nbsp;echo <font color="#0000ff">'Your order(s): '</font> # <font color="#000080">[new_line]</font> # <font color="#000080">[new_line]</font> # <font color="#000080">[menu]</font><br /><b>else</b><br />&nbsp;&nbsp;&nbsp;&nbsp;echo <font color="#0000ff">'You did not chose anything.'</font><br /><b>endif</b></td>
+			</tr>
+			<tr>
+				<td class="ref_label">Remarks:</td>
+				<td>The caption of the OK-button can be changed over the variable [ListBox_Ok]. If this variable is set to an empty-string, the button is hidden from the dialog.<br /><br />The dialog can be positioned using the variables [ListBox_X] and [ListBox_Y] for the particular axis. If [ListBox_X] or [ListBox_Y] is set to '0', the dialog is automatically centered on the particular axis (this is the default), else the dialog is displayed at the specified position, that is given in pixels.<br /><br />The default-size of the dialog can be changed to a desired size, in pixels, using the variables [ListBox_Width] (for the width) and [ListBox_Height] (for the height).<br /><br />The dialog's icon can be globally changed for all dialogs using the variable [app_icon] to an external .ICO-file.</td>
+			</tr>
+		</table>
+	
+		<div class="line">&nbsp;</div>
+	
+		<div id="copyright">
+			Copyright &copy; 2000-2006 by J.M.K S.F. Software Technologies, Jan Max Meyer<br />
+			All rights reserved.
+		</div>
+	</body>
+</html>

@@ -1,0 +1,40 @@
+<html>
+	<head>
+		<title>RapidBATCH Language Reference :: LETREGVAL</title>
+		<link rel="stylesheet" href="jmksf.css" type="text/css" />
+	</head>
+	<body>
+		<div id="top">
+			<img src="rb5.png" alt="RapidBATCH Logo" />
+			LETREGVAL
+		</div>
+	
+		<div class="line">&nbsp;</div>
+	
+		<table cellspacing="10" width="100%">
+			<tr>
+				<td class="ref_label">Syntax:</td>
+				<td class="ref_syntax">LETREGVAL value-type, base-key, sub-key, value-label, value</td>
+			</tr>
+			<tr>
+				<td class="ref_label">Description:</td>
+				<td>LETREGVAL writes a value into the registry.<br /><br />LETREGVAL expects as first parameter a data type that should be written. Possible data types are 'STRING' (or '0'), 'DWORD' (or '1') and 'BINARY' (or '2'). Next to the data-type, a base-key identifier is expected, and next to this the path to the registry key the value should be written to. The <i>value-label</i> parameter specifies a label that identifies the value that is written. The last parameter finally is the value that is saved unter the, as <i>value-label</i> defined name, into the registry.<br /><br />The following values can be specified as <i>base-key</i>:<ul>  <li>'CLASSES_ROOT' for HKEY_CLASSES_ROOT</li>  <li>'CURRENT_CONFIG' for HKEY_CURRENT_CONFIG</li>  <li>'CURRENT_USER' for HKEY_CURRENT_USER</li>  <li>'LOCAL_MACHINE' for HKEY_LOCAL_MACHINE</li>  <li>'USERS' for HKEY_USERS</li></ul>The value that should be saved must be specified in the format <i>value-type</i> defines.<br />The data-type STRING is directly written &quot;as specified&quot;. When using DWORD, only numercial values can be written. A DWORD is long-type data value, a 32-bit numerical value that can have a maximum value of 4294967295 (binary value &quot;1111 1111 1111 1111 1111 1111 1111 1111&quot;).<br />When specifying BINARY as data type, the value must be assigned like at PUTFILE, as a list of ASCII-character codes, where each byte is a code-value from 0 to 255, and seperated by the RapidBATCH list separation character (by default the pipe-character (|)).<br /><br />If an empty string is assigned as <i>value-label</i>, the value will be written to the key itself, because every registry key itself can save a value that is typed as STRING.</td>
+			</tr>
+			<tr>
+				<td class="ref_label">Examples:</td>
+				<td class="ref_code"><font color="#808080">rem creating a registry key</font><br />newregkey <font color="#0000ff">'CURRENT_USER'</font>, <font color="#0000ff">'Software\Test'</font><br /><b>if</b> <font color="#000080">[errorcode]</font> = <font color="#000080">[false]</font> <b>halt</b><br /><br /><font color="#808080">rem writing a string value</font><br />letregval <font color="#0000ff">'string'</font>, <font color="#0000ff">'CURRENT_USER'</font>, <font color="#0000ff">'Software\Test'</font>, <font color="#0000ff">'StringValue'</font>, <font color="#0000ff">'Hello World by RapidBATCH ;)'</font><br /><b>if</b> <font color="#000080">[errorcode]</font> = <font color="#000080">[false]</font><br />&nbsp;&nbsp;&nbsp;&nbsp;echo <font color="#0000ff">'Error when trying to write value to the registry.'</font><br />&nbsp;&nbsp;&nbsp;&nbsp;<b>halt</b><br /><b>endif</b><br /><br /><font color="#808080">rem writing a dword value</font><br />letregval <font color="#0000ff">'dword'</font>, <font color="#0000ff">'CURRENT_USER'</font>, <font color="#0000ff">'Software\Test'</font>, <font color="#0000ff">'DWordValue'</font>, <font color="#0000ff">'12345'</font><br /><b>if</b> <font color="#000080">[errorcode]</font> = <font color="#000080">[false]</font><br />&nbsp;&nbsp;&nbsp;&nbsp;echo <font color="#0000ff">'Error when trying to write value to the registry.'</font><br />&nbsp;&nbsp;&nbsp;&nbsp;<b>halt</b><br /><b>endif</b><br /><br /><font color="#808080">rem writing a binary value</font><br />letregval <font color="#0000ff">'binary'</font>, <font color="#0000ff">'CURRENT_USER'</font>, <font color="#0000ff">'Software\Test'</font>, <font color="#0000ff">'BinaryValue'</font>, <font color="#0000ff">'72|101|108|108|111|32|87|111|114|108|100'</font><br /><b>if</b> <font color="#000080">[errorcode]</font> = <font color="#000080">[false]</font><br />&nbsp;&nbsp;&nbsp;&nbsp;echo <font color="#0000ff">'Error when trying to write value to the registry.'</font><br />&nbsp;&nbsp;&nbsp;&nbsp;<b>halt</b><br /><b>endif</b><br /><br /><font color="#808080">rem calling regedit to view the values</font><br />call <font color="#0000ff">'regedit.exe'</font>, <font color="#0000ff">'show'</font><br /><br /><font color="#808080">rem cleaning up the registry</font><br />delregkey <font color="#0000ff">'CURRENT_USER'</font>, <font color="#0000ff">'Software\Test'</font></td>
+			</tr>
+			<tr>
+				<td class="ref_label">Remarks:</td>
+				<td>If LETREGVAL fails, [errorcode] gets the value '-1', else '0'.<br />Use GETREGVAL to read a registry value and DELREGVAL to delete a registry value.</td>
+			</tr>
+		</table>
+	
+		<div class="line">&nbsp;</div>
+	
+		<div id="copyright">
+			Copyright &copy; 2000-2006 by J.M.K S.F. Software Technologies, Jan Max Meyer<br />
+			All rights reserved.
+		</div>
+	</body>
+</html>

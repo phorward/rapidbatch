@@ -1,0 +1,40 @@
+<html>
+	<head>
+		<title>RapidBATCH Language Reference :: INFOBOX</title>
+		<link rel="stylesheet" href="jmksf.css" type="text/css" />
+	</head>
+	<body>
+		<div id="top">
+			<img src="rb5.png" alt="RapidBATCH Logo" />
+			INFOBOX
+		</div>
+	
+		<div class="line">&nbsp;</div>
+	
+		<table cellspacing="10" width="100%">
+			<tr>
+				<td class="ref_label">Syntax:</td>
+				<td class="ref_syntax">INFOBOX Meldung, Anzeigemodus</td>
+			</tr>
+			<tr>
+				<td class="ref_label">Description:</td>
+				<td>INFOBOX shows a message on the screen.<br /><br />This dialog has no title-bar and is displayed in front of any other window that is currently opened. INFOBOX should be used to fade in short status messages or information. The dialog can once be shown, for example when the script performs system-specific operations in the background, and must manually be hidden when the script finished its background processes. The dialog can not be moved, deactivated or hidden by the user, only the script can do this.<br />INFOBOX expects as parameters a message that is displayed centered on the dialog, and the mode, if it is shown (parameter value 'show', '0' or [true]) or hidden (parameter value 'hide', '-1' or [false]).  To avoid a second call of INFOBOX to hide it, the variable [InfoBox_Enabled] can be set (either to 'show' or 'hide') to show or hide the dialog.<br /><br /><img style="padding-top: 30px;" src="img/infobox.gif" alt="Bild eines INFOBOX-Statusfensters" title="Screenshot" /></td>
+			</tr>
+			<tr>
+				<td class="ref_label">Examples:</td>
+				<td class="ref_code"><font color="#808080">rem show the INFOBOX</font><br />infobox <font color="#0000ff">'The script will be continued in 5 seconds...'</font>, <font color="#0000ff">'show'</font><br /><br /><font color="#808080">rem idle 5 seconds</font><br />wait <font color="#0000ff">'5000'</font><br /><br /><font color="#808080">rem hide INFOBOX again</font><br /><font color="#000080">[InfoBox_Enabled]</font> = <font color="#0000ff">'hide'</font></td>
+			</tr>
+			<tr>
+				<td class="ref_label">Remarks:</td>
+				<td>The dialog can be positioned using the variables [InfoBox_X] and [InfoBox_Y] for the particular axis. If [InfoBox_X] or [InfoBox_Y] is set to '0', a dialog is automatically centered on the particular axis (this is the default), else the dialog is displayed at the specified position, that is given in pixels.<br /><br />The default-size of the dialog can be changed to a desired size, in pixels, using the variables [InfoBox_Width] (for the width) and [InfoBox_Height] (for the height)</td>
+			</tr>
+		</table>
+	
+		<div class="line">&nbsp;</div>
+	
+		<div id="copyright">
+			Copyright &copy; 2000-2006 by J.M.K S.F. Software Technologies, Jan Max Meyer<br />
+			All rights reserved.
+		</div>
+	</body>
+</html>

@@ -1,0 +1,24 @@
+<html>
+	<head>
+		<title>Directory operations</title>
+		<link rel="stylesheet" href="jmksf.css" type="text/css"></link>
+	</head>
+
+	<body>
+		<div id="top">
+			<img src="rb5.png" alt="RapidBATCH Logo" />
+			Directory operations
+		</div>
+		
+		<div class="line">&nbsp;</div>
+		
+		To create, change or delete directories, RapidBATCH provides three instruction: MKDIR for creating a directory, CHDIR for changing the current working directory and RMDIR to delete an existing, empty directory. The instructions had been named like the homonymous DOS operating system commands.<br /><br />The following line creates the directory &quot;whales&quot; on drive C:.<br /><br /><!-- code BEGIN --><div class="code">mkdir <font color="#0000ff">'C:\whales'</font></div><!-- code END-->RapidBATCH is also able to create parent directories to reach a desired sub directory that should be created. The following line creates at least three new folders (&quot;C:\whales&quot;, &quot;C:\whales\toothed whales&quot; and &quot;C:\whales\thoothed whales\orcinus orca&quot;) on drive C: (if &quot;C:\whales&quot; is not already existing).<br /><br /><!-- code BEGIN --><div class="code">mkdir <font color="#0000ff">'C:\whales\toothed whales\orcinus orca'</font></div><!-- code END-->To change the current directory to another location, use CHDIR. Changing the directory means that all relative paths (e.g. file names or program calls) the script takes are starting from this directory. By default, the working directory of every script is the directory it is saved to.<br /><br /><!-- code BEGIN --><div class="code">chdir <font color="#0000ff">'C:\whales\toothed whales\orcinus orca'</font></div><!-- code END-->The verification if the directory change succeeded (means also to test if the folder exists) can be done using the RapidBATCH pre-declared variable [errorcode]. [errorcode] is used by several instructions and functions to give the programmer a possibility to react on system failures, enabling him to output corresponding error messages or information to the user or a log file.<br />If [errorcode] contains the value '0' when CHDIR is executed, the directory change succeeded. If it is '-1', the directory does not exist.<br /><br /><!-- code BEGIN --><div class="code">chdir <font color="#0000ff">'C:\whales\toothed whales\orcinus orca'</font><br /><b>if</b> <font color="#000080">[errorcode]</font> = <font color="#0000ff">'-1'</font><br />&nbsp;&nbsp;&nbsp;&nbsp;echo <font color="#0000ff">'Directory change failed!'</font><br /><b>else</b><br />&nbsp;&nbsp;&nbsp;&nbsp;echo <font color="#0000ff">'Directory change succeeded!'</font><br /><b>endif</b></div><!-- code END--><div class="remark">Please note that [errorcode] is used by many instructions RapidBATCH provides. Also already mentioned instructions like SHELL, CALL or even MKDIR return a value to [errorcode]. To get detailed information on what value [errorcode] will get in which cases, look up the language reference manual.<br />Make sure that [errorcode] is verified directly behind the call of the operation you want to check for success, else the value of [errorcode] may be overwritten by another instruction.</div>To delete a directory, use the RMDIR instruction. Before running RMDIR, make sure the folder you wish to delete is empty, else RMDIR fails, returing '-1' to the [errorcode] variable.<br /><br /><!-- code BEGIN --><div class="code">rmdir <font color="#0000ff">'C:\whales\toothed whales\orcinus orca'</font></div><!-- code END--><div class="remark">Note: To copy or move folders, use the instructions COPYDIR and MOVEDIR provided by the SYSTEM.RB extended system function library.</div><br /><br />
+
+		<div class="line">&nbsp;</div>
+
+		<div id="copyright">
+			Copyright &copy; 2000-2006 by J.M.K S.F. Software Technologies, Jan Max Meyer<br />
+			All rights reserved.
+		</div>
+	</body>
+</html>

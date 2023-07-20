@@ -1,0 +1,40 @@
+<html>
+	<head>
+		<title>RapidBATCH Language Reference :: NEWREGKEY, DELREGKEY</title>
+		<link rel="stylesheet" href="jmksf.css" type="text/css" />
+	</head>
+	<body>
+		<div id="top">
+			<img src="rb5.png" alt="RapidBATCH Logo" />
+			NEWREGKEY, DELREGKEY
+		</div>
+	
+		<div class="line">&nbsp;</div>
+	
+		<table cellspacing="10" width="100%">
+			<tr>
+				<td class="ref_label">Syntax:</td>
+				<td class="ref_syntax">NEWREGKEY base-key, key-path<br />DELREGKEY base-key, key-path</td>
+			</tr>
+			<tr>
+				<td class="ref_label">Description:</td>
+				<td>NEWREGKEY creates a new registry key to the Windows system registry.<br />DELREGKEY deletes an existing Windows registry key, including all its sub-keys and values.<br /><br />Both instructions expect as first parameter one of the five base-keys, that is specified using one of the following values:<ul>  <li>'CLASSES_ROOT' for HKEY_CLASSES_ROOT</li>  <li>'CURRENT_CONFIG' for HKEY_CURRENT_CONFIG</li>  <li>'CURRENT_USER' for HKEY_CURRENT_USER</li>  <li>'LOCAL_MACHINE' for HKEY_LOCAL_MACHINE</li>  <li>'USERS' for HKEY_USERS</li></ul></td>
+			</tr>
+			<tr>
+				<td class="ref_label">Examples:</td>
+				<td class="ref_code">newregkey <font color="#0000ff">'CURRENT_USER'</font>, <font color="#0000ff">'Software\Test'</font><br /><b>if</b> <font color="#000080">[errorcode]</font> = <font color="#0000ff">'0'</font><br />&nbsp;&nbsp;&nbsp;&nbsp;echo <font color="#0000ff">'Creating HKEY_CURRENT_USER\Software\Test was successfull.'</font><br /><b>endif</b><br /><br />delregkey <font color="#0000ff">'CURRENT_USER'</font>, <font color="#0000ff">'Software\Test'</font><br /><b>if</b> <font color="#000080">[errorcode]</font> = <font color="#0000ff">'0'</font><br />&nbsp;&nbsp;&nbsp;&nbsp;echo <font color="#0000ff">'Deleting HKEY_CURRENT_USER\Software\Test was successfull.'</font><br /><b>endif</b></td>
+			</tr>
+			<tr>
+				<td class="ref_label">Remarks:</td>
+				<td>Use GETREGVAL and LETREGVAL to read and write values from and into the registry. [errorcode] gets '0' if the operation succeeds, else '-1'</td>
+			</tr>
+		</table>
+	
+		<div class="line">&nbsp;</div>
+	
+		<div id="copyright">
+			Copyright &copy; 2000-2006 by J.M.K S.F. Software Technologies, Jan Max Meyer<br />
+			All rights reserved.
+		</div>
+	</body>
+</html>

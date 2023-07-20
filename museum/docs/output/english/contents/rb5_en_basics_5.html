@@ -1,0 +1,24 @@
+<html>
+	<head>
+		<title>Labels and Subs</title>
+		<link rel="stylesheet" href="jmksf.css" type="text/css"></link>
+	</head>
+
+	<body>
+		<div id="top">
+			<img src="rb5.png" alt="RapidBATCH Logo" />
+			Labels and Subs
+		</div>
+		
+		<div class="line">&nbsp;</div>
+		
+		A proven appliance to construct a structured program flow is to jump to so called code-labels and sub-routines, the so called &quot;subs&quot;. Indeed, writing own procedures and creating loop-structures using REPEAT...UNTIL statements is the more professional way, so that this possibility is only discussed briefly.<br /><br />To work with labels and subs, RapidBATCH provides the instructions GOTO, GOSUB and RESUME. GOTO allows you to &quot;jump&quot; ahead and back trough the script code to a defined label, where the program execution is continued. Many programmers hate this possibility in various programming languages because it makes the code too complex and difficult to read. Anyway, in some cases, labels and GOTOs are really essential.<br /><br />The easiest example is the following script. We have three ECHO instructions, but only the first and the last one will appear. The second one will never be reached, because the script jumps behind the first ECHO instruction to the label %the_end in front of the last ECHO instruction. Labels are marked with a beginning percent-character (%) and can have any name. The percent is only assigned to the label to mark it in the code, if you specify a label at a GOTO or GOSUB instruction, you do not include the percent character.<br /><br /><!-- code BEGIN --><div class="code">echo <font color="#0000ff">'This is ECHO-instruction 1'</font><br /><b>goto</b> <font color="#0000ff">'the_end'</font><br />echo <font color="#0000ff">'This is ECHO-instruction 2'</font><br />%the_end<br />echo <font color="#0000ff">'This is ECHO-instruction 3'</font><br /><b>end</b></div><!-- code END-->Since version 4.0, RapidBATCH also provides the ability of creating simple sub-routines, the so called subs. These are no real procedures like those we will discuss later, but code-blocks that you can jump to from anywhere in the script and which automatically continue using the RESUME instruction as the last code line of the sub. The script execution then continues behind the last call of GOSUB.<br /><br />The following example squares all numbers from 1 to 10 by calling the sub %square with each loop. You will see, when the sub is executed, the RESUME instruction lets the script continue from where the sub was called, so that the counter is incremented (increased by one) and the next call can be done.<br />You can also perform recoursive calls, that means you jump into a sub and call this sub again within itself until a certain recoursion deepness.<br /><br /><!-- code BEGIN --><div class="code"><font color="#000080">[i]</font> = <font color="#0000ff">'1'</font><br /><b>repeat</b><br />&nbsp;&nbsp;&nbsp;&nbsp;<b>gosub</b> <font color="#0000ff">'square'</font><br />&nbsp;&nbsp;&nbsp;&nbsp;<font color="#000080">[i]</font> + <font color="#0000ff">'1'</font><br /><b>until</b> <font color="#000080">[i]</font> &gt; <font color="#0000ff">'10'</font><br /><b>halt</b><br /><br /><font color="#808080">rem Sub: square</font><br />%square<br /><font color="#000080">[x]</font> = <font color="#000080">[i]</font> * <font color="#000080">[i]</font><br />echo <font color="#000080">[i]</font> # <font color="#0000ff">' * '</font> # <font color="#000080">[i]</font> # <font color="#0000ff">' = '</font> # <font color="#000080">[x]</font><br /><b>resume</b><br /><b>end</b></div><!-- code END-->Since RapidBATCH 5.0, it is also possible to perform dynamic label calls via GOTO and GOSUB. This means that the target-label that is called by GOTO or GOSUB can be based on variable data, so a variable can be passed to GOTO or GOSUB statements to jump to a label dynamically.<br /><br />An example for a dynamic label call:<br /><br /><!-- code BEGIN --><div class="code">confirm <font color="#000080">[answer]</font> = <font color="#0000ff">'Yes or No?'</font><br /><b>goto</b> <font color="#000080">[answer]</font><br /><br />%0<br />echo <font color="#0000ff">'You hit YES!'</font><br /><b>halt</b><br /><br />%-1<br />echo <font color="#0000ff">'You hit NO!'</font><br /><b>end</b></div><!-- code END-->These dynamic calls will be useful for event handling later, when we create dialog-based applications.<br /><br />But label calls and sub-routines, as already mentioned, should only be used if it's really mandatory. In RapidBATCH 5 it is more recommended to implement and use own, user defined procedures and functions, which are offering more powerful possibilities than labels and sub-routines.<br /><br />
+
+		<div class="line">&nbsp;</div>
+
+		<div id="copyright">
+			Copyright &copy; 2000-2006 by J.M.K S.F. Software Technologies, Jan Max Meyer<br />
+			All rights reserved.
+		</div>
+	</body>
+</html>

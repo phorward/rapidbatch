@@ -1,0 +1,40 @@
+<html>
+	<head>
+		<title>RapidBATCH Befehlsreferenz :: EDITBOX</title>
+		<link rel="stylesheet" href="jmksf.css" type="text/css" />
+	</head>
+	<body>
+		<div id="top">
+			<img src="rb5.png" alt="RapidBATCH Logo" />
+			EDITBOX
+		</div>
+	
+		<div class="line">&nbsp;</div>
+	
+		<table cellspacing="10" width="100%">
+			<tr>
+				<td class="ref_label">Syntax:</td>
+				<td class="ref_syntax">EDITBOX Eingabe = Titel, Text, Style</td>
+			</tr>
+			<tr>
+				<td class="ref_label">Beschreibung:</td>
+				<td>EDITBOX stellt einen Dialog zur Verf&uuml;gung, in dem mehrzeilige Texte editiert und betrachtet werden k&ouml;nnen.<br />Die Funktion erwartet einen Dialogtitel, einen im Editierfeld vorgegebenen Text und einen Anzeigemodus.<br />&Uuml;ber den Anzeigemodus l&auml;sst sich bestimmen, ob der Text im Editierfeld ge&auml;ndert oder nur angesehen werden kann. Wird der Wert '0' oder die &auml;quivalente Konstante 'writeable'  angegeben, kann der Benutzer den Text editieren; wird der Wert '-1' oder 'readonly' angegeben, so kann der Benutzer den Text nicht ver&auml;ndern.<br /><br />Wird im Dialog der OK-Button gedr&uuml;ckt, so liefert die Funktion den Text aus dem Eingabefeld zur&uuml;ck, ansonsten einen Leerstring.<br /><img style="padding-top: 30px;" src="img/editbox.gif" alt="Bild eines Editiferfensters mittles EDITBOX" title="Screenshot" /></td>
+			</tr>
+			<tr>
+				<td class="ref_label">Beispiele:</td>
+				<td class="ref_code"><font color="#808080">rem Einfache, mehrzeilige Texteingabe</font><br />editbox <font color="#000080">[text]</font> = <font color="#0000ff">'Texteditor'</font>, <font color="#0000ff">''</font>, <font color="#0000ff">'writeable'</font><br />echo <font color="#000080">[text]</font><br /><br /><font color="#808080">rem Verwendung der EDITBOX zur Textbetrachtung (readonly-Modus)</font><br />editbox <font color="#000080">[text]</font> = <font color="#0000ff">'Textanzeige'</font>, <font color="#0000ff">'Dieser Text kann nicht editiert werden!'</font>, <font color="#0000ff">'readonly'</font><br />echo <font color="#000080">[text]</font><br /><b>end</b></td>
+			</tr>
+			<tr>
+				<td class="ref_label">Bemerkungen:</td>
+				<td>Die Beschriftung der Buttons OK und CANCEL kann &uuml;ber die Variablen [EditBox_Ok] und [EditBox_Cancel] gesetzt werden. Wird die Beschriftung eines Buttons auf einen Leerstring gesetzt, wird der Button aus dem Dialog ausgeblendet.<br /><br />Die Position des Dialogs kann mit Hilfe der Variablen [EditBox_X] und [EditBox_Y] ver&auml;ndert werden. Hat [EditBox_X] und/oder [EditBox_Y] den Wert 0 wird der Dialog automatisch jeweils horizontal oder vertikal zentriert (dies ist die Standard-Einstellung).<br /><br />Die Defaultgr&ouml;ße des Dialogs l&auml;sst sich &uuml;ber die Variablen [EditBox_Width] (Breite) und [EditBox_Height] (H&ouml;he) setzen.<br /><br />Die Angabe bei Positionierungs-/Dimensionswerten erfolgt in Pixel.<br /><br />Das Dialog-Icon kann global f&uuml;r alle Dialoge &uuml;ber die Variable [app_icon] auf eine externe .ICO-Datei gesetzt werden.</td>
+			</tr>
+		</table>
+	
+		<div class="line">&nbsp;</div>
+	
+		<div id="copyright">
+			Copyright &copy; 2000-2006 by J.M.K S.F. Software Technologies, Jan Max Meyer<br />
+			All rights reserved.
+		</div>
+	</body>
+</html>

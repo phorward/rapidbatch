@@ -1,0 +1,189 @@
+# ---------------------------------------------------------------------------
+!if !$d(BCB)
+BCB = $(MAKEDIR)\..
+!endif
+
+# ---------------------------------------------------------------------------
+# IDE-ABSCHNITT
+# ---------------------------------------------------------------------------
+# Der folgende Abschnitt der Make-Datei des Projekts wird von der IDE verwaltet.
+# Wir empfehlen, Änderungen an diesem Abschnitt nur über die IDE
+# vorzunehmen.
+# ---------------------------------------------------------------------------
+VERSION = BCB.04.04
+# ---------------------------------------------------------------------------
+PROJECT = rbb4.exe
+OBJFILES = rbb4.obj str.obj
+RESFILES = rbb4.res
+RESDEPEN = $(RESFILES)
+LIBFILES =
+IDLFILES =
+IDLGENFILES =
+LIBRARIES = 
+SPARELIBS = Vcl40.lib
+PACKAGES = Vcl40.bpi Vclx40.bpi bcbsmp40.bpi dclocx40.bpi
+DEFFILE =
+# ---------------------------------------------------------------------------
+PATHCPP = .;
+PATHASM = .;
+PATHPAS = .;
+PATHRC = .;
+DEBUGLIBPATH = $(BCB)\lib\debug
+RELEASELIBPATH = $(BCB)\lib\release
+SYSDEFINES = _NO_VCL;USEPACKAGES
+USERDEFINES =
+# ---------------------------------------------------------------------------
+CFLAG1 = -I..\..\Programme\Borland\CBuilder4\Projects;$(BCB)\include -Od -w-csu \
+  -Tkh30000 -r- -a8 -4 -k -y -v -vi- -c -tWM -tW -D$(SYSDEFINES);$(USERDEFINES)
+IDLCFLAGS = -src_suffixcpp
+PFLAGS = -U..\..\Programme\Borland\CBuilder4\Projects;$(BCB)\lib;$(DEBUGLIBPATH) \
+  -I..\..\Programme\Borland\CBuilder4\Projects;$(BCB)\include -$Y+ -$W -$O- -v \
+  -JPHN -M
+RFLAGS = -i..\..\Programme\Borland\CBuilder4\Projects;$(BCB)\include
+AFLAGS = /i..\..\Programme\Borland\CBuilder4\Projects /i$(BCB)\include /mx /w2 /zd
+LFLAGS = -L..\..\Programme\Borland\CBuilder4\Projects;$(BCB)\lib;$(DEBUGLIBPATH) -aa \
+  -Tpe -x -Gn -v
+# ---------------------------------------------------------------------------
+ALLOBJ = c0w32.obj $(PACKAGES) $(OBJFILES)
+ALLRES = $(RESFILES)
+ALLLIB = $(LIBFILES)  import32.lib cw32mt.lib
+# ---------------------------------------------------------------------------
+!ifdef IDEOPTIONS
+
+[Version Info]
+IncludeVerInfo=0
+AutoIncBuild=0
+MajorVer=1
+MinorVer=0
+Release=0
+Build=0
+Debug=0
+PreRelease=0
+Special=0
+Private=0
+DLL=0
+Locale=1031
+CodePage=1252
+
+[Version Info Keys]
+CompanyName=
+FileDescription=Executable (GUI)
+FileVersion=1.0.0.0
+InternalName=
+LegalCopyright=
+LegalTrademarks=
+OriginalFilename=
+ProductName=
+ProductVersion=1.0.0.0
+Comments=
+
+[Excluded Packages]
+$(BCB)\Projects\Bpl\rsCB4D.bpl=RuiSoftware Components v2
+
+[HistoryLists\hlIncludePath]
+Count=3
+Item0=..\..\Programme\Borland\CBuilder4\Projects;$(BCB)\include
+Item1=..\..\..\Programme\Borland\CBuilder4\Projects;$(BCB)\include
+Item2=..\..\..\..\..\..\Programme\Borland\CBuilder4\Projects;$(BCB)\include
+
+[HistoryLists\hlLibraryPath]
+Count=3
+Item0=..\..\Programme\Borland\CBuilder4\Projects;$(BCB)\lib
+Item1=..\..\..\Programme\Borland\CBuilder4\Projects;$(BCB)\lib
+Item2=..\..\..\..\..\..\Programme\Borland\CBuilder4\Projects;$(BCB)\lib
+
+[Debugging]
+DebugSourceDirs=
+
+[Parameters]
+RunParams=
+HostApplication=
+RemoteHost=
+RemotePath=
+RemoteDebug=0
+
+[Compiler]
+InMemoryExe=0
+ShowInfoMsgs=0
+
+!endif
+
+# ---------------------------------------------------------------------------
+# MAKE-ABSCHNITT
+# ---------------------------------------------------------------------------
+# Der folgende Abschnitt der Datei des Projekts wird nicht von der IDE verwendet. Er ist
+# für das Erstellen von der Befehlszeile mit dem Programm MAKE gedacht.
+# ---------------------------------------------------------------------------
+
+.autodepend
+# ---------------------------------------------------------------------------
+!if !$d(BCC32)
+BCC32 = bcc32
+!endif
+
+!if !$d(DCC32)
+DCC32 = dcc32
+!endif
+
+!if !$d(TASM32)
+TASM32 = tasm32
+!endif
+
+!if !$d(LINKER)
+LINKER = ilink32
+!endif
+
+!if !$d(BRCC32)
+BRCC32 = brcc32
+!endif
+
+!if !$d(IDL2CPP)
+IDL2CPP = idl2cpp
+!endif
+
+# ---------------------------------------------------------------------------
+!if $d(PATHCPP)
+.PATH.CPP = $(PATHCPP)
+.PATH.C   = $(PATHCPP)
+!endif
+
+!if $d(PATHPAS)
+.PATH.PAS = $(PATHPAS)
+!endif
+
+!if $d(PATHASM)
+.PATH.ASM = $(PATHASM)
+!endif
+
+!if $d(PATHRC)
+.PATH.RC  = $(PATHRC)
+!endif
+# ---------------------------------------------------------------------------
+$(PROJECT): $(IDLGENFILES) $(OBJFILES) $(RESDEPEN) $(DEFFILE)
+    $(BCB)\BIN\$(LINKER) @&&!
+    $(LFLAGS) +
+    $(ALLOBJ), +
+    $(PROJECT),, +
+    $(ALLLIB), +
+    $(DEFFILE), +
+    $(ALLRES)
+!
+# ---------------------------------------------------------------------------
+.pas.hpp:
+    $(BCB)\BIN\$(DCC32) $(PFLAGS) {$< }
+
+.pas.obj:
+    $(BCB)\BIN\$(DCC32) $(PFLAGS) {$< }
+
+.cpp.obj:
+    $(BCB)\BIN\$(BCC32) $(CFLAG1) -n$(@D) {$< }
+
+.c.obj:
+    $(BCB)\BIN\$(BCC32) $(CFLAG1) -n$(@D) {$< }
+
+.asm.obj:
+    $(BCB)\BIN\$(TASM32) $(AFLAGS) $<, $@
+
+.rc.res:
+    $(BCB)\BIN\$(BRCC32) $(RFLAGS) -fo$@ $<
+# ---------------------------------------------------------------------------

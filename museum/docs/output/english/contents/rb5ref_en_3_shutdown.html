@@ -1,0 +1,40 @@
+<html>
+	<head>
+		<title>RapidBATCH Language Reference :: SHUTDOWN</title>
+		<link rel="stylesheet" href="jmksf.css" type="text/css" />
+	</head>
+	<body>
+		<div id="top">
+			<img src="rb5.png" alt="RapidBATCH Logo" />
+			SHUTDOWN
+		</div>
+	
+		<div class="line">&nbsp;</div>
+	
+		<table cellspacing="10" width="100%">
+			<tr>
+				<td class="ref_label">Syntax:</td>
+				<td class="ref_syntax">SHUTDOWN mode</td>
+			</tr>
+			<tr>
+				<td class="ref_label">Description:</td>
+				<td>Terminates Windows and shuts down the computer or reboots it.<br /><br />As <i>mode</i>, one of the following, numerical values or build-in constants needs to be specified:<ul>  <li>'SHUTDOWN' (or '0') - Shutdown the computer</li>  <li>'REBOOT' (or '1') - Shutdown and reboot the computer</li>  <li>'POWEROFF' (or '2') - Shutdown and power-off (if this is possible by the hardware)</li>  <li>'LOGOFF' (or '3') - Log-off current user only</li></ul></td>
+			</tr>
+			<tr>
+				<td class="ref_label">Examples:</td>
+				<td class="ref_code">echo <font color="#0000ff">'Restarting computer...'</font><br />shutdown <font color="#0000ff">'reboot'</font></td>
+			</tr>
+			<tr>
+				<td class="ref_label">Remarks:</td>
+				<td>The [errocode]-variable gets '0' if the operation succeeds, else '-1'.</td>
+			</tr>
+		</table>
+	
+		<div class="line">&nbsp;</div>
+	
+		<div id="copyright">
+			Copyright &copy; 2000-2006 by J.M.K S.F. Software Technologies, Jan Max Meyer<br />
+			All rights reserved.
+		</div>
+	</body>
+</html>

@@ -1,0 +1,40 @@
+<html>
+	<head>
+		<title>RapidBATCH Befehlsreferenz :: PUTFILE</title>
+		<link rel="stylesheet" href="jmksf.css" type="text/css" />
+	</head>
+	<body>
+		<div id="top">
+			<img src="rb5.png" alt="RapidBATCH Logo" />
+			PUTFILE
+		</div>
+	
+		<div class="line">&nbsp;</div>
+	
+		<table cellspacing="10" width="100%">
+			<tr>
+				<td class="ref_label">Syntax:</td>
+				<td class="ref_syntax">PUTFILE Dateiname, Start-Position, Liste-von-Zeichencodes</td>
+			</tr>
+			<tr>
+				<td class="ref_label">Beschreibung:</td>
+				<td>Schreibt einen Stringausdruck auf Byte-Ebene in eine Datei.<br />Als Parameter wird ein Dateiname, eine Byte-Startposition in der Datei (wo der Schreibvorgang begonnen werden soll) und eine Liste an ASCII-Zeichencodes, die ab <i>Start-Position</i> als Zeichen byteweise in die Datei geschrieben werden sollen, erwartet.<br />Ein ASCII-Zeichen entspricht in einer Datei einem Byte und kann maximal einen Wert von 255 annehmen (dies entspricht einem Bin&auml;rwert von &quot;1111 1111&quot;, also 8 Bit = 1 Byte).</td>
+			</tr>
+			<tr>
+				<td class="ref_label">Beispiele:</td>
+				<td class="ref_code"><font color="#808080">rem Schreiben einer Datei auf Byte-Ebene</font><br /><br /><font color="#808080">rem Nicht existente Datei MUSS zuerst explizit erzeugt werden!</font><br />newfile <font color="#0000ff">'bytefile.bin'</font><br /><br /><font color="#000080">[klartext]</font> = <font color="#0000ff">'Dies ist der Klartext, der in die Datei geschrieben wird!'</font><br /><br /><font color="#808080">rem Konvertierung des Klartextes in eine Liste an ASCII-Zeichencodes</font><br /><font color="#000080">[i]</font> = <font color="#0000ff">'0'</font><br />getlen <font color="#000080">[len]</font> = <font color="#000080">[klartext]</font><br /><b>repeat</b><br />&nbsp;&nbsp;&nbsp;&nbsp;<font color="#000080">[i]</font> + <font color="#0000ff">'1'</font><br />&nbsp;&nbsp;&nbsp;&nbsp;getcharat <font color="#000080">[ch]</font> = <font color="#000080">[klartext]</font>, <font color="#000080">[i]</font><br />&nbsp;&nbsp;&nbsp;&nbsp;getasc <font color="#000080">[ch]</font> = <font color="#000080">[ch]</font><br />&nbsp;&nbsp;&nbsp;&nbsp;<b>if</b> <font color="#000080">[byteliste]</font> ! <font color="#0000ff">''</font> <font color="#000080">[byteliste]</font> # <font color="#0000ff">'|'</font><br />&nbsp;&nbsp;&nbsp;&nbsp;<font color="#000080">[byteliste]</font> # <font color="#000080">[ch]</font><br /><b>until</b> <font color="#000080">[i]</font> = <font color="#000080">[len]</font><br /><br />echo <font color="#0000ff">'Klartext: '</font> # <font color="#000080">[klartext]</font><br />echo <font color="#0000ff">'Liste an ASCII-Zeichencodes: '</font> # <font color="#000080">[byteliste]</font><br /><br /><font color="#808080">rem Schreiben der Datei</font><br />putfile <font color="#0000ff">'bytefile.bin'</font>, <font color="#0000ff">'1'</font>, <font color="#000080">[byteliste]</font><br /><br /><b>if</b> <font color="#000080">[errorcode]</font> = <font color="#000080">[false]</font><br />&nbsp;&nbsp;&nbsp;&nbsp;echo <font color="#0000ff">'PUTFILE ist fehlgeschlagen!'</font><br /><b>endif</b></td>
+			</tr>
+			<tr>
+				<td class="ref_label">Bemerkungen:</td>
+				<td>Die zu schreibende Datei muss existieren. Wenn die Datei nicht existiert, kann auch kein Wert in sie hineingeschrieben werden. Erstellen Sie dann einfach eine neue Datei mit Hilfe von <a href="rb5ref_ger_3_newfiledelfile.html">NEWFILE</a>.<br />[errorcode] erh&auml;lt den Wert -1, wenn PUTFILE fehlschlug, andernfalls 0.</td>
+			</tr>
+		</table>
+	
+		<div class="line">&nbsp;</div>
+	
+		<div id="copyright">
+			Copyright &copy; 2000-2006 by J.M.K S.F. Software Technologies, Jan Max Meyer<br />
+			All rights reserved.
+		</div>
+	</body>
+</html>

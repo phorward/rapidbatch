@@ -1,0 +1,24 @@
+<html>
+	<head>
+		<title>Creating own DLL functions</title>
+		<link rel="stylesheet" href="jmksf.css" type="text/css"></link>
+	</head>
+
+	<body>
+		<div id="top">
+			<img src="rb5.png" alt="RapidBATCH Logo" />
+			Creating own DLL functions
+		</div>
+		
+		<div class="line">&nbsp;</div>
+		
+		This part of the DLL interface documentation is only interesting for those who want to develop DLLs by themself. DLLs can be created in any programming language that enables the standard C calling convention. This means in any case it is possible to create a DLL using a C-Compiler - whether a commercial one like Microsoft Visual C++ or Borland C++, or a free one like lcc-win (the GNU Compiler for Windows Port) or OpenWatcom C++. Programming languages like Borland Delphi or Microsoft Visual Basic do even support DLL creation.<br />Now, a short introducion in developing DLLs for the RapidBATCH DLL interface follows.<br /><br />DLLs (Dynamic Link Libraries) provide functions which can be called from different applications. DLLs can be linked to a program at the program entry or only when they are needed. RapidBATCH favors the second variant, which means that the DLL is only opened and linked to the program when it really is needed. RapidBATCH then caches this DLL for a faster function access if the function is called more than once. The DLL will automatically be unlinked and freed when the RapidBATCH script terminates. When the DLL is unload, the return value of LibMain is ignored.<br /><br />Note that the DLL (and LibMain) is called only at the first call of the EXT-function, then the desired function that should be called is searched. In all following EXT-calls, LibMain is not called again, only the desired function.<br /><br />The function that should be callable from the RapidBATCH's EXT-function must always be declared as the following:<br /><pre>int __declspec(dllexport) _cdecl functionName( char** output, char** input, int input_count )</pre>The output-parameter is a pointer to the return value that is returned to the return variable specified at the EXT-function call. Note that the memory you declare for the output-parameter must be dynamically allocated using the LocalAlloc() function from the Windows API. RapidBATCH then frees this storage automatically again, to avoid memory leaks. If output is set to (char*)NULL, EXT will return an empty string to the return variable.<br />The input-parameter is a pointer to an array of char, where each value (beginning at index 0) represents one value that is passed behind the second parameter at the EXT function-call.How many values are passed can be gotten from the parameter input_count.<br /><br />The return value of the function (integer) will be stored to [errorcode], so it is also possible to give [errorcode] an individual error value depending on your DLL function. It is recommended to return 0 in case of success, and a positive number in case of a failure, because -1 is also returned by EXT when an error occured on loading the DLL or calling the function (e.g. a wrong written function name).<br /><br />In the directory dll\DemoDLL of your RapidBATCH setup directory, you can find an example-DLL (DemoDLL.dll) including its source code (DemoDLL.c) and an example script that calls functions from this DLL (DemoDLL.rb). The source code is commented and contains some additional information on RapidBATCH and DLL programming.<br /><br />One important note to the function names: Some C-Compilers lean to decore function names with a leading underscore-character (_). In the most cases, this can be disabled via a compiler option. If not, you must also add a leading underscore character to all EXT-calls within your RapidBATCH-Script.<br /><br /><br /><br />
+
+		<div class="line">&nbsp;</div>
+
+		<div id="copyright">
+			Copyright &copy; 2000-2006 by J.M.K S.F. Software Technologies, Jan Max Meyer<br />
+			All rights reserved.
+		</div>
+	</body>
+</html>

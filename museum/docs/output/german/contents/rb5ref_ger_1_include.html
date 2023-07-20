@@ -1,0 +1,40 @@
+<html>
+	<head>
+		<title>RapidBATCH Befehlsreferenz :: INCLUDE, INCLUDE_ONCE</title>
+		<link rel="stylesheet" href="jmksf.css" type="text/css" />
+	</head>
+	<body>
+		<div id="top">
+			<img src="rb5.png" alt="RapidBATCH Logo" />
+			INCLUDE, INCLUDE_ONCE
+		</div>
+	
+		<div class="line">&nbsp;</div>
+	
+		<table cellspacing="10" width="100%">
+			<tr>
+				<td class="ref_label">Syntax:</td>
+				<td class="ref_syntax">INCLUDE Includedatei<br />INCLUDE_ONCE Includedatei</td>
+			</tr>
+			<tr>
+				<td class="ref_label">Beschreibung:</td>
+				<td>INCLUDE erm&ouml;glicht die Importierung einer RapidBATCH-Scriptdatei in ein RapidBATCH-Script. Diese inkludierte Datei wird komplett an der Stelle, wo das INCLUDE steht, ausgef&uuml;hrt, d.h. es werden entsprechende Funktionen verf&uuml;gar gemacht und Variablen zum aktuell ausgef&uuml;hrten Script hinzudeklariert.<br /><br />Sinn und Zweck von Include-Dateien ist die Aufteilung eines Projektes in mehrere kleine Dateien und die Implementierung von Prozedur- und Funktionsbibliotheken. Man kann daher einmal eine Bibliothek schreiben und alle Funktionen und Prozeduren dieser Bibliothek mittels INCLUDE in jedem Script, wo die Funktionen gebraucht werden, verf&uuml;gbar machen.<br /><br />INCLUDE_ONCE hat denselben Zweck wie INCLUDE, nur wird hier das zu inkludierende Script wirklich nur ein mal ausgef&uuml;hrt. Kommt der Interpreter/Compiler ein weiteres Mal &uuml;ber solch eine Zeile mit selbem Dateinamen, so wird das Script nicht noch einmal importiert.</td>
+			</tr>
+			<tr>
+				<td class="ref_label">Beispiele:</td>
+				<td class="ref_code"><!-- CODE BEGIN --><font color="#808080">rem Inkludieren der Array-Bibliothek</font><br /><font color="#008000">include 'array.rb'</font><br /><br /><font color="#808080">rem Array f&uuml;llen</font><br /><font color="#000080">[test:'1']</font> = <font color="#0000ff">'Hello World'</font><br /><font color="#000080">[test:'2']</font> = <font color="#0000ff">'Hello World'</font><br /><font color="#000080">[test:'3']</font> = <font color="#0000ff">'Hello World'</font><br /><br /><font color="#808080">rem Aufruf der Bibliotheksprozedur "viewarray"</font><br />viewarray <font color="#000080">[test]</font><br /><b>end</b><br /><!-- CODE END --></td>
+			</tr>
+			<tr>
+				<td class="ref_label">Bemerkungen:</td>
+				<td>Als Dateiname kann keine Variable mit dem Dateinamen als Inhalt angegeben werden.<br /><br />Wenn bei INCLUDE oder INCLUDE_ONCE ein relativer Pfad angegeben wurde, der vom Scriptverzeichnis aus nicht existiert, sucht RapidBATCH automatisch im Library-Verzeichnis (im RapidBATCH Installationsverzeichnis das Unterverzeichnis \LIB). Darin befinden sich einige Standardbibliotheken, die RapidBATCH als erweiterte Sprachbasis mitf&uuml;hrt. Durch Kopieren einer Library in dieses Verzeichnis kann sie von allen Scripts auf dem System durch einfache Angabe des Dateinamens (ohne absoluten Pfad) importiert werden.<br /><br />Wenn Sie automatisch bei jedem Script, welches von RapidBATCH ausgef&uuml;hrt wird, bereits vorab einige Libraries inkludieren m&ouml;chten, tragen Sie einfach den entsprechenden Sourcecode in die Datei default.rb im \LIB-Verzeichnis ein. Diese Datei wird vom Interpreter und vom Compiler automatisch f&uuml;r jedes Script inkludiert, ohne einen expliziten Aufruf von INCLUDE oder INCLUDE_ONCE.</td>
+			</tr>
+		</table>
+	
+		<div class="line">&nbsp;</div>
+	
+		<div id="copyright">
+			Copyright &copy; 2000-2006 by J.M.K S.F. Software Technologies, Jan Max Meyer<br />
+			All rights reserved.
+		</div>
+	</body>
+</html>

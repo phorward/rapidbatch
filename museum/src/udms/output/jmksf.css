@@ -1,0 +1,84 @@
+html
+{
+	font-family: Helvetica, Arial Narrow, Sans-Serif;
+	font-size: 12px;
+	text-decoration: none;
+}
+
+
+a:link, a:visited { text-decoration:none; color:#0000FF; }
+a:hover { text-decoration:none; color:#00A0FF; }
+
+
+body, table { font-family: Helvetica, Verdana, Arial, sans-serif; text-align: left; color:#000000; font-size: 10pt; background-color: #FFFFFF; }
+
+td.ref_label { vertical-align: top; color: #ADADAD; }
+td.ref_syntax { font-family: sans-serif, tahoma ; text-align: left; color:#000000; font-size: 11pt; font-weight: bold; }
+
+table.standard { margin-bottom: 100px;}
+
+#top
+{
+	padding: 0px;
+	margin: 0px;
+	font-size: 22px;
+	font-weight: bold;
+}
+/*
+#navigation
+{
+	text-align: right;
+	font-size: 15px;
+	font-weight: bold;
+	float: right;
+}
+
+#navigation ul
+{
+	padding: 0px;
+	margin: 0px;
+	list-style: none;
+}
+
+#navigation li
+{
+	padding-left: 0px;
+	margin-left: 0px;
+	margin:0px;
+	padding: 0px;
+}*/
+
+.line
+{
+	background-image: url("line.png");
+	background-repeat: repeat-y;
+	line-height: 1px;
+}
+
+
+div.top_small {font-size: 14pt; font-weight: bold;}
+
+div.image { text-align: center; font-size: 10pt; font-weight: bold; color: #000080; padding: 20px; }
+
+li {margin: 5px; margin-bottom: 10px;}
+
+#copyright
+{
+	font-size: 8pt;
+	color:#808080;
+}
+
+div.remark {font-weight: bold; padding: 10px; border: 2px solid #ff0000; background-color: #E0E0E0; margin-left: 20px; margin-right: 20px; margin-top: 20px; margin-bottom: 20px; }
+
+div.code, pre { margin-left: 20px; width: 90%; margin-bottom: 20px; font-family: Courier New, Fixedsys, MS Serif, sans-serif; font-size: 10pt; border: 1px solid #B1DFF8; font-weight: normal; }
+
+td.ref_code { width: 100%; font-family: Courier New, Fixedsys, MS Serif, sans-serif; font-size: 10pt; border: 1px solid #EEEEEE; }
+
+table.std { border: 1px solid #ADADAD; border-collapse: collapse; margin: 0px}
+table.std td { border-bottom: 1px solid #ADADAD; vertical-align: top; padding-left:5px;}
+
+table.copyright { font-family: Helvetica, Arial, Verdana, sans-serif; font-size: 7pt;}
+
+td.widget_desc { vertical-align: top; padding-bottom: 30px; padding-left: 5px;}
+
+td.attrib_desc { font-weight: bold; }

@@ -1,0 +1,40 @@
+<html>
+	<head>
+		<title>RapidBATCH Befehlsreferenz :: REPEAT...[CONT] ... [BREAK] ... UNTIL</title>
+		<link rel="stylesheet" href="jmksf.css" type="text/css" />
+	</head>
+	<body>
+		<div id="top">
+			<img src="rb5.png" alt="RapidBATCH Logo" />
+			REPEAT...[CONT] ... [BREAK] ... UNTIL
+		</div>
+	
+		<div class="line">&nbsp;</div>
+	
+		<table cellspacing="10" width="100%">
+			<tr>
+				<td class="ref_label">Syntax:</td>
+				<td class="ref_syntax">REPEAT<br />&nbsp;&nbsp;{Anweisungsblock}<br />&nbsp;&nbsp;&nbsp;&nbsp;[CONT]<br />&nbsp;&nbsp;{Anweisungsblock}<br />&nbsp;&nbsp;&nbsp;&nbsp;[BREAK]<br />&nbsp;&nbsp;{Anweisungsblock}<br />UNTIL Abbruchbedingung</td>
+			</tr>
+			<tr>
+				<td class="ref_label">Beschreibung:</td>
+				<td>Mit REPEAT ... UNTIL l&auml;sst sich eine fussgesteuerte Schleife programmieren. Diese M&ouml;glichkeit gestattet es, bestimmte Anweisungen wiederholt auszuf&uuml;hren, bis die bei UNTIL gegebene Bedingung erfolgreich gepr&uuml;ft wird.<br /><br />Eine Bedingung (in diesem Fall eine Abbruchbedingung) ist ein Vergleich zweier Werte, wobei diese Werte auf gleich (=), ungleich (!), gr&ouml;sser-als (&gt;) und kleiner-als (&lt;) gepr&uuml;ft werden k&ouml;nnen. Zudem sind die Operatoren gr&ouml;ßer-gleich (&gt;=) und kleiner-gleich (&lt;=) m&ouml;glich.<br />Um mehr als zwei Bedingungen bei einer UNTIL-Anweisung zu &uuml;berp&uuml;fen, lassen sich mehrere Bedingungen mit den logischen Operatoren UND (&) und ODER (|) verkn&uuml;pfen, wobei der &-Operator nur TRUE zur&uuml;ckgibt, wenn alle mit diesem Operator verkn&uuml;pften Bedingungen erfolgreich gepr&uuml;ft wurden. Beim |-Operator muss eine der beiden Bedingungen (oder auch beide) das Ergebnis TRUE liefern.<br /><br />Wird die Abbruchbedingung nicht erreicht, endet die Ausf&uuml;hrung des Scripts in einer Endlos-Schleife.<br /><br />Um eine Schleife vorzeitig zu verlassen, verwenden Sie die Anweisung BREAK.<br />Die Anweisung CONT bewirkt, dass die Schleife ohne vorherige Pr&uuml;fung der bei UNTIL angegebenen Bedingung wiederholt wird (CONT bewirkt damit einen R&uuml;cksprung zum REPEAT der Schleife).</td>
+			</tr>
+			<tr>
+				<td class="ref_label">Beispiele:</td>
+				<td class="ref_code"><!-- CODE BEGIN --><font color="#000080">[i]</font> = 0<br /><b>repeat</b><br />&nbsp;&nbsp;&nbsp;&nbsp;<font color="#000080">[i]</font> + <font color="#0000ff">'1'</font><br />&nbsp;&nbsp;&nbsp;&nbsp;echo <font color="#0000ff">'Durchlauf: '</font> # <font color="#000080">[i]</font><br /><b>until</b> <font color="#000080">[i]</font> = <font color="#0000ff">'10'</font><br /><br /><font color="#808080">rem Schleifenbedingung mit Bedingungsverkn&uuml;pfung</font><br /><font color="#000080">[a]</font> = <font color="#0000ff">'0'</font><br /><font color="#000080">[b]</font> = <font color="#0000ff">'0'</font><br /><b>repeat</b><br />&nbsp;&nbsp;&nbsp;&nbsp;<font color="#000080">[a]</font> + <font color="#0000ff">'1'</font><br />&nbsp;&nbsp;&nbsp;&nbsp;<font color="#000080">[b]</font> + <font color="#0000ff">'2'</font><br /><b>until</b> <font color="#000080">[a]</font> &gt; <font color="#0000ff">'10'</font> & <font color="#000080">[b]</font> &gt; <font color="#0000ff">'20'</font><br /><br /><font color="#808080">rem Schleife mit BREAK-Anweisung</font><br /><font color="#000080">[i]</font> = 0<br /><b>repeat</b><br />&nbsp;&nbsp;&nbsp;&nbsp;<font color="#000080">[i]</font> + <font color="#0000ff">'1'</font><br /><font color="#808080">&nbsp;&nbsp;&nbsp;&nbsp;rem Verlassen der Schleife wenn [i] gr&ouml;ßer 5 ist</font><br />&nbsp;&nbsp;&nbsp;&nbsp;<b>if</b> <font color="#000080">[i]</font> &gt; <font color="#0000ff">'5'</font> <b>break</b><br />&nbsp;&nbsp;&nbsp;&nbsp;echo <font color="#0000ff">'Durchlauf: '</font> # <font color="#000080">[i]</font><br /><b>until</b> <font color="#000080">[i]</font> = <font color="#0000ff">'10'</font><br /><br /><font color="#808080">rem Schleife mit CONT-Anweisung</font><br /><font color="#000080">[i]</font> = 0<br /><b>repeat</b><br />&nbsp;&nbsp;&nbsp;&nbsp;<font color="#000080">[i]</font> + <font color="#0000ff">'1'</font><br /><font color="#808080">&nbsp;&nbsp;&nbsp;&nbsp;rem Wenn [i] den Wert 5 enth&auml;lt, Schleife wiederholen</font><br />&nbsp;&nbsp;&nbsp;&nbsp;<b>if</b> <font color="#000080">[i]</font> = <font color="#0000ff">'5'</font> <b>cont</b><br />&nbsp;&nbsp;&nbsp;&nbsp;echo <font color="#0000ff">'Durchlauf: '</font> # <font color="#000080">[i]</font><br /><b>until</b> <font color="#000080">[i]</font> = <font color="#0000ff">'10'</font><br /><!-- CODE END --></td>
+			</tr>
+			<tr>
+				<td class="ref_label">Bemerkungen:</td>
+				<td>REPEAT...UNTIL-Schleifen k&ouml;nnen beliebig ineinander verschachtelt werden.<br /><br />Die Anweisungen BREAK und CONT d&uuml;rfen nur innerhalb von Schleifen verwendet werden.</td>
+			</tr>
+		</table>
+	
+		<div class="line">&nbsp;</div>
+	
+		<div id="copyright">
+			Copyright &copy; 2000-2006 by J.M.K S.F. Software Technologies, Jan Max Meyer<br />
+			All rights reserved.
+		</div>
+	</body>
+</html>

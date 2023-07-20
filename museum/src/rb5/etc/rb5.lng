@@ -1,0 +1,32 @@
+;Language Definition file for RapidBATCH 5.0 Interpreter, version 1.2.x
+;LANGUAGE: ENGLISH
+
+;Debug Dialog
+RBI_Debug_Mode_Trace=Trace Mode
+RBI_Debug_Mode_Step=Step Mode
+RBI_Debug_Button_Step=&Step
+RBI_Debug_Button_StepInto=Step &into
+RBI_Debug_Button_Trace=&Trace
+RBI_Debug_Button_SetVar=S&et
+RBI_Debug_Button_Halt=St&op
+RBI_Debug_LineInfo=File %s, Line %d
+
+;Error messages
+RBI_ErrorLine=Error #%0.2d: %s%s\nFile: %s, Line: %d\n\nScript execution is now terminated.
+RBI_Error_0=Parse error - Misplaced character
+RBI_Error_1=Unknown instruction: 
+RBI_Error_2=Parameter expected at 
+RBI_Error_3=Label out of range: 
+RBI_Error_4=Label not found: 
+RBI_Error_5=ENDPROC without PROC
+RBI_Error_6=ENDFUNC without FUNC
+RBI_Error_7=Include file not found: 
+RBI_Error_8=Use of RET out of a function or procedure
+RBI_Error_9=PROC without closing ENDPROC
+RBI_Error_10=FUNC without closing ENDFUNC
+RBI_Error_11=Double definition of Procedure or Function: 
+RBI_Error_12=UNTIL without REPEAT
+RBI_Error_13=CONT without REPEAT
+RBI_Error_14=Misplaced procedure definition
+RBI_Error_15=Invalid variable name: 
+;end of definition

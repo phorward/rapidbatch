@@ -1,0 +1,4 @@
+#define IDI_PROGICON 1000
+
+IDI_PROGICON    ICON   DISCARDABLE   "rb5.ico"
+1    24     "manifest.xml"

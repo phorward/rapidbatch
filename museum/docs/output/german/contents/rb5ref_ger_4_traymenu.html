@@ -1,0 +1,40 @@
+<html>
+	<head>
+		<title>RapidBATCH Befehlsreferenz :: TRAYMENU</title>
+		<link rel="stylesheet" href="jmksf.css" type="text/css" />
+	</head>
+	<body>
+		<div id="top">
+			<img src="rb5.png" alt="RapidBATCH Logo" />
+			TRAYMENU
+		</div>
+	
+		<div class="line">&nbsp;</div>
+	
+		<table cellspacing="10" width="100%">
+			<tr>
+				<td class="ref_label">Syntax:</td>
+				<td class="ref_syntax">TRAYMENU Auswahl = Hilfstext, Elementenliste</td>
+			</tr>
+			<tr>
+				<td class="ref_label">Beschreibung:</td>
+				<td>Zeigt ein Programm-Men&uuml; als Icon in der Windows-Taskleiste an, aus dem der Benutzer via Rechtsklick ein Men&uuml; anzeigen lassen und einen Men&uuml;punkt ausw&auml;hlen kann.<br /><br />Als Parameter erwartet diese Funktion einen Hilfstext, der als Tooltip angezeigt wird, sobald die Maus &uuml;ber das Tray-Icon bewegt wird, sowie eine Liste an Elementen, die zur Auswahl im Men&uuml; angezeigt werden. Jedes Element wird dabei durch das in der Variablen [std_sep] definierte Separationszeichen getrennt, dies ist normalerweise das Pipe-Zeichen (|).<br /><br />R&uuml;ckgabewert der Funktion ist der gew&auml;hle Men&uuml;punkt.<br />Klickt der Benutzer das Icon mit der linken Maustaste an, wird ein Leerstring zur&uuml;ckgegeben.<br /><img style="padding-top: 30px;" src="img/traymenu_open.gif" alt="Verwendung eines Tray-Men&uuml;s" title="Screenshot" /></td>
+			</tr>
+			<tr>
+				<td class="ref_label">Beispiele:</td>
+				<td class="ref_code">traymenu <font color="#000080">[menu]</font> = <font color="#0000ff">'Was m&ouml;chten Sie essen?'</font>, <font color="#0000ff">'Pizza|Pommes Frites|D&ouml;ner|Hamburger|Hot Dog'</font><br /><br /><b>if</b> <font color="#000080">[menu]</font> ! <font color="#0000ff">''</font><br />&nbsp;&nbsp;&nbsp;&nbsp;echo <font color="#0000ff">'Ihre Auswahl lautet: '</font> # <font color="#000080">[menu]</font><br /><b>else</b><br />&nbsp;&nbsp;&nbsp;&nbsp;echo <font color="#0000ff">'Sie haben keine Auwahl getroffen.'</font><br /><b>endif</b></td>
+			</tr>
+			<tr>
+				<td class="ref_label">Bemerkungen:</td>
+				<td>In dem Men&uuml;, was beim Rechtsklick angezeigt wird, k&ouml;nnen auch Shortcuts definiert werden, die durch Tastendruck angesteuert werden k&ouml;nnen. Um einen Shortcut-Key zu definieren, schreiben Sie einfach ein &-Zeichen vor das jeweilige Element, z.B. "B&eenden". Hier wird das "e" unterstrichen dargestellt und kann mit ALT+e ausgew&auml;hlt werden.<br />Im Men&uuml; kann auch eine Trennlinie angegeben werden, geben Sie dazu einfach einen Bindestrich (-) als Element in der Liste an.<br /><br />Das Icon kann global f&uuml;r alle Dialoge &uuml;ber die Variable [app_icon] auf eine externe .ICO-Datei gesetzt werden.</td>
+			</tr>
+		</table>
+	
+		<div class="line">&nbsp;</div>
+	
+		<div id="copyright">
+			Copyright &copy; 2000-2006 by J.M.K S.F. Software Technologies, Jan Max Meyer<br />
+			All rights reserved.
+		</div>
+	</body>
+</html>

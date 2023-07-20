@@ -1,0 +1,40 @@
+<html>
+	<head>
+		<title>RapidBATCH Language Reference :: GETPOS</title>
+		<link rel="stylesheet" href="jmksf.css" type="text/css" />
+	</head>
+	<body>
+		<div id="top">
+			<img src="rb5.png" alt="RapidBATCH Logo" />
+			GETPOS
+		</div>
+	
+		<div class="line">&nbsp;</div>
+	
+		<table cellspacing="10" width="100%">
+			<tr>
+				<td class="ref_label">Syntax:</td>
+				<td class="ref_syntax">GETPOS position = expression, substr, count</td>
+			</tr>
+			<tr>
+				<td class="ref_label">Description:</td>
+				<td>Finds the specified sub-string (<i>substr</i>-parameter) within the string-expression and returns its character position.<br />By using the count-parameter it is also possible to determine the as <i>count</i>-parameter specified appearance of <i>substr</i> within the string-expression.<br /><br />If the string defined as <i>substr</i> was not found within the string-expresson, '0' is returned.</td>
+			</tr>
+			<tr>
+				<td class="ref_label">Examples:</td>
+				<td class="ref_code">getpos <font color="#000080">[pos]</font> = <font color="#0000ff">'Hello World'</font>, <font color="#0000ff">'llo'</font>, <font color="#0000ff">'1'</font><br />echo <font color="#0000ff">'Position is: '</font> # <font color="#000080">[pos]</font><br /><br />getpos <font color="#000080">[pos]</font> = <font color="#0000ff">'Hello World'</font>, <font color="#0000ff">'l'</font>, <font color="#0000ff">'3'</font><br />echo <font color="#0000ff">'Position is: '</font> # <font color="#000080">[pos]</font></td>
+			</tr>
+			<tr>
+				<td class="ref_label">Remarks:</td>
+				<td>If the variable [case_sensitivity] is set to '0', GETPOS will ignore upper-/lower-case order within the substr-parameter, so that also equal strings in another case orders are considered.</td>
+			</tr>
+		</table>
+	
+		<div class="line">&nbsp;</div>
+	
+		<div id="copyright">
+			Copyright &copy; 2000-2006 by J.M.K S.F. Software Technologies, Jan Max Meyer<br />
+			All rights reserved.
+		</div>
+	</body>
+</html>

@@ -1,0 +1,40 @@
+<html>
+	<head>
+		<title>RapidBATCH Befehlsreferenz :: SHELL</title>
+		<link rel="stylesheet" href="jmksf.css" type="text/css" />
+	</head>
+	<body>
+		<div id="top">
+			<img src="rb5.png" alt="RapidBATCH Logo" />
+			SHELL
+		</div>
+	
+		<div class="line">&nbsp;</div>
+	
+		<table cellspacing="10" width="100%">
+			<tr>
+				<td class="ref_label">Syntax:</td>
+				<td class="ref_syntax">SHELL Programmpfad, Anzeigemodus</td>
+			</tr>
+			<tr>
+				<td class="ref_label">Beschreibung:</td>
+				<td>F&uuml;hrt ein externes Programm aus.<br /><br />Das Script wird dabei fortgef&uuml;hrt, so dass das gestartete Programm mit dem Script parallel l&auml;uft (Multitasking). Die Anweisung erwartet einen Programmpfad (.EXE, .COM oder .BAT) und einen Anzeigemodus, der entweder durch eine Zahl oder eine der build-in Konstanten repr&auml;sentiert wird. M&ouml;gliche Werte sind SHOW (0), HIDE (1), MAXIMIZED (2) und MINIMIZED (3).</td>
+			</tr>
+			<tr>
+				<td class="ref_label">Beispiele:</td>
+				<td class="ref_code">shell <font color="#0000ff">'c:\windows\calc.exe'</font>, <font color="#0000ff">'show'</font><br />shell <font color="#0000ff">'c:\windows\desktop\test.bat'</font>, <font color="#0000ff">'hide'</font></td>
+			</tr>
+			<tr>
+				<td class="ref_label">Bemerkungen:</td>
+				<td>[errorcode] erh&auml;lt einen Wert > 32 (die Prozess-ID des Programms), wenn das Programm erfolgreich gestartet werden konnte.</td>
+			</tr>
+		</table>
+	
+		<div class="line">&nbsp;</div>
+	
+		<div id="copyright">
+			Copyright &copy; 2000-2006 by J.M.K S.F. Software Technologies, Jan Max Meyer<br />
+			All rights reserved.
+		</div>
+	</body>
+</html>

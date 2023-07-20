@@ -1,0 +1,31 @@
+;Language Definition file for RapidBATCH 5.0 Interpreter, version 1.2.x
+;LANGUAGE: GERMAN
+
+RBI_Debug_Mode_Trace=Trace Modus
+RBI_Debug_Mode_Step=Step Modus
+RBI_Debug_Button_Step=&Schritt
+RBI_Debug_Button_StepInto=&Prozedur
+RBI_Debug_Button_Trace=&Verfolgung
+RBI_Debug_Button_SetVar=S&etze
+RBI_Debug_Button_Halt=&Beenden
+RBI_Debug_LineInfo=Script %s, Zeile %d
+
+RBI_ErrorLine=Fehler #%0.2d: %s%s\nScript: %s, Zeile: %d\n\nDie Scriptausführung wird beendet.
+RBI_Error_0=Parserfehler - Falsches Zeichen
+RBI_Error_1=Unbekannte Anweisung: 
+RBI_Error_2=Parameter erwartet bei 
+RBI_Error_3=Sprungmarke ausserhalb der Reichweite: 
+RBI_Error_4=Sprungmarke nicht gefunden: 
+RBI_Error_5=ENDPROC ausserhalb einer Prozedurdefinition
+RBI_Error_6=ENDFUNC ausserhalb einer Funktionsdefinition
+RBI_Error_7=Include-Datei nicht gefunden: 
+RBI_Error_8=Verwendung von RET ausserhalb einer Prozedur
+RBI_Error_9=PROC ohne ENDPROC
+RBI_Error_10=FUNC ohne ENDFUNC
+RBI_Error_11=Doppelte Funktions- oder Prozedurdefinition: 
+RBI_Error_12=UNTIL ohne REPEAT
+RBI_Error_13=CONT ohne REPEAT
+RBI_Error_14=Prozedurdefinition an dieser Stelle nicht möglich
+RBI_Error_15=Unerlaubter Variablenname: 
+
+;end of definition

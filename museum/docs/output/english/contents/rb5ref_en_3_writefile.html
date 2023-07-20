@@ -1,0 +1,40 @@
+<html>
+	<head>
+		<title>RapidBATCH Language Reference :: WRITEFILE</title>
+		<link rel="stylesheet" href="jmksf.css" type="text/css" />
+	</head>
+	<body>
+		<div id="top">
+			<img src="rb5.png" alt="RapidBATCH Logo" />
+			WRITEFILE
+		</div>
+	
+		<div class="line">&nbsp;</div>
+	
+		<table cellspacing="10" width="100%">
+			<tr>
+				<td class="ref_label">Syntax:</td>
+				<td class="ref_syntax">WRITEFILE filename, expression</td>
+			</tr>
+			<tr>
+				<td class="ref_label">Description:</td>
+				<td>Writes the specified string-expression to the file <i>filename</i>, by appending the string-expression as a new line to the file. The content of the file is not overwritten, but enhanced. If the file does not exists, it is automatically created.</td>
+			</tr>
+			<tr>
+				<td class="ref_label">Examples:</td>
+				<td class="ref_code">writefile <font color="#0000ff">'c:\test.txt'</font>, <font color="#0000ff">'Hello World'</font></td>
+			</tr>
+			<tr>
+				<td class="ref_label">Remarks:</td>
+				<td>The variable [errorcode] gets '-1', if the file could not be created or written, else '0'.<br /><br />By default, WRITEFILE automatically appends a Windows-linebreak at the end of the string to be written. It is possible to dynamically change this end-of-line value to be written via the variable [eol], so Unix- or Mac-formatted files can be written same like self-defined file formats.<br /><br />Use the PUTFILE-instruction to write data on binary-level to a file (e.g. a binary-file).</td>
+			</tr>
+		</table>
+	
+		<div class="line">&nbsp;</div>
+	
+		<div id="copyright">
+			Copyright &copy; 2000-2006 by J.M.K S.F. Software Technologies, Jan Max Meyer<br />
+			All rights reserved.
+		</div>
+	</body>
+</html>

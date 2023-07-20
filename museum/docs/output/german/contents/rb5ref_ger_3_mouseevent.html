@@ -1,0 +1,40 @@
+<html>
+	<head>
+		<title>RapidBATCH Befehlsreferenz :: MOUSEEVENT</title>
+		<link rel="stylesheet" href="jmksf.css" type="text/css" />
+	</head>
+	<body>
+		<div id="top">
+			<img src="rb5.png" alt="RapidBATCH Logo" />
+			MOUSEEVENT
+		</div>
+	
+		<div class="line">&nbsp;</div>
+	
+		<table cellspacing="10" width="100%">
+			<tr>
+				<td class="ref_label">Syntax:</td>
+				<td class="ref_syntax">MOUSEEVENT Ereignis-Befehl, Positionsangabe</td>
+			</tr>
+			<tr>
+				<td class="ref_label">Beschreibung:</td>
+				<td>Simuliert Mausaktionen.<br /><br />Die Windows-Maus wird dabei von RapidBATCH ferngesteuert, es kann also eine komplette Automatisierung von Mausbewegungen, Klicks und anderen Mausereignissen erfolgen.<br /><br />Als Parameter werden ein Event-Kommando sowie die jeweilige X- und Y-Koordinate (in Pixel) als Stringausdruck im Format &quot;X-Position|Y-Position&quot; erwartet (wobei das Pipe-Zeichen das als Standard-Listenseparator definierte Zeichen repr&auml;sentiert). Dieses Event-Kommando wird durch eine Zahl oder die jeweilige build-in Konstante repr&auml;sentiert, und simuliert Maustastenereignisse.<ul>  <li>'0' oder MOVE (Maus nur bewegen, kein Tastendruck)</li>  <li>'1' oder CLICK_LEFT (einfachen Linksklick simulieren)</li>  <li>'2' oder DBLCLICK_LEFT (doppelten Linksklick simulieren)</li>  <li>'3' oder CLICK_RIGHT (einfachen Rechtsklick simulieren)</li>  <li>'4' oder DBLCLICK_RIGHT (doppelten Rechtsklick simulieren)</li>  <li>'5' oder DOWN_LEFT (Linke Maustaste gedr&uuml;ckt halten)</li>  <li>'6' oder UP_LEFT (Linke Maustaste loslassen)</li>  <li>'7' oder DOWN_RIGHT  (Rechte Maustaste gedr&uuml;ckt halten)</li>  <li>'8' oder UP_RIGHT (Rechte Maustaste loslassen)</li></ul></td>
+			</tr>
+			<tr>
+				<td class="ref_label">Beispiele:</td>
+				<td class="ref_code">infobox <font color="#0000ff">'MouseEvent-Demo'</font>, <font color="#0000ff">'show'</font><br />wait <font color="#0000ff">'1000'</font><br /><br /><font color="#808080">rem Prozedur zur Anzeige der X/Y-Koordinaten</font><br /><b>proc</b> viewpos<br />&nbsp;&nbsp;&nbsp;&nbsp;infobox <font color="#0000ff">'X: '</font> # <font color="#000080">[mouse_x]</font> # <font color="#0000ff">' Y: '</font> # <font color="#000080">[mouse_y]</font>, <font color="#0000ff">'show'</font><br />&nbsp;&nbsp;&nbsp;&nbsp;wait <font color="#0000ff">'1'</font><br /><b>endproc</b><br /><br /><font color="#808080">rem Bewege Mauszeiger horizontal</font><br /><font color="#000080">[i]</font> = <font color="#000080">[ScreenWidth]</font><br /><b>repeat</b><br />&nbsp;&nbsp;&nbsp;&nbsp;mouseevent <font color="#0000ff">'move'</font>, <font color="#000080">[i]</font> # <font color="#0000ff">'|1'</font><br />&nbsp;&nbsp;&nbsp;&nbsp;viewpos<br />&nbsp;&nbsp;&nbsp;&nbsp;<font color="#000080">[i]</font> - <font color="#0000ff">'1'</font><br /><b>until</b> <font color="#000080">[i]</font> = <font color="#0000ff">'0'</font><br /><br /><font color="#808080">rem Bewege Mauszeiger vertikal</font><br /><font color="#000080">[i]</font> = <font color="#0000ff">'0'</font><br /><b>repeat</b><br />&nbsp;&nbsp;&nbsp;&nbsp;<font color="#000080">[i]</font> + <font color="#0000ff">'1'</font><br />&nbsp;&nbsp;&nbsp;&nbsp;mouseevent <font color="#0000ff">'move'</font>, <font color="#0000ff">'1|'</font> # <font color="#000080">[i]</font><br />&nbsp;&nbsp;&nbsp;&nbsp;viewpos<br /><b>until</b> <font color="#000080">[i]</font> = <font color="#000080">[ScreenHeight]</font><br /><br /><font color="#808080">rem Bewege Mauszeiger diagonal</font><br /><font color="#000080">[i]</font> = <font color="#0000ff">'0'</font><br /><b>repeat</b><br />&nbsp;&nbsp;&nbsp;&nbsp;<font color="#000080">[i]</font> + <font color="#0000ff">'1'</font><br />&nbsp;&nbsp;&nbsp;&nbsp;mouseevent <font color="#0000ff">'move'</font>, <font color="#000080">[i]</font> # <font color="#0000ff">'|'</font> # <font color="#000080">[i]</font><br />&nbsp;&nbsp;&nbsp;&nbsp;viewpos<br /><b>until</b> <font color="#000080">[i]</font> = <font color="#000080">[ScreenWidth]</font><br /><b>end</b></td>
+			</tr>
+			<tr>
+				<td class="ref_label">Bemerkungen:</td>
+				<td>Verwenden Sie die <a href="rb5ref_ger_3_sendkeys.html">SENDKEYS</a>-Anweisung, um Tastenanschl&auml;ge zu simulieren.<br /><br />Alternativ k&ouml;nnen auch die vordefinierten Variablen [mouse_x] und [mouse_y] dazu verwendet werden, die Mausposition zu ver&auml;ndern.</td>
+			</tr>
+		</table>
+	
+		<div class="line">&nbsp;</div>
+	
+		<div id="copyright">
+			Copyright &copy; 2000-2006 by J.M.K S.F. Software Technologies, Jan Max Meyer<br />
+			All rights reserved.
+		</div>
+	</body>
+</html>

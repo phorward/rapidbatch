@@ -1,0 +1,40 @@
+<html>
+	<head>
+		<title>RapidBATCH Language Reference :: OPENBOX, SAVEBOX</title>
+		<link rel="stylesheet" href="jmksf.css" type="text/css" />
+	</head>
+	<body>
+		<div id="top">
+			<img src="rb5.png" alt="RapidBATCH Logo" />
+			OPENBOX, SAVEBOX
+		</div>
+	
+		<div class="line">&nbsp;</div>
+	
+		<table cellspacing="10" width="100%">
+			<tr>
+				<td class="ref_label">Syntax:</td>
+				<td class="ref_syntax">OPENBOX file = dialog-title, filter<br />SAVEBOX file = dialog-title, filter</td>
+			</tr>
+			<tr>
+				<td class="ref_label">Description:</td>
+				<td>OPENBOX provides a standard dialog to open a file.<br />OPENBOX provides a standard dialog to save a file.<br /><br />As parameters, both functions expect a dialog-title, displayed in the particular dialog's title bar, and a file filter, that is specified the following way:<br /><br />filter-name|filter<br /><br />An example-filter for TXT-files is: &quot;Text files|*.txt&quot;.<br />To provide different filters (where one of them can be selected and set by the user at dialog run-time), the different filters can be specified as a list like in the following example: &quot;Text files|*.txt|Word files|*.doc&quot; ...<br /><br />To manage more than one filter under one filter-name, the filter can be specified like this:<br />"Executable files|*.exe;*.com;*.bat".<br /><br />Return-value of the function is the absolute filename, including path, the user specified. If the user hits the dialog's close-button or the Cancel-button, the particular function returns an empty-string.<br /><br />If the pre-declared variable [OpenBox_MultiSel] (for OPENBOX) or [SaveBox_MultiSel] (for SAVEBOX) is set to [true] or '0', the particular dialog does also support multiple selection of files. In this case, the function call returns a list of filenames, where the first element is the absolute path of the directory the selected files are saved in. All trailing list elements are the filenames only.<br /><br /><img style="padding-top: 30px;" src="img/openbox.gif" alt="Bild eines OPENBOX-Dialoges" title="Screenshot" /></td>
+			</tr>
+			<tr>
+				<td class="ref_label">Examples:</td>
+				<td class="ref_code"><font color="#808080">rem single file selection</font><br />openbox <font color="#000080">[file]</font> = <font color="#0000ff">'Please select a file...'</font>, <font color="#0000ff">'Text files|*.txt'</font><br /><b>if</b> <font color="#000080">[file]</font> ! <font color="#0000ff">''</font><br />&nbsp;&nbsp;&nbsp;&nbsp;echo <font color="#0000ff">'You selected: '</font> # <font color="#000080">[file]</font><br /><b>else</b><br />&nbsp;&nbsp;&nbsp;&nbsp;echo <font color="#0000ff">'No file selected.'</font><br />&nbsp;&nbsp;&nbsp;&nbsp;<b>halt</b><br /><b>endif</b><br /><br /><font color="#808080">rem multiple file selection</font><br /><font color="#000080">[OpenBox_MultiSel]</font> = <font color="#000080">[true]</font><br /><br />openbox <font color="#000080">[file_list]</font> = <font color="#0000ff">'Select multiple files'</font>, <font color="#0000ff">'All files|*.*'</font><br /><b>if</b> <font color="#000080">[file_list]</font> ! <font color="#0000ff">''</font><br />&nbsp;&nbsp;&nbsp;&nbsp;gettok <font color="#000080">[path]</font> = <font color="#000080">[file_list]</font>, <font color="#0000ff">'|'</font>, <font color="#0000ff">'1'</font><br /><br />&nbsp;&nbsp;&nbsp;&nbsp;<font color="#000080">[i]</font> = <font color="#0000ff">'1'</font><br />&nbsp;&nbsp;&nbsp;&nbsp;<b>repeat</b><br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#000080">[i]</font> + <font color="#0000ff">'1'</font><br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;gettok <font color="#000080">[file]</font> = <font color="#000080">[file_list]</font>, <font color="#0000ff">'|'</font>, <font color="#000080">[i]</font><br /><br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>if</b> <font color="#000080">[file]</font> ! <font color="#0000ff">''</font><br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;echo <font color="#0000ff">'File No. '</font> # (<font color="#000080">[i]</font> - <font color="#0000ff">'1'</font>) # <font color="#0000ff">': '</font> # <font color="#000080">[path]</font> # <font color="#0000ff">'\'</font> # <font color="#000080">[file]</font><br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>elseif</b> <font color="#000080">[file]</font> = <font color="#0000ff">''</font> & <font color="#000080">[i]</font> = <font color="#0000ff">'2'</font><br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;echo <font color="#0000ff">'You selected: '</font> # <font color="#000080">[path]</font><br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>endif</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br />&nbsp;&nbsp;&nbsp;&nbsp;<b>until</b> <font color="#000080">[file]</font> = <font color="#0000ff">''</font><br /><b>endif</b></td>
+			</tr>
+			<tr>
+				<td class="ref_label">Remarks:</td>
+				<td>The pipe-character (|) is the standard list separator to separate items in a RapidBACH list string. This can be modified by changing the content of the variable [std_sep].</td>
+			</tr>
+		</table>
+	
+		<div class="line">&nbsp;</div>
+	
+		<div id="copyright">
+			Copyright &copy; 2000-2006 by J.M.K S.F. Software Technologies, Jan Max Meyer<br />
+			All rights reserved.
+		</div>
+	</body>
+</html>

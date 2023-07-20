@@ -1,0 +1,40 @@
+<html>
+	<head>
+		<title>RapidBATCH Befehlsreferenz :: LETREGVAL</title>
+		<link rel="stylesheet" href="jmksf.css" type="text/css" />
+	</head>
+	<body>
+		<div id="top">
+			<img src="rb5.png" alt="RapidBATCH Logo" />
+			LETREGVAL
+		</div>
+	
+		<div class="line">&nbsp;</div>
+	
+		<table cellspacing="10" width="100%">
+			<tr>
+				<td class="ref_label">Syntax:</td>
+				<td class="ref_syntax">LETREGVAL Datentyp, Hauptschl&uuml;ssel, Unterschl&uuml;ssel, Wertbezeichner, Wert</td>
+			</tr>
+			<tr>
+				<td class="ref_label">Beschreibung:</td>
+				<td>LETREGVAL schreibt einen Wert in die Registry.<br /><br />Parameterwerte sind der Datentyp, der Hauptschl&uuml;ssel, der Unterschl&uuml;ssel, der Bezeichner des Registry-Wertes und der zu schreibende Wert.<br /><br />Existiert der Wert noch nicht in der Registry, so wird er neu erstellt, andernfalls ge&auml;ndert.<br /><br />Als Datentyp k&ouml;nnen die build-in Konstanten &quot;STRING&quot; (Standard), &quot;DWORD&quot; und &quot;BINARY&quot; angeben werden (auch repr&auml;sentiert durch die numerischen Werte 0, 1 und 2). Wird als Datentyp BINARY verwendet, so muss der Parameter <i>Wert</i> wie bei der Anweisung PUTFILE als eine ASCII-Zeichencodeliste &uuml;bergeben wird, in der jeder zu schreibende Wert durch das Standard-Separationszeichen voneinander getrennt ist.<br /><br />Als Hauptschl&uuml;ssel sind folgende Werte als build-in Konstanten definiert:<br /><ul>  <li>'CLASSES_ROOT' f&uuml;r HKEY_CLASSES_ROOT</li>  <li>'CURRENT_CONFIG' f&uuml;r HKEY_CURRENT_CONFIG</li>  <li>'CURRENT_USER' f&uuml;r HKEY_CURRENT_USER</li>  <li>'LOCAL_MACHINE' f&uuml;r HKEY_LOCAL_MACHINE</li>  <li>'USERS' f&uuml;r HKEY_USERS</li>  <li>'DYN_DATA' f&uuml;r HKEY_DYN_DATA</li></ul>Der Unterschl&uuml;ssel gibt den Pfad des Unterschl&uuml;ssels, jeweils getrennt durch Backslash (\), an.<br />Als Wertbezeichner wird ein frei definierbarer Bezeichner f&uuml;r den Wert definiert, &uuml;ber den der Wert sp&auml;ter wieder ausgelesen werden kann.<br />Der letzte Parameter beinhaltet dann den Wert, der unter der Bezeichnung des Wertbezeichners in die Registry geschrieben wird, im als Datentyp entsprechend angegebenem Format.</td>
+			</tr>
+			<tr>
+				<td class="ref_label">Beispiele:</td>
+				<td class="ref_code">letregval <font color="#0000ff">'STRING'</font>, <font color="#0000ff">'CURRENT_USER'</font>, <font color="#0000ff">'Software\jmksf\RapidBATCH'</font>, <font color="#0000ff">'HelloWorld'</font>, <font color="#0000ff">'Hello World by RapidBATCH ;)'</font><br /><br /><b>if</b> <font color="#000080">[errorcode]</font> = <font color="#0000ff">'0'</font><br />&nbsp;&nbsp;&nbsp;&nbsp;echo <font color="#0000ff">'Wert wurde erfolgreich geschrieben!'</font><br /><b>else</b><br />&nbsp;&nbsp;&nbsp;&nbsp;echo <font color="#0000ff">'Fehler beim Schreiben.'</font><br />&nbsp;&nbsp;&nbsp;&nbsp;<b>halt</b><br /><b>endif</b><br /><br /><font color="#808080">rem Schreiben von Bin&auml;r 85 / Hexadezimal 55</font><br />getchr <font color="#000080">[bin]</font> = <font color="#0000ff">'85'</font><br />letregval <font color="#0000ff">'BINARY'</font>, <font color="#0000ff">'CURRENT_USER'</font>, <font color="#0000ff">'Software\jmksf\RapidBATCH'</font>, <font color="#0000ff">'bin85'</font>, <font color="#000080">[bin]</font><br /><br /><b>if</b> <font color="#000080">[errorcode]</font> = <font color="#0000ff">'0'</font><br />&nbsp;&nbsp;&nbsp;&nbsp;echo <font color="#0000ff">'Wert wurde erfolgreich geschrieben!'</font><br /><b>else</b><br />&nbsp;&nbsp;&nbsp;&nbsp;echo <font color="#0000ff">'Fehler beim Schreiben.'</font><br />&nbsp;&nbsp;&nbsp;&nbsp;<b>halt</b><br /><b>endif</b><br /><br /><font color="#808080">rem Auf&auml;umen...</font><br />delregval <font color="#0000ff">'CURRENT_USER'</font>, <font color="#0000ff">'Software\jmksf\RapidBATCH'</font>, <font color="#0000ff">'HelloWorld'</font><br /><b>if</b> <font color="#000080">[errorcode]</font> = <font color="#0000ff">'-1'</font> echo <font color="#0000ff">'Fehler beim L&ouml;schen von Registry-Wert'</font><br />delregval <font color="#0000ff">'CURRENT_USER'</font>, <font color="#0000ff">'Software\jmksf\RapidBATCH'</font>, <font color="#0000ff">'bin85'</font><br /><b>if</b> <font color="#000080">[errorcode]</font> = <font color="#0000ff">'-1'</font> echo <font color="#0000ff">'Fehler beim L&ouml;schen von Registry-Wert'</font><br /><br /><b>end</b></td>
+			</tr>
+			<tr>
+				<td class="ref_label">Bemerkungen:</td>
+				<td>Wenn LETREGVAL fehlschlug, wird an [errorcode] der Wert -1, ansonsten 0 &uuml;bergeben.<br />Verwenden Sie <a href="rb5ref_ger_3_getregval.html">GETREGVAL</a> und <a href="rb5ref_ger_3_delregval.html">DELREGVAL</a>, um Registry-Werte zu lesen oder zu l&ouml;schen.</td>
+			</tr>
+		</table>
+	
+		<div class="line">&nbsp;</div>
+	
+		<div id="copyright">
+			Copyright &copy; 2000-2006 by J.M.K S.F. Software Technologies, Jan Max Meyer<br />
+			All rights reserved.
+		</div>
+	</body>
+</html>

@@ -1,0 +1,24 @@
+<html>
+	<head>
+		<title>Verwendung externer Funktionen</title>
+		<link rel="stylesheet" href="jmksf.css" type="text/css"></link>
+	</head>
+
+	<body>
+		<div id="top">
+			<img src="rb5.png" alt="RapidBATCH Logo" />
+			Verwendung externer Funktionen
+		</div>
+		
+		<div class="line">&nbsp;</div>
+		
+		RapidBATCH verf&uuml;gt jetzt &uuml;ber eine Schnittstelle zu DLLs und ist damit leicht erweiterbar. Um diese Schnittstelle einfach und effizient zu halten, werden spezielle Anforderungen an die aufzurufenden DLLs gestellt. Es kann daher nicht jede DLL benutzt werden, sondern die DLLs m&uuml;ssen speziell zur Benutzung mit RapidBATCH programmiert sein.<br /><br />Es gibt inzwischen einige fertige DLLs f&uuml;r RapidBATCH, die kostenlos benutzt werden k&ouml;nnen. Einige von ihnen finden sich bereits im aktuellen RapidBATCH Softwarepaket, andere lassen sich &uuml;ber das Internet meist kostenlos beziehen. Die Funktionen und wie sie benutzt werden ist je nach DLL unterschiedlich.<br />An dieser Stelle daher nur einige allgemeine Hinweise: Die EXT-Funktion versucht die angegebene DLL zu laden und dann die angegebene Funktion aufzurufen. Wenn nur der Name der DLL angegeben wird (ohne Pfad), dann wird die DLL zuerst im Anwendungsverzeichnis gesucht und dann im aktuellen Verzeichnis, im Windows- und im System32-Verzeichnis sowie in allen Verzeichnissen, die im Suchpfad aufgef&uuml;hrt sind. Die genaue Reihenfolge h&auml;ngt vom Betriebssystem ab und kann bei Windows XP und Windows 2003 auch noch durch einen Registry-Eintrag ge&auml;ndert werden. Es wird aber immer zuerst das Anwendungsverzeichnis durchsucht. Dies ist das Verzeichnis, aus dem die EXE-Datei gestartet wurde (bei einem &uuml;bersetzten Script) oder bei interpretierten Scripts das RapidBATCH-Verzeichnis (das Verzeichnis, welches die Datei RBI32.EXE, den RapidBATCH Interpreter, enth&auml;lt).<br /><br />Nach dem Aufruf sollte die interne Variable [errorcode] gepr&uuml;ft werden. Wenn die DLL oder die Funktion nicht gefunden wurde, dann wird [errorcode] auf '-1' ([false]) gesetzt. Ansonsten enth&auml;lt [errorcode] einen von der DLL festgelegten Wert. Wichtig: Bei Funktionsnamen wird zwischen Groﬂ- und Kleinschreibung unterschieden! Der Funktionsname muss daher genau so geschrieben werden wie in der Dokumentation der DLL vorgegeben. Beim Namen der DLL wird die Schreibweise dagegen nicht ber&uuml;cksichtigt.<br /><br />
+
+		<div class="line">&nbsp;</div>
+
+		<div id="copyright">
+			Copyright &copy; 2000-2006 by J.M.K S.F. Software Technologies, Jan Max Meyer<br />
+			All rights reserved.
+		</div>
+	</body>
+</html>

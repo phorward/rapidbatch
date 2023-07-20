@@ -1,0 +1,40 @@
+<html>
+	<head>
+		<title>RapidBATCH Language Reference :: RANDVAR</title>
+		<link rel="stylesheet" href="jmksf.css" type="text/css" />
+	</head>
+	<body>
+		<div id="top">
+			<img src="rb5.png" alt="RapidBATCH Logo" />
+			RANDVAR
+		</div>
+	
+		<div class="line">&nbsp;</div>
+	
+		<table cellspacing="10" width="100%">
+			<tr>
+				<td class="ref_label">Syntax:</td>
+				<td class="ref_syntax">RANDVAR random-value = range</td>
+			</tr>
+			<tr>
+				<td class="ref_label">Description:</td>
+				<td>Generates a pseudo-random-number between 0 and the specified value <i>range</i> - 1.</td>
+			</tr>
+			<tr>
+				<td class="ref_label">Examples:</td>
+				<td class="ref_code"><font color="#808080">rem Generate random value...</font><br />randvar <font color="#000080">[random]</font> = <font color="#0000ff">'255'</font><br />echo <font color="#0000ff">'Random-value: '</font> # <font color="#000080">[random]</font></td>
+			</tr>
+			<tr>
+				<td class="ref_label">Remarks:</td>
+				<td>At the implementation of RANDVAR, the problem was noticed that the same set of random numbers sometimes is returned continual. This problem has been solved as far as possible, but it may happen that a muster of numbers is always re-generated. RANDVAR uses the system time as base for its numbers.</td>
+			</tr>
+		</table>
+	
+		<div class="line">&nbsp;</div>
+	
+		<div id="copyright">
+			Copyright &copy; 2000-2006 by J.M.K S.F. Software Technologies, Jan Max Meyer<br />
+			All rights reserved.
+		</div>
+	</body>
+</html>

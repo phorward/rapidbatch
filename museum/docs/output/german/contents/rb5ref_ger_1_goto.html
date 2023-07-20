@@ -1,0 +1,40 @@
+<html>
+	<head>
+		<title>RapidBATCH Befehlsreferenz :: GOTO</title>
+		<link rel="stylesheet" href="jmksf.css" type="text/css" />
+	</head>
+	<body>
+		<div id="top">
+			<img src="rb5.png" alt="RapidBATCH Logo" />
+			GOTO
+		</div>
+	
+		<div class="line">&nbsp;</div>
+	
+		<table cellspacing="10" width="100%">
+			<tr>
+				<td class="ref_label">Syntax:</td>
+				<td class="ref_syntax">GOTO label<br />.<br />.<br />.<br />%label</td>
+			</tr>
+			<tr>
+				<td class="ref_label">Beschreibung:</td>
+				<td>GOTO springt zu einem dort spezifizierten Label im Script. Dies erm&ouml;glicht &auml;usserst komplexe Programme, da Anweisungen wiederholt ausgef&uuml;hrt oder &uuml;bersprungen werden k&ouml;nnen. Ein Label ist durch ein vorangestelltes %-Zeichen im Code gekennzeichnet.<br /><br />Seit RapidBATCH 5.0 ist es auch m&ouml;glich, variable Werte an GOTO zu &uuml;bergeben, d.h. der Name des Labels, welches angesprungen werden soll, kann eine Variable oder auch ein aus variablen und statischen Werten zusammengesetzter Label-Name sein.</td>
+			</tr>
+			<tr>
+				<td class="ref_label">Beispiele:</td>
+				<td class="ref_code"><font color="#008000">include 'dialog.rb'</font><br /><br /><font color="#808080">rem Einfaches, statisches GOTO</font><br />echo <font color="#0000ff">'Willkommen im GOTO-Testscript!'</font><br /><b>goto</b> <font color="#0000ff">'weiter1'</font><br /><br />echo <font color="#0000ff">'Diese Meldung wird niemals ausgegeben :('</font><br /><br />%weiter1<br /><br /><font color="#808080">rem Ein dynamisches GOTO</font><br />btnmenu <font color="#000080">[geschwindigkeit]</font> = <font color="#0000ff">'W&auml;hlen Sie eine Geschwindigkeit!'</font>, <font color="#0000ff">'30 km/h|60 km/h|120 km/h'</font><br /><br /><b>goto</b> <font color="#000080">[geschwindigkeit]</font><br /><br />%30 km/h<br />echo <font color="#0000ff">'Das ist aber sehr langsam!'</font><br /><b>goto</b> <font color="#0000ff">'weiter2'</font><br /><br />%60 km/h<br />echo <font color="#0000ff">'Das ist ganz okay!'</font><br /><b>goto</b> <font color="#0000ff">'weiter2'</font><br /><br />%120 km/h<br />echo <font color="#0000ff">'SEHR SCHNELL! Wollen Sie ein Rennen fahren?'</font><br /><br />%weiter2<br />echo <font color="#0000ff">'Weiterhin gute Fahrt mit Ihren '</font> # <font color="#000080">[geschwindigkeit]</font> # <font color="#0000ff">' ...'</font></td>
+			</tr>
+			<tr>
+				<td class="ref_label">Bemerkungen:</td>
+				<td>Der Name des Labels muss bei GOTO ohne das &quot;%&quot;-Zeichen angegeben werden!<br />Es ist nicht erlaubt, mit einem GOTO-Sprung aus einer oder in eine Prozedur zu springen. Ist dies der Fall, bricht die Scriptausf&uuml;hrung mit einer entsprechenden Fehlermeldung ab. GOTO-Spr&uuml;nge in andere Include-Dateien sind m&ouml;glich. Spr&uuml;nge k&ouml;nnen in alle Richtungen (ob vorw&auml;rts oder r&uuml;ckw&auml;rts) im Script durchgef&uuml;hrt werden.<br /><br />Verwenden Sie die <a href="rb5ref_ger_1_gosub_resume.html">GOSUB-Anweisung</a>, um eine Sprungmarke als Unterprozedur aufzurufen.</td>
+			</tr>
+		</table>
+	
+		<div class="line">&nbsp;</div>
+	
+		<div id="copyright">
+			Copyright &copy; 2000-2006 by J.M.K S.F. Software Technologies, Jan Max Meyer<br />
+			All rights reserved.
+		</div>
+	</body>
+</html>

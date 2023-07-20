@@ -1,0 +1,40 @@
+<html>
+	<head>
+		<title>RapidBATCH Language Reference :: FILESIZE</title>
+		<link rel="stylesheet" href="jmksf.css" type="text/css" />
+	</head>
+	<body>
+		<div id="top">
+			<img src="rb5.png" alt="RapidBATCH Logo" />
+			FILESIZE
+		</div>
+	
+		<div class="line">&nbsp;</div>
+	
+		<table cellspacing="10" width="100%">
+			<tr>
+				<td class="ref_label">Syntax:</td>
+				<td class="ref_syntax">FILESIZE file-size = filename</td>
+			</tr>
+			<tr>
+				<td class="ref_label">Description:</td>
+				<td>Determines the size of a file, in bytes, and returns this value.</td>
+			</tr>
+			<tr>
+				<td class="ref_label">Examples:</td>
+				<td class="ref_code">filesize <font color="#000080">[bytes]</font> = <font color="#0000ff">'c:\command.com'</font><br />echo <font color="#0000ff">'COMMAND.COM has a size of '</font> # <font color="#000080">[bytes]</font> # <font color="#0000ff">' Bytes'</font><br /><b>end</b></td>
+			</tr>
+			<tr>
+				<td class="ref_label">Remarks:</td>
+				<td>To convert a file size to kilo-, mega-, giga- or terrabyte, the byte-value must be divided with 1024 in each case.<br />For example, a MP3-file has a size of 3853881 bytes. 3853881 divided by 1024 are 3763.55 kilobytes. 3763.55 kilobytes divided again by 1024 are 3.67 mega bytes. This can be continued up to terrabyte (1 terrabyte is 1024 gigabytes).</td>
+			</tr>
+		</table>
+	
+		<div class="line">&nbsp;</div>
+	
+		<div id="copyright">
+			Copyright &copy; 2000-2006 by J.M.K S.F. Software Technologies, Jan Max Meyer<br />
+			All rights reserved.
+		</div>
+	</body>
+</html>

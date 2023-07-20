@@ -1,0 +1,40 @@
+<html>
+	<head>
+		<title>RapidBATCH Language Reference :: PUTFILE</title>
+		<link rel="stylesheet" href="jmksf.css" type="text/css" />
+	</head>
+	<body>
+		<div id="top">
+			<img src="rb5.png" alt="RapidBATCH Logo" />
+			PUTFILE
+		</div>
+	
+		<div class="line">&nbsp;</div>
+	
+		<table cellspacing="10" width="100%">
+			<tr>
+				<td class="ref_label">Syntax:</td>
+				<td class="ref_syntax">PUTFILE filename, start-position, list-of-charcodes</td>
+			</tr>
+			<tr>
+				<td class="ref_label">Description:</td>
+				<td>Writes data bytewise to a file.<br />The writing operation begins at the as <i>start-position</i> specified byte-position within the file. The data that should be written is specified as a list of ascii-character codes, where each character is separated by the RapidBATCH list separation character that is defined in the variable [std_sep] (by default this is the pipe-character (|)).<br />The file PUTFILE should write to must exist. If it does not exists, the operation fails.</td>
+			</tr>
+			<tr>
+				<td class="ref_label">Examples:</td>
+				<td class="ref_code"><font color="#808080">rem writing a file binary</font><br /><br /><font color="#808080">rem first we create the file explicitly because it MUST exist!</font><br />newfile <font color="#0000ff">'bytefile.bin'</font><br /><br /><font color="#000080">[plain]</font> = <font color="#0000ff">'This is plain text that should be written!'</font><br /><br /><font color="#808080">rem converting the plain text to a list of ASCII-character codes</font><br /><font color="#000080">[i]</font> = <font color="#0000ff">'0'</font><br />getlen <font color="#000080">[len]</font> = <font color="#000080">[plain]</font><br /><b>repeat</b><br />&nbsp;&nbsp;&nbsp;&nbsp;<font color="#000080">[i]</font> + <font color="#0000ff">'1'</font><br />&nbsp;&nbsp;&nbsp;&nbsp;getcharat <font color="#000080">[ch]</font> = <font color="#000080">[plain]</font>, <font color="#000080">[i]</font><br />&nbsp;&nbsp;&nbsp;&nbsp;getasc <font color="#000080">[ch]</font> = <font color="#000080">[ch]</font><br />&nbsp;&nbsp;&nbsp;&nbsp;<b>if</b> <font color="#000080">[listofcharcodes]</font> ! <font color="#0000ff">''</font> <font color="#000080">[listofcharcodes]</font> # <font color="#0000ff">'|'</font><br />&nbsp;&nbsp;&nbsp;&nbsp;<font color="#000080">[listofcharcodes]</font> # <font color="#000080">[ch]</font><br /><b>until</b> <font color="#000080">[i]</font> = <font color="#000080">[len]</font><br /><br />echo <font color="#0000ff">'Plain text: '</font> # <font color="#000080">[plain]</font><br />echo <font color="#0000ff">'Converted text: '</font> # <font color="#000080">[listofcharcodes]</font><br /><br /><font color="#808080">rem writing the data</font><br />putfile <font color="#0000ff">'bytefile.bin'</font>, <font color="#0000ff">'1'</font>, <font color="#000080">[listofcharcodes]</font><br /><br /><b>if</b> <font color="#000080">[errorcode]</font> = <font color="#000080">[false]</font><br />&nbsp;&nbsp;&nbsp;&nbsp;echo <font color="#0000ff">'PUTFILE failed!'</font><br /><b>endif</b></td>
+			</tr>
+			<tr>
+				<td class="ref_label">Remarks:</td>
+				<td>Use the NEWFILE-instruction to create a new, empty file explicitly.<br />The variable [errorcode] gets the value '0' if the operation succeeds, else '-1'.</td>
+			</tr>
+		</table>
+	
+		<div class="line">&nbsp;</div>
+	
+		<div id="copyright">
+			Copyright &copy; 2000-2006 by J.M.K S.F. Software Technologies, Jan Max Meyer<br />
+			All rights reserved.
+		</div>
+	</body>
+</html>

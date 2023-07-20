@@ -1,0 +1,40 @@
+<html>
+	<head>
+		<title>RapidBATCH Befehlsreferenz :: CHDIR, MKDIR, RMDIR</title>
+		<link rel="stylesheet" href="jmksf.css" type="text/css" />
+	</head>
+	<body>
+		<div id="top">
+			<img src="rb5.png" alt="RapidBATCH Logo" />
+			CHDIR, MKDIR, RMDIR
+		</div>
+	
+		<div class="line">&nbsp;</div>
+	
+		<table cellspacing="10" width="100%">
+			<tr>
+				<td class="ref_label">Syntax:</td>
+				<td class="ref_syntax">CHDIR Pfad<br />MKDIR Pfad<br />RMDIR Pfad</td>
+			</tr>
+			<tr>
+				<td class="ref_label">Beschreibung:</td>
+				<td>CHDIR wechselt das aktuelle Arbeitsverzeichnis in das gegebene Verzeichnis, MKDIR legt das gegebene Verzeichnis neu an.<br />Mit RMDIR wird das gegebene Verzeichnis entfernt, wobei dieses komplett leer sein muss und keine Unterverzeichnisse enthalten darf.</td>
+			</tr>
+			<tr>
+				<td class="ref_label">Beispiele:</td>
+				<td class="ref_code">chdir <font color="#0000ff">'c:\jmksf\rb5'</font><br />mkdir <font color="#0000ff">'c:\test'</font><br />rmdir <font color="#0000ff">'c:\test'</font></td>
+			</tr>
+			<tr>
+				<td class="ref_label">Bemerkungen:</td>
+				<td>War die jeweilige Operation erfolgreich, so erh&auml;lt die Variable [errorcode] den Wert 0, andernfalls -1. Mit dieser M&ouml;glichkeit kann z.B. gepr&uuml;ft werden, ob ein Verzeichnis existiert oder nicht.<br /><br />Um gesamte Verzeichnisse mitsamt Unterverzeichnissen und Dateien zu l&ouml;schen, verwenden Sie die RapidBATCH Library-Funktion DELDIR, die in der SYSTEM.RB Bibliothek definiert ist.</td>
+			</tr>
+		</table>
+	
+		<div class="line">&nbsp;</div>
+	
+		<div id="copyright">
+			Copyright &copy; 2000-2006 by J.M.K S.F. Software Technologies, Jan Max Meyer<br />
+			All rights reserved.
+		</div>
+	</body>
+</html>

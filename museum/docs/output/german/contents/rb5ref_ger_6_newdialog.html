@@ -1,0 +1,40 @@
+<html>
+	<head>
+		<title>RapidBATCH Befehlsreferenz :: NEWDIALOG</title>
+		<link rel="stylesheet" href="jmksf.css" type="text/css" />
+	</head>
+	<body>
+		<div id="top">
+			<img src="rb5.png" alt="RapidBATCH Logo" />
+			NEWDIALOG
+		</div>
+	
+		<div class="line">&nbsp;</div>
+	
+		<table cellspacing="10" width="100%">
+			<tr>
+				<td class="ref_label">Syntax:</td>
+				<td class="ref_syntax">NEWDIALOG Widget-Label, Widget-Typ, Startkoordinaten</td>
+			</tr>
+			<tr>
+				<td class="ref_label">Beschreibung:</td>
+				<td>Erzeugt ein neues Dialog-Widget.<br /><br />NEWDIALOG kann sowohl dazu verwendet werden, ein Dialog-Basisfenster zu erzeugen als auch ein Dialog-Childwidget wie z.B. Buttons oder Eingabefelder. NEWDIALOG ben&ouml;tigt als Parameter ein Widget-Label, unter dem das Widget sp&auml;ter angesprochen werden kann, den Widget-Typ (siehe unten) sowie die Widget-Startposition in der Form "X|Y|H&ouml;he|Breite", wobei all diese Angaben in Pixel anzugeben sind. Die Separierung der einzelnen Werte erfolgt durch das in [std_sep] definierte Separationszeichen (standardm&auml;ﬂig das Pipe-Zeichen "|"). Die  X- und Y-Koordinaten sind nur bei Dialogfenstern relativ zur linken-oberen Ecke des Anzeigebildschirms. Bei allen Widgets, die auf einem Dialogfenster erzeugt werden, sind die X- und Y-Koordinaten relativ zur linken-oberen Ecke des jeweiligen Basisdialogs.<br /><br />Das Widget-Label muss bei allen Childelementen mit dem Label des Basisdialogs, auf dem das Childelement erzeugt werden soll, gefolgt von einem Doppelpunkt (:), beginnen. Ein Widget-Label f&uuml;r die Erzeugung eines Childelements auf dem Dialog "Basisdialog" w&auml;re zum Beispiel: "Basisdialog:Childelement".<br /><br />Folgend eine Liste an m&ouml;glichen Werten, die bei NEWDIALOG als Dialogelement-Typ angegen werden k&ouml;nnen.<br /><br /><table class="std">	<tr>		<td><b>Widget-Typ:</b></td>		<td><b>Beschreibung:</b></td>	</tr>	<tr>		<td>DIALOG</td>		<td>Dialogfenster</td>	</tr>	<tr>		<td>BUTTON</td>		<td>Button mit Text</td>	</tr>	<tr>		<td>IMAGEBUTTON</td>		<td>Button mit Bild</td>	</tr>	<tr>		<td>INPUT</td>		<td>einzeiliges Eingabefeld</td>	</tr>	<tr>		<td>PWD</td>		<td>einzeiliges Passwort-Eingabefeld</td>	</tr>	<tr>		<td>EDIT</td>		<td>mehrzeiliges Eingabefeld</td>	</tr>	<tr>		<td>EDIT_LINEWRAP</td>		<td>mehrzeiliges Eingabefeld mit automatischem Zeilenumbruch</td>	</tr>	<tr>		<td>LABEL</td>		<td>statisches Textlabel</td>	</tr>	<tr>		<td>OPTION</td>		<td>Optionsfeld</td>	</tr>	<tr>		<td>RADIO</td>		<td>Radiobutton</td>	</tr>	<tr>		<td>LIST</td>		<td>Listenelement</td>	</tr>	<tr>		<td>LIST_SORTED</td>		<td>Sortiertes Listenelement</td>	</tr>	<tr>		<td>LIST_MULTI</td>		<td>Listenelement mit Mehrfachauswahl</td>	</tr>	<tr>		<td>LIST_MULTISORTED</td>		<td>Sortiertes Listenelement mit Mehrfachauswahl</td>	</tr>	<tr>		<td>PROGRESS</td>		<td>Fortschittsbalken (Progressbar)</td>	</tr>	<tr>		<td>COMBO</td>		<td>Combobox</td>	</tr>	<tr>		<td>STATIC_COMBO</td>		<td>Combobox mit festen Werten</td>	</tr>	<tr>		<td>IMAGE</td>		<td>statisches Bitmap</td>	</tr>	<tr>		<td>GROUP</td>		<td>statische Groupbox</td>	</tr></table></td>
+			</tr>
+			<tr>
+				<td class="ref_label">Beispiele:</td>
+				<td class="ref_code"><font color="#808080">rem Erzeugung eines Dialogfensters</font><br />newdialog <font color="#0000ff">'myDialog'</font>, <font color="#0000ff">'DIALOG'</font>, <font color="#0000ff">'200|200|500|250'</font><br /><br /><font color="#808080">rem Erzeugung eines Buttons auf dem oben erzeugten Dialogfenster</font><br />newdialog <font color="#0000ff">'myDialog:myButton'</font>, <font color="#0000ff">'BUTTON'</font>, <font color="#0000ff">'1|1|100|25'</font></td>
+			</tr>
+			<tr>
+				<td class="ref_label">Bemerkungen:</td>
+				<td>Schl&auml;gt die Erzeugung eines Widgets fehl, erh&auml;lt [errorcode] den Wert -1, ansonsten 0.<br /><br />Verwenden Sie die Anweisung <a href="rb5ref_ger_6_letdialog.html">LETDIALOG</a>, um Eigenschaften eines Widgets zu ver&auml;ndern. Verwenden Sie gegenteilig zu LETDIALOG die Funktion <a href="rb5ref_ger_6_getdialog.html">GETDIALOG</a>, um Eigenschaften eines Widgets zu ermitteln.<br />Mit Hilfe der <a href="rb5ref_ger_6_rundialog.html">RUNDIALOG</a>-Funktion l&auml;sst sich auf Ereignisse, die mit oder auf dem Widget auftreten k&ouml;nnen (z.B. anklicken eines Buttons durch den Benutzer), warten und anschlieﬂend anhand des zur&uuml;ckgelieferten Event-Strings reagieren.<br /><br />Bis auf Dialogfenster werden alle Widgets sofort sichtbar geschaltet. Basisdialoge m&uuml;ssen vor der ersten Ausf&uuml;hung von RUNDIALOG sichtbar gemacht werden (mit Hilfe der Anweisung LETDIALOG und der Dialogeigenschaft "VISIBLE").<br /><br />Wird ein Dialogfenster innerhalb einer Library-Funktion erzeugt, sollten seine Ressourcen nach Beedingung des Dialoges mit der Anweisung <a href="rb5ref_ger_6_deldialog.html">DELDIALOG</a> wieder freigegeben werden.</td>
+			</tr>
+		</table>
+	
+		<div class="line">&nbsp;</div>
+	
+		<div id="copyright">
+			Copyright &copy; 2000-2006 by J.M.K S.F. Software Technologies, Jan Max Meyer<br />
+			All rights reserved.
+		</div>
+	</body>
+</html>

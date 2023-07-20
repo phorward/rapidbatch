@@ -1,0 +1,47 @@
+;Syntax definitions for RapidBATCH Builder v4.0Beta
+;J.M.K S.F. Syntax Highlighting Module v1.0g2 // RapidBATCH Scripting Language Configuration
+;DON'T EDIT THIS FILE IF YOU HAVE NO KNOWLEDGE ON IT.
+if KEYWORD 0
+else KEYWORD 0
+elseif KEYWORD 0
+endif KEYWORD 0
+end KEYWORD 0
+gosub KEYWORD 0
+resume KEYWORD 0
+goto KEYWORD 0
+halt KEYWORD 0
+dec KEYWORD 0
+repeat KEYWORD 0
+until KEYWORD 0
+proc KEYWORD 0
+endproc KEYWORD 0
+func KEYWORD 0
+endfunc KEYWORD 0
+ret KEYWORD 0
+reset KEYWORD 0
+break KEYWORD 0
+cont KEYWORD 0
+! OPERATOR 1
+& OPERATOR 1
+| OPERATOR 1
+= OPERATOR 1
+# OPERATOR 1
++ OPERATOR 1
+- OPERATOR 1
+* OPERATOR 1
+~ OPERATOR 1
+/ OPERATOR 1
+< OPERATOR 1
+> OPERATOR 1
+: OPERATOR 1
+, OPERATOR 1
+( OPERATOR 1
+) OPERATOR 1
+[] VARIABLE 1
+'' VALUE 1
+rem SINGLELINE_COMMENT 0
+% LABEL 1
+debugmode SPECIAL_COMMENT 0
+debugvars SPECIAL_COMMENT 0
+include SPECIAL_COMMENT 0
+;end of definition

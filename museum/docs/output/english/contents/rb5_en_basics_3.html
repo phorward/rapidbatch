@@ -1,0 +1,24 @@
+<html>
+	<head>
+		<title>Manipulating variable data</title>
+		<link rel="stylesheet" href="jmksf.css" type="text/css"></link>
+	</head>
+
+	<body>
+		<div id="top">
+			<img src="rb5.png" alt="RapidBATCH Logo" />
+			Manipulating variable data
+		</div>
+		
+		<div class="line">&nbsp;</div>
+		
+		Storing data into variables is the one thing variables are made for. The other one is to work with these variable data, to <i>manipulate</i> and <i>use</i> it. For this purpose, RapidBATCH provides so called build-in functions. &quot;Build-in&quot; means, that these functions are hard-coded into the RapidBATCH core language (the so called scripting engine), they belong to the RapidBATCH default command set it provides inherently. These build-in functions are also the base to create and design new functions for yourself that you can use within your scripts, but this topic is discussed later.<br /><br />Functions always return a value, whereas normal instructions (e.g. the ECHO-instruction to show a messagebox dialog) do not return any value. There is also one difference to other programming languages in RapidBATCH when using functions: Functions are internally handled as instructions, so that means the return variable that receives the function's result is always specified behind the name of the functions that should be called, not in front of it as it is known from JavaScript or BASIC. Several parameter-values the function expects may follow then.<br /><br />For a simple example of a string-manipulating function, take a look at the following script. It uses the UPVAR-function to convert all characters in the specified string variable to upper-case letters. That means, when we pass the value &quot;Hello&quot;, the RapidBATCH script will return the text in upper-case order: &quot;HELLO&quot;.<br /><br /><!-- code BEGIN --><div class="code"><font color="#808080">rem Prompt for any value</font><br />inputbox <font color="#000080">[text]</font> = <font color="#0000ff">'Text Input'</font>, <font color="#0000ff">'Please enter a short text:'</font>, <font color="#0000ff">''</font><br /><br /><font color="#808080">rem Convert the value to upper-case letters</font><br />upvar <font color="#000080">[text_in_uppercase]</font> = <font color="#000080">[text]</font><br /><br /><font color="#808080">rem Output the converted value</font><br />echo <font color="#0000ff">'Your value in capital letters: '</font> # <font color="#000080">[text_in_uppercase]</font><br /><b>end</b></div><!-- code END-->Functions normally expect a minimum of one parameter value, in this case it is the value that should be converted to upper-case letters. If a function expects more than one parameter, each parameter is separated by commas (,). Later, when you implement your own functions to your scripts, you can also create parameter-less functions.<br /><br />The above example is only a short demonstration how functions are used. RapidBATCH provides more than 10 of such build-in functions to manipulate values: UPVAR, LOWVAR, TRIMVAR, GETCHR, GETASC, COPYVAR, GETCHARAT, GETTOK, GETPOS, REPLACEVAR, CNTVAR and RANDVAR. Also, some deprecated, but still supported functions from former RapidBATCH versions are available. You can identify build-in functions on their name, because every build-in function either begins with a &quot;Get&quot; or ends with a &quot;Var&quot; in its name. This is not a direct standard (you can name your own functions later whatever you want!), but it's a naming convention for build-in functions in RapidBATCH since version 1.0.<br /><br />Also, RapidBATCH provides functions that don't manipulate values (but return a value!), e.g. the INPUTBOX-function that displays a prompting dialog and returns the value the user entered into the text field. The best definition for a function (build-in or not build-in) is: An instruction that returns a value to a variable!<br /><br />
+
+		<div class="line">&nbsp;</div>
+
+		<div id="copyright">
+			Copyright &copy; 2000-2006 by J.M.K S.F. Software Technologies, Jan Max Meyer<br />
+			All rights reserved.
+		</div>
+	</body>
+</html>

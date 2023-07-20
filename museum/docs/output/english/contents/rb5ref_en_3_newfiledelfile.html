@@ -1,0 +1,40 @@
+<html>
+	<head>
+		<title>RapidBATCH Language Reference :: NEWFILE, DELFILE</title>
+		<link rel="stylesheet" href="jmksf.css" type="text/css" />
+	</head>
+	<body>
+		<div id="top">
+			<img src="rb5.png" alt="RapidBATCH Logo" />
+			NEWFILE, DELFILE
+		</div>
+	
+		<div class="line">&nbsp;</div>
+	
+		<table cellspacing="10" width="100%">
+			<tr>
+				<td class="ref_label">Syntax:</td>
+				<td class="ref_syntax">NEWFILE filename<br />DELFILE filename</td>
+			</tr>
+			<tr>
+				<td class="ref_label">Description:</td>
+				<td>NEWFILE creates a new, empty file in the file-system. If the file does already exist, it is overwritten by the new file.<br />DELFILE deletes a file irrepealable from the file system (it is not moved into the Recycle Bin first!).</td>
+			</tr>
+			<tr>
+				<td class="ref_label">Examples:</td>
+				<td class="ref_code"><font color="#808080">rem create new file</font><br />newfile <font color="#0000ff">'my_file.txt'</font><br /><br /><font color="#808080">rem delete a temp-file</font><br />delfile <font color="#0000ff">'output.tmp'</font></td>
+			</tr>
+			<tr>
+				<td class="ref_label">Remarks:</td>
+				<td>If the particular operation succeeded, [errorcode] gets the value '0', else '-1'.</td>
+			</tr>
+		</table>
+	
+		<div class="line">&nbsp;</div>
+	
+		<div id="copyright">
+			Copyright &copy; 2000-2006 by J.M.K S.F. Software Technologies, Jan Max Meyer<br />
+			All rights reserved.
+		</div>
+	</body>
+</html>

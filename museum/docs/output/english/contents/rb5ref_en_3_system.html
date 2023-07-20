@@ -1,0 +1,40 @@
+<html>
+	<head>
+		<title>RapidBATCH Language Reference :: SYSTEM</title>
+		<link rel="stylesheet" href="jmksf.css" type="text/css" />
+	</head>
+	<body>
+		<div id="top">
+			<img src="rb5.png" alt="RapidBATCH Logo" />
+			SYSTEM
+		</div>
+	
+		<div class="line">&nbsp;</div>
+	
+		<table cellspacing="10" width="100%">
+			<tr>
+				<td class="ref_label">Syntax:</td>
+				<td class="ref_syntax">SYSTEM command</td>
+			</tr>
+			<tr>
+				<td class="ref_label">Description:</td>
+				<td>Executes an operating system command (DOS-commands). The script cannot continue before the SYSTEM-instruction finished its command.</td>
+			</tr>
+			<tr>
+				<td class="ref_label">Examples:</td>
+				<td class="ref_code">system <font color="#0000ff">'dir &gt;list.txt'</font></td>
+			</tr>
+			<tr>
+				<td class="ref_label">Remarks:</td>
+				<td>The variable [errorcode] gets the value '-1', if no COMMAND.COM (Win 95, 98, ME) or no CMD.EXE (Win NT, 2000, XP, 2003, Vista) was found, else '0'.</td>
+			</tr>
+		</table>
+	
+		<div class="line">&nbsp;</div>
+	
+		<div id="copyright">
+			Copyright &copy; 2000-2006 by J.M.K S.F. Software Technologies, Jan Max Meyer<br />
+			All rights reserved.
+		</div>
+	</body>
+</html>

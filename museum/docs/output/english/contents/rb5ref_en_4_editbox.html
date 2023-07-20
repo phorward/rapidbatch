@@ -1,0 +1,40 @@
+<html>
+	<head>
+		<title>RapidBATCH Language Reference :: EDITBOX</title>
+		<link rel="stylesheet" href="jmksf.css" type="text/css" />
+	</head>
+	<body>
+		<div id="top">
+			<img src="rb5.png" alt="RapidBATCH Logo" />
+			EDITBOX
+		</div>
+	
+		<div class="line">&nbsp;</div>
+	
+		<table cellspacing="10" width="100%">
+			<tr>
+				<td class="ref_label">Syntax:</td>
+				<td class="ref_syntax">EDITBOX text = titel, pre-text, style</td>
+			</tr>
+			<tr>
+				<td class="ref_label">Description:</td>
+				<td>EDITBOX provides a dialog to simply provide the user a possibility to edit and view huger amounts of text.<br />The function expects a dialog title, the text that is displayed in the edit field at dialog startup and a dialog-style that defines in which mode the dialog is executed. This style can be set to 'WRITEABLE' or '0', so the text in the edit-field can be changed and editied, or to the value 'READONLY' (or '-1'), that runs the dialog in a &quot;viewer-mode&quot;, so the text in the edit-field can only be viewed.<br /><br />If the user presses the OK-button, the function returns the whole text in the edit-field, else, if the user hits CANCEL, the function returns an empty string.<br /><br /><img style="padding-top: 30px;" src="img/editbox.gif" alt="Image of an EDITBOX-dialog." title="Screenshot" /></td>
+			</tr>
+			<tr>
+				<td class="ref_label">Examples:</td>
+				<td class="ref_code"><font color="#808080">rem providing a simple text editing possility with only one line of code</font><br />editbox <font color="#000080">[text]</font> = <font color="#0000ff">'Texteditor'</font>, <font color="#0000ff">''</font>, <font color="#0000ff">'writeable'</font><br />echo <font color="#0000ff">'EDITBOX returned: '</font> # <font color="#000080">[text]</font><br /><br /><font color="#808080">rem using EDITBOX to provide a text-viewer (readonly-mode)</font><br />editbox <font color="#000080">[null]</font> = <font color="#0000ff">'text viewer'</font>, <font color="#0000ff">'This text can not be changed or edited!'</font>, <font color="#0000ff">'readonly'</font><br />echo <font color="#0000ff">'EDITBOX returned: '</font> # <font color="#000080">[text]</font></td>
+			</tr>
+			<tr>
+				<td class="ref_label">Remarks:</td>
+				<td>The captions of the OK- and CANCEL-buttons can be changed over the variables [EditBox_Ok] and [EditBox_Cancel]. If one (or both) of these variables is set to empty string, the particular button is hidden from the dialog.<br /><br />The dialog can be positioned using the variables [EditBox_X] and [EditBox_Y] for the particular axis. If [EditBox_X] or [EditBox_Y] is set to '0', the dialog is automatically centered on the particular axis (this is the default), else the dialog is displayed at the specified position, that is given in pixels.<br /><br />The default-size of the dialog can be changed to a desired size, in pixels, using the variables [EditBox_Width] (for the width) and [EditBox_Height] (for the height).<br /><br />The dialog's icon can be globally changed for all dialogs using the variable [app_icon] to an external .ICO-file.</td>
+			</tr>
+		</table>
+	
+		<div class="line">&nbsp;</div>
+	
+		<div id="copyright">
+			Copyright &copy; 2000-2006 by J.M.K S.F. Software Technologies, Jan Max Meyer<br />
+			All rights reserved.
+		</div>
+	</body>
+</html>

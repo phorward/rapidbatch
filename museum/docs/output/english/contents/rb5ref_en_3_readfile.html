@@ -1,0 +1,40 @@
+<html>
+	<head>
+		<title>RapidBATCH Language Reference :: READFILE</title>
+		<link rel="stylesheet" href="jmksf.css" type="text/css" />
+	</head>
+	<body>
+		<div id="top">
+			<img src="rb5.png" alt="RapidBATCH Logo" />
+			READFILE
+		</div>
+	
+		<div class="line">&nbsp;</div>
+	
+		<table cellspacing="10" width="100%">
+			<tr>
+				<td class="ref_label">Syntax:</td>
+				<td class="ref_syntax">READFILE line = filename, line-to-read</td>
+			</tr>
+			<tr>
+				<td class="ref_label">Description:</td>
+				<td>Reads the line at number <i>line-to-read</i> from the file specified at <i>filename</i>, and returns this line. If the file's end is reached or if the file couldn't be found, [errorcode] gets -1 and the return value is &quot;EOF&quot;, which means &quot;End Of File&quot;.If the assigned line-number is lower than 1, READFILE reads the whole file content and returns it.</td>
+			</tr>
+			<tr>
+				<td class="ref_label">Examples:</td>
+				<td class="ref_code"><font color="#808080">rem read first line...</font><br />readfile <font color="#000080">[text]</font> = <font color="#0000ff">'c:\test.txt'</font>, <font color="#0000ff">'1'</font><br /><br /><font color="#808080">rem read the whole file...</font><br />readfile <font color="#000080">[text]</font> = <font color="#0000ff">'c:\test.txt'</font>, <font color="#0000ff">'0'</font><br /><br /><font color="#808080">rem display the first 10 lines from the file</font><br /><font color="#000080">[i]</font> = <font color="#0000ff">'0'</font><br /><font color="#000080">[text]</font> = <font color="#0000ff">''</font><br /><b>repeat</b><br />&nbsp;&nbsp;&nbsp;&nbsp;<font color="#000080">[i]</font> + <font color="#0000ff">'1'</font><br />&nbsp;&nbsp;&nbsp;&nbsp;readfile <font color="#000080">[line]</font> = <font color="#0000ff">'C:\jmksf\rb5\readme.txt'</font>,<font color="#000080">[i]</font><br />&nbsp;&nbsp;&nbsp;&nbsp;<b>if</b> <font color="#000080">[line]</font> ! <font color="#0000ff">'EOF'</font><br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#000080">[text]</font> # <font color="#000080">[line]</font> # <font color="#000080">[new_line]</font><br />&nbsp;&nbsp;&nbsp;&nbsp;<b>endif</b><br /><b>until</b> <font color="#000080">[i]</font> = <font color="#0000ff">'10'</font> | <font color="#000080">[line]</font> = <font color="#0000ff">'EOF'</font><br /><br />echo <font color="#000080">[text]</font></td>
+			</tr>
+			<tr>
+				<td class="ref_label">Remarks:</td>
+				<td>Use the GETFILE-function, to read data on byte-level from a file (e.g. a binary-file).</td>
+			</tr>
+		</table>
+	
+		<div class="line">&nbsp;</div>
+	
+		<div id="copyright">
+			Copyright &copy; 2000-2006 by J.M.K S.F. Software Technologies, Jan Max Meyer<br />
+			All rights reserved.
+		</div>
+	</body>
+</html>

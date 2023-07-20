@@ -1,0 +1,40 @@
+<html>
+	<head>
+		<title>RapidBATCH Befehlsreferenz :: NEWFILE, DELFILE</title>
+		<link rel="stylesheet" href="jmksf.css" type="text/css" />
+	</head>
+	<body>
+		<div id="top">
+			<img src="rb5.png" alt="RapidBATCH Logo" />
+			NEWFILE, DELFILE
+		</div>
+	
+		<div class="line">&nbsp;</div>
+	
+		<table cellspacing="10" width="100%">
+			<tr>
+				<td class="ref_label">Syntax:</td>
+				<td class="ref_syntax">NEWFILE Dateiname<br />DELFILE Dateiname</td>
+			</tr>
+			<tr>
+				<td class="ref_label">Beschreibung:</td>
+				<td>NEWFILE legt eine neue, leere Datei an. Existiert die Datei bereits, wird Sie mit der neuen, leeren Datei &uuml;berschrieben.<br />DELFILE l&ouml;scht eine vorhandene Datei unwiderruflich.</td>
+			</tr>
+			<tr>
+				<td class="ref_label">Beispiele:</td>
+				<td class="ref_code"><font color="#808080">rem Neue Datei anlegen</font><br />newfile <font color="#0000ff">'neu.txt'</font><br /><br /><font color="#808080">rem Temp-Datei l&ouml;schen</font><br />delfile <font color="#0000ff">'ausgabe.tmp'</font></td>
+			</tr>
+			<tr>
+				<td class="ref_label">Bemerkungen:</td>
+				<td>Ist die jeweilige Operation erfolgreich, so erh&auml;lt [errorcode] den Wert 0, ansonsten -1.</td>
+			</tr>
+		</table>
+	
+		<div class="line">&nbsp;</div>
+	
+		<div id="copyright">
+			Copyright &copy; 2000-2006 by J.M.K S.F. Software Technologies, Jan Max Meyer<br />
+			All rights reserved.
+		</div>
+	</body>
+</html>

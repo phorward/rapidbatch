@@ -1,0 +1,40 @@
+<html>
+	<head>
+		<title>RapidBATCH Befehlsreferenz :: OPENBOX, SAVEBOX</title>
+		<link rel="stylesheet" href="jmksf.css" type="text/css" />
+	</head>
+	<body>
+		<div id="top">
+			<img src="rb5.png" alt="RapidBATCH Logo" />
+			OPENBOX, SAVEBOX
+		</div>
+	
+		<div class="line">&nbsp;</div>
+	
+		<table cellspacing="10" width="100%">
+			<tr>
+				<td class="ref_label">Syntax:</td>
+				<td class="ref_syntax">OPENBOX Datei = Dialogtitel, Filter<br />SAVEBOX Datei = Dialogtitel, Filter</td>
+			</tr>
+			<tr>
+				<td class="ref_label">Beschreibung:</td>
+				<td>OPENBOX zeigt einen Standarddialog zum &Ouml;ffnen einer Datei an.<br />SAVEBOX zeigt einen Standarddialog zum Speichern einer Datei an.<br /><br />Als Parameter ben&ouml;tigen beide Funktionen einen Dialogtitel sowie einen Dateifilter, der wie folgt definiert wird:<br /><br />Filterbezeichnung|Filter<br /><br />Beispiel f&uuml;r einen TXT-Dateifilter w&auml;re: "Textdateien|*.txt".<br />Um mehrere Filter zur Verf&uuml;gung zu stellen (diese k&ouml;nnen im Dialog vom Benutzer ausgew&auml;hlt werden) lassen sich die einzelnen Filterelemente einfach hintereinander schreiben: "Textdateien|*.txt|Word-Dateien|*.doc" ...<br /><br />Um mehrere Filter unter einem Namen zu verwalten, spezifizieren Sie den Filter wie folgt: "Ausf&uuml;hrbare Dateien|*.exe;*.com;*.bat".<br /><br />R&uuml;ckgabewert der Funktion ist der komplette Dateiname mit Pfad, wenn der Benutzer eine Datei doppelt geklickt oder einen Dateinamen ausgew&auml;hlt und OK gedr&uuml;ckt hat. Hat der Benutzer Abbrechen oder den Schlieﬂen-Button des Dialogs gew&auml;hlt, so wird ein Leerstring zur&uuml;ckgegeben.<br /><img style="padding-top: 30px;" src="img/openbox.gif" alt="Bild eines OPENBOX-Dialoges" title="Screenshot" /></td>
+			</tr>
+			<tr>
+				<td class="ref_label">Beispiele:</td>
+				<td class="ref_code">openbox <font color="#000080">[dateiname]</font> = <font color="#0000ff">'Bitte Datei w&auml;hlen!'</font>, <font color="#0000ff">'Alle Dateien (*.*)|*.*'</font><br /><br /><b>if</b> <font color="#000080">[dateiname]</font> ! <font color="#0000ff">''</font><br />&nbsp;&nbsp;&nbsp;&nbsp;echo <font color="#0000ff">'Der gew&auml;hlte Dateiname lautet: '</font> # <font color="#000080">[dateiname]</font><br /><b>else</b><br />&nbsp;&nbsp;&nbsp;&nbsp;echo <font color="#0000ff">'Keine Datei ausgew&auml;hlt.'</font><br /><b>endif</b></td>
+			</tr>
+			<tr>
+				<td class="ref_label">Bemerkungen:</td>
+				<td>Wenn Sie die vordeklarierte Variable [OpenBox_MultiSel] (bei OPENBOX) bzw.  [SaveBox_MultiSel] (bei SAVEBOX) auf den Wert 0 setzen, k&ouml;nnen in dem jeweiligen Dialog mehrere Dateien ausgew&auml;hlt werden. Ist dies der Fall, ist der R&uuml;ckgabewert eine Liste, beginnend mit dem Pfadnamen und den einzelnen Dateien, jeweils durch Pipe-Zeichen (|) getrennt.<br /><br />Das Pipe-Zeichen (|) ist der Standard-Separator zum Trennen von Listenelementen in einem String. Dieser kann &uuml;ber die Variable [std_sep] ge&auml;ndert werden, was dann f&uuml;r alle Listen, die von RapidBATCH verarbeitet werden, gilt.</td>
+			</tr>
+		</table>
+	
+		<div class="line">&nbsp;</div>
+	
+		<div id="copyright">
+			Copyright &copy; 2000-2006 by J.M.K S.F. Software Technologies, Jan Max Meyer<br />
+			All rights reserved.
+		</div>
+	</body>
+</html>

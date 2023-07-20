@@ -1,0 +1,40 @@
+<html>
+	<head>
+		<title>RapidBATCH Language Reference :: INPUTBOX, PWDBOX</title>
+		<link rel="stylesheet" href="jmksf.css" type="text/css" />
+	</head>
+	<body>
+		<div id="top">
+			<img src="rb5.png" alt="RapidBATCH Logo" />
+			INPUTBOX, PWDBOX
+		</div>
+	
+		<div class="line">&nbsp;</div>
+	
+		<table cellspacing="10" width="100%">
+			<tr>
+				<td class="ref_label">Syntax:</td>
+				<td class="ref_syntax">INPUTBOX value = title, prompting-text, default-value<br />PWDBOX value = title, prompting-text, default-value</td>
+			</tr>
+			<tr>
+				<td class="ref_label">Description:</td>
+				<td>INPUTBOX provides a dialog to simply prompt values from the user.<br />The function expects a title that is shown in the dialog's title bar, a prompting-text and a default-value that is pre-printed in the edit-field (where it can be changed, deleted or enhanced). If the user hits the OK-button, the function returns the value of the edit-field to the return-variable, if the user hits the CANCEL-button, the dialog returns an empty-string.<br /><br />PWDBOX is a modification of the INPUTBOX to read masked values from the user, for example passwords (PWDBOX abbreviates PassWorD-BOX). The user can not see what he's typing, but the function itself returns the true value the user entered.<br /><br /><img style="padding-top: 30px;" src="img/inputbox.gif" alt="Image of an INPUTBOX-dialog." title="Screenshot" /></td>
+			</tr>
+			<tr>
+				<td class="ref_label">Examples:</td>
+				<td class="ref_code"><font color="#808080">rem getting values simply using the INPUTBOX</font><br />inputbox <font color="#000080">[name]</font> = <font color="#0000ff">'Your name'</font>, <font color="#0000ff">'What is your name?'</font>, <font color="#0000ff">'Anonymous'</font><br />echo <font color="#0000ff">'Hello, '</font> # <font color="#000080">[name]</font><br /><br /><font color="#808080">rem prompting a password using PWDBOX</font><br />pwdbox <font color="#000080">[password]</font> = <font color="#0000ff">'Password'</font>, <font color="#0000ff">'Please enter your password:'</font>, <font color="#0000ff">''</font><br /><b>if</b> <font color="#000080">[password]</font> = <font color="#0000ff">''</font><br />&nbsp;&nbsp;&nbsp;&nbsp;echo <font color="#0000ff">'Error, no password specified.'</font><br /><b>else</b><br />&nbsp;&nbsp;&nbsp;&nbsp;echo <font color="#0000ff">'Thank you very much, your password is: '</font> # <font color="#000080">[password]</font><br /><b>endif</b></td>
+			</tr>
+			<tr>
+				<td class="ref_label">Remarks:</td>
+				<td>The captions of the OK- anc CANCEL-buttons can be changed over the variables [InputBox_Ok] and [InputBox_Cancel]. This will also affect the PWDBOX-dialog, because this uses the same dialog like INPUTBOX with the edit-field modification.<br />If the caption of the OK- or CANCEL-button is set to an empty-string, the corresponding button is hidden from the dialog, so that, for example, an INPUTBOX with only an OK-button can be displayed.<br /><br />The position of the dialogs can also be changed, by setting the variables [InputBox_X] and [InputBox_Y] for the particular axis. If [InputBox_X] and/or [InputBox_Y] is set to the value '0', the dialog is automatially centered on the particular axis (this is the default), else any value, in pixels can be set. The size of INPUTBOX/PWDBOX can not be changed.<br /><br />The dialog's icon can be globally changed for all dialogs using the variable [app_icon] to an external .ICO-file.</td>
+			</tr>
+		</table>
+	
+		<div class="line">&nbsp;</div>
+	
+		<div id="copyright">
+			Copyright &copy; 2000-2006 by J.M.K S.F. Software Technologies, Jan Max Meyer<br />
+			All rights reserved.
+		</div>
+	</body>
+</html>

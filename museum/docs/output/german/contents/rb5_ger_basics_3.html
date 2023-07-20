@@ -1,0 +1,24 @@
+<html>
+	<head>
+		<title>Werte manipulieren</title>
+		<link rel="stylesheet" href="jmksf.css" type="text/css"></link>
+	</head>
+
+	<body>
+		<div id="top">
+			<img src="rb5.png" alt="RapidBATCH Logo" />
+			Werte manipulieren
+		</div>
+		
+		<div class="line">&nbsp;</div>
+		
+		Da Sie nun die Verwendung von Variablen kennengelernt haben, gehen wir noch einen Schritt weiter.<br />Variablen sind n&auml;mlich nicht nur dazu da, um darin Werte abzulegen, sondern auch, um mit diesen Werten zu arbeiten (sie zu verarbeiten).<br /><br />Zu diesem Zweck stellt Ihnen RapidBATCH so genannte build-in Funktionen bereit. &quot;Build-in&quot; bedeutet, dass diese Funktionen fest in den RapidBATCH-Standardbefehlssatz eingebaut sind und f&uuml;r die meisten, einfachen Operationen schon ausreichen. Diese build-in Funktionen bieten aber auch die ideale Basis, um sp&auml;ter eigene, individuelle Funktionen oder Prozeduren mit individuellen Eigenschaften und Programmverhalten zu entwickeln, wozu wir allerdings erst sp&auml;ter kommen werden.<br /><br />Funktionen haben die Eigenschaft, dass sie immer einen Wert zur&uuml;ckgeben; Anders als bei vielen anderen Programmiersprachen ist es in RapidBATCH gang und gebe, dass die Ergebnisvariable, die den R&uuml;ckgabewert der Funktion erh&auml;lt, hinter und nicht vor dem Funktionsnamen angegeben wird.<br /><br />Ein Beispiel zur Anwendung einer Funktion zur Stringmanipulation ist folgendes Script, das den vom Benutzer eingegebenen Wert mit Hilfe der Funktion UPVAR in Groﬂbuchstaben konvertiert:<br /><br /><!-- code BEGIN --><div class="code"><font color="#808080">rem Eingabe des Benutzernamens</font><br />inputbox <font color="#000080">[benutzer]</font> = <font color="#0000ff">'Eingabe'</font>, <font color="#0000ff">'Guten Tag, wie ist Ihr Name?'</font>, <font color="#0000ff">''</font><br /><br /><font color="#808080">rem Benutzernamen in Grossbuchstaben konvertieren</font><br />upvar <font color="#000080">[benutzer]</font> = <font color="#000080">[benutzer]</font><br /><br /><font color="#808080">rem Ausgabe des Benutzernamens</font><br />echo <font color="#0000ff">'Ihr Name in Groﬂbuchstaben lautet: '</font> # <font color="#000080">[benutzer]</font><br /><b>end</b></div><!-- code END-->Funktionen haben i.d.R. mindestens einen Parameter, hier ist es der Text, der in Groﬂbuchstaben konvertiert werden soll. Hat eine Funktion mehrere Parameter, so werden diese durch Kommata voneinander getrennt. Wenn Sie sp&auml;ter selbst Ihre eigenen Funktionen programmieren, sind auch parameterlose Funktionen m&ouml;glich!<br /><br />Alle build-in Funktionen von RapidBATCH zur Stringmanipulation beginnen entweder mit einem &quot;Get&quot; oder h&ouml;ren mit einem &quot;Var&quot; auf; Dies ist kein direkter Standard (wenn Sie eigene Funktionen programmieren ist dies v&ouml;llig irrelevant!), nur wurden und werden alle neu hinzugekommenen und hinzukommenden build-in Funktionen an diese alte Namensumgebung, die bereits seit RapidBATCH 1.0 bekannt sind, angelehnt.<br /><br />Insgesamt bietet RapidBATCH 12 solcher build-in Funktionen, diese heiﬂen UPVAR, LOWVAR, TRIMVAR, GETCHR, GETASC, COPYVAR, GETCHARAT, GETTOK, GETPOS, REPLACEVAR, CNTVAR und RANDVAR. Ihre Verwendung und praktische Beispiele k&ouml;nnen inder Sprachreferenz dieses Handbuches nachgeschlagen werden.<br /><br />Es gibt in RapidBATCH nat&uuml;rlich eine Vielzahl von anderen build-in Funktionen, wie z.B. den Dialog INPUTBOX - auch eine Funktion - dessen R&uuml;ckgabewert der eingegebene String ist. Die oben aufgef&uuml;hrten build-in Funktionen haben allerdings den Zweck, dass Sie einen bzw. mehrere Eingabewerte verarbeiten und einen daraus resultierenden Wert zur&uuml;ckgeben.<br /><br />
+
+		<div class="line">&nbsp;</div>
+
+		<div id="copyright">
+			Copyright &copy; 2000-2006 by J.M.K S.F. Software Technologies, Jan Max Meyer<br />
+			All rights reserved.
+		</div>
+	</body>
+</html>

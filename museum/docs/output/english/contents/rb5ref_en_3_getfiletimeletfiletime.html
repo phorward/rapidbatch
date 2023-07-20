@@ -1,0 +1,40 @@
+<html>
+	<head>
+		<title>RapidBATCH Language Reference :: GETFILETIME, LETFILETIME</title>
+		<link rel="stylesheet" href="jmksf.css" type="text/css" />
+	</head>
+	<body>
+		<div id="top">
+			<img src="rb5.png" alt="RapidBATCH Logo" />
+			GETFILETIME, LETFILETIME
+		</div>
+	
+		<div class="line">&nbsp;</div>
+	
+		<table cellspacing="10" width="100%">
+			<tr>
+				<td class="ref_label">Syntax:</td>
+				<td class="ref_syntax">GETFILETIME time-of-last-modification = filename<br />LETFILETIME filename, time-of-last-modification</td>
+			</tr>
+			<tr>
+				<td class="ref_label">Description:</td>
+				<td>GETFILETIME reads the last-modified-time of a file and returns this in the format &quot;hhmmss&quot;.<br />LETFILETIME resets the last-modified-time of a file to any desired time value, using the same format returned by GETFILETIME.</td>
+			</tr>
+			<tr>
+				<td class="ref_label">Examples:</td>
+				<td class="ref_code">newfile <font color="#0000ff">'test.txt'</font><br />getfiletime <font color="#000080">[t]</font> = <font color="#0000ff">'test.txt'</font><br /><br />echo <font color="#0000ff">'test.txt was modified at '</font> # <font color="#000080">[t]</font><br /><br /><font color="#808080">rem So let's reset the file's modification time to 2:45 pm</font><br />letfiletime <font color="#0000ff">'test.txt'</font>, <font color="#0000ff">'144500'</font><br /><br />getfiletime <font color="#000080">[t]</font> = <font color="#0000ff">'test.txt'</font><br />echo <font color="#0000ff">'test.txt was &quot;modified&quot; at '</font> # <font color="#000080">[t]</font><br />delfile <font color="#0000ff">'test.txt'</font></td>
+			</tr>
+			<tr>
+				<td class="ref_label">Remarks:</td>
+				<td>If the file was not found, [errorcode] gets from LETFILETIME as well as GETFILETIME the value '-1', else '0'. The returned value of GETFILETIME is in this case an empty string.<br /><br />Use GETFILEDATE and LETFILEDATE to read and manipulate the modification date of a file.</td>
+			</tr>
+		</table>
+	
+		<div class="line">&nbsp;</div>
+	
+		<div id="copyright">
+			Copyright &copy; 2000-2006 by J.M.K S.F. Software Technologies, Jan Max Meyer<br />
+			All rights reserved.
+		</div>
+	</body>
+</html>

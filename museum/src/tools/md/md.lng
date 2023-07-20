@@ -1,0 +1,59 @@
+;RapidBATCH 5.0 Menu Designer
+;Copyright (C) 2005 by J.M.K S.F., Jan Max Meyer
+;English Language Definition
+
+;Titles
+main_title=RapidBATCH Menu Designer
+preview_title=Menu-Preview - Close this window to continue...
+
+;User Interface Buttons
+button_add=&Add
+button_edit=&Edit
+button_del=&Delete
+button_generate=&Generate code
+button_preview=&Preview current menu
+button_new=&New
+
+btn_next=&Next ->
+
+;Tooltips
+tip_button_add=Add a new menu item
+tip_button_edit=Edit the selected menu item
+tip_button_del=Delete the selected menu item
+tip_button_preview=Preview the menu with its current definition
+tip_button_generate=Generate RapidBATCH source code from the definition
+tip_button_mup=Move the current item up
+tip_button_mdown=Move the current item down
+tip_button_mleft=Move the current item one level to left
+tip_button_mright=Move the current item one level to right
+tip_button_new=Create a new menu definition
+
+;Edit-Dialog
+editlabel_title_new=Adding a new menu-item
+editlabel_title_edit=Rename menu-item
+editlabel_prompt=Menu item labelling:
+
+;Menu definitions
+menu_genwhat_title=Script Generator
+menu_genwhat_def=Generate runable script code|Generate menu descriptor only
+menu_gennext_title=Code has been generated.
+menu_gennext_def=Copy to clipboard|View now|Save to file
+
+;Code Generator
+codegen_codeview=View Generated Code / Menu-Descriptor
+codegen_windowname=Name of the dialog-widget getting menu:
+codegen_selectfile=Please enter a target filename:
+codegen_filesaved=File has been saved sucessfully.
+codegen_filenotsaved=Error when trying to save file.
+
+codegen_insertcodehere=*** insert operational code for "%item" here ***
+
+;Messages
+error_menutree=The item "%item" has no parent!
+msg_copiedtoclipboard=The generated script code/menu descriptor was copied to clipboard.
+ask_newmenu=Discard current menu definition?
+
+
+
+
+

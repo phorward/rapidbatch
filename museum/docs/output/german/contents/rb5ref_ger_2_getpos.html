@@ -1,0 +1,40 @@
+<html>
+	<head>
+		<title>RapidBATCH Befehlsreferenz :: GETPOS</title>
+		<link rel="stylesheet" href="jmksf.css" type="text/css" />
+	</head>
+	<body>
+		<div id="top">
+			<img src="rb5.png" alt="RapidBATCH Logo" />
+			GETPOS
+		</div>
+	
+		<div class="line">&nbsp;</div>
+	
+		<table cellspacing="10" width="100%">
+			<tr>
+				<td class="ref_label">Syntax:</td>
+				<td class="ref_syntax">GETPOS Position = Stringausdruck, Suchstring, Anzahl</td>
+			</tr>
+			<tr>
+				<td class="ref_label">Beschreibung:</td>
+				<td>Sucht den angegebenen Suchstring im Stringausdruck und gibt dessen Position im String zur&uuml;ck.<br />Mit Hilfe des <i>Anzahl</i>-Parameters kann auch nach dem zweiten, dritten usw. Aufkommen des Suchstrings im Stringausdruck gesucht werden.<br /><br />Wird der Suchstring nicht an der angegebenen Position mit der gegebenen Anzahl gefunden, ist der R&uuml;ckgabewert '0'.</td>
+			</tr>
+			<tr>
+				<td class="ref_label">Beispiele:</td>
+				<td class="ref_code">getpos <font color="#000080">[pos]</font> = <font color="#0000ff">'Hello World'</font>, <font color="#0000ff">'llo'</font>, <font color="#0000ff">'1'</font><br />echo <font color="#0000ff">'Position ist: '</font> # <font color="#000080">[pos]</font><br /><br />getpos <font color="#000080">[pos]</font> = <font color="#0000ff">'Hello World'</font>, <font color="#0000ff">'l'</font>, <font color="#0000ff">'3'</font><br />echo <font color="#0000ff">'Position ist: '</font> # <font color="#000080">[pos]</font><br /><b>end</b></td>
+			</tr>
+			<tr>
+				<td class="ref_label">Bemerkungen:</td>
+				<td>Hat die Variable [case_sensitivity] den Wert '-1', so ber&uuml;cksichtigt GETPOS auch Stringmuster, die sich von der Groﬂ-/Kleinschreibung her von der Schreibweise des gegebenen Suchstrings unterscheiden. D.h. wenn der Suchstring z.B. in Kleinschreibweise vorliegt und [case_sensitivity] den Wert '-1' (false) hat, so wird auch ein in Groﬂbuchstaben geschriebener, &auml;quivalenter Substring gefunden.</td>
+			</tr>
+		</table>
+	
+		<div class="line">&nbsp;</div>
+	
+		<div id="copyright">
+			Copyright &copy; 2000-2006 by J.M.K S.F. Software Technologies, Jan Max Meyer<br />
+			All rights reserved.
+		</div>
+	</body>
+</html>

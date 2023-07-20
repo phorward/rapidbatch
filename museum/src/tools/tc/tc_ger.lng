@@ -1,0 +1,42 @@
+;RapidBATCH 5.0 Builder Tools Configuration
+;Copyright (C) 2005 by J.M.K S.F., Jan Max Meyer
+;English Language Definition
+
+main_title=RapidBATCH Werkzeugkonfiguration
+new_title=Neues Programm hinzufügen
+edit_title=Programminformationen bearbeiten
+button_add=&Hinzufügen
+button_edit=&Bearbeiten
+button_del=&Entfernen
+button_copy=&Kopieren
+button_mup=Nach &oben
+button_mdown=Nach &unten
+group_proginfo=Programminformationen
+label_path=Programmpfad:
+label_label=Bezeichnung:
+button_selectprog=&Wählen
+button_ok=&OK
+button_cancel=&Abbrechen
+filter_programs=Programmdateien|*.exe;*.com;*.bat
+title_selectpath=Bitte Programmpfad wählen...
+
+;Variable Descriptions
+group_legend=Folgende Variablen sind im Pfad zulässig:
+l_desc_rbhome== RapidBATCH Installationsverzeichnis
+l_desc_rb== RapidBATCH Interpreter
+l_desc_rbc== RapidBATCH Compiler
+l_desc_current== Aktuell geöffnetes Script im Builder
+l_desc_lang== Installierte Sprache
+
+;Messages
+message_filloutallfields=Bitte füllen Sie beide Felder aus!
+message_savechanges=Möchten Sie die Konfiguration speichern?
+message_reallydeleteentry=Möchten Sie den Eintrag "%ITEM" wirklich entfernen?
+
+;Menu
+m_config=&Konfiguration
+m_save=&Speichern
+m_save_and_exit=Speichern &und Beenden
+m_exit_only=Nur &Beenden
+
+;end of definition

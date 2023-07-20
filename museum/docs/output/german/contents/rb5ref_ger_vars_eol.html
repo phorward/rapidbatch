@@ -1,0 +1,28 @@
+<html>
+	<head>
+		<title>RapidBATCH Befehlsreferenz :: [eol]</title>
+		<link rel="stylesheet" href="jmksf.css" type="text/css" />
+	</head>
+	<body>
+		<div id="top">
+			<img src="rb5.png" alt="RapidBATCH Logo" />
+			[eol]
+		</div>
+	
+		<div class="line">&nbsp;</div>
+
+		<table cellspacing="10" width="100%">
+			<tr>
+				<td class="ref_label">Beschreibung:</td>
+				<td>Die Variable [eol] (eol = end of line) wird von der WRITEFILE-Anweisung als Zeilenumbruchszeichen verwendet. Da WRITEFILE ja automatisch einen Zeilenumbruch hinter jede in eine Textdatei geschriebene Zeile h&auml;ngt, l&auml;sst sich dieser &uuml;ber diese Variable definieren oder - je nach Anwendungsfall - gar komplett entfernen. Wird [eol] beispielsweise auf den Wert der Variablen [new_line] gesetz, werden Textdateien in einem f&uuml;r Unix-Programm lesbarem Format fortgeschrieben.<br /><br />Standardwert f&uuml;r [eol] ist ein Windows-Zeilenumbruch, der als carriage-return + line-feed (Wagenr&uuml;cklauf, Zeilenvorschub) definiert ist. Es kann jeder beliebige String als &quot;Zeilenumbruch&quot; definiert werden, der von WRITEFILE hinter jeden geschriebenen Wert angeh&auml;ngt wird.</td>
+			</tr>
+		</table>
+
+		<div class="line">&nbsp;</div>
+
+		<div id="copyright">
+			Copyright &copy; 2000-2006 by J.M.K S.F. Software Technologies, Jan Max Meyer<br />
+			All rights reserved.
+		</div>
+	</body>
+</html>

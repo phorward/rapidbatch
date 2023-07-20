@@ -1,0 +1,40 @@
+<html>
+	<head>
+		<title>RapidBATCH Language Reference :: MSGBOX</title>
+		<link rel="stylesheet" href="jmksf.css" type="text/css" />
+	</head>
+	<body>
+		<div id="top">
+			<img src="rb5.png" alt="RapidBATCH Logo" />
+			MSGBOX
+		</div>
+	
+		<div class="line">&nbsp;</div>
+	
+		<table cellspacing="10" width="100%">
+			<tr>
+				<td class="ref_label">Syntax:</td>
+				<td class="ref_syntax">MSGBOX result = title, message-text, style<br />MSGBOX title, message-text, style</td>
+			</tr>
+			<tr>
+				<td class="ref_label">Description:</td>
+				<td>Displays a messagebox.<br /><br />This function can also be used as an instruction, which is the old-styled method from RapidBATCH 5.0's predecessors.<br />MSGBOX (both the function and the instruction) expect a title that is shown in the messagebox's title-bar, a message-text that is displayed in the messagebox itself and a style-mode that specifies the messagebox's look and feel as well as the buttons that are displayed for selection.<br /><br />Which button was pressed is returned by the function or, if MSGBOX called as a instruction, to [errorcode]. The pressed button is represented by a numerical-value, that is also covered from the following table.<br /><br /><br /><!-- MESSAGEBOX-BUTTON-STYLES ------------------------------------------------------------------><table class="std" style="margin-left: 20px;" cellspacing="10"><tr>  <td style="padding-right: 10px;"><b>Style-ID:</b></td>  <td><b>Example:</b></td>  <td><b>Button-Style (the value that is returned to the return-variable or [errorcode] is written in brackets):</b></td></tr><tr>  <td>0</td><td style="padding-right: 10px;"><img src="img/msgbox_style0.gif" alt="Screenshot MSGBOX-Style 0" /></td><td>OK (1)</td></tr><tr>  <td>1</td><td style="padding-right: 10px;"><img src="img/msgbox_style1.gif" alt="Screenshot MSGBOX-Style 0" /></td><td>OK (1) + CANCEL (2)</td></tr><tr>  <td>2</td><td style="padding-right: 10px;"><img src="img/msgbox_style2.gif" alt="Screenshot MSGBOX-Style 0" /></td><td>CANCEL (3) + RETRY (4) + IGNORE (5)</td></tr><tr>  <td>3</td><td style="padding-right: 10px;"><img src="img/msgbox_style3.gif" alt="Screenshot MSGBOX-Style 0" /></td><td>YES (6) + NO (7) + CANCEL (2)</td></tr><tr>  <td>4</td><td style="padding-right: 10px;"><img src="img/msgbox_style4.gif" alt="Screenshot MSGBOX-Style 0" /></td><td>YES (6) + NO (7)</td></tr><tr>  <td>5</td><td style="padding-right: 10px;"><img src="img/msgbox_style5.gif" alt="Screenshot MSGBOX-Style 0" /></td><td>RETRY (4) + CANCEL (2)</td></tr></table><!-- END MESSAGEBOX-BUTTON-STYLES --------------------------------------------------------------><br /><br />By adding the following icon-styles, an individual icon can be displayed on the left of the message-text.<br /><br /><!-- MESSAGEBOX-ICON-STYLES ------------------------------------------------------------------><table class="std" style="margin-left: 20px;" cellspacing="10"><tr>  <td style="padding-right: 10px;"><b>Icon-Style:</b></td>  <td><b>Example:</b></td></tr><tr>  <td>0</td><td style="padding-right: 10px;"><img src="img/msgbox_icon0.gif" alt="Screenshot without Icon-Style" /></td></tr><tr>  <td>16</td><td style="padding-right: 10px;"><img src="img/msgbox_icon16.gif" alt="Screenshot MSGBOX-Icon-Style 16" /></td></tr><tr>  <td>32</td><td style="padding-right: 10px;"><img src="img/msgbox_icon32.gif" alt="Screenshot MSGBOX-Icon-Style 32" /></td></tr><tr>  <td>48</td><td style="padding-right: 10px;"><img src="img/msgbox_icon48.gif" alt="Screenshot MSGBOX-Icon-Style 48" /></td></tr><tr>  <td>64</td><td style="padding-right: 10px;"><img src="img/msgbox_icon64.gif" alt="Screenshot MSGBOX-Icon-Style 64" /></td></tr></table><!-- END MESSAGEBOX-BUTTON-STYLES --------------------------------------------------------------><br /><br /><img style="padding-top: 30px;" src="img/msgbox.gif" alt="Image of a messagebox at run-time, created using the MSGBOX-function." title="Screenshot" /></td>
+			</tr>
+			<tr>
+				<td class="ref_label">Examples:</td>
+				<td class="ref_code"><font color="#808080">rem a simple messagebox-dialog (using MSGBOX as instruction)</font><br />msgbox <font color="#0000ff">'Hello!'</font>, <font color="#0000ff">'Be welcome to RapidBATCH!'</font>, <font color="#0000ff">'64'</font><br /><br /><font color="#808080">rem messagebox with Yes-No-Cancel-Option (using MSGBOX as a function)</font><br />msgbox <font color="#000080">[answer]</font> = <font color="#0000ff">'Saving file...'</font>, <font color="#0000ff">'Do you want to overwrite the file?'</font>, <font color="#0000ff">'3'</font> + <font color="#0000ff">'64'</font> + <font color="#0000ff">'256'</font><br /><b>if</b> <font color="#000080">[answer]</font> = <font color="#0000ff">'6'</font><br />&nbsp;&nbsp;&nbsp;&nbsp;echo <font color="#0000ff">'You selected YES.'</font><br /><b>elseif</b> <font color="#000080">[answer]</font> = <font color="#0000ff">'7'</font><br />&nbsp;&nbsp;&nbsp;&nbsp;echo <font color="#0000ff">'You selected NO.'</font><br /><b>else</b><br />&nbsp;&nbsp;&nbsp;&nbsp;echo <font color="#0000ff">'You selected CANCEL.'</font><br /><b>endif</b></td>
+			</tr>
+			<tr>
+				<td class="ref_label">Remarks:</td>
+				<td>In RapidBATCH 2.0, 2.2. and 3.0, MSGBOX was known as ECHOBOX. Alternatively RapidBATCH does also support ECHOBOX instead of MSGBOX, for downward compatibility.</td>
+			</tr>
+		</table>
+	
+		<div class="line">&nbsp;</div>
+	
+		<div id="copyright">
+			Copyright &copy; 2000-2006 by J.M.K S.F. Software Technologies, Jan Max Meyer<br />
+			All rights reserved.
+		</div>
+	</body>
+</html>

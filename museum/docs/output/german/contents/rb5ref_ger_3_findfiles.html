@@ -1,0 +1,40 @@
+<html>
+	<head>
+		<title>RapidBATCH Befehlsreferenz :: FINDFILES</title>
+		<link rel="stylesheet" href="jmksf.css" type="text/css" />
+	</head>
+	<body>
+		<div id="top">
+			<img src="rb5.png" alt="RapidBATCH Logo" />
+			FINDFILES
+		</div>
+	
+		<div class="line">&nbsp;</div>
+	
+		<table cellspacing="10" width="100%">
+			<tr>
+				<td class="ref_label">Syntax:</td>
+				<td class="ref_syntax">FINDFILES Dateiliste = Dateifilter, Verzeichnistiefe</td>
+			</tr>
+			<tr>
+				<td class="ref_label">Beschreibung:</td>
+				<td>Liest alle Dateien eines Verzeichnisses (mitsamt Unterverzeichnissen) aus und gibt diese als Dateiliste zur&uuml;ck.<br /><br />Diese Funktion ben&ouml;tigt als Parameter einen so genannten Dateifilter (der die Wildcards * und ? beinhalten kann) und eine Ebenen-Angabe (Verzeichnistiefe), die angibt, wieviele Unterverzeichnis-Ebenen maximal mit eingelesen werden sollen. Wird als Verzeichnistiefe der Wert 0 &uuml;bergeben, liest FINDFILES alle Verzeichnisse bis zu 255 Unterverzeichnis-Ebenen ein. Wird der Wert 1 als Tiefe &uuml;bergeben, so wird nur das aktuelle Verzeichnis eingelesen, bei dem Wert 2 wird das aktuelle Verzeichnis mit einer Unterverzeichnis-Ebene eingelesen, usw..<br /><br />R&uuml;ckgabewert ist eine Liste an Dateien (mit relativen Unterverzeichnis-Pfaden), die durch den Listentrenner (definiert in der Variable [std_sep]) voneinander getrennt sind.</td>
+			</tr>
+			<tr>
+				<td class="ref_label">Beispiele:</td>
+				<td class="ref_code"><font color="#808080">rem Alle Dateien im Verzeichnis RB5 (ohne Unterverzeichnisse) auflisten</font><br />chdir <font color="#0000ff">'c:\jmksf\rb5'</font><br />findfiles <font color="#000080">[filelist]</font> = <font color="#0000ff">'*.*'</font>,<font color="#0000ff">'1'</font><br />replacevar <font color="#000080">[filelist]</font> = <font color="#000080">[filelist]</font>, <font color="#000080">[std_sep]</font>, <font color="#000080">[new_line]</font><br />echo <font color="#000080">[filelist]</font><br /><br /><font color="#808080">rem Alle EXE-Dateien von C:\JMKSF auflisten</font><br />findfiles <font color="#000080">[filelist]</font> = <font color="#0000ff">'c:\jmksf\*.exe'</font>,<font color="#0000ff">'0'</font><br />replacevar <font color="#000080">[filelist]</font> = <font color="#000080">[filelist]</font>, <font color="#000080">[std_sep]</font>, <font color="#000080">[new_line]</font><br />echo <font color="#000080">[filelist]</font><br /><b>end</b></td>
+			</tr>
+			<tr>
+				<td class="ref_label">Bemerkungen:</td>
+				<td>Wenn Sie die Dateien zur sp&auml;teren Verwendung aus der Dateiliste extrahieren wollen, benutzen Sie bitte die Funktionen GETTOK und REPLACEVAR, wie in dem Beispiel gegeben.<br />Die Funktionsbibliothek ARRAY.RB bietet ausserdem n&uuml;tzliche Funktionen und Prozeduren zum Umwandeln von Dateilisten in Arrays.</td>
+			</tr>
+		</table>
+	
+		<div class="line">&nbsp;</div>
+	
+		<div id="copyright">
+			Copyright &copy; 2000-2006 by J.M.K S.F. Software Technologies, Jan Max Meyer<br />
+			All rights reserved.
+		</div>
+	</body>
+</html>

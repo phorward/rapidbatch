@@ -1,0 +1,40 @@
+<html>
+	<head>
+		<title>RapidBATCH Language Reference :: LOCKWORKSTATION</title>
+		<link rel="stylesheet" href="jmksf.css" type="text/css" />
+	</head>
+	<body>
+		<div id="top">
+			<img src="rb5.png" alt="RapidBATCH Logo" />
+			LOCKWORKSTATION
+		</div>
+	
+		<div class="line">&nbsp;</div>
+	
+		<table cellspacing="10" width="100%">
+			<tr>
+				<td class="ref_label">Syntax:</td>
+				<td class="ref_syntax">LOCKWORKSTATION</td>
+			</tr>
+			<tr>
+				<td class="ref_label">Description:</td>
+				<td>Locks a Windows 2000, Windows XP, Windows 2003 or Windows Vista Workstation.<br />If this instruction is called on Windows 95/98/ME/NT, nothing will happen.</td>
+			</tr>
+			<tr>
+				<td class="ref_label">Examples:</td>
+				<td class="ref_code"><font color="#808080">rem lock current workstation?</font><br />confirm <font color="#000080">[lock]</font> = <font color="#0000ff">'Lock computer?'</font><br /><b>if</b> <font color="#000080">[lock]</font> = <font color="#000080">[true]</font><br /><font color="#808080">&nbsp;&nbsp;&nbsp;&nbsp;rem lock the computer!</font><br />&nbsp;&nbsp;&nbsp;&nbsp;lockworkstation<br /><b>endif</b></td>
+			</tr>
+			<tr>
+				<td class="ref_label">Remarks:</td>
+				<td>[errorcode] gets '-1', if RapidBATCH was not able to lock the workstation, else '0'.</td>
+			</tr>
+		</table>
+	
+		<div class="line">&nbsp;</div>
+	
+		<div id="copyright">
+			Copyright &copy; 2000-2006 by J.M.K S.F. Software Technologies, Jan Max Meyer<br />
+			All rights reserved.
+		</div>
+	</body>
+</html>

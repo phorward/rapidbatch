@@ -1,0 +1,40 @@
+<html>
+	<head>
+		<title>RapidBATCH Befehlsreferenz :: SHORTCUT</title>
+		<link rel="stylesheet" href="jmksf.css" type="text/css" />
+	</head>
+	<body>
+		<div id="top">
+			<img src="rb5.png" alt="RapidBATCH Logo" />
+			SHORTCUT
+		</div>
+	
+		<div class="line">&nbsp;</div>
+	
+		<table cellspacing="10" width="100%">
+			<tr>
+				<td class="ref_label">Syntax:</td>
+				<td class="ref_syntax">SHORTCUT Verkn&uuml;pfungsdatei, Verkn&uuml;pfungspfad, Parameter, Arbeitsverzeichnis, Icon, Anzeigemodus</td>
+			</tr>
+			<tr>
+				<td class="ref_label">Beschreibung:</td>
+				<td>Erstellt eine Verkn&uuml;pung.<br /><br />Die Verkn&uuml;pung wird unter dem als <i>Verkn&uuml;pungsdatei</i> angegebenen Pfad gespeichert, wobei die Dateiendung .LNK automatisch angeh&auml;ngt wird. <i>Programmpfad</i> gibt den Pfad zu einer Datei, auf die die Verkn&uuml;pung zeigen soll, an. <i>Parameter</i> definiert optionale Kommandozeilenparameter, <i>Arbeitsverzeichnis</i> ein optionales Arbeitsverzeichnis, <i>Icon</i> einen optionalen Icon-Pfad. Der Anzeigemodus kann 'SHOW', 'MINIMIZED' oder 'MAXIMIZED' sein. 'HIDE' ist bei Verkn&uuml;pfungen als Anzeigemodus-Wert nicht m&ouml;glich.</td>
+			</tr>
+			<tr>
+				<td class="ref_label">Beispiele:</td>
+				<td class="ref_code"><font color="#000080">[userdir]</font> = <font color="#0000ff">'C:\Dokumente und Einstellungen\'</font> # <font color="#000080">[curuser]</font> # <font color="#0000ff">'\Desktop'</font><br /><font color="#000080">[prog]</font> =  <font color="#0000ff">'C:\jmksf\rb5\rbb4.exe'</font><br /><br />shortcut <font color="#000080">[userdir]</font> # <font color="#0000ff">'\RapidBATCH Schortcut'</font>, <font color="#000080">[prog]</font>, <font color="#0000ff">''</font>, <font color="#0000ff">''</font>, <font color="#0000ff">''</font>, <font color="#0000ff">'show'</font><br /><br /><b>if</b> <font color="#000080">[errorcode]</font> = <font color="#000080">[true]</font><br />&nbsp;&nbsp;&nbsp;&nbsp;echo <font color="#0000ff">'Verkn&uuml;pfung wurde erfolgreich erstellt!'</font><br /><b>else</b><br />&nbsp;&nbsp;&nbsp;&nbsp;echo <font color="#0000ff">'Fehler beim Erstellen der Verkn&uuml;pfung.'</font><br /><b>endif</b></td>
+			</tr>
+			<tr>
+				<td class="ref_label">Bemerkungen:</td>
+				<td>[errorcode] erh&auml;lt den Wert 0, wenn kein Fehler auftrat, ansonsten -1.</td>
+			</tr>
+		</table>
+	
+		<div class="line">&nbsp;</div>
+	
+		<div id="copyright">
+			Copyright &copy; 2000-2006 by J.M.K S.F. Software Technologies, Jan Max Meyer<br />
+			All rights reserved.
+		</div>
+	</body>
+</html>

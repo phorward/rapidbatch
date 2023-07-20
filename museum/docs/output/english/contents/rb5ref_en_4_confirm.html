@@ -1,0 +1,40 @@
+<html>
+	<head>
+		<title>RapidBATCH Language Reference :: CONFIRM</title>
+		<link rel="stylesheet" href="jmksf.css" type="text/css" />
+	</head>
+	<body>
+		<div id="top">
+			<img src="rb5.png" alt="RapidBATCH Logo" />
+			CONFIRM
+		</div>
+	
+		<div class="line">&nbsp;</div>
+	
+		<table cellspacing="10" width="100%">
+			<tr>
+				<td class="ref_label">Syntax:</td>
+				<td class="ref_syntax">CONFIRM answer = question</td>
+			</tr>
+			<tr>
+				<td class="ref_label">Description:</td>
+				<td>CONFIRM is another shortcut for a messagebox-dialog with YES-NO-Buttons. If the user presses YES, the result-variable gets the value '0' ([true]), else '-1' ([false]).<br /><br /><img style="padding-top: 30px;" src="img/confirm.gif" alt="Image of a CONFIRM-dialog." title="Screenshot" /></td>
+			</tr>
+			<tr>
+				<td class="ref_label">Examples:</td>
+				<td class="ref_code"><b>repeat</b><br />&nbsp;&nbsp;&nbsp;&nbsp;confirm <font color="#000080">[quit]</font> = <font color="#0000ff">'Do you want to terminate this script?'</font><br /><b>until</b> <font color="#000080">[quit]</font> = <font color="#000080">[true]</font><br />echo <font color="#0000ff">'Script is now terminated.'</font><br /><b>end</b></td>
+			</tr>
+			<tr>
+				<td class="ref_label">Remarks:</td>
+				<td>To change CONFIRM's standard title for the messagebox (default: "RapidBATCH Confirmation"), change its value using the pre-declared variable [Confirm_Title].<br />Use the MSGBOX-function, to display an individually designed messagebox-dialog to the user.</td>
+			</tr>
+		</table>
+	
+		<div class="line">&nbsp;</div>
+	
+		<div id="copyright">
+			Copyright &copy; 2000-2006 by J.M.K S.F. Software Technologies, Jan Max Meyer<br />
+			All rights reserved.
+		</div>
+	</body>
+</html>

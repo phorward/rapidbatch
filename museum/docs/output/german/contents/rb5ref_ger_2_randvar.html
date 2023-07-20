@@ -1,0 +1,40 @@
+<html>
+	<head>
+		<title>RapidBATCH Befehlsreferenz :: RANDVAR</title>
+		<link rel="stylesheet" href="jmksf.css" type="text/css" />
+	</head>
+	<body>
+		<div id="top">
+			<img src="rb5.png" alt="RapidBATCH Logo" />
+			RANDVAR
+		</div>
+	
+		<div class="line">&nbsp;</div>
+	
+		<table cellspacing="10" width="100%">
+			<tr>
+				<td class="ref_label">Syntax:</td>
+				<td class="ref_syntax">RANDVAR Zufallszahl = Maximalwert</td>
+			</tr>
+			<tr>
+				<td class="ref_label">Beschreibung:</td>
+				<td>Erzeugt eine Pseudo-Zufallszahl, die zwischen 0 und dem &uuml;bergebenen <i>Maximalwert</i> - 1 liegt. Wenn der Funktion beispielsweise 40 &uuml;bergeben wird, ist der m&ouml;gliche Zufallswert zwischen 0 und 40.</td>
+			</tr>
+			<tr>
+				<td class="ref_label">Beispiele:</td>
+				<td class="ref_code"><font color="#808080">rem Erzeuge Zufallszahl...</font><br />randvar <font color="#000080">[random]</font> = <font color="#0000ff">'255'</font><br />echo <font color="#0000ff">'Zufallszahl: '</font> # <font color="#000080">[random]</font><br /><b>end</b></td>
+			</tr>
+			<tr>
+				<td class="ref_label">Bemerkungen:</td>
+				<td>Bei der Implementation von RANDVAR wurde darauf geachtet, dass sich Zahlen nicht wiederholen. Es kann aber durchaus vorkommen, dass ein bestimmtes Muster bei mehrfachen Generierungen entsteht, da es sich bei RANDVAR um einen Pseudo-Zufallszahlengenerator handelt. Als Basis f&uuml;r die Zufallszahlen verwendet RANDVAR die Systemuhrzeit.</td>
+			</tr>
+		</table>
+	
+		<div class="line">&nbsp;</div>
+	
+		<div id="copyright">
+			Copyright &copy; 2000-2006 by J.M.K S.F. Software Technologies, Jan Max Meyer<br />
+			All rights reserved.
+		</div>
+	</body>
+</html>

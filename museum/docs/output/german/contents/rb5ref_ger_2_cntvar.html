@@ -1,0 +1,40 @@
+<html>
+	<head>
+		<title>RapidBATCH Befehlsreferenz :: CNTVAR</title>
+		<link rel="stylesheet" href="jmksf.css" type="text/css" />
+	</head>
+	<body>
+		<div id="top">
+			<img src="rb5.png" alt="RapidBATCH Logo" />
+			CNTVAR
+		</div>
+	
+		<div class="line">&nbsp;</div>
+	
+		<table cellspacing="10" width="100%">
+			<tr>
+				<td class="ref_label">Syntax:</td>
+				<td class="ref_syntax">CNTVAR Anzahl = Stringausdruck, Suchstring</td>
+			</tr>
+			<tr>
+				<td class="ref_label">Beschreibung:</td>
+				<td>Gibt die Anzahl der im Stringausdruck enthaltenen Suchstring-Ausdr&uuml;cke zur&uuml;ck.</td>
+			</tr>
+			<tr>
+				<td class="ref_label">Beispiele:</td>
+				<td class="ref_code">readfile <font color="#000080">[text]</font> = <font color="#0000ff">'C:\jmksf\rb5\readme.txt'</font>, <font color="#0000ff">'0'</font><br /><br />cntvar <font color="#000080">[anzahl]</font> = <font color="#000080">[text]</font>, <font color="#0000ff">'RapidBATCH'</font><br />echo <font color="#0000ff">'Die Datei beinhaltet '</font> # <font color="#000080">[anzahl]</font> # <font color="#0000ff">' X das Wort "RapidBATCH"'</font><br /><b>end</b></td>
+			</tr>
+			<tr>
+				<td class="ref_label">Bemerkungen:</td>
+				<td>Hat die Variable [case_sensitivity] den Wert '-1', so z&auml;hlt CNTVAR auch Stringmuster, die sich von der Groﬂ-/Kleinschreibung her von der Schreibweise des gegebenen Suchstrings unterscheiden. D.h. wenn der Suchstring z.B. in Kleinschreibweise vorliegt, und [case_sensitivity] den Wert '-1' (false) hat, so wird auch ein in Groﬂbuchstaben geschriebener, &auml;quivalenter Substring mitgez&auml;hlt.</td>
+			</tr>
+		</table>
+	
+		<div class="line">&nbsp;</div>
+	
+		<div id="copyright">
+			Copyright &copy; 2000-2006 by J.M.K S.F. Software Technologies, Jan Max Meyer<br />
+			All rights reserved.
+		</div>
+	</body>
+</html>

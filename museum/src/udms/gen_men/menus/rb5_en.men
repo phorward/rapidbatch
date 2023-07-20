@@ -1,0 +1,331 @@
+0|What is RapidBATCH?|rb5_en_preamble_1.html|intro
+0|What's new in version 5?|rb5_en_preamble_2.html|whatsnew
+0|Improvements in Version 5.1|rb5_en_preamble_5.html|
+0|Who creates RapidBATCH?|rb5_en_preamble_3.html|
+0|How to buy the Professional Edition?|rb5_en_preamble_4.html|order
+0|User's Manual||
+1|The basics||
+2|A first, simple script|rb5_en_basics_1.html|
+2|Working with variables|rb5_en_basics_2.html|
+2|Manipulating variable data|rb5_en_basics_3.html|
+2|Conditional programming|rb5_en_basics_4.html|
+2|Labels and subs|rb5_en_basics_5.html|
+2|Arrays|rb5_en_basics_6.html|
+1|Procedural programming||
+2|Procedures and functions|rb5_en_procedural_1.html|
+2|Recoursive programming|rb5_en_procedural_2.html|
+2|Pointers|rb5_en_procedural_3.html|
+1|The build-in dialog windows||
+2|Message- and statusboxes|rb5_en_dialogs_1.html|
+2|Prompting data from the user|rb5_en_dialogs_2.html|
+2|Menus|rb5_en_dialogs_3.html|
+2|Dialogs for file- and folder-selection|rb5_en_dialogs_4.html|
+1|System-specific operations||
+2|Running external programs|rb5_en_sysop_1.html|
+2|Directory operations|rb5_en_sysop_2.html|
+2|Operating on the filesystem|rb5_en_sysop_3.html|
+2|Writing and reading files|rb5_en_sysop_4.html|
+2|Controlling applications remotely|rb5_en_sysop_5.html|
+2|Working on the registry|rb5_en_sysop_6.html|
+2|Using pre-declared variables|rb5_en_sysop_7.html|
+1|User-defined dialog programming||
+2|Implementing user-defined dialogs|rb5_en_userdialogs_1.html|
+2|A widget overview|rb5_en_userdialogs_2.html|
+2|Creating an example application|rb5_en_userdialogs_3.html|
+0|Language Reference Manual||reference
+1|Language Reference (by topics)||
+2|Programflow and -control||
+3|DEC, RESET|rb5ref_en_1_dec_reset.html|
+3|IF...ELSEIF...ELSE...ENDIF|rb5ref_en_1_if_elseif_else_endif.html|
+3|REPEAT...BREAK...CONT...UNTIL|rb5ref_en_1_repeat_until_break_cont.html|
+3|PROC...RET...ENDPROC|rb5ref_en_1_proc_endproc.html|
+3|FUNC...RET...ENDFUNC|rb5ref_en_1_func_endfunc.html|
+3|GOTO|rb5ref_en_1_goto.html|
+3|GOSUB...RESUME|rb5ref_en_1_gosub_resume.html|
+3|HALT|rb5ref_en_1_halt.html|
+3|INCLUDE, INCLUDE_ONCE|rb5ref_en_1_include.html|
+3|REM|rb5ref_en_1_rem.html|
+3|WAIT|rb5ref_en_1_wait.html|
+2|Build-in functions||
+3|GETCHR, GETASC|rb5ref_en_2_getchrgetasc.html|
+3|GETLEN|rb5ref_en_2_getlen.html|
+3|GETPOS|rb5ref_en_2_getpos.html|
+3|GETTOK|rb5ref_en_2_gettok.html|
+3|GETCHARAT|rb5ref_en_2_getcharat.html|
+3|UPVAR, LOWVAR|rb5ref_en_2_upvarlowvar.html|
+3|TRIMVAR|rb5ref_en_2_trimvar.html|
+3|COPYVAR|rb5ref_en_2_copyvar.html|
+3|CNTVAR|rb5ref_en_2_cntvar.html|
+3|REPLACEVAR|rb5ref_en_2_replacevar.html|
+3|RANDVAR|rb5ref_en_2_randvar.html|
+2|Build-in dialogs||
+3|ECHO|rb5ref_en_4_echo.html|
+3|CONFIRM|rb5ref_en_4_confirm.html|
+3|MSGBOX|rb5ref_en_4_msgbox.html|
+3|INPUTBOX, PWDBOX|rb5ref_en_4_inputboxpwdbox.html|
+3|EDITBOX|rb5ref_en_4_editbox.html|
+3|LISTBOX|rb5ref_en_4_listbox.html|
+3|FOLDERBOX|rb5ref_en_4_folderbox.html|
+3|OPENBOX, SAVEBOX|rb5ref_en_4_openboxsavebox.html|
+3|INFOBOX|rb5ref_en_4_infobox.html|
+3|TRAYMENU|rb5ref_en_4_traymenu.html|
+2|System-specific operations||
+3|CHDIR, MKDIR, RMDIR|rb5ref_en_3_chdirmkdirrmdir.html|
+3|SYSTEM|rb5ref_en_3_system.html|
+3|SHELL|rb5ref_en_3_shell.html|
+3|CALL|rb5ref_en_3_call.html|
+3|OPEN|rb5ref_en_3_open.html|
+3|NEWFILE, DELFILE|rb5ref_en_3_newfiledelfile.html|
+3|COPYFILE, RENAMEFILE|rb5ref_en_3_copyfilerenamefile.html|
+3|FILESIZE|rb5ref_en_3_filesize.html|
+3|FILEEXISTS|rb5ref_en_3_fileexists.html|
+3|READFILE|rb5ref_en_3_readfile.html|
+3|WRITEFILE|rb5ref_en_3_writefile.html|
+3|GETFILE|rb5ref_en_3_getfile.html|
+3|PUTFILE|rb5ref_en_3_putfile.html|
+3|FINDFILES|rb5ref_en_3_findfiles.html|
+3|GETFILEATT, LETFILEATT|rb5ref_en_3_getfileattletfileatt.html|
+3|GETFILEDATE, LETFILEDATE|rb5ref_en_3_getfiledateletfiledate.html|
+3|GETFILETIME, LETFILETIME|rb5ref_en_3_getfiletimeletfiletime.html|
+3|SHORTCUT|rb5ref_en_3_shortcut.html|
+3|DISKFREE, DISKSIZE|rb5ref_en_3_diskfreedisksize.html|
+3|DISKTYPE|rb5ref_en_3_disktype.html|
+3|GETENV, LETENV|rb5ref_en_3_getenvletenv.html|
+3|MCI|rb5ref_en_3_mci.html|
+3|NEWREGKEY, DELREGKEY|rb5ref_en_3_newregkeydelregkey.html|
+3|GETREGVAL|rb5ref_en_3_getregval.html|
+3|LETREGVAL|rb5ref_en_3_letregval.html|
+3|DELREGVAL|rb5ref_en_3_delregval.html|
+3|SENDKEYS|rb5ref_en_3_sendkeys.html|
+3|MOUSEEVENT|rb5ref_en_3_mouseevent.html|
+3|LOCKWORKSTATION|rb5ref_en_3_lockworkstation.html|
+3|SHUTDOWN|rb5ref_en_3_shutdown.html|
+2|User-defined dialogs||
+3|NEWDIALOG|rb5ref_en_6_newdialog.html|
+3|LETDIALOG|rb5ref_en_6_letdialog.html|
+3|GETDIALOG|rb5ref_en_6_getdialog.html|
+3|RUNDIALOG|rb5ref_en_6_rundialog.html|
+3|DELDIALOG|rb5ref_en_6_deldialog.html|
+2|Debugger control instructions||
+3|DEBUGMODE|rb5ref_en_5_debugmode.html|
+3|DEBUGVARS|rb5ref_en_5_debugvars.html|
+2|Pre-declared variables||
+3|[activewindow]|rb5ref_en_vars_activewindow.html|
+3|[app_icon]|rb5ref_en_vars_app_icon.html|
+3|[case_sensitivity]|rb5ref_en_vars_case_sensitivity.html|
+3|[clipboard]|rb5ref_en_vars_clipboard.html|
+3|[command]|rb5ref_en_vars_command.html|
+3|[Confirm_Title]|rb5ref_en_vars_echotitleconfirmtitle.html|
+3|[crlf]|rb5ref_en_vars_newlinetabcrlfpipe.html|
+3|[current]|rb5ref_en_vars_current.html|
+3|[curuser]|rb5ref_en_vars_curuser.html|
+3|[day]|rb5ref_en_vars_daymonthyear.html|
+3|[Echo_Title]|rb5ref_en_vars_echotitleconfirmtitle.html|
+3|[EditBox_Cancel]|rb5ref_en_vars_editbox_X.html|
+3|[EditBox_Height]|rb5ref_en_vars_editbox_X.html|
+3|[EditBox_Ok]|rb5ref_en_vars_editbox_X.html|
+3|[EditBox_Width]|rb5ref_en_vars_editbox_X.html|
+3|[EditBox_X]|rb5ref_en_vars_editbox_X.html|
+3|[EditBox_Y]|rb5ref_en_vars_editbox_X.html|
+3|[eol]|rb5ref_en_vars_eol.html|
+3|[errorcode]|rb5ref_en_vars_errorcode.html|
+3|[false]|rb5ref_en_vars_truefalse.html|
+3|[InfoBox_Height]|rb5ref_en_vars_infobox_X.html|
+3|[InfoBox_Width]|rb5ref_en_vars_infobox_X.html|
+3|[InfoBox_X]|rb5ref_en_vars_infobox_X.html|
+3|[InfoBox_Y]|rb5ref_en_vars_infobox_X.html|
+3|[InputBox_Cancel]|rb5ref_en_vars_inputbox_X.html|
+3|[InputBox_Ok]|rb5ref_en_vars_inputbox_X.html|
+3|[InputBox_X]|rb5ref_en_vars_inputbox_X.html|
+3|[InputBox_Y]|rb5ref_en_vars_inputbox_X.html|
+3|[ListBox_Height]|rb5ref_en_vars_listbox_X.html|
+3|[ListBox_Ok]|rb5ref_en_vars_listbox_X.html|
+3|[ListBox_Width]|rb5ref_en_vars_listbox_X.html|
+3|[ListBox_X]|rb5ref_en_vars_listbox_X.html|
+3|[ListBox_Y]|rb5ref_en_vars_listbox_X.html|
+3|[Metric_Caption_Height]|rb5ref_en_vars_xpstyleactive.html|
+3|[Metric_Edge_Height]|rb5ref_en_vars_xpstyleactive.html|
+3|[Metric_Edge_Width]|rb5ref_en_vars_xpstyleactive.html|
+3|[Metric_Menu_Height]|rb5ref_en_vars_xpstyleactive.html|
+3|[month]|rb5ref_en_vars_daymonthyear.html|
+3|[mouse_x]|rb5ref_en_vars_mouse_xmouse_y.html|
+3|[mouse_y]|rb5ref_en_vars_mouse_xmouse_y.html|
+3|[new_line]|rb5ref_en_vars_newlinetabcrlfpipe.html|
+3|[null]|rb5ref_en_vars_null.html|
+3|[OpenBox_DefFileExt]|rb5ref_en_vars_deffileext.html|
+3|[OpenBox_MultiSel]|rb5ref_en_vars_openboxmultiselsaveboxmultisel.html|
+3|[ownname]|rb5ref_en_vars_ownname.html|
+3|[pipe]|rb5ref_en_vars_newlinetabcrlfpipe.html|
+3|[quot]|rb5ref_en_vars_newlinetabcrlfpipe.html|
+3|[RB_Pro]|rb5ref_en_vars_rbversionrbpro.html|
+3|[RB_Version]|rb5ref_en_vars_rbversionrbpro.html|
+3|[SaveBox_DefFileExt]|rb5ref_en_vars_deffileext.html|
+3|[SaveBox_MultiSel]|rb5ref_en_vars_openboxmultiselsaveboxmultisel.html|
+3|[ScreenHeight]|rb5ref_en_vars_screenwidthscreenheight.html|
+3|[ScreenWidth]|rb5ref_en_vars_screenwidthscreenheight.html|
+3|[std_sep]|rb5ref_en_vars_std_sep.html|
+3|[tab]|rb5ref_en_vars_newlinetabcrlfpipe.html|
+3|[time]|rb5ref_en_vars_time.html|
+3|[true]|rb5ref_en_vars_truefalse.html|
+3|[windir]|rb5ref_en_vars_windir.html|
+3|[winvers]|rb5ref_en_vars_winvers.html|
+3|[XPStyleActive]|rb5ref_en_vars_xpstyleactive.html|
+3|[year]|rb5ref_en_vars_daymonthyear.html|
+1|Language Reference (by alphabet)||
+2|BREAK|rb5ref_en_1_repeat_until_break_cont.html|
+2|CALL|rb5ref_en_3_call.html|
+2|CHDIR|rb5ref_en_3_chdirmkdirrmdir.html|
+2|CNTVAR|rb5ref_en_2_cntvar.html|
+2|CONFIRM|rb5ref_en_4_confirm.html|
+2|CONT|rb5ref_en_1_repeat_until_break_cont.html|
+2|COPYFILE|rb5ref_en_3_copyfilerenamefile.html|
+2|COPYVAR|rb5ref_en_2_copyvar.html|
+2|DEBUGMODE|rb5ref_en_5_debugmode.html|
+2|DEBUGVARS|rb5ref_en_5_debugvars.html|
+2|DEC|rb5ref_en_1_dec_reset.html|
+2|DELDIALOG|rb5ref_en_6_deldialog.html|
+2|DELFILE|rb5ref_en_3_newfiledelfile.html|
+2|DELREGKEY|rb5ref_en_3_newregkeydelregkey.html|
+2|DELREGVAL|rb5ref_en_3_delregval.html|
+2|DISKFREE|rb5ref_en_3_diskfreedisksize.html|
+2|DISKSIZE|rb5ref_en_3_diskfreedisksize.html|
+2|DISKTYPE|rb5ref_en_3_disktype.html|
+2|ECHO|rb5ref_en_4_echo.html|
+2|EDITBOX|rb5ref_en_4_editbox.html|
+2|ELSE|rb5ref_en_1_if_elseif_else_endif.html|
+2|ELSEIF|rb5ref_en_1_if_elseif_else_endif.html|
+2|ENDFUNC|rb5ref_en_1_func_endfunc.html|
+2|ENDIF|rb5ref_en_1_if_elseif_else_endif.html|
+2|ENDPROC|rb5ref_en_1_proc_endproc.html|
+2|FILEEXISTS|rb5ref_en_3_fileexists.html|
+2|FILESIZE|rb5ref_en_3_filesize.html|
+2|FINDFILES|rb5ref_en_3_findfiles.html|
+2|FOLDERBOX|rb5ref_en_4_folderbox.html|
+2|FUNC|rb5ref_en_1_func_endfunc.html|
+2|GETASC|rb5ref_en_2_getchrgetasc.html|
+2|GETCHARAT|rb5ref_en_2_getcharat.html|
+2|GETCHR|rb5ref_en_2_getchrgetasc.html|
+2|GETDIALOG|rb5ref_en_6_getdialog.html|
+2|GETENV|rb5ref_en_3_getenvletenv.html|
+2|GETFILE|rb5ref_en_3_getfile.html|
+2|GETFILEATT|rb5ref_en_3_getfileattletfileatt.html|
+2|GETFILEDATE|rb5ref_en_3_getfiledateletfiledate.html|
+2|GETFILETIME|rb5ref_en_3_getfiletimeletfiletime.html|
+2|GETLEN|rb5ref_en_2_getlen.html|
+2|GETPOS|rb5ref_en_2_getpos.html|
+2|GETREGVAL|rb5ref_en_3_getregval.html|
+2|GETTOK|rb5ref_en_2_gettok.html|
+2|GOSUB|rb5ref_en_1_gosub_resume.html|
+2|GOTO|rb5ref_en_1_goto.html|
+2|HALT|rb5ref_en_1_halt.html|
+2|IF|rb5ref_en_1_if_elseif_else_endif.html|
+2|INCLUDE|rb5ref_en_1_include.html|
+2|INCLUDE_ONCE|rb5ref_en_1_include.html|
+2|INFOBOX|rb5ref_en_4_infobox.html|
+2|INPUTBOX|rb5ref_en_4_inputboxpwdbox.html|
+2|LETDIALOG|rb5ref_en_6_letdialog.html|
+2|LETENV|rb5ref_en_3_getenvletenv.html|
+2|LETFILEATT|rb5ref_en_3_getfileattletfileatt.html|
+2|LETFILEDATE|rb5ref_en_3_getfiledateletfiledate.html|
+2|LETFILETIME|rb5ref_en_3_getfiletimeletfiletime.html|
+2|LETREGVAL|rb5ref_en_3_letregval.html|
+2|LISTBOX|rb5ref_en_4_listbox.html|
+2|LOCKWORKSTATION|rb5ref_en_3_lockworkstation.html|
+2|LOWVAR|rb5ref_en_2_upvarlowvar.html|
+2|MCI|rb5ref_en_3_mci.html|
+2|MKDIR|rb5ref_en_3_chdirmkdirrmdir.html|
+2|MOUSEEVENT|rb5ref_en_3_mouseevent.html|
+2|MSGBOX|rb5ref_en_4_msgbox.html|
+2|NEWDIALOG|rb5ref_en_6_newdialog.html|
+2|NEWFILE|rb5ref_en_3_newfiledelfile.html|
+2|NEWREGKEY|rb5ref_en_3_newregkeydelregkey.html|
+2|OPEN|rb5ref_en_3_open.html|
+2|OPENBOX|rb5ref_en_4_openboxsavebox.html|
+2|PROC|rb5ref_en_1_proc_endproc.html|
+2|PUTFILE|rb5ref_en_3_putfile.html|
+2|PWDBOX|rb5ref_en_4_inputboxpwdbox.html|
+2|RANDVAR|rb5ref_en_2_randvar.html|
+2|READFILE|rb5ref_en_3_readfile.html|
+2|REM|rb5ref_en_1_rem.html|
+2|RENAMEFILE|rb5ref_en_3_copyfilerenamefile.html|
+2|REPEAT|rb5ref_en_1_repeat_until_break_cont.html|
+2|REPLACEVAR|rb5ref_en_2_replacevar.html|
+2|RESET|rb5ref_en_1_dec_reset.html|
+2|RESUME|rb5ref_en_1_gosub_resume.html|
+2|RET (in functions)|rb5ref_en_1_func_endfunc.html|
+2|RET (in procedures)|rb5ref_en_1_proc_endproc.html|
+2|RMDIR|rb5ref_en_3_chdirmkdirrmdir.html|
+2|RUNDIALOG|rb5ref_en_6_rundialog.html|
+2|SAVEBOX|rb5ref_en_4_openboxsavebox.html|
+2|SENDKEYS|rb5ref_en_3_sendkeys.html|
+2|SHELL|rb5ref_en_3_shell.html|
+2|SHORTCUT|rb5ref_en_3_shortcut.html|
+2|SHUTDOWN|rb5ref_en_3_shutdown.html|
+2|SYSTEM|rb5ref_en_3_system.html|
+2|TRAYMENU|rb5ref_en_4_traymenu.html|
+2|TRIMVAR|rb5ref_en_2_trimvar.html|
+2|UNTIL|rb5ref_en_1_repeat_until_break_cont.html|
+2|UPVAR|rb5ref_en_2_upvarlowvar.html|
+2|WAIT|rb5ref_en_1_wait.html|
+2|WRITEFILE|rb5ref_en_3_writefile.html|
+2|[activewindow]|rb5ref_en_vars_activewindow.html|
+2|[app_icon]|rb5ref_en_vars_app_icon.html|
+2|[case_sensitivity]|rb5ref_en_vars_case_sensitivity.html|
+2|[clipboard]|rb5ref_en_vars_clipboard.html|
+2|[command]|rb5ref_en_vars_command.html|
+2|[Confirm_Title]|rb5ref_en_vars_echotitleconfirmtitle.html|
+2|[crlf]|rb5ref_en_vars_newlinetabcrlfpipe.html|
+2|[current]|rb5ref_en_vars_current.html|
+2|[curuser]|rb5ref_en_vars_curuser.html|
+2|[day]|rb5ref_en_vars_daymonthyear.html|
+2|[Echo_Title]|rb5ref_en_vars_echotitleconfirmtitle.html|
+2|[EditBox_Cancel]|rb5ref_en_vars_editbox_X.html|
+2|[EditBox_Height]|rb5ref_en_vars_editbox_X.html|
+2|[EditBox_Ok]|rb5ref_en_vars_editbox_X.html|
+2|[EditBox_Width]|rb5ref_en_vars_editbox_X.html|
+2|[EditBox_X]|rb5ref_en_vars_editbox_X.html|
+2|[EditBox_Y]|rb5ref_en_vars_editbox_X.html|
+2|[eol]|rb5ref_en_vars_eol.html|
+2|[errorcode]|rb5ref_en_vars_errorcode.html|
+2|[false]|rb5ref_en_vars_truefalse.html|
+2|[InfoBox_Height]|rb5ref_en_vars_infobox_X.html|
+2|[InfoBox_Width]|rb5ref_en_vars_infobox_X.html|
+2|[InfoBox_X]|rb5ref_en_vars_infobox_X.html|
+2|[InfoBox_Y]|rb5ref_en_vars_infobox_X.html|
+2|[InputBox_Cancel]|rb5ref_en_vars_inputbox_X.html|
+2|[InputBox_Ok]|rb5ref_en_vars_inputbox_X.html|
+2|[InputBox_X]|rb5ref_en_vars_inputbox_X.html|
+2|[InputBox_Y]|rb5ref_en_vars_inputbox_X.html|
+2|[ListBox_Height]|rb5ref_en_vars_listbox_X.html|
+2|[ListBox_Ok]|rb5ref_en_vars_listbox_X.html|
+2|[ListBox_Width]|rb5ref_en_vars_listbox_X.html|
+2|[ListBox_X]|rb5ref_en_vars_listbox_X.html|
+2|[ListBox_Y]|rb5ref_en_vars_listbox_X.html|
+2|[Metric_Caption_Height]|rb5ref_en_vars_xpstyleactive.html|
+2|[Metric_Edge_Height]|rb5ref_en_vars_xpstyleactive.html|
+2|[Metric_Edge_Width]|rb5ref_en_vars_xpstyleactive.html|
+2|[Metric_Menu_Height]|rb5ref_en_vars_xpstyleactive.html|
+2|[month]|rb5ref_en_vars_daymonthyear.html|
+2|[mouse_x]|rb5ref_en_vars_mouse_xmouse_y.html|
+2|[mouse_y]|rb5ref_en_vars_mouse_xmouse_y.html|
+2|[new_line]|rb5ref_en_vars_newlinetabcrlfpipe.html|
+2|[null]|rb5ref_en_vars_null.html|
+2|[OpenBox_DefFileExt]|rb5ref_en_vars_deffileext.html|
+2|[OpenBox_MultiSel]|rb5ref_en_vars_openboxmultiselsaveboxmultisel.html|
+2|[ownname]|rb5ref_en_vars_ownname.html|
+2|[pipe]|rb5ref_en_vars_newlinetabcrlfpipe.html|
+2|[quot]|rb5ref_en_vars_newlinetabcrlfpipe.html|
+2|[RB_Pro]|rb5ref_en_vars_rbversionrbpro.html|
+2|[RB_Version]|rb5ref_en_vars_rbversionrbpro.html|
+2|[SaveBox_DefFileExt]|rb5ref_en_vars_deffileext.html|
+2|[SaveBox_MultiSel]|rb5ref_en_vars_openboxmultiselsaveboxmultisel.html|
+2|[ScreenHeight]|rb5ref_en_vars_screenwidthscreenheight.html|
+2|[ScreenWidth]|rb5ref_en_vars_screenwidthscreenheight.html|
+2|[std_sep]|rb5ref_en_vars_std_sep.html|
+2|[tab]|rb5ref_en_vars_newlinetabcrlfpipe.html|
+2|[time]|rb5ref_en_vars_time.html|
+2|[true]|rb5ref_en_vars_truefalse.html|
+2|[windir]|rb5ref_en_vars_windir.html|
+2|[winvers]|rb5ref_en_vars_winvers.html|
+2|[XPStyleActive]|rb5ref_en_vars_xpstyleactive.html|
+2|[year]|rb5ref_en_vars_daymonthyear.html|

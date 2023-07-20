@@ -1,0 +1,40 @@
+<html>
+	<head>
+		<title>RapidBATCH Befehlsreferenz :: CONFIRM</title>
+		<link rel="stylesheet" href="jmksf.css" type="text/css" />
+	</head>
+	<body>
+		<div id="top">
+			<img src="rb5.png" alt="RapidBATCH Logo" />
+			CONFIRM
+		</div>
+	
+		<div class="line">&nbsp;</div>
+	
+		<table cellspacing="10" width="100%">
+			<tr>
+				<td class="ref_label">Syntax:</td>
+				<td class="ref_syntax">CONFIRM Auswahl = Meldungstext</td>
+			</tr>
+			<tr>
+				<td class="ref_label">Beschreibung:</td>
+				<td>Die CONFIRM-Funktion ist eine Abk&uuml;rzung f&uuml;r ein Meldungsfenster mit JA-NEIN-Option. Dr&uuml;ckt der Benutzer JA, so gibt die Funktion den Wert 0, andernfalls -1 zur&uuml;ck.<br /><img style="padding-top: 30px;" src="img/confirm.gif" alt="Bild eines CONFIRM-Abfragefensters" title="Screenshot" /></td>
+			</tr>
+			<tr>
+				<td class="ref_label">Beispiele:</td>
+				<td class="ref_code"><b>repeat</b><br />&nbsp;&nbsp;&nbsp;&nbsp;confirm <font color="#000080">[quit]</font> = <font color="#0000ff">'M&ouml;chten Sie das Script beenden?'</font><br /><b>until</b> <font color="#000080">[quit]</font> = <font color="#000080">[true]</font><br />echo <font color="#0000ff">'Script beendet.'</font><br /><b>end</b></td>
+			</tr>
+			<tr>
+				<td class="ref_label">Bemerkungen:</td>
+				<td>Der Standard-Text f&uuml;r die Titelzeile von CONFIRM-Meldungsfenstern kann &uuml;ber die Variable [Confirm_Title] ge&auml;ndert werden.<br />Verwenden Sie die <a href="rb5ref_ger_4_msgbox.html">MSGBOX</a>-Anweisung, um ein individuell gestaltetes Messagebox-Fenster bereitzustellen.</td>
+			</tr>
+		</table>
+	
+		<div class="line">&nbsp;</div>
+	
+		<div id="copyright">
+			Copyright &copy; 2000-2006 by J.M.K S.F. Software Technologies, Jan Max Meyer<br />
+			All rights reserved.
+		</div>
+	</body>
+</html>

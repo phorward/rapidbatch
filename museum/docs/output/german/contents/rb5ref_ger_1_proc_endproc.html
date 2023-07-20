@@ -1,0 +1,40 @@
+<html>
+	<head>
+		<title>RapidBATCH Befehlsreferenz :: PROC...ENDPROC</title>
+		<link rel="stylesheet" href="jmksf.css" type="text/css" />
+	</head>
+	<body>
+		<div id="top">
+			<img src="rb5.png" alt="RapidBATCH Logo" />
+			PROC...ENDPROC
+		</div>
+	
+		<div class="line">&nbsp;</div>
+	
+		<table cellspacing="10" width="100%">
+			<tr>
+				<td class="ref_label">Syntax:</td>
+				<td class="ref_syntax">PROC Prozedurname [: Parameter-Liste]<br />&nbsp;&nbsp;{Anweisungsblock}<br />&nbsp;&nbsp;&nbsp;&nbsp;[RET]<br />&nbsp;&nbsp;{Anweisungsblock}<br />ENDPROC</td>
+			</tr>
+			<tr>
+				<td class="ref_label">Beschreibung:</td>
+				<td>Definiert eine benutzerdefinierte Prozedur.<br /><br />Prozeduren werden implementiert, um mehrere RapidBATCH-Anweisungen zu einem neuen Befehl zusammenzufassen, der im Script verwendet werden kann. Eine Prozedur kann einen beliebigen Namen sowie eine optionale und beliebige Anzahl an Parametervariablen besitzen, die beim Aufruf der Prozedur als lokale Prozedurvariablen behandelt werden. Mit Hilfe der Pointerfunktionalit&auml;t k&ouml;nnen auch Zeiger auf Arrays und Variablen an die Prozedur als lokale Variablen &uuml;bergeben und verarbeitet werden.<br /><br />Mit der RET-Anweisung kann eine Prozedur vorzeitig beendet werden; Hingegen zu Funktionen ist bei in Prozeduren verwendeten RET-Anweisungen kein R&uuml;ckgabewert erlaubt.<br /><br />Eine Prozedur kann wiederum andere Prozeduren/Funktionen oder sich selbst rekursiv aufrufen. Funktions-/Prozedurdeklarationen in Prozeduren sind nicht erlaubt.</td>
+			</tr>
+			<tr>
+				<td class="ref_label">Beispiele:</td>
+				<td class="ref_code"><!-- CODE BEGIN --><font color="#808080">rem Implementation der Prozedur "berechne"</font><br /><b>proc</b> berechne: <font color="#000080">[a]</font>, <font color="#000080">[b]</font><br />&nbsp;&nbsp;&nbsp;&nbsp;<b>dec</b> <font color="#000080">[text]</font><br />&nbsp;&nbsp;&nbsp;&nbsp;<font color="#000080">[text]</font> # <font color="#000080">[a]</font> # <font color="#0000ff">' + '</font> # <font color="#000080">[b]</font> # <font color="#0000ff">' = '</font> # (<font color="#000080">[a]</font> + <font color="#000080">[b]</font>) # <font color="#000080">[new_line]</font><br />&nbsp;&nbsp;&nbsp;&nbsp;<font color="#000080">[text]</font> # <font color="#000080">[a]</font> # <font color="#0000ff">' - '</font> # <font color="#000080">[b]</font> # <font color="#0000ff">' = '</font> # (<font color="#000080">[a]</font> - <font color="#000080">[b]</font>) # <font color="#000080">[new_line]</font><br />&nbsp;&nbsp;&nbsp;&nbsp;<font color="#000080">[text]</font> # <font color="#000080">[a]</font> # <font color="#0000ff">' * '</font> # <font color="#000080">[b]</font> # <font color="#0000ff">' = '</font> # (<font color="#000080">[a]</font> * <font color="#000080">[b]</font>) # <font color="#000080">[new_line]</font><br />&nbsp;&nbsp;&nbsp;&nbsp;<font color="#000080">[text]</font> # <font color="#000080">[a]</font> # <font color="#0000ff">' / '</font> # <font color="#000080">[b]</font> # <font color="#0000ff">' = '</font> # (<font color="#000080">[a]</font> / <font color="#000080">[b]</font>) # <font color="#000080">[new_line]</font><br />&nbsp;&nbsp;&nbsp;&nbsp;<font color="#000080">[text]</font> # <font color="#000080">[a]</font> # <font color="#0000ff">' ~ '</font> # <font color="#000080">[b]</font> # <font color="#0000ff">' = '</font> # (<font color="#000080">[a]</font> ~ <font color="#000080">[b]</font>)<br />&nbsp;&nbsp;&nbsp;&nbsp;echo <font color="#000080">[text]</font><br /><b>endproc</b><br /><br /><font color="#808080">rem Aufruf der Prozedur "berechne"</font><br />berechne <font color="#0000ff">'10'</font>, <font color="#0000ff">'5'</font><br /><br /><font color="#808080">rem Implementation der Prozedur "ausgabe_array" mit &Uuml;bergabe eines Array-Pointers</font><br /><b>proc</b> ausgabe_array: <font color="#000080">[*array]</font><br />&nbsp;&nbsp;&nbsp;&nbsp;<b>dec</b> <font color="#000080">[i]</font>,<font color="#000080">[text]</font><br />&nbsp;&nbsp;&nbsp;&nbsp;<b>if</b> <font color="#000080">[array:'0']</font> = <font color="#0000ff">'0'</font> <b>ret</b> <br />&nbsp;&nbsp;&nbsp;&nbsp;<b>repeat</b><br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#000080">[i]</font> + <font color="#0000ff">'1'</font><br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#000080">[text]</font> # <font color="#0000ff">'Index '</font> # <font color="#000080">[i]</font> # <font color="#0000ff">': '</font> # <font color="#000080">[array[i]</font>] # <font color="#000080">[new_line]</font><br />&nbsp;&nbsp;&nbsp;&nbsp;<b>until</b> <font color="#000080">[i]</font> = <font color="#000080">[array'0']</font><br />&nbsp;&nbsp;&nbsp;&nbsp;echo <font color="#000080">[text]</font><br /><b>endproc</b><br /><br /><font color="#000080">[test:'1']</font> = <font color="#0000ff">'Array Wert 1'</font><br /><font color="#000080">[test:'2']</font> = <font color="#0000ff">'Array Wert 2'</font><br /><font color="#000080">[test:'3']</font> = <font color="#0000ff">'Array Wert 3'</font><br /><font color="#000080">[test:'4']</font> = <font color="#0000ff">'Array Wert 4'</font><br /><br /><font color="#808080">rem Aufruf der Prozedur "ausgabe_array"</font><br />ausgabe_array <font color="#000080">[test]</font><br /><b>end</b><br /><!-- CODE END --></td>
+			</tr>
+			<tr>
+				<td class="ref_label">Bemerkungen:</td>
+				<td>Um eine Funktion zu implementieren, verwenden Sie <a href="rb5ref_ger_1_func_endfunc.html">FUNC...ENDFUNC</a>.<br /><br />Mehrere Prozeduren und Funktionen k&ouml;nnen als Bibliothek in eine Script-Datei implementiert werden, die dann mit Hilfe der <a href="rb5ref_ger_1_include.html">INCLUDE</a>-Anweisung in andere RapidBATCH-Scripts, die diese Prozeduren verwenden, eingebunden wird.<br /><br />Eine Prozedur kann nicht vor ihrer Definition aufgerufen werden.<br /><br />RET kann nicht ausserhalb einer Prozedur oder Funktion verwendet werden.</td>
+			</tr>
+		</table>
+	
+		<div class="line">&nbsp;</div>
+	
+		<div id="copyright">
+			Copyright &copy; 2000-2006 by J.M.K S.F. Software Technologies, Jan Max Meyer<br />
+			All rights reserved.
+		</div>
+	</body>
+</html>

@@ -1,0 +1,40 @@
+<html>
+	<head>
+		<title>RapidBATCH Language Reference :: RUNDIALOG</title>
+		<link rel="stylesheet" href="jmksf.css" type="text/css" />
+	</head>
+	<body>
+		<div id="top">
+			<img src="rb5.png" alt="RapidBATCH Logo" />
+			RUNDIALOG
+		</div>
+	
+		<div class="line">&nbsp;</div>
+	
+		<table cellspacing="10" width="100%">
+			<tr>
+				<td class="ref_label">Syntax:</td>
+				<td class="ref_syntax">RUNDIALOG event-string = timeout</td>
+			</tr>
+			<tr>
+				<td class="ref_label">Description:</td>
+				<td>Holds the script-execution until an event initiated by the user occurs in the current script-instance.<br /><br />As <i>timeout</i>-value, a number of milliseconds can be specified, defining a timeout when the function continues the script-execution automatically. This parameter is optional, and can be set to '0', causing RUNDIALOG to wait until a real user-initiated event happens, without any timeout.<br />The function's return value is a so called event-string if a user-initiated event was recognized or an empty-string, if the timeout occured.<br />If an event-string is returned, it is always based on the following format below:<br /><br /><i>event-identifier</i>_<i>widget-label</i><br /><br />The value at <i>event-identifier</i> can be one of the following values, <i>widget-label</i> is the label of the widget that received the user-initiated event.<br /><br /><table class="std" width="100%">	<tr>		<td><b>Event-Identifier:</b></td>		<td><b>Description:</b></td>	</tr>	<tr>		<td>click</td>		<td>A widget has been single-clicked left.</td>	</tr>	<tr>		<td>dblclick</td>		<td>A widget has been double-clicked left.</td>	</tr>	<tr>		<td>change</td>		<td>A widget's content has been changed (e.g. the value of an input-field).</td>	</tr>	<tr>		<td>close</td>		<td>The dialog's close button has been clicked.</td>	</tr>	<tr>		<td>size</td>		<td>The dialog-window was scaled.</td>	</tr>	<tr>		<td>move</td>		<td>The dialog-window's position has changed (when it is moved over the screen).</td>	</tr>	<tr>		<td>mousemove</td>		<td>The mouse is moved over a dialog's client area.</td>	</tr>	<tr>		<td>cancel</td>		<td>The ESC-key has been pressed on the dialog.</td>	</tr>	<tr>		<td>ok</td>		<td>The ENTER-key has been pressed on the dialog.</td>	</tr></table><br />RUNDIALOG recognizes all activated events of all visible widgets that belong to the script-instance you script is running in.<br /><br />With the event-string RUNDIALOG returns, corresponding code for each event and widget can be executed by switching to the particular code via an IF...ELSEIF...ENDIF-construction or a dynamic GOTO- or GOSUB-call to a label. The example below uses a simple IF to run the block of code that belongs to the event &quot;click_Window:Button&quot;.</td>
+			</tr>
+			<tr>
+				<td class="ref_label">Examples:</td>
+				<td class="ref_code"><font color="#808080">rem creating a simple dialog</font><br />newdialog <font color="#0000ff">'Window'</font>, <font color="#0000ff">'dialog'</font>, <font color="#0000ff">'1|1|200|100'</font><br />newdialog <font color="#0000ff">'Window:Button'</font>, <font color="#0000ff">'button'</font>, <font color="#0000ff">'2|2|192|72'</font><br /><br /><font color="#808080">rem set the button's caption</font><br />letdialog <font color="#0000ff">'Window:Button'</font>, <font color="#0000ff">'caption'</font>, <font color="#0000ff">'Hello World'</font><br /><br /><font color="#808080">rem make the window visible</font><br />letdialog <font color="#0000ff">'Window'</font>, <font color="#0000ff">'visible'</font>, <font color="#000080">[true]</font><br /><br /><b>repeat</b><br /><font color="#808080">&nbsp;&nbsp;&nbsp;&nbsp;rem hold the script, wait for user-initiated events</font><br /><font color="#808080">&nbsp;&nbsp;&nbsp;&nbsp;rem (no timeout!)</font><br />&nbsp;&nbsp;&nbsp;&nbsp;rundialog <font color="#000080">[event]</font> = <font color="#0000ff">'0'</font><br /><br /><font color="#808080">&nbsp;&nbsp;&nbsp;&nbsp;rem analyzing the event-string</font><br />&nbsp;&nbsp;&nbsp;&nbsp;<b>if</b> <font color="#000080">[event]</font> = <font color="#0000ff">'click_Window:Button'</font><br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;echo <font color="#0000ff">'You clicked the button!'</font><br />&nbsp;&nbsp;&nbsp;&nbsp;<b>endif</b><br /><br /><font color="#808080">&nbsp;&nbsp;&nbsp;&nbsp;rem if the dialog's close button was clicked, the</font><br /><font color="#808080">&nbsp;&nbsp;&nbsp;&nbsp;rem corresponding event-string must also be analyzed</font><br /><font color="#808080">&nbsp;&nbsp;&nbsp;&nbsp;rem to break the loop</font><br /><b>until</b> <font color="#000080">[event]</font> = <font color="#0000ff">'close_Window'</font></td>
+			</tr>
+			<tr>
+				<td class="ref_label">Remarks:</td>
+				<td>none</td>
+			</tr>
+		</table>
+	
+		<div class="line">&nbsp;</div>
+	
+		<div id="copyright">
+			Copyright &copy; 2000-2006 by J.M.K S.F. Software Technologies, Jan Max Meyer<br />
+			All rights reserved.
+		</div>
+	</body>
+</html>

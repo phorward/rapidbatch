@@ -1,0 +1,87 @@
+#ifndef RBB4_RH
+#define RBB4_RH
+
+#define IDI_BASEICON            4101
+#define IDI_SCRIPTICON		4102
+#define IDI_TB_BITMAPS          4103
+#define IDI_RB5_LOGO		4104
+
+#define IDM_FILE_NEW            4001
+#define IDM_FILE_OPEN           4002
+#define IDM_FILE_SAVE           4004
+#define IDM_FILE_SAVE_AS        4005
+#define IDM_FILE_PRINT          4006
+#define IDM_FILE_HISTORY        5000 //Dynamic menu
+#define IDM_FILE_CREATE_EXE     4008
+#define IDM_FILE_QUIT           4009
+
+#define IDM_EDIT_UNDO           4037
+#define IDM_EDIT_REDO           4038
+#define IDM_EDIT_CUT            4010
+#define IDM_EDIT_COPY           4011
+#define IDM_EDIT_PASTE          4012
+#define IDM_EDIT_DELETE         4013
+#define IDM_EDIT_SELECT_ALL     4014
+#define IDM_EDIT_FIND           4015
+#define IDM_EDIT_FIND_NEXT      4016
+#define IDM_EDIT_GOTO_LINE      4017
+#define IDM_EDIT_COMMENT_SEL	4033
+
+#define IDM_SCRIPT_RUN          4018
+#define IDM_SCRIPT_COMPILE      4019
+#define IDM_SCRIPT_DEBUG        4020
+#define IDM_SCRIPT_COMMAND      4021
+
+#define IDM_TOOLS_MENU		6000 //Dynamic menu
+#define IDM_TOOLS_CONFIGURE	5999
+/*
+#define IDM_TOOLS_TOOL1         4040
+#define IDM_TOOLS_TOOL2         4041
+#define IDM_TOOLS_TOOL3         4042
+#define IDM_TOOLS_TOOL4         4043
+#define IDM_TOOLS_TOOL5         4044
+#define IDM_TOOLS_TOOL6         4045
+#define IDM_TOOLS_TOOL7         4046
+#define IDM_TOOLS_TOOL8         4047
+#define IDM_TOOLS_TOOL9         4048
+#define IDM_TOOLS_CONFIG        4049
+*/
+
+
+#define IDM_HELP_MANUAL         4027
+#define IDM_HELP_WHATSNEW       4028
+#define IDM_HELP_REFERENCE      4029
+#define IDM_HELP_LICENSE        4030
+#define IDM_HELP_WEBSITE        4031
+#define IDM_HELP_ABOUT          4032
+
+
+#define IDC_LINENUMBER            4200
+#define IDC_COMMANDLINE           4201
+#define IDC_COMPILER_CMDLINE      4202
+#define IDC_COMPILER_AUTOLINK     4203
+#define IDC_COMPILER_RUNAFTERHALT 4204
+#define IDC_COMPILER_LINKICON     4205
+#define IDC_FINDTEXT              4206
+#define IDC_LABEL                 4207
+#define IDC_FIND_CANCEL           4208
+#define IDC_COMPILER_OK           4209
+#define IDC_COMPILER_OUTPUT       4210
+#define IDC_DEBUG_GROUPDEBUGMODE  4211
+#define IDC_DEBUG_DEBUGSCRIPT     4212
+#define IDC_DEBUG_STEP            4213
+#define IDC_DEBUG_TRACE           4214
+#define IDC_DEBUG_GROUPVARMON     4215
+#define IDC_VARMON_NONE           4216
+#define IDC_VARMON_AUTO           4217
+#define IDC_VARMON_MANUAL         4218
+#define IDC_VARMON_VARS           4219
+
+#define IDC_LOGO		  4220
+#define IDC_PROGNAME		  4221
+#define IDC_COPYRIGHT		  4222
+#define IDC_REFERLICENSE	  4223
+#define IDC_WEBSITE	  	  4224
+#define IDC_EMAIL		  4225
+
+#endif

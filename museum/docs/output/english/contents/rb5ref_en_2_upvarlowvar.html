@@ -1,0 +1,40 @@
+<html>
+	<head>
+		<title>RapidBATCH Language Reference :: UPVAR, LOWVAR</title>
+		<link rel="stylesheet" href="jmksf.css" type="text/css" />
+	</head>
+	<body>
+		<div id="top">
+			<img src="rb5.png" alt="RapidBATCH Logo" />
+			UPVAR, LOWVAR
+		</div>
+	
+		<div class="line">&nbsp;</div>
+	
+		<table cellspacing="10" width="100%">
+			<tr>
+				<td class="ref_label">Syntax:</td>
+				<td class="ref_syntax">UPVAR result = expression<br />LOWVAR result = expression</td>
+			</tr>
+			<tr>
+				<td class="ref_label">Description:</td>
+				<td>UPVAR converts all characters of a string-expression to upper-case order.<br />LOWVAR converts all characters of a string-expression to lower-case order.<br /><br />Characters, which are already in upper/lower-case order are simply ignored by both functions.</td>
+			</tr>
+			<tr>
+				<td class="ref_label">Examples:</td>
+				<td class="ref_code"><font color="#000080">[text]</font> = <font color="#0000ff">'This is a test-value.'</font><br />upvar <font color="#000080">[utext]</font> = <font color="#000080">[text]</font><br />lowvar <font color="#000080">[ltext]</font> = <font color="#000080">[text]</font><br />echo <font color="#000080">[text]</font> # <font color="#0000ff">' in upper-case order: '</font> # <font color="#000080">[utext]</font><br />echo <font color="#000080">[text]</font> # <font color="#0000ff">' in lower-case order: '</font> # <font color="#000080">[ltext]</font><br /><b>end</b></td>
+			</tr>
+			<tr>
+				<td class="ref_label">Remarks:</td>
+				<td>none</td>
+			</tr>
+		</table>
+	
+		<div class="line">&nbsp;</div>
+	
+		<div id="copyright">
+			Copyright &copy; 2000-2006 by J.M.K S.F. Software Technologies, Jan Max Meyer<br />
+			All rights reserved.
+		</div>
+	</body>
+</html>

@@ -1,0 +1,40 @@
+<html>
+	<head>
+		<title>RapidBATCH Language Reference :: DEBUGVARS</title>
+		<link rel="stylesheet" href="jmksf.css" type="text/css" />
+	</head>
+	<body>
+		<div id="top">
+			<img src="rb5.png" alt="RapidBATCH Logo" />
+			DEBUGVARS
+		</div>
+	
+		<div class="line">&nbsp;</div>
+	
+		<table cellspacing="10" width="100%">
+			<tr>
+				<td class="ref_label">Syntax:</td>
+				<td class="ref_syntax">DEBUGVARS var1,var2,var3 ... var<sup/>n</sup><br />DEBUGVARS mode</td>
+			</tr>
+			<tr>
+				<td class="ref_label">Description:</td>
+				<td>Inserts the variables that are passed at DEBUGVARS into the debug-dialog window, to observe and modify them. All desired variables that sould be watched need to be separated by commas. Instead of specifying a variable-list, the values AUTO and NONE can be specified. AUTO does automatically insert all newly declared variables into the debug-dialog, NONE switches this option off again.<br /><img style="padding-top: 30px;" src="img/debug_vars.gif" alt="RapidBATCH Debugger with watched variables in Step-Mode" title="Screenshot" /></td>
+			</tr>
+			<tr>
+				<td class="ref_label">Examples:</td>
+				<td class="ref_code">debugmode step<br /><font color="#808080">rem watch [a] and [b] only</font><br />debugvars <font color="#000080">[a]</font>, <font color="#000080">[b]</font><br /><font color="#000080">[a]</font> = <font color="#0000ff">'12'</font><br /><font color="#000080">[b]</font> = <font color="#000080">[a]</font> * <font color="#0000ff">'2'</font><br /><font color="#000080">[c]</font> = <font color="#000080">[a]</font> * <font color="#000080">[b]</font><br /><br /><font color="#808080">rem now, add all new variables automatically</font><br />debugvars auto<br /><br /><font color="#000080">[new]</font> = <font color="#0000ff">'New value'</font><br />echo <font color="#000080">[new]</font></td>
+			</tr>
+			<tr>
+				<td class="ref_label">Remarks:</td>
+				<td>This statement is only included in the script-interpreter provided with RapidBATCH Professional Edition.<br />DEBUGVARS is ignored by the compiler and is not provided in compiled scripts.<br /><br />Set the environment-variable RB_DEBUGVARS to one of the possible parameters before the script is executed to set these variables by default.</td>
+			</tr>
+		</table>
+	
+		<div class="line">&nbsp;</div>
+	
+		<div id="copyright">
+			Copyright &copy; 2000-2006 by J.M.K S.F. Software Technologies, Jan Max Meyer<br />
+			All rights reserved.
+		</div>
+	</body>
+</html>

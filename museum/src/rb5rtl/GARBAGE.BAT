@@ -1,0 +1,9 @@
+@echo off
+del *.obj
+del *.~bp
+del *.~cp
+del *.~h
+del *.~df
+del *.tds
+del *.~rc
+del C:\rbrun5_debug.txt

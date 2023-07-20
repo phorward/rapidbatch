@@ -1,0 +1,40 @@
+<html>
+	<head>
+		<title>RapidBATCH Language Reference :: INCLUDE, INCLUDE_ONCE</title>
+		<link rel="stylesheet" href="jmksf.css" type="text/css" />
+	</head>
+	<body>
+		<div id="top">
+			<img src="rb5.png" alt="RapidBATCH Logo" />
+			INCLUDE, INCLUDE_ONCE
+		</div>
+	
+		<div class="line">&nbsp;</div>
+	
+		<table cellspacing="10" width="100%">
+			<tr>
+				<td class="ref_label">Syntax:</td>
+				<td class="ref_syntax">INCLUDE include-file<br />INCLUDE_ONCE include-file</td>
+			</tr>
+			<tr>
+				<td class="ref_label">Description:</td>
+				<td>INCLUDE allows the import of an other, external RapidBATCH script file into the current script. The included file is virtually inserted and executed completely at the position where INCLUDE is called. Variables that are declared in the imported file are also declared in the main script and functions/procedures are imported and can be called.<br /><br />The purpose of this concept is the separation of huger projects into different, smaller script files, which is more easier to maintain. Also, INCLUDE allows to import sets of functions and procedures as libraries, so that a library is once written and its functions and procedures can be used in the whole script after their include.<br /><br />The INCLUDE_ONCE-statement has the same purpose as INCLUDE, but it runs the code to be imported only when it is called the first time. If INCLUDE_ONCE is executed a second time with the same file, it is ignored.</td>
+			</tr>
+			<tr>
+				<td class="ref_label">Examples:</td>
+				<td class="ref_code"><!-- CODE BEGIN --><font color="#808080">rem include the array.rb library</font><br /><font color="#008000">include 'array.rb'</font><br /><br /><font color="#808080">rem fill test array</font><br /><font color="#000080">[test:'1']</font> = <font color="#0000ff">'Hello World'</font><br /><font color="#000080">[test:'2']</font> = <font color="#0000ff">'Test 25'</font><br /><font color="#000080">[test:'3']</font> = <font color="#0000ff">'Next generation'</font><br /><br /><font color="#808080">rem calling the imported procedure "viewarray"</font><br />viewarray <font color="#000080">[test]</font><!-- CODE END --></td>
+			</tr>
+			<tr>
+				<td class="ref_label">Remarks:</td>
+				<td>It is not possible to include a variable file name, the file name MUST be static. When a script using INCLUDE or INCLUDE_ONCE is compiled, the whole code of the imported script will also be compiled into the target executable file.</td>
+			</tr>
+		</table>
+	
+		<div class="line">&nbsp;</div>
+	
+		<div id="copyright">
+			Copyright &copy; 2000-2006 by J.M.K S.F. Software Technologies, Jan Max Meyer<br />
+			All rights reserved.
+		</div>
+	</body>
+</html>

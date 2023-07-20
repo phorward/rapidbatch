@@ -1,0 +1,40 @@
+<html>
+	<head>
+		<title>RapidBATCH Language Reference :: GETENV, LETENV</title>
+		<link rel="stylesheet" href="jmksf.css" type="text/css" />
+	</head>
+	<body>
+		<div id="top">
+			<img src="rb5.png" alt="RapidBATCH Logo" />
+			GETENV, LETENV
+		</div>
+	
+		<div class="line">&nbsp;</div>
+	
+		<table cellspacing="10" width="100%">
+			<tr>
+				<td class="ref_label">Syntax:</td>
+				<td class="ref_syntax">GETENV value = environment-variable<br />LETENV environment-variable-assignment</td>
+			</tr>
+			<tr>
+				<td class="ref_label">Description:</td>
+				<td>GETENV is able to read the content of the Windows operating system's environment variables. On success, the value of the as <i>enviroment-variable</i> specified name of the variable that should be read, is returned.<br />LETENV creates a new or resets an existing environment variable. This assignment must be specified as value in the following format: &quot;VARIABLE=VALUE&quot;.</td>
+			</tr>
+			<tr>
+				<td class="ref_label">Examples:</td>
+				<td class="ref_code"><font color="#808080">rem get the content of the PATH-variable</font><br />getenv <font color="#000080">[pathvar]</font> = <font color="#0000ff">'PATH'</font><br /><br /><font color="#808080">rem create a new variable, TEST</font><br />letenv <font color="#0000ff">'TEST=Hello World'</font></td>
+			</tr>
+			<tr>
+				<td class="ref_label">Remarks:</td>
+				<td>Changed or newly created envrionment variables are only affecting programs and other scripts called by the RapidBATCH script that sets/changes the variables. It is not possible to change the variables globally to all running programs and processes.</td>
+			</tr>
+		</table>
+	
+		<div class="line">&nbsp;</div>
+	
+		<div id="copyright">
+			Copyright &copy; 2000-2006 by J.M.K S.F. Software Technologies, Jan Max Meyer<br />
+			All rights reserved.
+		</div>
+	</body>
+</html>

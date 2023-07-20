@@ -1,0 +1,40 @@
+<html>
+	<head>
+		<title>RapidBATCH Befehlsreferenz :: DEBUGMODE</title>
+		<link rel="stylesheet" href="jmksf.css" type="text/css" />
+	</head>
+	<body>
+		<div id="top">
+			<img src="rb5.png" alt="RapidBATCH Logo" />
+			DEBUGMODE
+		</div>
+	
+		<div class="line">&nbsp;</div>
+	
+		<table cellspacing="10" width="100%">
+			<tr>
+				<td class="ref_label">Syntax:</td>
+				<td class="ref_syntax">DEBUGMODE Modus</td>
+			</tr>
+			<tr>
+				<td class="ref_label">Beschreibung:</td>
+				<td>Setzt den RapidBATCH-Debugger auf einen von drei Debug-Modi. M&ouml;gliche Parameterwerte sind STEP f&uuml;r schrittweises Debugging, TRACE f&uuml;r Verfolgungsdebugging und NONE, um den Debugger auszuschalten.<br /><br />Der Debugger kann somit vom Script selber mitten im Programm, z.B. an einer kritischen Stelle, gestartet oder beendet werden.<br /><img style="padding-top: 30px;" src="img/debug_step.gif" alt="RapidBATCH Debugger im Step-Modus" title="Screenshot" /></td>
+			</tr>
+			<tr>
+				<td class="ref_label">Beispiele:</td>
+				<td class="ref_code">echo <font color="#0000ff">'Ein Debug-Test...'</font><br /><br /><font color="#808080">rem Debugger starten</font><br />debugmode step<br /><br /><font color="#808080">rem Weiter geht's im Debug Modus...</font><br />echo <font color="#0000ff">'Hello World'</font><br /><b>end</b></td>
+			</tr>
+			<tr>
+				<td class="ref_label">Bemerkungen:</td>
+				<td>Diese Anweisung ist nur im Interpreter der RapidBATCH Professional Edition enthalten.<br />DEBUGMODE wird vom Compiler ignoriert und ist nicht in compilierten Programmen verf&uuml;gbar.<br /><br />Sie k&ouml;nnen mit der Umgebungsvariablen RB_DEBUGMODE bereits vor dem Starten des Interpreters einen Debug-Modus festlegen. M&ouml;gliche Parameterwerte sind dabei dieselben wie bei der DEBUGMODE-Anweisung.<br /><br /></td>
+			</tr>
+		</table>
+	
+		<div class="line">&nbsp;</div>
+	
+		<div id="copyright">
+			Copyright &copy; 2000-2006 by J.M.K S.F. Software Technologies, Jan Max Meyer<br />
+			All rights reserved.
+		</div>
+	</body>
+</html>

@@ -1,0 +1,24 @@
+<html>
+	<head>
+		<title>Using external functions</title>
+		<link rel="stylesheet" href="jmksf.css" type="text/css"></link>
+	</head>
+
+	<body>
+		<div id="top">
+			<img src="rb5.png" alt="RapidBATCH Logo" />
+			Using external functions
+		</div>
+		
+		<div class="line">&nbsp;</div>
+		
+		With version 5.1, the RapidBATCH scripting language is also providing an interface to external DLL files, making it capable for the user to extend the language to more individual and extending functionalities.<br />To provide a simple and efficent interface these DLLs must follow an integrative function convention, which means in other words, that each DLL you want to use must be especially written for the use with RapidBATCH.<br /><br />There are a lot of freely useable DLLs for the use with RapidBATCH. Information about these DLLs and their functions and features can be gotten from the particular DLL documentation and related web-sites and discussion board entries.<br />The functions these DLLs provide are very different, so we will discuss only some general and important things at this point. To get an example about the use of different DLL functions, take a look into the many examples within the DLL directory.<br /><br />DLL functions are called via the RapidBATCH EXT-function. EXT means nothing more than &quot;external&quot;. EXT expects as its first parameter the filename and path of the DLL file that should be opened. This file is only linked and opend at the first call of EXT on this file - then it is cached, until the script terminates. The file name of the DLL file can be passed relative or absolute. If a relative filename is used, the file is first searched in the application directory (this is the directory of the compiled EXE-file or, in case of an interpretered script the path of the RBI32.EXE (RapidBATCH Interpreter) executable), then in the current working directory and then in Windows' system directories (WINDOWS, SYSTEM, SYSTEM32). Note, that this search of a relative DLL filename can be influenced via a registry entry and is different under Windows XP and Windows 2003. But the first directory where RapidBATCH searches in is always the application directory.<br />The parameter next to the DLL file name is the name of the desired function that should be called within the DLL. This name must be written in the right case order - it is not case-insensitiv as it is the case in RapidBATCH's own function and procedure calls.These two parameters are always required. Following to the name of the function, the desired (and by the function expected) amount of parameters must follow.The EXT-function does always return a value, that is filled by the DLL-function. Note, that not every DLL-function fills this value, so it can be the case that a DLL function always returns an empty string after its call. In such a case it is recommended to use RapidBATCH's build-in [null] wildcard-variable, which immediatelly discards the return value.<br /><br />Behind an EXT-function call, it is recommended to check [errorcode]. If [errorcode] returns -1 ([false]), the DLL call failed. If the DLL-call succeeded, the value that is returned by the DLL internal function is assigned to [errorcode].<br /><br />When you want to pass a compiled script with your DLLs, make sure that the DLL is delivered with the executable. It is not possible to link executable and DLL together (this is also not the sense behind DLLs!).<br /><br />
+
+		<div class="line">&nbsp;</div>
+
+		<div id="copyright">
+			Copyright &copy; 2000-2006 by J.M.K S.F. Software Technologies, Jan Max Meyer<br />
+			All rights reserved.
+		</div>
+	</body>
+</html>

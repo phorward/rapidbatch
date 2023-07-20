@@ -1,0 +1,40 @@
+<html>
+	<head>
+		<title>RapidBATCH Language Reference :: CHDIR, MKDIR, RMDIR</title>
+		<link rel="stylesheet" href="jmksf.css" type="text/css" />
+	</head>
+	<body>
+		<div id="top">
+			<img src="rb5.png" alt="RapidBATCH Logo" />
+			CHDIR, MKDIR, RMDIR
+		</div>
+	
+		<div class="line">&nbsp;</div>
+	
+		<table cellspacing="10" width="100%">
+			<tr>
+				<td class="ref_label">Syntax:</td>
+				<td class="ref_syntax">CHDIR path<br />MKDIR path<br />RMDIR path</td>
+			</tr>
+			<tr>
+				<td class="ref_label">Description:</td>
+				<td>CHDIR changes the current working directory to the specified path. MKDIR creates the specified path.<br />The RMDIR-instruction is used to delete a directory, which must be completely empty.</td>
+			</tr>
+			<tr>
+				<td class="ref_label">Examples:</td>
+				<td class="ref_code">chdir <font color="#0000ff">'c:\jmksf\rb5'</font><br />mkdir <font color="#0000ff">'c:\test'</font><br />rmdir <font color="#0000ff">'c:\test'</font></td>
+			</tr>
+			<tr>
+				<td class="ref_label">Remarks:</td>
+				<td>If the particular operation succeeded, [errorcode] gets the value '0', else '-1'.<br />This makes it possible to check if e.g. a directory could be created or not.</td>
+			</tr>
+		</table>
+	
+		<div class="line">&nbsp;</div>
+	
+		<div id="copyright">
+			Copyright &copy; 2000-2006 by J.M.K S.F. Software Technologies, Jan Max Meyer<br />
+			All rights reserved.
+		</div>
+	</body>
+</html>

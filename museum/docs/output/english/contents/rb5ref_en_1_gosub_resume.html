@@ -1,0 +1,40 @@
+<html>
+	<head>
+		<title>RapidBATCH Language Reference :: GOSUB, RESUME</title>
+		<link rel="stylesheet" href="jmksf.css" type="text/css" />
+	</head>
+	<body>
+		<div id="top">
+			<img src="rb5.png" alt="RapidBATCH Logo" />
+			GOSUB, RESUME
+		</div>
+	
+		<div class="line">&nbsp;</div>
+	
+		<table cellspacing="10" width="100%">
+			<tr>
+				<td class="ref_label">Syntax:</td>
+				<td class="ref_syntax">GOSUB label<br />.<br />.<br />.<br />%label<br />.<br />.<br />.<br />RESUME</td>
+			</tr>
+			<tr>
+				<td class="ref_label">Description:</td>
+				<td>Same as GOTO, GOSUB calls a specified label in the script, and continues the script execution behind this label. The difference to GOTO is, that GOSUB calls the label as a tiny sub-routine, and executes all code until the next RESUME-instruction is called. The RESUME-instruction returns to the line behind the last GOSUB-call. This possibility allows you to write ultra-complex scripts. A label is specified in the script with a beginning %-character. GOSUB...RESUME constructions can be combined into complex structures of sub-program calls, also recoursive calls are possible.<br /><br />Since RapidBATCH 5.0, it is possible to call variable labels, so that also a single variable, containing the target-label or a target-label composed of both variable and static parts can be specified.</td>
+			</tr>
+			<tr>
+				<td class="ref_label">Examples:</td>
+				<td class="ref_code"><font color="#808080">rem performing a static GOSUB-call</font><br /><font color="#000080">[i]</font> = <font color="#0000ff">'0'</font><br /><b>repeat</b><br />&nbsp;&nbsp;&nbsp;&nbsp;<font color="#000080">[i]</font> + <font color="#0000ff">'1'</font><br />&nbsp;&nbsp;&nbsp;&nbsp;<b>gosub</b> <font color="#0000ff">'square'</font><br /><b>until</b> <font color="#000080">[i]</font> = <font color="#0000ff">'10'</font><br /><br /><b>goto</b> <font color="#0000ff">'dynamic_gosub'</font><br /><br />%square<br />echo <font color="#000080">[i]</font> # <font color="#0000ff">' * '</font> # <font color="#000080">[i]</font> # <font color="#0000ff">' = '</font> # (<font color="#000080">[i]</font> * <font color="#000080">[i]</font>)<br /><b>resume</b><br /><br />%dynamic_gosub<br /><font color="#808080">rem performing a dynamic GOSUB-call</font><br /><font color="#808080">rem (this example looks the same like the one at GOTO, but has another</font><br /><font color="#808080">rem flow and structure)</font><br /><br />include <font color="#0000ff">'dialog.rb'</font><br />btnmenu <font color="#000080">[speed]</font> = <font color="#0000ff">'Please select a speed:'</font>, <font color="#0000ff">'20 mph|60 mph|100 mph'</font><br /><br /><b>gosub</b> <font color="#000080">[speed]</font><br /><br />echo <font color="#0000ff">'Enjoy your '</font> # <font color="#000080">[speed]</font> # <font color="#0000ff">' ;) ...'</font><br /><b>halt</b><br /><br />%20 mph<br />echo <font color="#0000ff">'This speed is very slow.'</font><br /><b>resume</b><br /><br />%60 mph<br />echo <font color="#0000ff">'This speed is well!'</font><br /><b>resume</b><br /><br />%100 mph<br />echo <font color="#0000ff">'TOO FAST! You wanna race???'</font><br /><b>resume</b></td>
+			</tr>
+			<tr>
+				<td class="ref_label">Remarks:</td>
+				<td>If no RESUME is given, the GOSUB does the same like a GOTO.<br />If RESUME is called without a previous call of GOSUB, RESUME will do nothing and the script is executed behind the RESUME.<br /><br />In RapidBATCH 5, it is only recommended to use GOSUB...RESUME-constructions within dialog programming; For other purposes, the possibility of the procedural programming should be used by defining own procedures and functions that can be called.</td>
+			</tr>
+		</table>
+	
+		<div class="line">&nbsp;</div>
+	
+		<div id="copyright">
+			Copyright &copy; 2000-2006 by J.M.K S.F. Software Technologies, Jan Max Meyer<br />
+			All rights reserved.
+		</div>
+	</body>
+</html>

@@ -1,0 +1,40 @@
+<html>
+	<head>
+		<title>RapidBATCH Language Reference :: TRAYMENU</title>
+		<link rel="stylesheet" href="jmksf.css" type="text/css" />
+	</head>
+	<body>
+		<div id="top">
+			<img src="rb5.png" alt="RapidBATCH Logo" />
+			TRAYMENU
+		</div>
+	
+		<div class="line">&nbsp;</div>
+	
+		<table cellspacing="10" width="100%">
+			<tr>
+				<td class="ref_label">Syntax:</td>
+				<td class="ref_syntax">TRAYMENU selected-item = tooltip, list-of-items</td>
+			</tr>
+			<tr>
+				<td class="ref_label">Description:</td>
+				<td>Shows a program-menu as icon in the Windows-taskbar. The user can access the menu via right-click, or left-click the icon, causing the return of an empty-string by the function, so that other operations can be performed or dialogs can be shown.<br /><br />As parameters, the function expects a prompting-text, that is displayed when the user moves the mouse over the taskbar-icon, and a list of items, building the menu. Each item of the menu is one element of the list, and each list-item is sepeated by a pipe-character or the as list standard separator defined character in [std_sep].<br /><br />The return value of the function is the menu item's text that was selected or, if the user left-clicks the taskbar-icon, an empty-string.<br /><br /><img style="padding-top: 30px;" src="img/traymenu2.gif" alt="Using the Tray-Menu" title="Screenshot" /></td>
+			</tr>
+			<tr>
+				<td class="ref_label">Examples:</td>
+				<td class="ref_code">traymenu <font color="#000080">[menu]</font> = <font color="#0000ff">'What do you want to eat?'</font>, <font color="#0000ff">'Pizza|Hamburger|Hot Dog|Fries'</font><br /><br /><b>if</b> <font color="#000080">[menu]</font> ! <font color="#0000ff">''</font><br />&nbsp;&nbsp;&nbsp;&nbsp;echo <font color="#0000ff">'You selected: '</font> # <font color="#000080">[menu]</font><br /><b>else</b><br />&nbsp;&nbsp;&nbsp;&nbsp;echo <font color="#0000ff">'You took no selection.'</font><br /><b>endif</b></td>
+			</tr>
+			<tr>
+				<td class="ref_label">Remarks:</td>
+				<td>It is possible, to display a separation line in the menu, to visually separate different functions the menu provides. This is done by adding an element just containing a hyphen (-), for example 'Menu 1|Menu 2|-|Exit'. To define shortcuts that can be chosen from the menu using the ALT-key, write an &amp;-character in front of the character of the menu item that should be the shortcut-character.<br /><br />TRAYMENU expects the same parameters like LISTBOX, so it just takes a few seconds to create a tray-menu bar from an ordinary listbox-menu.<br /><br />The icon that is displayed in the taskbar can be changed over the variable [app_icon] globally to any other dialogs, by setting this to an external file with .ICO-extension.</td>
+			</tr>
+		</table>
+	
+		<div class="line">&nbsp;</div>
+	
+		<div id="copyright">
+			Copyright &copy; 2000-2006 by J.M.K S.F. Software Technologies, Jan Max Meyer<br />
+			All rights reserved.
+		</div>
+	</body>
+</html>

@@ -1,0 +1,186 @@
+;RapidBATCH 5.0 Visual Dialog Designer
+;Copyright (C) 2005 by J.M.K S.F., Jan Max Meyer
+;German Language Definition
+
+;Main titles
+dd_title=RapidBATCH Visual Dialog Designer
+dw_title=Widget Eigenschaften
+
+;Buttons
+ok=&Ok
+cancel=&Abbruch
+
+;Toolbar
+tb_file_new=Neuen Dialog erstellen
+tb_file_open=Existierendes Dialogfenster aus Datei laden
+tb_file_save=Aktuellen Dialog in Datei speichern
+
+tb_button_new=Neuen Button erstellen
+tb_input_new=Neues Eingabefeld erstellen
+tb_pwd_new=Neues Passwort-Eingabefeld erstellen
+tb_edit_new=Neues, mehrzeiliges Eingabefeld erstellen
+tb_edit_linewrap_new=Neues, mehrzeiliges Eingabefeld mit autom. Zeilenumbruch erstellen
+tb_label_new=Neuen Fixtext erstellen
+tb_radio_new=Neuen Radio-Button erstellen
+tb_option_new=Neues Optionsfeld erstellen
+tb_image_new=Neues Graphikfeld erstellen
+tb_imagebutton_new=Neuen Graphikbutton erstellen
+tb_combo_new=Neues Combofeld erstellen
+tb_group_new=Neuen Gruppierungsrahmen erstellen
+tb_list_new=Neue Listbox erstellen
+tb_list_multi_new=Neue Listbox mit Mehrfachauswahl erstellen
+tb_list_sorted_new=Neue, sortierte Listbox erstellen
+tb_list_multisorted_new=Neue, sortierte Listbox mit Mehrfachauswahl erstellen
+tb_static_combo_new=Neues, statisches Combobox-Widget erstellen
+tb_progress_new=Neues Fortschrittsanzeige-Widget erstellen
+
+tb_ggen=Code Generator starten
+
+tb_hman=Benutzerhandbuch
+
+;Main Menu bar
+menu_file=&Datei
+menu_file_new=&Neu
+menu_file_open=Ö&ffnen
+menu_file_save=&Speichern
+menu_file_save_as=&Speichern unter...
+menu_file_quit=&Beenden
+
+menu_edit=&Bearbeiten
+menu_edit_remove_widget=Widget &entfernen
+menu_edit_rename_widget=Widget &umbenennen
+menu_edit_duplicate_widget=Widget &dublizieren
+menu_edit_events=&Ereignisse...
+menu_edit_widgetorder=Widget&reihenfolge ändern
+menu_edit_raster_toggle=&Raster aktiv
+menu_edit_raster_settings=&Rastereinstellungen...
+
+menu_widget=&Hinzufügen
+menu_widget_button=&Button
+menu_widget_input=&Input
+menu_widget_pwd=&Pwd
+menu_widget_edit=&Edit
+menu_widget_edit_linewrap=Edit_Line&Wrap
+menu_widget_label=&Label
+menu_widget_radio=&Radio
+menu_widget_option=&Option
+menu_widget_image=&Image
+menu_widget_imagebutton=Im&ageButton
+menu_widget_list=&List
+menu_widget_list_multi=List_&Multi
+menu_widget_list_sorted=List_&Sorted
+menu_widget_list_multisorted=List_M&ultiSorted
+menu_widget_combo=&Combo
+menu_widget_static_combo=Stati&c_Combo
+menu_widget_group=&Group
+menu_widget_progress=&Progress
+
+menu_gen=&Code Generator
+
+menu_help=&Hilfe
+menu_help_manual=&Benutzerhandbuch
+menu_help_license=&Lizenzbestimmungen
+menu_help_www=&rapidbatch.com aufrufen
+menu_help_about=&Über...
+
+;Raster Editor
+rs_title=Rastereinstellungen
+rs_raster_x=X-Abstand:
+rs_raster_y=Y-Abstand:
+rs_pixel=Pixel
+
+;Widget Editor
+dw_mode_title=Modus
+dw_mode_none=(kein)
+dw_mode_move=Widget verschieben
+dw_mode_scale=Widget skalieren
+
+dw_widgets_title=Widget Übersicht
+
+dw_positions_title=Positionen
+dw_positions_x=X:
+dw_positions_y=Y:
+dw_positions_width=Breite:
+dw_positions_height=Höhe:
+
+dw_attributes_title=Widget Attribute
+dw_attributes_true=wahr
+dw_attributes_false=falsch
+dw_attributes_file_select=&Auswahl
+dw_attributes_items_edit=&Bearb.
+dw_attributes_menu_edit=&Bearb.
+
+;Item Editor
+itemedit_title=Listen Editor
+itemedit_add=&Hinzuf.
+itemedit_delete=&Entf.
+itemedit_change=&Akt.
+itemedit_tt_mup=Nach oben verschieben
+itemedit_tt_mdown=Nach unten verschieben
+
+;Menu Editor
+md_title=Menü-Editor
+md_item_add=&Hinzufügen
+md_item_delete=&Entfernen
+md_item_update=&Aktualisieren
+md_item_m_up=Menüeintrag nach oben verschieben
+md_item_m_down=Menüeintrag nach unten verschieben
+md_item_m_left=Menüeintrag nach links verschieben
+md_item_m_right=Menüeintrag nach rechts verschieben
+md_error=Das Element %ITEM hat keinen Vorgänger, bitte korrigieren.
+
+;Event Editor
+ee_title=Ereignisse von #WIDGET
+ee_group=Ereignisse
+
+
+;Change Widget Order Dialog
+cwo_title=Widget-Reihenfolge ändern
+
+;Code generator
+cg_title=Code Generator Optionen
+cg_output_group=Code-Ausgabeformat
+cg_output_clipboard=In &Zwischenablage kopieren
+cg_output_file=In &Datei speichern
+cg_output_file_name=Ziel-Dateiname:
+cg_output_file_rbb=Direkt mit RapidBATCH Builder öffnen
+cg_method_group=Dialog-Erstellungsmethode
+cg_method_core=Reinen RapidBATCH Script-Code erzeugen
+cg_method_rbd_file=Dialog aus .RBD-Datei laden und generieren
+
+cg_genopt_group=Code-Generierungsoptionen
+cg_genopt_with_attributes=Setzen von Attributwerten (empfohlen!)
+cg_genopt_event_handler=Mit Ereignisbehandlungsroutine generieren
+cg_genopt_event_model=Ereignisbehandlungsmodell
+cg_event_model_ifelseif=IF...ELSEIF...ENDIF-Ereignisroutine mit Ereignisschleife
+cg_event_model_gosub_resume=Dynamische GOSUB...RESUME-Ereignisroutine
+cg_event_model_procedures=Prozedurmodell (größere Projekte)
+cg_generate=Generieren!
+cg_script_filename=Script speichern als...
+
+cg_msg_clipboard_succeeded=Der Dialog-Code wurde generiert und in die Zwischenablage gespeichert.
+cg_msg_file_written=Der Code wurde generiert und in Script-Datei geschrieben.
+cg_msg_file_exists=Die Datei, die Sie generieren möchten, existiert bereits. Überschreiben?
+
+;General dialog messages
+msg_save_rbd=Dialog speichern unter...
+msg_saveanychanges=Möchten Sie Änderungen an der aktuellen Datei speichern?
+msg_open_rbd=Dialog aus Datei laden
+msg_new_widget_title=Neues Widget erstellen
+msg_new_dialog_name=Geben Sie einen Namen für das neue Hauptfenster ein:
+msg_new_widget_name=Name für neues widget vom Typ %TYPE:
+
+msg_save_succeeded=Datei wurde erfolgreich gespeichert.
+
+msg_no_child_widgets=Es sind keine Child-Widgets verfügbar.
+msg_select_widget=Bitte Widget auswählen:
+msg_reallyremovewidget=Soll das Widget "%WIDGET" wirklich entfernt werden?
+
+msg_renamewidget_title=Widget umbennenen
+msg_renamewidget=Bitte neuen Name für "%WIDGET" eingeben:
+
+msg_dupwidgetname=Namen für Duplikat von "%WIDGET":
+
+msg_whattodo=Was möchten Sie tun?
+msg_createnew=Einen neuen, leeren Dialog &erstellen
+msg_openexisting=Einen gespeicherten Dialog ö&ffnen

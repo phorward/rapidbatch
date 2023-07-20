@@ -1,0 +1,156 @@
+RapidBATCH New User's Manual for Release 5.0 GERMAN MANUAL
+---
+
+1. Einleitung
+
+2. Was ist neu in 5.0?
+
+3. RapidBATCH Programmierhandbuch
+   - Einstieg
+     - Die Entwicklungsumgebung
+     x Das erste Script
+     - Scripts ausführen
+     - Scripts compilieren
+   - Die Grundlagen
+     x Variablen deklarieren und verwenden
+     x Build-in Funktionen zur Stringverarbeitung
+     x Bedingungen und Schleifen
+     x Labels und Subs
+     x Arrays
+   - Einfache Benutzerinteraktion
+     x Meldungs- und Statusfenster
+     x Textabfragen
+     x Listenauswahl, Traymenü
+     x Datei- und Verzeichnisauswahl
+     - Vordeklarierte Variablen
+   - Benutzerdefinierte Dialoge
+     x Erstellung von Dialogfenstern
+     - Verwendung der Fensterobjekte
+     - Anwendungsbeispiel... mal schaun
+   - Prozedurale Programmierung
+     x Prozeduren und Funktionen
+     x Rekursion
+     x Pointer
+   - Systemoperationen
+     x Programme starten
+     x Verzeichnisse erstellen, wechseln und löschen
+     x Dateioperationen im Filesystem
+     x Dateien lesen und schreiben
+     - Programme fernsteuern
+     - Mausklicks simulieren
+     - Vordeklarierte Variablen für Systemoperationen
+   - Zusätzliche Informationen
+     - Scripts debuggen
+     - Include-Files und Libraries
+     - Webserver-Programmierung und CGI
+   - Verwendung der mitgelieferten Libraries
+	 - RB5_ARRAY.RB
+	 - RB5_GUITOOLS.RB
+	 - RB5_STRING.RB
+	 - RB5_SYS.RB
+     - RB5_MATH.RB
+     - RB5_DATE.RB
+
+4. RapidBATCH Sprachreferenz
+   - Steuerungs- und Variablen-Anweisungen
+     x Dec, Reset
+     x If...ElseIf...Else...EndIf
+     x Repeat...Until
+     x Goto
+     x GoSub, Resume
+     x Proc...EndProc
+     x Func...EndFunc
+     x Ret
+     x Halt
+     x Wait
+     x Rem
+     x Include
+   - Build-in Funktionen
+     x UpVar, LowVar
+     x TrimVar
+     x GetChr, GetAsc
+     x GetLen
+     x CopyVar
+     x GetCharAt
+     x GetTok
+     x GetPos
+     x ReplaceVar
+     x RandVar
+   - System- und Dateizugriffsanweisungen
+     x ChDir, MkDir, RmDir
+     x System
+     x Shell
+     x Call
+     x Open
+     x NewFile, Delfile
+     x CopyFile, RenameFile
+     x FileExists
+     x GetEnv, LetEnv
+     x SendKeys
+     x MouseEvent
+     x FindFiles
+     x FileSize
+     x DiskFree, DiskSize
+     x DiskType
+     x GetFileAtt, LetFileAtt
+     x GetFileDate, LetFileDate
+     x GetFileTime, LetFileTime
+     x ReadFile
+     x WriteFile
+     x GetFile
+     x PutFile
+     x NewRegKey, DelRegKey
+     x LetRegVal
+     x GetRegVal
+     x DelRegVal
+     x Mci
+     x ShutDown
+     x LockWorkStation
+     x StdOut, StdIn, StdErr
+   - Benutzerinteraktion
+     x Echo
+     x Confirm
+     x MsgBox
+     x InputBox, PwdBox
+     x EditBox
+     x ListBox
+     x FolderBox
+     x OpenBox,SaveBox
+     x InfoBox
+     x TrayMenu
+   - Debugger Kontrollanweisungen
+     x DebugMode
+     x DebugVars
+   - Pre-declared variables
+     x [errorcode]
+     x [command]
+     x [ownname]
+     x [Echo_Title], [Confirm_Title]
+     x [current]
+     x [windir]
+     x [time]
+     x [day], [month], [year]
+     x [curuser]
+     x [winvers]
+     x [InputBox_Ok], [InputBox_Cancel], [InputBox_X], [InputBox_Y]
+     x [EditBox_Ok], [EditBox_Cancel], [EditBox_Height], [EditBox_Width], [EditBox_X], [EditBox_Y]
+     x [ListBox_Ok], [ListBox_Height], [ListBox_Width], [ListBox_MultiSel], [ListBox_X], [ListBox_Y]
+     x [OpenBox_MultiSel], [SaveBox_MultiSel]
+     x [new_line], [tab], [crlf], [pipe]
+     x [clipboard]
+     x [InfoBox_Enabled], [InfoBox_Height], [InfoBox_Width], [InfoBox_X], [InfoBox_Y]
+     x [RB_Version], [RB_Pro]
+     x [active_window]
+     x [ScreenWidth], [ScreenHeight]
+     x [mouse_x], [mouse_y]
+     x [true], [false]
+     x [app_icon]
+     x [std_sep]
+     x [case_sensitivity]
+
+5. Die Libraries
+   - Übersicht
+   - RB5_ARRAY.RB
+   - RB5_SYS.RB
+   - RB5_MATH.RB
+   - RB5_DATE.RB

@@ -1,0 +1,40 @@
+<html>
+	<head>
+		<title>RapidBATCH Language Reference :: DEC, RESET</title>
+		<link rel="stylesheet" href="jmksf.css" type="text/css" />
+	</head>
+	<body>
+		<div id="top">
+			<img src="rb5.png" alt="RapidBATCH Logo" />
+			DEC, RESET
+		</div>
+	
+		<div class="line">&nbsp;</div>
+	
+		<table cellspacing="10" width="100%">
+			<tr>
+				<td class="ref_label">Syntax:</td>
+				<td class="ref_syntax">DEC variable1 [,variable2 [ ... variable<sup/>n</sup/>] ]<br />RESET variable1 [,variable2 [ ... variable<sup/>n</sup/>] ]</td>
+			</tr>
+			<tr>
+				<td class="ref_label">Description:</td>
+				<td>DEC declares one or more new variables for their use within the script.<br />If DEC is called within a procedure, all variables are declared locally, also, if a globally declared variable with the same name exists, DEC re-declares a new variable with this name locally. If DEC is used to declare variables outside a procedure, the variables are globally available in the whole script instance and can be read or written.<br />DEC can also be used to pre-dimension arrays, by specifying the desired array default sizes and dimensions.<br />Next to DEC, the RESET instruction is provided, that is used to clear an array for further use. By resetting an array or a variable, it is completely freed from the memory. Only the variable itself exists further. By specifiying a desired array dimension, only the dimension including its sub-dimensions is cleared.</td>
+			</tr>
+			<tr>
+				<td class="ref_label">Examples:</td>
+				<td class="ref_code"><!-- CODE BEGIN --><b>dec</b> <font color="#000080">[a]</font>, <font color="#000080">[numbers:'5']</font><br /><br /><font color="#000080">[a]</font> = <font color="#0000ff">'a value'</font><br /><font color="#000080">[numbers:'1']</font> = <font color="#0000ff">'5'</font><br /><font color="#000080">[numbers:'2']</font> = <font color="#0000ff">'13'</font><br /><font color="#000080">[numbers:'3']</font> = <font color="#0000ff">'21'</font><br /><font color="#000080">[numbers:'4']</font> = <font color="#0000ff">'79'</font><br /><font color="#000080">[numbers:'5']</font> = <font color="#0000ff">'2005'</font><br /><br />echo <font color="#0000ff">'[a] contains '</font> # <font color="#000080">[a]</font><br />echo <font color="#0000ff">'The array currently contains '</font> # <font color="#000080">[numbers:'0']</font> # <font color="#0000ff">' items'</font><br /><br /><b>reset</b> <font color="#000080">[a]</font>, <font color="#000080">[numbers]</font><br /><br />echo <font color="#0000ff">'[a] contains '</font> # <font color="#000080">[a]</font><br />echo <font color="#0000ff">'The array contains now '</font> # <font color="#000080">[numbers:'0']</font> # <font color="#0000ff">' items'</font><br /><b>end</b><!-- CODE END --></td>
+			</tr>
+			<tr>
+				<td class="ref_label">Remarks:</td>
+				<td>Since RapidBATCH 4.0, it is not necessary anymore to declare variables manually. If a value is assigned to an unexisting variable, it is automatically declared. By calling an undeclared variable, an empty string is returned. But DEC is also indispensable for a tidy programming style, for example it should be used within self-defined procedures to avoid conflicts with maybe existing, globally declared variables.<br /><br />Reset is only used for manual memory management, and must not be called to free arrays or variable contents from the memory. This is done automatically by RapidBATCH when the script ends.</td>
+			</tr>
+		</table>
+	
+		<div class="line">&nbsp;</div>
+	
+		<div id="copyright">
+			Copyright &copy; 2000-2006 by J.M.K S.F. Software Technologies, Jan Max Meyer<br />
+			All rights reserved.
+		</div>
+	</body>
+</html>

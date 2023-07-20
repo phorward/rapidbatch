@@ -1,0 +1,40 @@
+<html>
+	<head>
+		<title>RapidBATCH Befehlsreferenz :: WRITEFILE</title>
+		<link rel="stylesheet" href="jmksf.css" type="text/css" />
+	</head>
+	<body>
+		<div id="top">
+			<img src="rb5.png" alt="RapidBATCH Logo" />
+			WRITEFILE
+		</div>
+	
+		<div class="line">&nbsp;</div>
+	
+		<table cellspacing="10" width="100%">
+			<tr>
+				<td class="ref_label">Syntax:</td>
+				<td class="ref_syntax">WRITEFILE Dateiname, Stringausdruck</td>
+			</tr>
+			<tr>
+				<td class="ref_label">Beschreibung:</td>
+				<td>Schreibt den angegebenen Stringausdruck in die ebenfalls angegebene Datei, wobei die Daten ans Dateiende angeh&auml;ngt werden. Der Inhalt der Datei wird dabei nicht &uuml;berschrieben, sondern nur erweitert. Wenn die Datei nicht existiert, wird sie automatisch erstellt.</td>
+			</tr>
+			<tr>
+				<td class="ref_label">Beispiele:</td>
+				<td class="ref_code">writefile <font color="#0000ff">'c:\test.txt'</font>, <font color="#0000ff">'Hello World'</font></td>
+			</tr>
+			<tr>
+				<td class="ref_label">Bemerkungen:</td>
+				<td>Die Variable [errorcode] erh&auml;lt den Wert -1, wenn die Datei nicht erstellt oder geschrieben werden konnte, andernfalls 0.<br /><br />Standardm&auml;ßig h&auml;ngt WRITEFILE einen Windows-Zeilenumbruch (carriage-return und line-feed) an den zu schreibenden String an. Dies kann &uuml;ber die Variable [eol] (end-of-line) dynamisch angepasst werden, so dass beliebige Zeichen als Zeilenende (z.B. f&uuml;r Unix- oder Mac-Dateien) (oder auch gar kein Zeichen) angeh&auml;ngt werden.<br /><br />Verwenden Sie die <a href="rb5ref_ger_3_putfile.html">PUTFILE</a>-Anweisung, um Daten auf Byte-Ebene in eine Datei (z.B. Bin&auml;rdatei) zu schreiben.</td>
+			</tr>
+		</table>
+	
+		<div class="line">&nbsp;</div>
+	
+		<div id="copyright">
+			Copyright &copy; 2000-2006 by J.M.K S.F. Software Technologies, Jan Max Meyer<br />
+			All rights reserved.
+		</div>
+	</body>
+</html>

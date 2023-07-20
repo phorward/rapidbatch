@@ -1,0 +1,40 @@
+<html>
+	<head>
+		<title>RapidBATCH Language Reference :: SHELL</title>
+		<link rel="stylesheet" href="jmksf.css" type="text/css" />
+	</head>
+	<body>
+		<div id="top">
+			<img src="rb5.png" alt="RapidBATCH Logo" />
+			SHELL
+		</div>
+	
+		<div class="line">&nbsp;</div>
+	
+		<table cellspacing="10" width="100%">
+			<tr>
+				<td class="ref_label">Syntax:</td>
+				<td class="ref_syntax">SHELL path, showmode</td>
+			</tr>
+			<tr>
+				<td class="ref_label">Description:</td>
+				<td>Runs an external program.<br /><br />The script calls the program parallel, so that both the script and the program are executed at the same time (multitasking). The instruction expects the program path (with .EXE, .COM or .BAT extension) and a so called show mode, specified over the <i>showmode</i>-parameter. Possible values are 'show' (or '0'), 'hide' (or '1'), 'maximized' (or '2') and 'minimized' (or '3').</td>
+			</tr>
+			<tr>
+				<td class="ref_label">Examples:</td>
+				<td class="ref_code">shell <font color="#0000ff">'c:\windows\calc.exe'</font>, <font color="#0000ff">'show'</font><br />shell <font color="#0000ff">'c:\windows\desktop\test.bat'</font>, <font color="#0000ff">'hide'</font></td>
+			</tr>
+			<tr>
+				<td class="ref_label">Remarks:</td>
+				<td>[errorcode] gets a value &gt; 32 if it succeeds. This number is the system process ID of the program.</td>
+			</tr>
+		</table>
+	
+		<div class="line">&nbsp;</div>
+	
+		<div id="copyright">
+			Copyright &copy; 2000-2006 by J.M.K S.F. Software Technologies, Jan Max Meyer<br />
+			All rights reserved.
+		</div>
+	</body>
+</html>

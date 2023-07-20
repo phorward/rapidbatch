@@ -1,0 +1,28 @@
+<html>
+	<head>
+		<title>RapidBATCH Language Reference :: [errorcode]</title>
+		<link rel="stylesheet" href="jmksf.css" type="text/css" />
+	</head>
+	<body>
+		<div id="top">
+			<img src="rb5.png" alt="RapidBATCH Logo" />
+			[errorcode]
+		</div>
+	
+		<div class="line">&nbsp;</div>
+
+		<table cellspacing="10" width="100%">
+			<tr>
+				<td class="ref_label">Description:</td>
+				<td>The variable [errorcode] is used as a status variable that is used by several instructions and functions, reporting if an operation succeeded or not, in some cases, e.g. like at MSGBOX (when this is used as an instruction) or at SHELL, [errorcode] also receives which button was pressed or the PID of the program that was ran by SHELL.<br /><br />In the language reference, you find information on the values [errorcode] gets in the &quot;Notes&quot; part of the particular function or instruction. [errorcode] can also be set by your user-defined functions or procedures before you return to the calling position again, to read error values.<br /><br />Please note, that the last value [errorcode] returns is always overwritten when you call another instruction or function setting a value to it. To avoid this problem, check [errorcode]'s value after each instruction using an IF-statement.</td>
+			</tr>
+		</table>
+
+		<div class="line">&nbsp;</div>
+
+		<div id="copyright">
+			Copyright &copy; 2000-2006 by J.M.K S.F. Software Technologies, Jan Max Meyer<br />
+			All rights reserved.
+		</div>
+	</body>
+</html>

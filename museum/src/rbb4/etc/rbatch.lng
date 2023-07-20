@@ -1,0 +1,101 @@
+;Language Definition file for RapidBATCH Builder³, version 4.0.0
+;LANGUAGE: ENGLISH
+
+language=english
+default_file=Unnamed
+
+Menu_File=&File
+Menu_File_New=&New	Ctrl+N
+Menu_File_Open=&Open	Ctrl+O
+Menu_File_Recent=Recent files
+Menu_File_Save=&Save	Ctrl+S
+Menu_File_Save_as=Save &as...
+Menu_File_Quit=E&xit	Ctrl+Q
+
+Menu_Edit=&Edit
+Menu_Edit_Undo=&Undo	Ctrl+Z
+Menu_Edit_Redo=&Redo	Ctrl+Y
+Menu_Edit_Copy=&Copy	Ctrl+C
+Menu_Edit_Cut=C&ut	Ctrl+X
+Menu_Edit_Paste=&Paste	Ctrl+V
+Menu_Edit_Delete=&Delete	Del
+Menu_Edit_Select_all=Select &all	Ctrl+A
+Menu_Edit_Find=&Find	Ctrl+F
+Menu_Edit_Find_next=Find &next...	F3
+Menu_Edit_Comment_Selection=Set/&remove comment lines	Strg+R
+Menu_Edit_Goto_Line=Goto line	Ctrl+G
+
+Menu_Script=&Script
+Menu_Script_Run=&Run	F5
+Menu_Script_Compile=&Compile	F9
+Menu_Script_DebuggerProperties=&Debug-Properties
+Menu_Script_SetCommand=&Set [command]...
+
+Menu_Tools=&Tools
+Menu_Tools_Configure=&Configure tools...
+
+Menu_Help=&Help
+Menu_Help_Manual=&Manual
+Menu_Help_Website=rapidbatch.com
+Menu_Help_Reference=Language &Reference	F1
+Menu_Help_About=&About RapidBATCH...
+
+Dialog_FileOpen_Title=Open RapidBATCH-Script
+Dialog_FileSave_Title=Save RapidBATCH-Script as...
+
+Dialog_Find_Title=Find
+Dialog_Find_OkButton=&Find
+Dialog_Find_CancelButton=&Cancel
+
+Dialog_SetCommand_Title=Set script command line parameters
+Dialog_SetCommand_OkButton=&OK
+Dialog_SetCommand_CloseButton=&Cancel
+
+Dialog_Compile_Title=Compile script
+Dialog_Compile_CompileButton=&Compile
+Dialog_Compile_CancelButton=&Cancel
+Dialog_Compile_OpenIcon=Please select an icon-file...
+Dialog_Compile_AutoLink=Automatic &link
+Dialog_Compile_LinkIcon=Link customized EXE-&icon
+Dialog_Compile_RunAfterHalt=&Run EXE
+
+Dialog_Debug_Title=Debug-Properties
+Dialog_Debug_OkButton=&Ok
+Dialog_Debug_CancelButton=&Cancel
+Dialog_Debug_DebugScript=&Debug script
+Dialog_Debug_StepMode=&Step
+Dialog_Debug_TraceMode=&Trace
+Dialog_Debug_None=&None
+Dialog_Debug_Automatic=&Automatic
+Dialog_Debug_Manual=&Manual
+Dialog_Debug_DebugMode=Debug mode
+Dialog_Debug_VariableMonitoring=Variable watch && trace
+
+Dialog_GotoLine_Title=Goto line
+Dialog_GotoLine_OkButton=&OK
+Dialog_GotoLine_CancelButton=&Cancel
+Dialog_GotoLine_Prompt=Line number:
+
+Dialog_About_ReferLicense=Please refer license.txt for more informations.
+
+MessageBox_SaveAnyChanges=Do you want to save changes?
+MessageBox_NoResultsFound=No results found.
+MessageBox_FileExits=The specified file does already exist. Overwrite?
+
+MessageBox_CompileError=An error occured when trying to compile your script.~Please refer the compiler output messages for syntax errors.
+MessageBox_CompileSucceeded=Your script has been compiled successfully!
+
+Tooltip_NewFile=Create new script (CTRL+N)
+Tooltip_OpenFile=Load existing script (CTRL+O)
+Tooltip_SaveFile=Save current script (CTRL+S)
+Tooltip_Find=Find (CTRL+F)
+Tooltip_Copy=Copy (CTRL+C)
+Tooltip_Cut=Cut (CTRL+X)
+Tooltip_Delete=Delete (Del)
+Tooltip_Paste=Paste (CTRL+V)
+Tooltip_Run=Run script (F5)
+Tooltip_Help=User's Manual
+Tooltip_Undo=Undo (CTRL+Z)
+Tooltip_Redo=Redo (CTRL+Y)
+
+;end of language definition

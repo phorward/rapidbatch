@@ -1,0 +1,40 @@
+<html>
+	<head>
+		<title>RapidBATCH Language Reference :: DELREGVAL</title>
+		<link rel="stylesheet" href="jmksf.css" type="text/css" />
+	</head>
+	<body>
+		<div id="top">
+			<img src="rb5.png" alt="RapidBATCH Logo" />
+			DELREGVAL
+		</div>
+	
+		<div class="line">&nbsp;</div>
+	
+		<table cellspacing="10" width="100%">
+			<tr>
+				<td class="ref_label">Syntax:</td>
+				<td class="ref_syntax">DELREGVAL base-key, sub-key, value-label</td>
+			</tr>
+			<tr>
+				<td class="ref_label">Description:</td>
+				<td>Deletes a registry value.<br /><br />DELREGVAL expects as parameter a base-key, the path of a sub-key and the label of the value that should be deleted.<br /><br />As <i>base-key</i>, one of the following values is possbile:<br /><ul>  <li>'CLASSES_ROOT' for HKEY_CLASSES_ROOT</li>  <li>'CURRENT_CONFIG' for HKEY_CURRENT_CONFIG</li>  <li>'CURRENT_USER' for HKEY_CURRENT_USER</li>  <li>'LOCAL_MACHINE' for HKEY_LOCAL_MACHINE</li>  <li>'USERS' for HKEY_USERS</li></ul></td>
+			</tr>
+			<tr>
+				<td class="ref_label">Examples:</td>
+				<td class="ref_code"><font color="#808080">rem writing a test value</font><br />letregval <font color="#0000ff">'STRING'</font>, <font color="#0000ff">'CURRENT_USER'</font>, <font color="#0000ff">'Software\jmksf\RapidBATCH'</font>, <font color="#0000ff">'HelloWorld'</font>, <font color="#0000ff">'Hello World by RapidBATCH ;)'</font><br /><br /><b>if</b> <font color="#000080">[errorcode]</font> = <font color="#000080">[false]</font><br />&nbsp;&nbsp;&nbsp;&nbsp;echo <font color="#0000ff">'Error when trying to write a value to the registry.'</font><br />&nbsp;&nbsp;&nbsp;&nbsp;<b>halt</b><br /><b>endif</b><br /><br /><font color="#808080">rem delete the test value again</font><br />delregval <font color="#0000ff">'CURRENT_USER'</font>, <font color="#0000ff">'Software\jmksf\RapidBATCH'</font>, <font color="#0000ff">'HelloWorld'</font><br /><b>if</b> <font color="#000080">[errorcode]</font> = <font color="#000080">[false]</font> echo <font color="#0000ff">'Error when trying to delete registy value.'</font><br /><b>end</b></td>
+			</tr>
+			<tr>
+				<td class="ref_label">Remarks:</td>
+				<td>If the operation fails, [errorcode] gets '-1', else '0'.<br /><br />Use GETREGVAL to read and LETREGVAL to write a registry value.</td>
+			</tr>
+		</table>
+	
+		<div class="line">&nbsp;</div>
+	
+		<div id="copyright">
+			Copyright &copy; 2000-2006 by J.M.K S.F. Software Technologies, Jan Max Meyer<br />
+			All rights reserved.
+		</div>
+	</body>
+</html>

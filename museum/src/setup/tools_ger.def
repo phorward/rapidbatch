@@ -1,0 +1,3 @@
+Visueller Dialog Designer:$RB "$RBHOME\tools\dd\dd.rb"
+RB2HTML Script-Code Highlighter:$RB "$RBHOME\tools\rb2html\rb2html.rb"
+Syntax Colors Configurator:$RB "$RBHOME\samples\rbb_set_colors.rb"

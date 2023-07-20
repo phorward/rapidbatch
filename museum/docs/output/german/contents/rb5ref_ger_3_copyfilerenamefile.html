@@ -1,0 +1,40 @@
+<html>
+	<head>
+		<title>RapidBATCH Befehlsreferenz :: COPYFILE, RENAMEFILE</title>
+		<link rel="stylesheet" href="jmksf.css" type="text/css" />
+	</head>
+	<body>
+		<div id="top">
+			<img src="rb5.png" alt="RapidBATCH Logo" />
+			COPYFILE, RENAMEFILE
+		</div>
+	
+		<div class="line">&nbsp;</div>
+	
+		<table cellspacing="10" width="100%">
+			<tr>
+				<td class="ref_label">Syntax:</td>
+				<td class="ref_syntax">COPYFILE Quelldatei, Zieldatei<br />RENAMEFILE Quelldatei, Zieldatei</td>
+			</tr>
+			<tr>
+				<td class="ref_label">Beschreibung:</td>
+				<td>COPYFILE kopiert eine Quelldatei in eine Zieldatei.<br />RENAMEFILE verschiebt oder benennt eine Quelldatei in eine Zieldatei um.</td>
+			</tr>
+			<tr>
+				<td class="ref_label">Beispiele:</td>
+				<td class="ref_code"><font color="#808080">rem Datei kopieren...</font><br />copyfile <font color="#0000ff">'c:\jmksf\rb5\samples\hello.rb'</font>, <font color="#0000ff">'a:\hello.rb'</font><br /><br /><font color="#808080">rem Datei umbenennen...</font><br />renamefile <font color="#0000ff">'c:\test.neu'</font>, <font color="#0000ff">'c:\test.old'</font></td>
+			</tr>
+			<tr>
+				<td class="ref_label">Bemerkungen:</td>
+				<td>Ist die jeweilige Operation erfolgreich, so erh&auml;lt [errorcode] den Wert 0, ansonsten -1.</td>
+			</tr>
+		</table>
+	
+		<div class="line">&nbsp;</div>
+	
+		<div id="copyright">
+			Copyright &copy; 2000-2006 by J.M.K S.F. Software Technologies, Jan Max Meyer<br />
+			All rights reserved.
+		</div>
+	</body>
+</html>

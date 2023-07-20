@@ -1,0 +1,40 @@
+<html>
+	<head>
+		<title>RapidBATCH Language Reference :: MOUSEEVENT</title>
+		<link rel="stylesheet" href="jmksf.css" type="text/css" />
+	</head>
+	<body>
+		<div id="top">
+			<img src="rb5.png" alt="RapidBATCH Logo" />
+			MOUSEEVENT
+		</div>
+	
+		<div class="line">&nbsp;</div>
+	
+		<table cellspacing="10" width="100%">
+			<tr>
+				<td class="ref_label">Syntax:</td>
+				<td class="ref_syntax">MOUSEEVENT mouse-event, position</td>
+			</tr>
+			<tr>
+				<td class="ref_label">Description:</td>
+				<td>Performs mouse-operations remotly on the current compuer.<br /><br />The instruction expects as first parameter a mouse-event identifier and the coordinates which are specified in the format &quot;X|Y&quot;. The pipe-character has to be replaced if the RapidBATCH list separation character is changed in the variable [std_sep]. As mouse-event identifiers, one of the following values can be used.<ul>  <li>'0' or 'MOVE' (move the mouse only, no click)</li>  <li>'1' or 'CLICK_LEFT' (perform single left-click)</li>  <li>'2' or 'DBLCLICK_LEFT' (perform double left-click)</li>  <li>'3' or 'CLICK_RIGHT' (perform single right-click)</li>  <li>'4' or 'DBLCLICK_RIGHT' (perform double right-click)</li>  <li>'5' or 'DOWN_LEFT' (hold left mouse key)</li>  <li>'6' or 'UP_LEFT' (leave left mouse key)</li>  <li>'7' or 'DOWN_RIGHT'  (hold right mouse key)</li>  <li>'8' or 'UP_RIGHT' (leave right mouse key)</li></ul></td>
+			</tr>
+			<tr>
+				<td class="ref_label">Examples:</td>
+				<td class="ref_code">infobox <font color="#0000ff">'MouseEvent-Demo'</font>, <font color="#0000ff">'show'</font><br />wait <font color="#0000ff">'1000'</font><br /><br /><font color="#808080">rem procedure to show the current X/Y-coordinates</font><br /><b>proc</b> viewpos<br />&nbsp;&nbsp;&nbsp;&nbsp;infobox <font color="#0000ff">'X: '</font> # <font color="#000080">[mouse_x]</font> # <font color="#0000ff">' Y: '</font> # <font color="#000080">[mouse_y]</font>, <font color="#0000ff">'show'</font><br />&nbsp;&nbsp;&nbsp;&nbsp;wait <font color="#0000ff">'1'</font><br /><b>endproc</b><br /><br /><font color="#808080">rem perform horizontal mouse move</font><br /><font color="#000080">[i]</font> = <font color="#000080">[ScreenWidth]</font><br /><b>repeat</b><br />&nbsp;&nbsp;&nbsp;&nbsp;mouseevent <font color="#0000ff">'move'</font>, <font color="#000080">[i]</font> # <font color="#0000ff">'|1'</font><br />&nbsp;&nbsp;&nbsp;&nbsp;viewpos<br />&nbsp;&nbsp;&nbsp;&nbsp;<font color="#000080">[i]</font> - <font color="#0000ff">'5'</font><br /><b>until</b> <font color="#000080">[i]</font> < <font color="#0000ff">'0'</font><br /><br /><font color="#808080">rem perform vertical mouse move</font><br /><font color="#000080">[i]</font> = <font color="#0000ff">'0'</font><br /><b>repeat</b><br />&nbsp;&nbsp;&nbsp;&nbsp;<font color="#000080">[i]</font> + <font color="#0000ff">'5'</font><br />&nbsp;&nbsp;&nbsp;&nbsp;mouseevent <font color="#0000ff">'move'</font>, <font color="#0000ff">'1|'</font> # <font color="#000080">[i]</font><br />&nbsp;&nbsp;&nbsp;&nbsp;viewpos<br /><b>until</b> <font color="#000080">[i]</font> > <font color="#000080">[ScreenHeight]</font><br /><br /><font color="#808080">rem perform diagonal mouse move</font><br /><font color="#000080">[i]</font> = <font color="#0000ff">'0'</font><br /><b>repeat</b><br />&nbsp;&nbsp;&nbsp;&nbsp;<font color="#000080">[i]</font> + <font color="#0000ff">'5'</font><br />&nbsp;&nbsp;&nbsp;&nbsp;mouseevent <font color="#0000ff">'move'</font>, <font color="#000080">[i]</font> # <font color="#0000ff">'|'</font> # <font color="#000080">[i]</font><br />&nbsp;&nbsp;&nbsp;&nbsp;viewpos<br /><b>until</b> <font color="#000080">[i]</font> > <font color="#000080">[ScreenWidth]</font></td>
+			</tr>
+			<tr>
+				<td class="ref_label">Remarks:</td>
+				<td>Use the SENDKEYS-instruction to control other applications remotely by sending keystrokes. If the mouse-event identifier is not known, MOUSEEVENT automatically only performas a mouse move at the specified position.</td>
+			</tr>
+		</table>
+	
+		<div class="line">&nbsp;</div>
+	
+		<div id="copyright">
+			Copyright &copy; 2000-2006 by J.M.K S.F. Software Technologies, Jan Max Meyer<br />
+			All rights reserved.
+		</div>
+	</body>
+</html>

@@ -1,0 +1,40 @@
+<html>
+	<head>
+		<title>RapidBATCH Befehlsreferenz :: GETFILEDATE, LETFILEDATE</title>
+		<link rel="stylesheet" href="jmksf.css" type="text/css" />
+	</head>
+	<body>
+		<div id="top">
+			<img src="rb5.png" alt="RapidBATCH Logo" />
+			GETFILEDATE, LETFILEDATE
+		</div>
+	
+		<div class="line">&nbsp;</div>
+	
+		<table cellspacing="10" width="100%">
+			<tr>
+				<td class="ref_label">Syntax:</td>
+				<td class="ref_syntax">GETFILEDATE Datum = Dateiname<br />LETFILEDATE Dateiname, Datum</td>
+			</tr>
+			<tr>
+				<td class="ref_label">Beschreibung:</td>
+				<td>GETFILEDATE liest das &Auml;nderungsdatum einer Datei und gibt dieses im Format &quot;mmddyyyy&quot; zur&uuml;ck.<br /><br />LETFILEDATE setzt das &Auml;nderungsdatum einer Datei. Parameter sind der Dateiname und ein Datum im Format &quot;mmddyyyy&quot;.</td>
+			</tr>
+			<tr>
+				<td class="ref_label">Beispiele:</td>
+				<td class="ref_code">newfile <font color="#0000ff">'test.txt'</font><br />getfiledate <font color="#000080">[d]</font> = <font color="#0000ff">'test.txt'</font><br /><br />echo <font color="#0000ff">'test.txt wurde ge&auml;ndert am '</font> # <font color="#000080">[d]</font><br /><br /><font color="#808080">rem Nun setzen wir das Datum auf den 01.02.2004</font><br />letfiledate <font color="#0000ff">'test.txt'</font>, <font color="#0000ff">'02012004'</font><br /><br />getfiledate <font color="#000080">[d]</font> = <font color="#0000ff">'test.txt'</font><br />echo <font color="#0000ff">'test.txt wurde "ge&auml;ndert" am '</font> # <font color="#000080">[d]</font><br />delfile <font color="#0000ff">'test.txt'</font><br /><b>end</b></td>
+			</tr>
+			<tr>
+				<td class="ref_label">Bemerkungen:</td>
+				<td>Wurde die Datei nicht gefunden, erh&auml;lt [errorcode] sowohl von LETFILEDATE als auch von GETFILEDATE den Wert -1, ansonsten 0. Der R&uuml;ckgabewert von GETFILEDATE ist in solch einem Fall ein Leerstring.<br /><br />Verwenden Sie <a href="rb5ref_ger_3_getfiletimeletfiletime.html">GETFILETIME</a> und <a href="rb5ref_ger_3_getfiletimeletfiletime.html">LETFILETIME</a> um die &Auml;nderungsuhrzeit einer Datei zu lesen oder zu setzen.</td>
+			</tr>
+		</table>
+	
+		<div class="line">&nbsp;</div>
+	
+		<div id="copyright">
+			Copyright &copy; 2000-2006 by J.M.K S.F. Software Technologies, Jan Max Meyer<br />
+			All rights reserved.
+		</div>
+	</body>
+</html>

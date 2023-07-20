@@ -1,0 +1,83 @@
+a:link, a:visited { text-decoration:none; color:#0000FF; }
+a:hover { text-decoration:none; color:#00A0FF;}
+
+a.url:link { text-decoration:none; color:#0000FF; }
+a.url:visited { text-decoration:none; color:#0000FF; }
+a.url:hover { text-decoration:none; color:#00A5FF;}
+
+a.content:link { text-decoration:none; color:#00A0FF;}
+a.content:visited { text-decoration:none; color:#00A0FF;}
+a.content:hover { text-decoration:none; color:#00FF00;}
+
+a.sidemenu { display: block; width:100%;}
+a.sidemenu:link,a.sidemenu:visited { text-decoration:none; color:#00C6FF;}
+a.sidemenu:hover { text-decoration:none; color:#D8D8FF; background-color:#0080FF;}
+
+body, table.content { font-family: Verdana, Arial, sans-serif; text-align: left; color:#000000; font-size: 10pt; border-spacing:20px; margin: 10px}
+
+td.ref_label { color: #ADADAD }
+td.ref_syntax { font-family: sans-serif, tahoma ; text-align: left; color:#000000; font-size: 11pt; font-weight: bold; }
+
+td.top, div.top {font-size: 20pt; font-weight: bold;}
+
+div.top_small {font-size: 14pt; font-weight: bold;}
+
+li {margin: 5px;}
+
+div.copyright {font-size: 8pt; color:#C0C0C0;}
+
+div.code, pre { margin-left: 20px; width: 80%; margin-bottom: 20px; font-family: Courier New, MS Serif, Terminal, Fixedsys, sans-serif; font-size: 10pt; color: #00009C;background-color: #F5F5F5;}
+td.ref_code { width: 100%; margin-bottom: 20px; font-family: Courier New, MS Serif, Terminal, Fixedsys, sans-serif; font-size: 10pt; color: #00009C;background-color: #F5F5F5;}
+
+
+td.navigation { vertical-align: bottom; text-align: right; font-size: 14pt; font-weight: bold; link: color: #000080; }
+
+<!-- background-color: #E1E8FF;   -->
+
+
+table.news { font-family: Arial, Verdana, Helvetica, sans-serif; color:#FFFFFF; font-size: 8pt;}
+td.newshead {color:#1FF6FC; font-size: 8pt; font-weight: bold; text-align: center; }
+td.newscont { text-align: left; font-family: Verdana, Helvetica, sans-serif; color:#FFFFFF; font-size: 10pt;}
+td.sidebar { font-family: Arial, Verdana, Helvetica, sans-serif; color:#FFFFFF; font-size: 9pt;}
+
+table.newscont { text-align: left; font-family: Arial, Verdana, Helvetica, sans-serif; color:#FFFFFF; font-size: 8pt;}
+
+
+table.sidemenu { text-align: left; font-family: Arial, Verdana, Helvetica, sans-serif; color:#FFFFFF; font-size: 11pt; font-weight: bold;}
+
+td.offline { color: #0052A5;}
+div.offline { color: #0052A5;}
+
+
+
+
+td.maincont { text-align: left; font-family: Arial, Verdana, Helvetica, sans-serif; color:#FFFFFF; font-size: 10pt;}
+
+
+td.menu {text-align:left; color:#00A5FF; font-family: Helvetica, Arial, Verdana, sans-serif; font-size: 9pt; font-weight: bold;}
+
+td.copyright {text-align:right; color:#BDBDBD; font-family: Arial, Verdana, Helvetica, sans-serif; font-size: 7pt; }
+td.url {text-align:left; color:#000000; font-family: Arial, Verdana, Helvetica, sans-serif; font-size: 8pt; font-weight: bold;}
+
+td.activemenu {color: #00BF00;}
+
+td.features { text-align: left; font-family: Arial, Verdana, Helvetica, sans-serif; color:#FFFFFF; font-size: 8pt;}
+
+
+table.small {text-align:center; font-family: Arial, Helvetica, Verdana, sans-serif; font-size: 9pt; text-align:left;}
+
+
+div.headline {text-align:right; color:#0080FF; font-family: BankGothic Md BT, Arial Black, Arial, Helvetica, Verdana, sans-serif; font-size: 14pt;  font-weight: bold; font-style: Italic;}
+
+div.prod_title {text-align:left; color:#0060FF; font-family: Impact, BankGothic Md BT, Arial Black, Arial, Helvetica, Verdana, sans-serif; font-size: 16pt; }
+
+td.feature {color: #0080FF; font-weight: bold;}
+
+div.menu {font-family: fixedsys, Terminal, Arial, Verdana, Helvetica, sans-serif; font-size: 11pt; color:#ffffff; font-style: italic;}
+div.menu1 {font-family: Arial, Helvetica, Verdana, sans-serif; font-size: 10pt; color:#ffffff; font-weight: bold; font-style: italic;}
+
+div.title { font-family: Arial, Helvetica, Verdana, sans-serif; font-size: 14pt; font-weight: bold; font-style: italic;}
+div.simple { font-family: Arial, Helvetica, Verdana, sans-serif; font-size: 11pt;}
+div.suggest {font-family: Arial, Helvetica, Verdana, sans-serif; font-size: 10pt; font-style: italic; color:#00C0FF;}
+
+table.copyright { font-family: Helvetica, Arial, Verdana, sans-serif; font-size: 7pt;}

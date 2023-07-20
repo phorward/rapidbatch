@@ -1,0 +1,40 @@
+<html>
+	<head>
+		<title>RapidBATCH Befehlsreferenz :: GETENV, LETENV</title>
+		<link rel="stylesheet" href="jmksf.css" type="text/css" />
+	</head>
+	<body>
+		<div id="top">
+			<img src="rb5.png" alt="RapidBATCH Logo" />
+			GETENV, LETENV
+		</div>
+	
+		<div class="line">&nbsp;</div>
+	
+		<table cellspacing="10" width="100%">
+			<tr>
+				<td class="ref_label">Syntax:</td>
+				<td class="ref_syntax">GETENV Wert = Umgebungsvariable<br />LETENV Umgebungsvariablenzuweisung</td>
+			</tr>
+			<tr>
+				<td class="ref_label">Beschreibung:</td>
+				<td>GETENV erm&ouml;glicht das Auslesen von Umgebungsvariablen. Die Funktion erwartet eine Variable, die den Wert der auszulesende Umgebungsvariable erh&auml;lt sowie den Namen der Umgebungsvariable, die gelesen werden soll.<br />LETENV erlaubt das Setzen/Erzeugen von Umgebungsvariablen. Dabei gibt man die Umgebungsvariable, gefolgt von einem Gleichheitszeichen oder Leerzeichen und einem Wert an (siehe Beispiel).</td>
+			</tr>
+			<tr>
+				<td class="ref_label">Beispiele:</td>
+				<td class="ref_code"><font color="#808080">rem PATH auslesen</font><br />getenv <font color="#000080">[pathvar]</font> = <font color="#0000ff">'PATH'</font><br /><br /><font color="#808080">rem Neue Umgebungsvariable TEST erzeugen</font><br />letenv <font color="#0000ff">'TEST=Hello World'</font></td>
+			</tr>
+			<tr>
+				<td class="ref_label">Bemerkungen:</td>
+				<td>Ge&auml;nderte oder neu erstellte Variablen werden nach Beendigung des Scripts durch das Betriebssystem automatisch wieder zur&uuml;ckgesetzt bzw. neue Variablen werden gel&ouml;scht.</td>
+			</tr>
+		</table>
+	
+		<div class="line">&nbsp;</div>
+	
+		<div id="copyright">
+			Copyright &copy; 2000-2006 by J.M.K S.F. Software Technologies, Jan Max Meyer<br />
+			All rights reserved.
+		</div>
+	</body>
+</html>

@@ -1,0 +1,24 @@
+<html>
+	<head>
+		<title>Verzeichnisoperationen</title>
+		<link rel="stylesheet" href="jmksf.css" type="text/css"></link>
+	</head>
+
+	<body>
+		<div id="top">
+			<img src="rb5.png" alt="RapidBATCH Logo" />
+			Verzeichnisoperationen
+		</div>
+		
+		<div class="line">&nbsp;</div>
+		
+		Zum Erstellen, Wechseln und L&ouml;schen von Verzeichnissen stellt RapidBATCH drei Anweisungen zur Verf&uuml;gung: MKDIR, CHDIR und RMDIR. Diese sind &auml;quivalent zu den gleichnamigen DOS-Kommandos.<br /><br />Mit folgender Zeile erzeugen wir ein neues Verzeichnis C:\wale.<br /><br /><!-- code BEGIN --><div class="code">mkdir <font color="#0000ff">'C:\wale'</font></div><!-- code END-->RapidBATCH legt auch &uuml;bergeordnete Verzeichnisse mit MKDIR an, wenn wir einen Pfad angeben, der nicht existiert.<br /><br />Wenn wir also die Zeile<br /><br /><!-- code BEGIN --><div class="code">mkdir <font color="#0000ff">'C:\wale\zahnwale\schwertwal'</font></div><!-- code END-->ausf&uuml;hren, und weder der Pfad C:\wale noch C:\wale\zahnwale existiert, legt RapidBATCH alle drei Verzeichnisse automatisch hinereinander an.<br /><br />M&ouml;chten wir nun das Verzeichnis wechseln, verwenden wir die CHDIR-Anweisung:<br /><br /><!-- code BEGIN --><div class="code">chdir <font color="#0000ff">'C:\wale\zahnwale\schwertwal'</font></div><!-- code END-->Ob unser Verzeichniswechsel erfolgreich war oder nicht, k&ouml;nnen wir anhand der vordeklarierten Variablen [errorcode] &uuml;berpr&uuml;fen. Sowohl MKDIR als auch CHDIR und RMDIR geben bei einem Fehler den Wert '-1' (false) an [errorcode], ansonsten den Wert '0' (true) zur&uuml;ck. Wir k&ouml;nnen also wie folgt herausfinden, ob unser Verzeichnis existiert oder nicht:<br /><br /><!-- code BEGIN --><div class="code">chdir <font color="#0000ff">'C:\wale\zahnwale\schwertwal'</font><br /><b>if</b> <font color="#000080">[errorcode]</font> = <font color="#0000ff">'-1'</font><br />&nbsp;&nbsp;&nbsp;&nbsp;echo <font color="#0000ff">'Verzeichniswechsel fehlgeschlagen!'</font><br /><b>else</b><br />&nbsp;&nbsp;&nbsp;&nbsp;echo <font color="#0000ff">'Verzeichniswechsel erfolgreich!'</font><br /><b>endif</b></div><!-- code END-->Mit RMDIR l&ouml;schen wir ein Verzeichnis wieder. Das zu l&ouml;schende Verzeichnis MUSS allerdings leer sein, darf also weder Dateien noch weitere Unterverzeichnisse enthalten.<br /><br /><!-- code BEGIN --><div class="code">rmdir <font color="#0000ff">'C:\wale\zahnwale\schwertwal'</font></div><!-- code END-->Anders als bei MKDIR wird hier aber immer nur ein einziges Verzeichnis, n&auml;mlich der entsprechend angegebene Pfad gel&ouml;scht.<div class="remark">Anmerkung: Verwenden Sie zum Verschieben bzw. Kopieren von Verzeichnissen (samt deren Unterverzeichnissen) die Bibliotheks-Anweisungen MOVEDIR bzw. COPYDIR aus der RapidBATCH-Bibliothek SYSTEM.RB.</div><br /><br />
+
+		<div class="line">&nbsp;</div>
+
+		<div id="copyright">
+			Copyright &copy; 2000-2006 by J.M.K S.F. Software Technologies, Jan Max Meyer<br />
+			All rights reserved.
+		</div>
+	</body>
+</html>

@@ -1,0 +1,40 @@
+<html>
+	<head>
+		<title>RapidBATCH Language Reference :: DISKFREE, DISKSIZE</title>
+		<link rel="stylesheet" href="jmksf.css" type="text/css" />
+	</head>
+	<body>
+		<div id="top">
+			<img src="rb5.png" alt="RapidBATCH Logo" />
+			DISKFREE, DISKSIZE
+		</div>
+	
+		<div class="line">&nbsp;</div>
+	
+		<table cellspacing="10" width="100%">
+			<tr>
+				<td class="ref_label">Syntax:</td>
+				<td class="ref_syntax">DISKFREE disk-space = drive-letter<br />DISKSIZE disk-space = drive-letter</td>
+			</tr>
+			<tr>
+				<td class="ref_label">Description:</td>
+				<td>DISKFREE returns the rest of free space on a drive, in bytes.<br />DISKSIZE returns the whole capacity a drive provides, in bytes.</td>
+			</tr>
+			<tr>
+				<td class="ref_label">Examples:</td>
+				<td class="ref_code">diskfree <font color="#000080">[df]</font> = <font color="#0000ff">'C:\'</font><br />echo <font color="#0000ff">'There are already '</font> # <font color="#000080">[df]</font> # <font color="#0000ff">' bytes free on drive C:'</font><br />diskfree <font color="#000080">[ds]</font> = <font color="#0000ff">'C:\'</font><br />echo <font color="#0000ff">'Drive C: has a capacity of '</font> # <font color="#000080">[ds]</font> # <font color="#0000ff">' bytes.'</font><br /><b>end</b></td>
+			</tr>
+			<tr>
+				<td class="ref_label">Remarks:</td>
+				<td>To convert a file size to kilo-, mega-, giga- or terrabyte, the byte-value must be divided with 1024 in each case.<br />For example, a MP3-file has a size of 3853881 bytes. 3853881 divided by 1024 are 3763.55 kilobytes. 3763.55 kilobytes divided again by 1024 are 3.67 mega bytes. This can be continued up to terrabyte (1 terrabyte is 1024 gigabytes).</td>
+			</tr>
+		</table>
+	
+		<div class="line">&nbsp;</div>
+	
+		<div id="copyright">
+			Copyright &copy; 2000-2006 by J.M.K S.F. Software Technologies, Jan Max Meyer<br />
+			All rights reserved.
+		</div>
+	</body>
+</html>

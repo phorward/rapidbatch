@@ -1,0 +1,40 @@
+<html>
+	<head>
+		<title>RapidBATCH Language Reference :: DISKTYPE</title>
+		<link rel="stylesheet" href="jmksf.css" type="text/css" />
+	</head>
+	<body>
+		<div id="top">
+			<img src="rb5.png" alt="RapidBATCH Logo" />
+			DISKTYPE
+		</div>
+	
+		<div class="line">&nbsp;</div>
+	
+		<table cellspacing="10" width="100%">
+			<tr>
+				<td class="ref_label">Syntax:</td>
+				<td class="ref_syntax">DISKTYPE type-id = drive-letter</td>
+			</tr>
+			<tr>
+				<td class="ref_label">Description:</td>
+				<td>Gives information about the type a drive has. The return value is an ID with the following meaning:<br /><br />0 = Unknown medium<br />1 = removable memory<br />2 = Fixed medium (e.g. a hard-disk)<br />3 = Remote drive<br />4 = CD-ROM drive<br />5 = RAM-Disk (e.g. USB-Stick)</td>
+			</tr>
+			<tr>
+				<td class="ref_label">Examples:</td>
+				<td class="ref_code">disktype <font color="#000080">[type]</font> = <font color="#0000ff">'C:\'</font><br /><b>if</b> <font color="#000080">[type]</font> = <font color="#0000ff">'0'</font> <font color="#000080">[type]</font> = <font color="#0000ff">'unknwon '</font><br /><b>if</b> <font color="#000080">[type]</font> = <font color="#0000ff">'1'</font> <font color="#000080">[type]</font> = <font color="#0000ff">'removeable-'</font><br /><b>if</b> <font color="#000080">[type]</font> = <font color="#0000ff">'2'</font> <font color="#000080">[type]</font> = <font color="#0000ff">'fixed '</font><br /><b>if</b> <font color="#000080">[type]</font> = <font color="#0000ff">'3'</font> <font color="#000080">[type]</font> = <font color="#0000ff">'remote-'</font><br /><b>if</b> <font color="#000080">[type]</font> = <font color="#0000ff">'4'</font> <font color="#000080">[type]</font> = <font color="#0000ff">'CD-ROM-'</font><br /><b>if</b> <font color="#000080">[type]</font> = <font color="#0000ff">'5'</font> <font color="#000080">[type]</font> = <font color="#0000ff">'RAM-Disk-'</font><br /><br />echo <font color="#0000ff">'Drive C: is a '</font> # <font color="#000080">[type]</font> # <font color="#0000ff">'medium'</font></td>
+			</tr>
+			<tr>
+				<td class="ref_label">Remarks:</td>
+				<td>none</td>
+			</tr>
+		</table>
+	
+		<div class="line">&nbsp;</div>
+	
+		<div id="copyright">
+			Copyright &copy; 2000-2006 by J.M.K S.F. Software Technologies, Jan Max Meyer<br />
+			All rights reserved.
+		</div>
+	</body>
+</html>

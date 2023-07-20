@@ -1,0 +1,15 @@
+;RapidBATCH-to-HTML Highlighter
+;Copyright (C) 2005 by J.M.K S.F., Jan Max Meyer
+;German Language Definition
+
+main_title=RapidBATCH-to-HTML Konverter
+message_wait=Konvertiere, bitte warten Sie einen Augenblick...
+message_done=Fertig!
+option_htmlframe=Mit HTML-&Grundgerüst erzeugen
+button_savetoclipboard=In &Zwischenablage speichern
+button_savetofile=In &Datei speichern
+button_clear=Textfeld &leeren
+savefileto=HTML-Datei speichern unter...
+openhtmlfile=HTML Datei öffnen?
+
+;end of definition

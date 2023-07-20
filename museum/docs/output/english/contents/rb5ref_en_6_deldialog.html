@@ -1,0 +1,40 @@
+<html>
+	<head>
+		<title>RapidBATCH Language Reference :: DELDIALOG</title>
+		<link rel="stylesheet" href="jmksf.css" type="text/css" />
+	</head>
+	<body>
+		<div id="top">
+			<img src="rb5.png" alt="RapidBATCH Logo" />
+			DELDIALOG
+		</div>
+	
+		<div class="line">&nbsp;</div>
+	
+		<table cellspacing="10" width="100%">
+			<tr>
+				<td class="ref_label">Syntax:</td>
+				<td class="ref_syntax">DELDIALOG widget-label</td>
+			</tr>
+			<tr>
+				<td class="ref_label">Description:</td>
+				<td>Removes a widget from the memory.<br /><br />If the widget-label of a dialog window is specified, the complete dialog including all child-elements is removed from the memory. A removed widget can not be used anymore after a DELDIALOG-call.</td>
+			</tr>
+			<tr>
+				<td class="ref_label">Examples:</td>
+				<td class="ref_code"><font color="#808080">rem creating a dialog window</font><br />newdialog <font color="#0000ff">'Window'</font>, <font color="#0000ff">'dialog'</font>, <font color="#0000ff">'1|1|640|480'</font><br /><br /><font color="#808080">rem setting the dialog's title and make it visible</font><br />letdialog <font color="#0000ff">'Window'</font>, <font color="#0000ff">'caption'</font>, <font color="#0000ff">'This is a simple dialog'</font><br />letdialog <font color="#0000ff">'Window'</font>, <font color="#0000ff">'visible'</font>, <font color="#000080">[true]</font><br /><br /><font color="#808080">rem hold until the user hits the dialog's close button</font><br />rundialog <font color="#000080">[null]</font> = <font color="#0000ff">'0'</font><br /><br /><font color="#808080">rem removing the dialog again from the memory</font><br />deldialog <font color="#0000ff">'Window'</font><br /><br /><font color="#808080">rem trying to access the dialog's caption</font><br />getdialog <font color="#000080">[titel]</font> = <font color="#0000ff">'Window'</font>, <font color="#0000ff">'caption'</font><br /><br /><b>if</b> <font color="#000080">[errorcode]</font> = <font color="#000080">[false]</font><br />    echo <font color="#0000ff">'Oops, the dialog is not existing anymore!'</font><br /><b>else</b><br />    echo <font color="#0000ff">'This message will never be displayed.'</font><br /><b>endif</b></td>
+			</tr>
+			<tr>
+				<td class="ref_label">Remarks:</td>
+				<td>If DELDIALOG fails, [errorcode] receives the value '-1', else '0'.<br /><br />The DELDIALOG-instruction has the only purpose to remove dialogs from the memory when they are (maybe) created a second time if required. When implementing own dialogs in libraries or functions, DELDIALOG can (and should!) be used to remove the complete dialog from the memory and system again when it was executed and the library-procedure or function returns to the main-script again. It is not recommended to use DELDIALOG for a dialog that is only be used for one time (e.g. a main window of an application you wrote). In this case, the dialog is automatically be removed by RapidBATCH at script termiation.</td>
+			</tr>
+		</table>
+	
+		<div class="line">&nbsp;</div>
+	
+		<div id="copyright">
+			Copyright &copy; 2000-2006 by J.M.K S.F. Software Technologies, Jan Max Meyer<br />
+			All rights reserved.
+		</div>
+	</body>
+</html>

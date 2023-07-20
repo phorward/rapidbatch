@@ -1,0 +1,16 @@
+
+100 DIALOG 219, 84, 216, 206
+LANGUAGE LANG_NEUTRAL, SUBLANG_NEUTRAL
+STYLE DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
+CAPTION "Dialog Title"
+FONT 8, "MS Shell Dlg"
+BEGIN
+    CTEXT           "Logo", 101, 15, 1, 186, 123
+    CTEXT           "J.M.K S.F. RapidBATCH v5.0", 102, 4, 127, 209, 8
+    CTEXT           "Copyright (C) 2000-2005 by J.M.K S.F., Jan Max Meyer", 
+                    103, 4, 138, 209, 8
+    CTEXT           "Please refer license.txt for more informations.", 105, 
+                    4, 149, 209, 8
+    PUSHBUTTON      "&OK", IDOK, 77, 186, 60, 19
+    CTEXT           "http://www.rapidbatch.com/", 104, 37, 162, 142, 8
+END

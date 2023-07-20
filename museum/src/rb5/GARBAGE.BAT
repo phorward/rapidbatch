@@ -1,0 +1,10 @@
+@echo off
+del *.obj
+del *.~bp
+del *.~cp
+del *.~h
+del *.~df
+del *.~rc
+del *.tds
+del rb5_debug.txt
+del c:\rb5_debug.txt

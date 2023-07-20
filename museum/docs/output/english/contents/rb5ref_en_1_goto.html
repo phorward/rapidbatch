@@ -1,0 +1,40 @@
+<html>
+	<head>
+		<title>RapidBATCH Language Reference :: GOTO</title>
+		<link rel="stylesheet" href="jmksf.css" type="text/css" />
+	</head>
+	<body>
+		<div id="top">
+			<img src="rb5.png" alt="RapidBATCH Logo" />
+			GOTO
+		</div>
+	
+		<div class="line">&nbsp;</div>
+	
+		<table cellspacing="10" width="100%">
+			<tr>
+				<td class="ref_label">Syntax:</td>
+				<td class="ref_syntax">GOTO label<br />.<br />.<br />.<br />%label</td>
+			</tr>
+			<tr>
+				<td class="ref_label">Description:</td>
+				<td>GOTO calls a specified label in the script, and continues the script execution behind this label. This possibility allows you to write ultra-complex scripts. A label is specified in the script with a beginning %-character.<br /><br />Since RapidBATCH 5.0, it is possible to call variable labels, so that also a single variable, containing the target-label or a target-label composed of both variable and static parts can be specified.</td>
+			</tr>
+			<tr>
+				<td class="ref_label">Examples:</td>
+				<td class="ref_code"><font color="#808080">rem performing a static label call</font><br />echo <font color="#0000ff">'Welcome to the GOTO test script!'</font><br /><b>goto</b> <font color="#0000ff">'next'</font><br /><br />echo <font color="#0000ff">'You will never see this message :('</font><br /><br />%next<br /><br /><font color="#808080">rem performing a dynamic label call</font><br />include <font color="#0000ff">'dialog.rb'</font><br />btnmenu <font color="#000080">[speed]</font> = <font color="#0000ff">'Please select a speed:'</font>, <font color="#0000ff">'20 mph|60 mph|100 mph'</font><br /><br /><b>goto</b> <font color="#000080">[speed]</font><br /><br />%20 mph<br />echo <font color="#0000ff">'This speed is very slow.'</font><br /><b>goto</b> <font color="#0000ff">'continue'</font><br /><br />%60 mph<br />echo <font color="#0000ff">'This speed is well!'</font><br /><b>goto</b> <font color="#0000ff">'continue'</font><br /><br />%100 mph<br />echo <font color="#0000ff">'TOO FAST! You wanna race???'</font><br /><br />%continue<br />echo <font color="#0000ff">'Enjoy your '</font> # <font color="#000080">[speed]</font> # <font color="#0000ff">' ;) ...'</font></td>
+			</tr>
+			<tr>
+				<td class="ref_label">Remarks:</td>
+				<td>The label specified at GOTO may not begin with the %-character.<br />When using GOTO within a procedure, it is not allowed to call a label out of the current or in an other procedure. In this case, the script execution stops with a corresponding error message. Calling labels that are defined in included files is possible.</td>
+			</tr>
+		</table>
+	
+		<div class="line">&nbsp;</div>
+	
+		<div id="copyright">
+			Copyright &copy; 2000-2006 by J.M.K S.F. Software Technologies, Jan Max Meyer<br />
+			All rights reserved.
+		</div>
+	</body>
+</html>

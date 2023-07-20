@@ -1,0 +1,40 @@
+<html>
+	<head>
+		<title>RapidBATCH Language Reference :: FINDFILES</title>
+		<link rel="stylesheet" href="jmksf.css" type="text/css" />
+	</head>
+	<body>
+		<div id="top">
+			<img src="rb5.png" alt="RapidBATCH Logo" />
+			FINDFILES
+		</div>
+	
+		<div class="line">&nbsp;</div>
+	
+		<table cellspacing="10" width="100%">
+			<tr>
+				<td class="ref_label">Syntax:</td>
+				<td class="ref_syntax">FINDFILES list-of-files = file-filter, recoursion-depth</td>
+			</tr>
+			<tr>
+				<td class="ref_label">Description:</td>
+				<td>Reads all files within the specified directory (optionally with all its sub-directories) and returns a list of files. The purpose of this function is to read out the content of directories, to provide file listings or to perform system operation on a set of files that e.g. fit to the specified file-filter.<br /><br />As parameters, FINDFILES first expects a file filter, which can also be a combination of a directory-path (absolute or relative) and uses the wilcards * and ?. As second parameter, FINDFILES expects a recousion-depth value that specifies the maximum recousion depth FINDFILES should perform. If this recursion depth is set to '1', FINDFILES will only return files that fit to the particular filter in the specified directory (or if no was specified, in the current directory), if the value '2' is assigned, FINDFILES returns files that fit to the particular filter in the specified directory and all its sub-directories up to one level, and so on. By specifing the value '0', FINDFILES will go to a recoursion-depth of maximal 255 sub-directory-levels - a nearly impossible depth.<br /><br />The return-value is a list of files, where each file is separated by the list-separation-character defined in the pre-declared variable [std_sep]. By default, this is the pipe-character (|). </td>
+			</tr>
+			<tr>
+				<td class="ref_label">Examples:</td>
+				<td class="ref_code"><font color="#808080">rem List all files in the RB5-directory without reading sub-folders</font><br />chdir <font color="#0000ff">'c:\jmksf\rb5'</font><br />findfiles <font color="#000080">[filelist]</font> = <font color="#0000ff">'*.*'</font>,<font color="#0000ff">'1'</font><br />replacevar <font color="#000080">[filelist]</font> = <font color="#000080">[filelist]</font>, <font color="#000080">[std_sep]</font>, <font color="#000080">[new_line]</font><br />echo <font color="#000080">[filelist]</font><br /><br /><font color="#808080">rem List all exe-files in C:\JMKSF (product directory)</font><br />findfiles <font color="#000080">[filelist]</font> = <font color="#0000ff">'c:\jmksf\*.exe'</font>,<font color="#0000ff">'0'</font><br />replacevar <font color="#000080">[filelist]</font> = <font color="#000080">[filelist]</font>, <font color="#000080">[std_sep]</font>, <font color="#000080">[new_line]</font><br />echo <font color="#000080">[filelist]</font></td>
+			</tr>
+			<tr>
+				<td class="ref_label">Remarks:</td>
+				<td>The file list returned by FINDFILES can be processed by using the GETTOK-function within a REPEAT...UNTIL-loop, by going through the several file names and perform the desired operation to each file. To create an array from the file-list, use the procedures provided by the ARRAY.RB function-library provided with the RapidBATCH software package.</td>
+			</tr>
+		</table>
+	
+		<div class="line">&nbsp;</div>
+	
+		<div id="copyright">
+			Copyright &copy; 2000-2006 by J.M.K S.F. Software Technologies, Jan Max Meyer<br />
+			All rights reserved.
+		</div>
+	</body>
+</html>

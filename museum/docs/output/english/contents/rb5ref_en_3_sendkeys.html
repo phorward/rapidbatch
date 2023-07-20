@@ -1,0 +1,40 @@
+<html>
+	<head>
+		<title>RapidBATCH Language Reference :: SENDKEYS</title>
+		<link rel="stylesheet" href="jmksf.css" type="text/css" />
+	</head>
+	<body>
+		<div id="top">
+			<img src="rb5.png" alt="RapidBATCH Logo" />
+			SENDKEYS
+		</div>
+	
+		<div class="line">&nbsp;</div>
+	
+		<table cellspacing="10" width="100%">
+			<tr>
+				<td class="ref_label">Syntax:</td>
+				<td class="ref_syntax">SENDKEYS window-title, keystrokes</td>
+			</tr>
+			<tr>
+				<td class="ref_label">Description:</td>
+				<td>Sends keyboard-commands to the application window the the specified text in its window title bar. This instructions makes it possible to simply control any Windows-applications remotely, using a simple macro language for specifying keystrokes.<br /><br />Basically, the control-macro-language (SENDKEYS-Script) is build-up very simple: Keystrokes must be specified the same way you would enter them to the keyboard as you use the program to be remotely controlled. So RapidBATCH does nothing else than simulating the keystrokes a user would enter when using the controlled program.<ul>  <li>Simple characters, or even texts, can directly be specified, for example &quot;abc&quot; or &quot;Hello World!&quot;.</li>  <li>Special keys like CTRL, ALT, SHIFT, ENTER and so on must be specified in parentheses, and with their english synonym. For example, when sending the command &quot;Line 1(enter)Line 2&quot; to an application (for example a text-editor), a line-break will be created between &quot;Line 1&quot; and &quot;Line 2&quot;.</li>  <li>To hold down a key, a circumflex-character (^) is prefixed to the desired key or special key. The holding of key must be done if you want to press more than one keys at the same time. For example, the (very long!) keystroke CTRL+ALT+DEL+F1+A is specified as &quot;^(ctrl)^(alt)^(del)^(f1)A&quot;. All hold keys are automatically released when a character follows which should not be hold, or if the end of the keystroke command list is reached.</li><li>If you want to send a left-parenthese as a character, prefix it with a tilde-character. So &quot;~(&quot; causes the internal SENDKEYS command language interpreter to read the next character &quot;as it is&quot;, and not as the begin of a special key command. To send a circumflex-character, say &quot;~^&quot;. The keystroke &quot;~~&quot; sends a single tilde (~) character to the controlled application.</li></ul>As special keys, the following keys can be used:<ul>	<li><b>(back)</b><br />	Backspace-key</li>	<li><b>(tab)</b><br />	Tabulator-key</li>	<li><b>(clear)</b><br />	Delete-key</li>	<li><b>(enter)</b> oder <b>(return)</b><br />	Enter-key</li>	<li><b>(shift)</b><br />	Shift-key</li>	<li><b>(ctrl)</b> oder <b>(control)</b><br />	Ctrl-key (Control)</li>	<li><b>(alt)</b><br />	Alt-key</li>	<li><b>(pause)</b><br />	Pause-key</li>	<li><b>(capslock)</b><br />	Capslock-key</li>	<li><b>(esc)</b><br />	ESC-key</li>	<li><b>(space)</b><br />	Space</li>	<li><b>(pageup)</b><br />	Scroll up key</li>	<li><b>(pagedown)</b><br />	Scroll down key</li>	<li><b>(end)</b><br />	Line end</li>	<li><b>(home)</b><br />	Line begin</li>	<li><b>(left)</b><br />	Left arrow</li>	<li><b>(up)</b><br />	Up arrow/li>	<li><b>(right)</b><br />	Right arrow</li>	<li><b>(down)</b><br />	Down arrow</li>	<li><b>(select)</b><br />	Select-key</li>	<li><b>(print)</b><br />	Print-key</li>	<li><b>(snapshot)</b><br />	Screenshot</li>	<li><b>(insert)</b><br />	Paste-key</li>	<li><b>(delete)</b><br />	Delete-key</li>	<li><b>(help)</b><br />	Help-key</li>	<li><b>(lwin)</b><br />	Left Windows-key</li>	<li><b>(rwin)</b><br />	Right Windows-key</li>	<li><b>(apps)</b><br />	Application-key</li>	<li><b>(f1)</b><br />	F1-key</li>	<li><b>(f2)</b><br />	F2-key</li>	<li><b>(f3)</b><br />	F3-key</li>	<li><b>(f4)</b><br />	F4-key</li>	<li><b>(f5)</b><br />	F5-key</li>	<li><b>(f6)</b><br />	F6-key</li>	<li><b>(f7)</b><br />	F7-key</li>	<li><b>(f8)</b><br />	F8-key</li>	<li><b>(f9)</b><br />	F9-key</li>	<li><b>(f10)</b><br />	F10-key</li>	<li><b>(f11)</b><br />	F11-key</li>	<li><b>(f12)</b><br />	F12-key</li>	<li><b>(f13)</b><br />	F13-key</li>	<li><b>(f14)</b><br />	F14-key</li>	<li><b>(f15)</b><br />	F15-key</li>	<li><b>(f16)</b><br />	F16-key</li>	<li><b>(numlock)</b><br />	NumLock</li>	<li><b>(scroll)</b><br />	Scroll-key</li>	<li><b>(lshift)</b><br />	Left Shift-key</li>	<li><b>(rshift)</b><br />	Right shift-key</li>	<li><b>(lcontrol)</b><br />	Left CTRL-key</li>	<li><b>(rcontrol)</b><br />	Right CTRL-key</li>	<li><b>(lalt)</b><br />	Left ALT-key</li>	<li><b>(ralt)</b><br />	Right ALT-key</li></ul><br />As application window title, you can also specifiy a Windows process ID or one of the build-in constants &quot;DESKTOP&quot; (sends keystrokes to the desktop), &quot;SHELL&quot; (sends keystrokes to the shell) and &quot;FOREGROUND&quot; (sends keystrokes to the current foreground window).</td>
+			</tr>
+			<tr>
+				<td class="ref_label">Examples:</td>
+				<td class="ref_code">shell <font color="#000080">[windir]</font> # <font color="#0000ff">'\notepad.exe'</font>, <font color="#0000ff">'show'</font><br />sendkeys <font color="#000080">[active_window]</font>, <font color="#0000ff">'Hello World^(alt)fstest.txt(enter)^(alt)(f4)'</font><br /><b>end</b></td>
+			</tr>
+			<tr>
+				<td class="ref_label">Remarks:</td>
+				<td>[errorcode] gets '-1' if the window with the specified text in its title-bar coudn't be found, else '0'.<br />Use the variable [active_window], as in the example above, to get the title of the currently activated window.</td>
+			</tr>
+		</table>
+	
+		<div class="line">&nbsp;</div>
+	
+		<div id="copyright">
+			Copyright &copy; 2000-2006 by J.M.K S.F. Software Technologies, Jan Max Meyer<br />
+			All rights reserved.
+		</div>
+	</body>
+</html>

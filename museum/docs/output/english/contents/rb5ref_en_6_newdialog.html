@@ -1,0 +1,40 @@
+<html>
+	<head>
+		<title>RapidBATCH Language Reference :: NEWDIALOG</title>
+		<link rel="stylesheet" href="jmksf.css" type="text/css" />
+	</head>
+	<body>
+		<div id="top">
+			<img src="rb5.png" alt="RapidBATCH Logo" />
+			NEWDIALOG
+		</div>
+	
+		<div class="line">&nbsp;</div>
+	
+		<table cellspacing="10" width="100%">
+			<tr>
+				<td class="ref_label">Syntax:</td>
+				<td class="ref_syntax">NEWDIALOG widget-label, widget-type, start-positions</td>
+			</tr>
+			<tr>
+				<td class="ref_label">Description:</td>
+				<td>Creates dialog window or a new widget to be used on a dialog. As widgets, window controls like buttons, input-fields, listboxes or even dialog-windows themself are meaned. Dialog-windows itself are acting as parents for the so called child-widgets (the controls displayed on the dialog).<br /><br />The instruction expects as first parameter a widget-label that identifies the newly created widget and is used to access it in later operations, a widget-type identifier, specifying the type of the widget that should be created, and a widget starting position, specified in the format &quot;X|Y|Width|Height&quot;, where each value is specified in pixels. The pipe-character (&quot;|&quot;) must be replaced by another, particular character if the value of the variable [std_sep] has been changed, which is not recommended.<br />The X- and Y-coordinates are only at DIALOG-typed widgets relative to the upper-left corner of the screen, at all child-widgets, X- and Y- are relative to the parent dialog's upper-left corner.<br /><br />The widget-label must always begin with the name of the parent-dialog it should be created on, followed by a colon (:) and then an arbitrary name for the widget. E.g. the label for a child-element with the name &quot;child-element&quot; that should be created on the dialog-window &quot;base&quot; must look like the following:<br /><br />"base:child-element".<br /><br />The following list provides all possible widget types and their identifiers that can be created with NEWDIALOG.<br /><br /><table class="std">	<tr>		<td><b>Widget-Type Identifier:</b></td>		<td><b>Description:</b></td>	</tr>	<tr>		<td>DIALOG</td>		<td>Parent dialog window</td>	</tr>	<tr>		<td>BUTTON</td>		<td>Push button</td>	</tr>	<tr>		<td>IMAGEBUTTON</td>		<td>Push button displaying an image instead of text</td>	</tr>	<tr>		<td>INPUT</td>		<td>A single-line input field</td>	</tr>	<tr>		<td>PWD</td>		<td>A single-line input field for passwords</td>	</tr>	<tr>		<td>EDIT</td>		<td>A multi-line input field</td>	</tr>	<tr>		<td>EDIT_LINEWRAP</td>		<td>A multi-line input field with automatic linewrap and no horizontal scrolling</td>	</tr>	<tr>		<td>LABEL</td>		<td>Static text label</td>	</tr>	<tr>		<td>OPTION</td>		<td>Option button (checkbox)</td>	</tr>	<tr>		<td>RADIO</td>		<td>Radio button</td>	</tr>	<tr>		<td>LIST</td>		<td>List selection control</td>	</tr>	<tr>		<td>LIST_SORTED</td>		<td>Sorted list selection control</td>	</tr>	<tr>		<td>LIST_MULTI</td>		<td>List selection control with multiple selection possibility</td>	</tr>	<tr>		<td>LIST_MULTISORTED</td>		<td>Sorted list selection control with multiple selection possibility</td>	</tr>	<tr>		<td>PROGRESS</td>		<td>A progress bar</td>	</tr>	<tr>		<td>COMBO</td>		<td>Combobox</td>	</tr>	<tr>		<td>STATIC_COMBO</td>		<td>Combobox with a static range of values</td>	</tr>	<tr>		<td>IMAGE</td>		<td>Static bitmap image</td>	</tr>	<tr>		<td>GROUP</td>		<td>Static visual group box</td>	</tr></table></td>
+			</tr>
+			<tr>
+				<td class="ref_label">Examples:</td>
+				<td class="ref_code"><font color="#808080">rem creating a parent dialog</font><br />newdialog <font color="#0000ff">'myDialog'</font>, <font color="#0000ff">'DIALOG'</font>, <font color="#0000ff">'200|200|500|250'</font><br /><br /><font color="#808080">rem creating a push button on the dialog</font><br />newdialog <font color="#0000ff">'myDialog:myButton'</font>, <font color="#0000ff">'BUTTON'</font>, <font color="#0000ff">'1|1|100|25'</font></td>
+			</tr>
+			<tr>
+				<td class="ref_label">Remarks:</td>
+				<td>If the creation of the widget fails (e.g. if it already exists), [errorcode] gets the value '-1', on success it gets '0'.<br /><br />Use the instruction LETDIALOG to change and set-up widget attributes. On the opposite, use GETDIALOG to determine dialog widget attributes.<br />With the aid of the RUNDIALOG-function, it is possible to wait for user events, that are analyzed and executed afterwards.<br /><br />Excepting parent dialogs (type: DIALOG), at all newly created widgets the VISIBLE-attribute is automatically set to [true], so child-widgets appear on the dialog directly when they are created. DIALOG-typed widgets always need to be made visible manually using the LETDIALOG-instruction. The sense of this approach is that a whole dialog-window should be completely created with all its controls before it is made visible for the first time. This is not a duty, but strongly recommended.<br /><br />The contrary instruction to NEWDIALOG is the DELDIALOG-instruction, deleting a widget or a whole dialog including all its child-widgets manually from the system and the memory.</td>
+			</tr>
+		</table>
+	
+		<div class="line">&nbsp;</div>
+	
+		<div id="copyright">
+			Copyright &copy; 2000-2006 by J.M.K S.F. Software Technologies, Jan Max Meyer<br />
+			All rights reserved.
+		</div>
+	</body>
+</html>

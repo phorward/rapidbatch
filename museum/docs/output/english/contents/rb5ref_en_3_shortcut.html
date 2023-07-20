@@ -1,0 +1,40 @@
+<html>
+	<head>
+		<title>RapidBATCH Language Reference :: SHORTCUT</title>
+		<link rel="stylesheet" href="jmksf.css" type="text/css" />
+	</head>
+	<body>
+		<div id="top">
+			<img src="rb5.png" alt="RapidBATCH Logo" />
+			SHORTCUT
+		</div>
+	
+		<div class="line">&nbsp;</div>
+	
+		<table cellspacing="10" width="100%">
+			<tr>
+				<td class="ref_label">Syntax:</td>
+				<td class="ref_syntax">SHORTCUT shortcut-file, shortcut-path, parameters, working-directory, icon, show-mode</td>
+			</tr>
+			<tr>
+				<td class="ref_label">Description:</td>
+				<td>Creates a shortcut.<br /><br />The shortcut is saved under the as <i>shortcut-file</i> specified path, at which the .LNK-file extension for shortcut files is automatically appended by the instruction. <i>shortcut-path</i> defines the path to the executable or document the shortcut is associtated with. <i>parameter</i>, <i>working-directory</i> and <i>icon</i> are optional parameters, and can be left blank if they are not required. As <i>show-mode</i>-parameter, the values 'SHOW', 'MINIMIZED' or 'MAXIMIZED' can be used. The 'HIDE'-mode is not possible when specified to shortcuts.</td>
+			</tr>
+			<tr>
+				<td class="ref_label">Examples:</td>
+				<td class="ref_code"><font color="#000080">[userdir]</font> = <font color="#0000ff">'C:\Documents and Settings\'</font> # <font color="#000080">[curuser]</font> # <font color="#0000ff">'\Desktop'</font><br /><font color="#000080">[prog]</font> = <font color="#0000ff">'C:\jmksf\rb5\rbb4.exe'</font><br /><br />shortcut <font color="#000080">[userdir]</font> # <font color="#0000ff">'\RapidBATCH Schortcut'</font>, <font color="#000080">[prog]</font>, <font color="#0000ff">''</font>, <font color="#0000ff">''</font>, <font color="#0000ff">''</font>, <font color="#0000ff">'show'</font><br /><br /><b>if</b> <font color="#000080">[errorcode]</font> = <font color="#000080">[true]</font><br />&nbsp;&nbsp;&nbsp;&nbsp;echo <font color="#0000ff">'The shortcut has been created successfully!'</font><br /><b>else</b><br />&nbsp;&nbsp;&nbsp;&nbsp;echo <font color="#0000ff">'Error when creating shortcut.'</font><br /><b>endif</b></td>
+			</tr>
+			<tr>
+				<td class="ref_label">Remarks:</td>
+				<td>[errorcode] gets the value '-1' in case of an error, else '0'.</td>
+			</tr>
+		</table>
+	
+		<div class="line">&nbsp;</div>
+	
+		<div id="copyright">
+			Copyright &copy; 2000-2006 by J.M.K S.F. Software Technologies, Jan Max Meyer<br />
+			All rights reserved.
+		</div>
+	</body>
+</html>

@@ -1,0 +1,40 @@
+<html>
+	<head>
+		<title>RapidBATCH Befehlsreferenz :: RUNDIALOG</title>
+		<link rel="stylesheet" href="jmksf.css" type="text/css" />
+	</head>
+	<body>
+		<div id="top">
+			<img src="rb5.png" alt="RapidBATCH Logo" />
+			RUNDIALOG
+		</div>
+	
+		<div class="line">&nbsp;</div>
+	
+		<table cellspacing="10" width="100%">
+			<tr>
+				<td class="ref_label">Syntax:</td>
+				<td class="ref_syntax">RUNDIALOG Event-String = Timeout</td>
+			</tr>
+			<tr>
+				<td class="ref_label">Beschreibung:</td>
+				<td>Wartet auf ein Ereignis mit oder auf einem RapidBATCH-eigenen Dialog der aktuellen Script-Instanz.<br /><br />Als Timeout wird eine Timeout-Wartezeit in Millisekunden angegeben. Diese ist optional, bei &Uuml;bergabe des Timeout-Wertes '0' findet kein Timeout statt (d.h. die Funktion wartet so lange, bis ein vom Benutzer erzeugtes Event ausgel&ouml;st wird).<br />R&uuml;ckgabewert der Funktion ist, falls ein Timeout eintrat, ein Leerstring, ansonsten ein so genannter Event-String, der im folgenden Format generiert wird:<br /><br />Ereignis_Widget-Label<br /><br />Wobei "Ereignis" einer der folgend aufgef&uuml;hrten Event-Identifiers (Ereignis-Bezeichner) sein kann und "Widget-Label" f&uuml;r das bei NEWDIALOG definierte Label des Widgets steht.<br /><br /><table class="std" width="100%">	<tr>		<td><b>Ereignis-Bezeichner:</b></td>		<td><b>Beschreibung:</b></td>	</tr>	<tr>		<td>click</td>		<td>Ein Widget wurde angeklickt</td>	</tr>	<tr>		<td>dblclick</td>		<td>Ein Widget wurde doppelt angeklickt</td>	</tr>	<tr>		<td>change</td>		<td>Ein Widget wurde ge&auml;ndert (z.B. Eingabefelder)</td>	</tr>	<tr>		<td>close</td>		<td>Schlieﬂen-Button eines Dialogs wurde geklickt</td>	</tr>	<tr>		<td>size</td>		<td>Dialog wurde skaliert</td>	</tr>	<tr>		<td>move</td>		<td>Dialog wurde bewegt</td>	</tr>	<tr>		<td>mousemove</td>		<td>Maus wurde &uuml;ber einem Dialog bewegt</td>	</tr>	<tr>		<td>ok</td>		<td>Die Taste &quot;Enter&quot; wurde auf dem Dialogfenster gedr&uuml;ckt</td>	</tr>	<tr>		<td>esc</td>		<td>Die Taste &quot;Esc&quot; wurde auf dem Dialogfenster gedr&uuml;ckt</td>	</tr></table><br />Es werden Ereignisse von <u>allen angezeigten</u> Dialogfenstern, die das RapidBATCH-Script bereitstellt, angenommen und zur&uuml;ckgegeben. Anhand des Event-Strings k&ouml;nnen dann entsprechende Aktionen zum eingetretenen Ereignis durchgef&uuml;hrt werden.</td>
+			</tr>
+			<tr>
+				<td class="ref_label">Beispiele:</td>
+				<td class="ref_code"><font color="#808080">rem Dialog erzeugen</font><br />newdialog <font color="#0000ff">'Fenster'</font>, <font color="#0000ff">'dialog'</font>, <font color="#0000ff">'1|1|200|100'</font><br />newdialog <font color="#0000ff">'Fenster:Button'</font>, <font color="#0000ff">'button'</font>, <font color="#0000ff">'2|2|192|72'</font><br /><br /><font color="#808080">rem Button beschriften</font><br />letdialog <font color="#0000ff">'Fenster:Button'</font>, <font color="#0000ff">'caption'</font>, <font color="#0000ff">'Hello World'</font><br /><br /><font color="#808080">rem Fenster anzeigen</font><br />letdialog <font color="#0000ff">'Fenster'</font>, <font color="#0000ff">'visible'</font>, <font color="#000080">[true]</font><br /><br /><b>repeat</b><br /><font color="#808080">&nbsp;&nbsp;&nbsp;&nbsp;rem Dialog ausf&uuml;hren (kein Timeout!)</font><br />&nbsp;&nbsp;&nbsp;&nbsp;rundialog <font color="#000080">[ereignis]</font> = <font color="#0000ff">'0'</font><br /><br /><font color="#808080">&nbsp;&nbsp;&nbsp;&nbsp;rem Ereignis-String auswerten</font><br />&nbsp;&nbsp;&nbsp;&nbsp;<b>if</b> <font color="#000080">[ereignis]</font> = <font color="#0000ff">'click_Fenster:Button'</font><br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;echo <font color="#0000ff">'Der Button wurde angeklickt.'</font><br />&nbsp;&nbsp;&nbsp;&nbsp;<b>endif</b><br /><br /><font color="#808080">&nbsp;&nbsp;&nbsp;&nbsp;rem Wird der Schlieﬂen-Button des Fensters geklickt,</font><br /><font color="#808080">&nbsp;&nbsp;&nbsp;&nbsp;rem muss ebenfalls eine entsprechende Pr&uuml;fung statt-</font><br /><font color="#808080">&nbsp;&nbsp;&nbsp;&nbsp;rem finden</font><br /><b>until</b> <font color="#000080">[ereignis]</font> = <font color="#0000ff">'close_Fenster'</font><br /><br /><b>end</b></td>
+			</tr>
+			<tr>
+				<td class="ref_label">Bemerkungen:</td>
+				<td>Ob einzelne Widgets ein Ereignis ausl&ouml;sen sollen oder nicht kann mit der <a href="rb5ref_ger_6_letdialog.html">LETDIALOG</a>-Anweisung bestimmt werden.</td>
+			</tr>
+		</table>
+	
+		<div class="line">&nbsp;</div>
+	
+		<div id="copyright">
+			Copyright &copy; 2000-2006 by J.M.K S.F. Software Technologies, Jan Max Meyer<br />
+			All rights reserved.
+		</div>
+	</body>
+</html>

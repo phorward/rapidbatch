@@ -1,0 +1,40 @@
+<html>
+	<head>
+		<title>RapidBATCH Language Reference :: MCI</title>
+		<link rel="stylesheet" href="jmksf.css" type="text/css" />
+	</head>
+	<body>
+		<div id="top">
+			<img src="rb5.png" alt="RapidBATCH Logo" />
+			MCI
+		</div>
+	
+		<div class="line">&nbsp;</div>
+	
+		<table cellspacing="10" width="100%">
+			<tr>
+				<td class="ref_label">Syntax:</td>
+				<td class="ref_syntax">MCI mci-command-string</td>
+			</tr>
+			<tr>
+				<td class="ref_label">Description:</td>
+				<td>Sends a command to the Windows Media Control Interface (MCI), making it possible to play and control any type of media files from a RapidBATCH script, e.g. MIDI, AVI, WAV, MP3, MP4 and so on.</td>
+			</tr>
+			<tr>
+				<td class="ref_label">Examples:</td>
+				<td class="ref_code"><font color="#808080">rem a tiny mp3 music player ...</font><br />mci <font color="#0000ff">'open "music.mp3"'</font><br />mci <font color="#0000ff">'play "music.mp3" wait'</font><br />mci <font color="#0000ff">'close "music.mp3"'</font></td>
+			</tr>
+			<tr>
+				<td class="ref_label">Remarks:</td>
+				<td>For extended information to the MCI command library, take a look at the help file MCI.HLP that is providied within the RapidBATCH software package in the \DOC-folder of the RapidBATCH setup directory.<br />The variable [errorcode] gets the result the WinAPI-function mciSendString() returns, so that MCI-error codes can be handled.</td>
+			</tr>
+		</table>
+	
+		<div class="line">&nbsp;</div>
+	
+		<div id="copyright">
+			Copyright &copy; 2000-2006 by J.M.K S.F. Software Technologies, Jan Max Meyer<br />
+			All rights reserved.
+		</div>
+	</body>
+</html>

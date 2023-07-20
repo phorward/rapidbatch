@@ -1,0 +1,40 @@
+<html>
+	<head>
+		<title>RapidBATCH Befehlsreferenz :: NEWREGKEY, DELREGKEY</title>
+		<link rel="stylesheet" href="jmksf.css" type="text/css" />
+	</head>
+	<body>
+		<div id="top">
+			<img src="rb5.png" alt="RapidBATCH Logo" />
+			NEWREGKEY, DELREGKEY
+		</div>
+	
+		<div class="line">&nbsp;</div>
+	
+		<table cellspacing="10" width="100%">
+			<tr>
+				<td class="ref_label">Syntax:</td>
+				<td class="ref_syntax">NEWREGKEY Hauptschl&uuml;ssel, Schl&uuml;sselpfad<br />DELREGKEY Hauptschl&uuml;ssel, Schl&uuml;sselpfad</td>
+			</tr>
+			<tr>
+				<td class="ref_label">Beschreibung:</td>
+				<td>NEWREGKEY legt einen neuen Schl&uuml;ssel in der Registry an.<br />DELREGKEY l&ouml;scht einen Schl&uuml;ssel aus der Registry, mitsamt Unterschl&uuml;sseln.<br /><br />Beide Anweisungen erwarten als Parameter einen Hauptschl&uuml;ssel, der als einer der folgenden Werte &uuml;bergeben werden muss:<ul>  <li>'CLASSES_ROOT' f&uuml;r HKEY_CLASSES_ROOT</li>  <li>'CURRENT_CONFIG' f&uuml;r HKEY_CURRENT_CONFIG</li>  <li>'CURRENT_USER' f&uuml;r HKEY_CURRENT_USER</li>  <li>'LOCAL_MACHINE' f&uuml;r HKEY_LOCAL_MACHINE</li>  <li>'USERS' f&uuml;r HKEY_USERS</li>  <li>'DYN_DATA' f&uuml;r HKEY_DYN_DATA</li></ul></td>
+			</tr>
+			<tr>
+				<td class="ref_label">Beispiele:</td>
+				<td class="ref_code">newregkey <font color="#0000ff">'CURRENT_USER'</font>, <font color="#0000ff">'Software\Test'</font><br /><b>if</b> <font color="#000080">[errorcode]</font> = <font color="#0000ff">'0'</font><br />&nbsp;&nbsp;&nbsp;&nbsp;echo <font color="#0000ff">'Erstellen von HKEY_CURRENT_USER\Software\Test war erfolgreich.'</font><br /><b>endif</b><br /><br />delregkey <font color="#0000ff">'CURRENT_USER'</font>, <font color="#0000ff">'Software\Test'</font><br /><b>if</b> <font color="#000080">[errorcode]</font> = <font color="#0000ff">'0'</font><br />&nbsp;&nbsp;&nbsp;&nbsp;echo <font color="#0000ff">'L&ouml;schen von HKEY_CURRENT_USER\Software\Test war erfolgreich.'</font><br /><b>endif</b><br /><b>end</b></td>
+			</tr>
+			<tr>
+				<td class="ref_label">Bemerkungen:</td>
+				<td>Verwenden Sie <a href="rb5ref_ger_3_getregval.html">GETREGVAL</a> und <a href="rb5ref_ger_3_letregval.html">LETREGVAL</a>, um Werte aus der Registry zu lesen oder Werte in die Registry zu schreiben.</td>
+			</tr>
+		</table>
+	
+		<div class="line">&nbsp;</div>
+	
+		<div id="copyright">
+			Copyright &copy; 2000-2006 by J.M.K S.F. Software Technologies, Jan Max Meyer<br />
+			All rights reserved.
+		</div>
+	</body>
+</html>

@@ -1,0 +1,40 @@
+<html>
+	<head>
+		<title>RapidBATCH Language Reference :: FOLDERBOX</title>
+		<link rel="stylesheet" href="jmksf.css" type="text/css" />
+	</head>
+	<body>
+		<div id="top">
+			<img src="rb5.png" alt="RapidBATCH Logo" />
+			FOLDERBOX
+		</div>
+	
+		<div class="line">&nbsp;</div>
+	
+		<table cellspacing="10" width="100%">
+			<tr>
+				<td class="ref_label">Syntax:</td>
+				<td class="ref_syntax">FOLDERBOX directory = prompting-text, pre-selected-path</td>
+			</tr>
+			<tr>
+				<td class="ref_label">Description:</td>
+				<td>The FOLDERBOX-function provides a standard folder selection dialog to select a folder from the file system.<br /><br />As parameter, this function expects a prompting-text and an optional, pre-selected path that is directly opened by the dialog. The second parameter can left blank or specified as [null], so no path is pre-selected.<br /><br /><img style="padding-top: 30px;" src="img/folderbox.gif" alt="Image of a folder-selection dialog created by FOLDERBOX" title="Screenshot" /></td>
+			</tr>
+			<tr>
+				<td class="ref_label">Examples:</td>
+				<td class="ref_code">folderbox <font color="#000080">[path]</font> = <font color="#0000ff">'Please select a folder:'</font>, <font color="#0000ff">'C:\jmksf\rb5'</font><br /><br /><b>if</b> <font color="#000080">[path]</font> ! <font color="#0000ff">''</font><br />&nbsp;&nbsp;&nbsp;&nbsp;echo <font color="#0000ff">'The folder you selected is: '</font> # <font color="#000080">[path]</font><br /><b>else</b><br />&nbsp;&nbsp;&nbsp;&nbsp;echo <font color="#0000ff">'No folder selected.'</font><br /><b>endif</b></td>
+			</tr>
+			<tr>
+				<td class="ref_label">Remarks:</td>
+				<td>Use the dialogs OPENBOX and SAVEBOX to provide a file selection possibility. FOLDERBOX is a dialog provided by the system, so neither its position can be changed nor its button-captions. These captions are automatically displayed in the particular language of the machine it is run with. </td>
+			</tr>
+		</table>
+	
+		<div class="line">&nbsp;</div>
+	
+		<div id="copyright">
+			Copyright &copy; 2000-2006 by J.M.K S.F. Software Technologies, Jan Max Meyer<br />
+			All rights reserved.
+		</div>
+	</body>
+</html>

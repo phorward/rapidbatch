@@ -1,0 +1,40 @@
+<html>
+	<head>
+		<title>RapidBATCH Language Reference :: REPEAT...[CONT] ... [BREAK] ... UNTIL</title>
+		<link rel="stylesheet" href="jmksf.css" type="text/css" />
+	</head>
+	<body>
+		<div id="top">
+			<img src="rb5.png" alt="RapidBATCH Logo" />
+			REPEAT...[CONT] ... [BREAK] ... UNTIL
+		</div>
+	
+		<div class="line">&nbsp;</div>
+	
+		<table cellspacing="10" width="100%">
+			<tr>
+				<td class="ref_label">Syntax:</td>
+				<td class="ref_syntax">REPEAT<br />&nbsp;&nbsp;&nbsp;&nbsp;{block of code}<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[CONT]<br />&nbsp;&nbsp;&nbsp;&nbsp;{block of code}<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[BREAK]<br />&nbsp;&nbsp;&nbsp;&nbsp;{block of code}<br />UNTIL breaking-condition</td>
+			</tr>
+			<tr>
+				<td class="ref_label">Description:</td>
+				<td>With REPEAT and UNTIL, you're able to construct loops, that repeat a block of instructions until the specified condition is verified to true.<br /><br />In RapidBATCH, a condition is a comparison of two values. The programmer is able to compare to equal (=), not-equal (!), greater-than (&gt;) and lower-than (&lt;). Also, the operators greater-equal (&gt;=) and lower-equal (&lt;=) are supported (since RapidBATCH 5.0.5). You can compare two variables, a variable with a constant value or two constant values (which is not very sensefull, but maybe useable for a condition that should always or never be executed, e.g. for debugging).<br /><br />To verify more than one conditon in one UNTIL, you can use the logical operators AND (&amp;) and OR (|). The &amp;-operator returns only TRUE, when all conditions linked with this operator succeded. The |-operator succeeds only when one of the conditions return TRUE. Please refer the examples below.<br /><br />Using the BREAK-instruction, the current loop can be left before the breaking condition is reached, for example if an error occurs within the loop.<br />Also it is possible to continue the loop by avoiding the breaking instruction using the CONT instruction. If CONT is used, RapidBATCH will start the next loop-cycle immediatelly without executing the possible lines behind the CONT or the loops breaking-condition specified at UNTIL.</td>
+			</tr>
+			<tr>
+				<td class="ref_label">Examples:</td>
+				<td class="ref_code"><font color="#808080">rem a simple loop, counting from 1 to 10</font><br /><font color="#000080">[i]</font> = <font color="#0000ff">'0'</font><br /><b>repeat</b><br />&nbsp;&nbsp;&nbsp;&nbsp;<font color="#000080">[i]</font> + <font color="#0000ff">'1'</font><br />&nbsp;&nbsp;&nbsp;&nbsp;echo <font color="#0000ff">'Number '</font> # <font color="#000080">[i]</font><br /><b>until</b> <font color="#000080">[i]</font> = <font color="#0000ff">'10'</font><br /><br /><font color="#808080">rem a loop using a logical operator in the breaking condition</font><br /><font color="#000080">[a]</font> = <font color="#0000ff">'0'</font><br /><font color="#000080">[b]</font> = <font color="#0000ff">'0'</font><br /><b>repeat</b><br />&nbsp;&nbsp;&nbsp;&nbsp;<font color="#000080">[a]</font> + <font color="#0000ff">'1'</font><br />&nbsp;&nbsp;&nbsp;&nbsp;<font color="#000080">[b]</font> + <font color="#0000ff">'2'</font><br /><b>until</b> <font color="#000080">[a]</font> &gt; <font color="#0000ff">'10'</font> &amp; <font color="#000080">[b]</font> &gt; <font color="#0000ff">'20'</font><br /><br /><font color="#808080">rem leaving a loop when [i] is greater than 5, using</font><br /><font color="#808080">rem the BREAK-instruction</font><br /><font color="#000080">[i]</font> = <font color="#0000ff">'0'</font><br /><b>repeat</b><br />&nbsp;&nbsp;&nbsp;&nbsp;<font color="#000080">[i]</font> + <font color="#0000ff">'1'</font><br />&nbsp;&nbsp;&nbsp;&nbsp;<b>if</b> <font color="#000080">[i]</font> &gt; <font color="#0000ff">'5'</font> <b>break</b><br />&nbsp;&nbsp;&nbsp;&nbsp;echo <font color="#0000ff">'Number: '</font> # <font color="#000080">[i]</font><br /><b>until</b> <font color="#000080">[i]</font> = <font color="#0000ff">'10'</font><br /><br /><font color="#808080">rem skipping the output of echo when [i] equals 5, using</font><br /><font color="#808080">rem the CONT-instruction</font><br /><font color="#000080">[i]</font> = 0<br /><b>repeat</b><br />&nbsp;&nbsp;&nbsp;&nbsp;<font color="#000080">[i]</font> + <font color="#0000ff">'1'</font><br />&nbsp;&nbsp;&nbsp;&nbsp;<b>if</b> <font color="#000080">[i]</font> = <font color="#0000ff">'5'</font> <b>cont</b><br />&nbsp;&nbsp;&nbsp;&nbsp;echo <font color="#0000ff">'Number: '</font> # <font color="#000080">[i]</font><br /><b>until</b> <font color="#000080">[i]</font> = <font color="#0000ff">'10'</font></td>
+			</tr>
+			<tr>
+				<td class="ref_label">Remarks:</td>
+				<td>REPEAT...UNTIL-loops can be nested together without problems.<br /><br />The instructions BREAK and CONT may only be used within loops.<br /><br />If the breaking-condition is not reached, the script execution ends in a never-ending loop, so be sure the condition you specify is reached. Also, the CONT-instruction must be used very carefully.</td>
+			</tr>
+		</table>
+	
+		<div class="line">&nbsp;</div>
+	
+		<div id="copyright">
+			Copyright &copy; 2000-2006 by J.M.K S.F. Software Technologies, Jan Max Meyer<br />
+			All rights reserved.
+		</div>
+	</body>
+</html>

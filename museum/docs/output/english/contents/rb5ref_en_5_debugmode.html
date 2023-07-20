@@ -1,0 +1,40 @@
+<html>
+	<head>
+		<title>RapidBATCH Language Reference :: DEBUGMODE</title>
+		<link rel="stylesheet" href="jmksf.css" type="text/css" />
+	</head>
+	<body>
+		<div id="top">
+			<img src="rb5.png" alt="RapidBATCH Logo" />
+			DEBUGMODE
+		</div>
+	
+		<div class="line">&nbsp;</div>
+	
+		<table cellspacing="10" width="100%">
+			<tr>
+				<td class="ref_label">Syntax:</td>
+				<td class="ref_syntax">DEBUGMODE mode</td>
+			</tr>
+			<tr>
+				<td class="ref_label">Description:</td>
+				<td>Sets the integrated RapidBATCH script-debugger to one of the three debug-modes. Possible parameter values are STEP for stepwise debugging, TRACE for trace-debugging, and NONE to switch the debugger off.<br /><br />Using this method, the debugger can be started directly in the script, e.g. at a critical position.<br /><img style="padding-top: 30px;" src="img/debug_step.gif" alt="RapidBATCH Debugger in Step-Mode" title="Screenshot" /></td>
+			</tr>
+			<tr>
+				<td class="ref_label">Examples:</td>
+				<td class="ref_code">echo <font color="#0000ff">'A debug test...'</font><br /><br /><font color="#808080">rem Start debugger</font><br />debugmode step<br /><br /><font color="#808080">rem Let's execute the next instructon...</font><br />echo <font color="#0000ff">'Hello World'</font><br /><b>end</b></td>
+			</tr>
+			<tr>
+				<td class="ref_label">Remarks:</td>
+				<td>This statement is only included in the script-interpreter provided with RapidBATCH Professional Edition.<br />DEBUGMODE is ignored by the compiler and is not provided in compiled scripts.<br /><br />You can also start the debugger by setting the environment variable RB_DEBUGMODE to one of the desired values BEFORE the RapidBATCH-script is executed.</td>
+			</tr>
+		</table>
+	
+		<div class="line">&nbsp;</div>
+	
+		<div id="copyright">
+			Copyright &copy; 2000-2006 by J.M.K S.F. Software Technologies, Jan Max Meyer<br />
+			All rights reserved.
+		</div>
+	</body>
+</html>

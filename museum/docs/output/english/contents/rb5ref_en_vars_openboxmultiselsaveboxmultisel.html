@@ -1,0 +1,28 @@
+<html>
+	<head>
+		<title>RapidBATCH Language Reference :: [OpenBox_MultiSel], [SaveBox_MultiSel], [OpenBox_DefFileExt], [SaveBox_DefFileExt]</title>
+		<link rel="stylesheet" href="jmksf.css" type="text/css" />
+	</head>
+	<body>
+		<div id="top">
+			<img src="rb5.png" alt="RapidBATCH Logo" />
+			[OpenBox_MultiSel], [SaveBox_MultiSel], [OpenBox_DefFileExt], [SaveBox_DefFileExt]
+		</div>
+	
+		<div class="line">&nbsp;</div>
+
+		<table cellspacing="10" width="100%">
+			<tr>
+				<td class="ref_label">Description:</td>
+				<td>If [OpenBox_MultiSel] (for the build-in OPENBOX-dialog) resp. [SaveBox_MultiSel] (for the build-in SAVEBOX-dialog) is set to the value '0' (or [true]), a multiple file selection is possible in the particular dialog.<br /><br />In this case, the functions are returning a list of files that where selected by the user, which is formatted in the following order: &quot;Absolute Path to the Files|Filename 1|Filename 2|Filename 3 ...&quot;. Please note, that the pipe-character can be another one than pipe, based on the definition that was set to the [std_sep] default separation variable. If only one filename was selected, and multiple file selection is switched on, the whole absolute filename is returned.<br /><br />[OpenBox_DefFileExt] and [SaveBox_DefFileExt] have the purpose to define a default file extension that is automatically appended to a filename the user entered in the dialog's text field. The variables can be set to any desired file extension for the particular dialog. By default, they are empty.</td>
+			</tr>
+		</table>
+
+		<div class="line">&nbsp;</div>
+
+		<div id="copyright">
+			Copyright &copy; 2000-2006 by J.M.K S.F. Software Technologies, Jan Max Meyer<br />
+			All rights reserved.
+		</div>
+	</body>
+</html>

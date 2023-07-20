@@ -1,0 +1,40 @@
+<html>
+	<head>
+		<title>RapidBATCH Befehlsreferenz :: CALL</title>
+		<link rel="stylesheet" href="jmksf.css" type="text/css" />
+	</head>
+	<body>
+		<div id="top">
+			<img src="rb5.png" alt="RapidBATCH Logo" />
+			CALL
+		</div>
+	
+		<div class="line">&nbsp;</div>
+	
+		<table cellspacing="10" width="100%">
+			<tr>
+				<td class="ref_label">Syntax:</td>
+				<td class="ref_syntax">CALL Programmpfad, Anzeigemodus</td>
+			</tr>
+			<tr>
+				<td class="ref_label">Beschreibung:</td>
+				<td>Startet ein Programm im Modalmodus. Das bedeutet, dass das RapidBATCH-Script mit der Ausf&uuml;hrung solange wartet, bis das mit CALL gestartete Programm beendet wurde.<br />&Auml;quivalent zu SHELL ben&ouml;tigt CALL einen Anzeigemodus-Parameter, der entweder durch eine Zahl oder eine der build-in Konstanten repr&auml;sentiert wird. M&ouml;gliche Werte sind SHOW (0), HIDE (1), MAXIMIZED (2) und MINIMIZED (3), um Programme beispielsweise minimiert oder versteckt zu starten.</td>
+			</tr>
+			<tr>
+				<td class="ref_label">Beispiele:</td>
+				<td class="ref_code">echo <font color="#0000ff">'Starten von Notepad...'</font><br />call <font color="#0000ff">'notepad.exe'</font>,<font color="#0000ff">'show'</font><br />echo <font color="#0000ff">'Notepad wurde beendet.'</font><br /><b>end</b></td>
+			</tr>
+			<tr>
+				<td class="ref_label">Bemerkungen:</td>
+				<td>[errorcode] erh&auml;lt -1, wenn ein Fehler auftrat, ansonsten den R&uuml;ckgabewert des gestarteten Programms.</td>
+			</tr>
+		</table>
+	
+		<div class="line">&nbsp;</div>
+	
+		<div id="copyright">
+			Copyright &copy; 2000-2006 by J.M.K S.F. Software Technologies, Jan Max Meyer<br />
+			All rights reserved.
+		</div>
+	</body>
+</html>

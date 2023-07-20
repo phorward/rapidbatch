@@ -1,0 +1,40 @@
+<html>
+	<head>
+		<title>RapidBATCH Befehlsreferenz :: INFOBOX</title>
+		<link rel="stylesheet" href="jmksf.css" type="text/css" />
+	</head>
+	<body>
+		<div id="top">
+			<img src="rb5.png" alt="RapidBATCH Logo" />
+			INFOBOX
+		</div>
+	
+		<div class="line">&nbsp;</div>
+	
+		<table cellspacing="10" width="100%">
+			<tr>
+				<td class="ref_label">Syntax:</td>
+				<td class="ref_syntax">INFOBOX Meldung, Anzeigemodus</td>
+			</tr>
+			<tr>
+				<td class="ref_label">Beschreibung:</td>
+				<td>INFOBOX zeigt eine Meldung auf dem Bildschirm an.<br /><br />Dieser Dialog stellt ein titelloses Fenster bereit, welches als Status-Anzeige oder &auml;hnliches benutzt werden kann. Beispielsweise kann solch ein Fenster mit dem Text "Bitte warten..." eingeblendet werden, bis verschiedene Operationen im Hintergrund durchgef&uuml;hrt wurden. Der Script-Programmierer ist daher f&uuml;r die rechtzeitige Ein- bzw. Ausblendung der Meldung selbst verantwortlich. Der INFOBOX-Dialog wird als Vordergrundfenster vor allen anderen Anwendungen auf dem Bildschirm angezeigt und l&auml;sst sich vom Benutzer weder verschieben noch in den Hintergrund bringen.<br /><br />Als Parameter erwartet diese Anweisung den gew&uuml;nschten Informationstext sowie den Modus, ob die Information eingeblendet oder ausgeblendet werden soll, wobei 0 oder die build-in Konstante "show" f&uuml;r einblenden (Dialog anzeigen) und -1 (oder "hide") f&uuml;r ausblenden (Dialog verstecken) steht. Selbiges kann auch durch Setzen der Variablen [InfoBox_Enabled] auf den gew&uuml;nschten Status erzielt werden.<br /><img style="padding-top: 30px;" src="img/infobox.gif" alt="Bild eines INFOBOX-Statusfensters" title="Screenshot" /></td>
+			</tr>
+			<tr>
+				<td class="ref_label">Beispiele:</td>
+				<td class="ref_code"><font color="#808080">rem INFOBOX einblenden</font><br />infobox <font color="#0000ff">'Das Script wird in 5 Sekunden fortgesetzt...'</font>, <font color="#0000ff">'show'</font><br /><br /><font color="#808080">rem 5 Sekunden warten</font><br />wait <font color="#0000ff">'5000'</font><br /><br /><font color="#808080">rem INFOBOX wieder ausblenden</font><br /><font color="#000080">[InfoBox_Enabled]</font> = <font color="#0000ff">'hide'</font></td>
+			</tr>
+			<tr>
+				<td class="ref_label">Bemerkungen:</td>
+				<td>Die Position des Dialogs kann mit Hilfe der Variablen [InfoBox_X] und [InfoBox_Y] ver&auml;ndert werden. Hat [InfoBox_X] und/oder [InfoBox_Y] den Wert 0, so wird der Dialog automatisch jeweils horizontal oder vertikal zentriert (dies ist die Standard-Einstellung).<br /><br />Die Defaultgr&ouml;ße des Dialogs l&auml;sst sich &uuml;ber die Variablen [InfoBox_Width] (Breite) und [InfoBox_Height] (H&ouml;he) setzen.<br /><br />Die Angabe bei Positionierungs-/Dimensionswerten erfolgt in Pixel.</td>
+			</tr>
+		</table>
+	
+		<div class="line">&nbsp;</div>
+	
+		<div id="copyright">
+			Copyright &copy; 2000-2006 by J.M.K S.F. Software Technologies, Jan Max Meyer<br />
+			All rights reserved.
+		</div>
+	</body>
+</html>

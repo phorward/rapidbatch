@@ -1,0 +1,40 @@
+<html>
+	<head>
+		<title>RapidBATCH Befehlsreferenz :: GETFILETIME, LETFILETIME</title>
+		<link rel="stylesheet" href="jmksf.css" type="text/css" />
+	</head>
+	<body>
+		<div id="top">
+			<img src="rb5.png" alt="RapidBATCH Logo" />
+			GETFILETIME, LETFILETIME
+		</div>
+	
+		<div class="line">&nbsp;</div>
+	
+		<table cellspacing="10" width="100%">
+			<tr>
+				<td class="ref_label">Syntax:</td>
+				<td class="ref_syntax">GETFILETIME Uhrzeit = Dateiname<br />LETFILETIME Dateiname, Uhrzeit</td>
+			</tr>
+			<tr>
+				<td class="ref_label">Beschreibung:</td>
+				<td>GETFILETIME liest die &Auml;nderungszeit einer Datei und gibt diese im Format "hhmmss" zur&uuml;ck.<br /><br />LETFILETIME setzt die &Auml;nderungszeit einer Datei. Parameter sind der Dateiname und eine Zeit im Format "hhmmss".</td>
+			</tr>
+			<tr>
+				<td class="ref_label">Beispiele:</td>
+				<td class="ref_code">newfile <font color="#0000ff">'test.txt'</font><br />getfiletime <font color="#000080">[t]</font> = <font color="#0000ff">'test.txt'</font><br /><br />echo <font color="#0000ff">'test.txt wurde ge&auml;ndert um '</font> # <font color="#000080">[t]</font><br /><br /><font color="#808080">rem Nun setzen wir die Uhrzeit auf 14:45:00</font><br />letfiletime <font color="#0000ff">'test.txt'</font>, <font color="#0000ff">'144500'</font><br /><br />getfiletime <font color="#000080">[t]</font> = <font color="#0000ff">'test.txt'</font><br />echo <font color="#0000ff">'test.txt wurde "ge&auml;ndert" um '</font> # <font color="#000080">[t]</font><br />delfile <font color="#0000ff">'test.txt'</font><br /><b>end</b></td>
+			</tr>
+			<tr>
+				<td class="ref_label">Bemerkungen:</td>
+				<td>Wurde die Datei nicht gefunden, erh&auml;lt [errorcode] sowohl von LETFILETIME als auch von GETFILETIME den Wert -1, ansonsten 0. Der R&uuml;ckgabewert von GETFILETIME ist in solch einem Fall ein Leerstring.<br /><br />Verwenden Sie <a href="rb5ref_ger_3_getfiledateletfiledate.html">GETFILEDATE</a> und <a href="rb5ref_ger_3_getfiledateletfiledate.html">LETFILEDATE</a>, um ein Dateidatum zu lesen oder zu setzen.</td>
+			</tr>
+		</table>
+	
+		<div class="line">&nbsp;</div>
+	
+		<div id="copyright">
+			Copyright &copy; 2000-2006 by J.M.K S.F. Software Technologies, Jan Max Meyer<br />
+			All rights reserved.
+		</div>
+	</body>
+</html>

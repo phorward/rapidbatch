@@ -1,0 +1,40 @@
+<html>
+	<head>
+		<title>RapidBATCH Befehlsreferenz :: READFILE</title>
+		<link rel="stylesheet" href="jmksf.css" type="text/css" />
+	</head>
+	<body>
+		<div id="top">
+			<img src="rb5.png" alt="RapidBATCH Logo" />
+			READFILE
+		</div>
+	
+		<div class="line">&nbsp;</div>
+	
+		<table cellspacing="10" width="100%">
+			<tr>
+				<td class="ref_label">Syntax:</td>
+				<td class="ref_syntax">READFILE Zeile = Dateiname, Zeilennummer</td>
+			</tr>
+			<tr>
+				<td class="ref_label">Beschreibung:</td>
+				<td>Liest die angegebene Zeile aus der gegebenen Datei und gibt diese als String zur&uuml;ck. Ist das Dateiende erreicht, erh&auml;lt [errorcode] den Wert -1, und der R&uuml;ckgabestring ist "EOF" (= "End Of File"). Wenn die Datei nicht gefunden wurde, erh&auml;lt nur [errorcode] den Wert -1, der R&uuml;ckgabewert ist dann ein Leerstring.<br /><br />Wenn als Zeilennummer ein Wert kleiner 1 angegeben wird, liest READFILE den Inhalt der gesamten Datei und gibt diesen zur&uuml;ck.</td>
+			</tr>
+			<tr>
+				<td class="ref_label">Beispiele:</td>
+				<td class="ref_code"><font color="#808080">rem Erste Zeile lesen...</font><br />readfile <font color="#000080">[text]</font> = <font color="#0000ff">'c:\test.txt'</font>, <font color="#0000ff">'1'</font><br /><br /><font color="#808080">rem Gesamte Datei lesen...</font><br />readfile <font color="#000080">[text]</font> = <font color="#0000ff">'c:\test.txt'</font>, <font color="#0000ff">'0'</font><br /><br /><font color="#808080">rem Ersten 10 Zeilen einer Datei ausgeben</font><br /><font color="#000080">[i]</font> = <font color="#0000ff">'0'</font><br /><font color="#000080">[text]</font> = <font color="#0000ff">''</font><br /><b>repeat</b><br />&nbsp;&nbsp;&nbsp;&nbsp;<font color="#000080">[i]</font> + <font color="#0000ff">'1'</font><br />&nbsp;&nbsp;&nbsp;&nbsp;readfile <font color="#000080">[zeile]</font> = <font color="#0000ff">'C:\jmksf\rb5\readme.txt'</font>,<font color="#000080">[i]</font><br />&nbsp;&nbsp;&nbsp;&nbsp;<b>if</b> <font color="#000080">[zeile]</font> ! <font color="#0000ff">'EOF'</font><br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#000080">[text]</font> # <font color="#000080">[zeile]</font> # <font color="#000080">[new_line]</font><br />&nbsp;&nbsp;&nbsp;&nbsp;<b>endif</b><br /><b>until</b> <font color="#000080">[i]</font> = <font color="#0000ff">'10'</font> | <font color="#000080">[zeile]</font> = <font color="#0000ff">'EOF'</font><br /><br />echo <font color="#000080">[text]</font><br /><b>end</b></td>
+			</tr>
+			<tr>
+				<td class="ref_label">Bemerkungen:</td>
+				<td>Verwenden Sie die <a href="rb5ref_ger_3_getfile.html">GETFILE</a>-Funktion, um Daten auf Byte-Ebene aus einer Datei (z.B. Bin&auml;rdatei) zu lesen.</td>
+			</tr>
+		</table>
+	
+		<div class="line">&nbsp;</div>
+	
+		<div id="copyright">
+			Copyright &copy; 2000-2006 by J.M.K S.F. Software Technologies, Jan Max Meyer<br />
+			All rights reserved.
+		</div>
+	</body>
+</html>

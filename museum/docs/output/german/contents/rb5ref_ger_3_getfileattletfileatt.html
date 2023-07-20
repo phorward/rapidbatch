@@ -1,0 +1,40 @@
+<html>
+	<head>
+		<title>RapidBATCH Befehlsreferenz :: GETFILEATT, LETFILEATT</title>
+		<link rel="stylesheet" href="jmksf.css" type="text/css" />
+	</head>
+	<body>
+		<div id="top">
+			<img src="rb5.png" alt="RapidBATCH Logo" />
+			GETFILEATT, LETFILEATT
+		</div>
+	
+		<div class="line">&nbsp;</div>
+	
+		<table cellspacing="10" width="100%">
+			<tr>
+				<td class="ref_label">Syntax:</td>
+				<td class="ref_syntax">GETFILEATT Attributschalter = Dateiname, Attributnummer<br />LETFILEATT Dateiname, Attributnummer</td>
+			</tr>
+			<tr>
+				<td class="ref_label">Beschreibung:</td>
+				<td>GETFILEATT gibt Auskunft, ob ein angefordertes Dateiattribut bei der ebenfalls spezifizierten Datei gesetzt ist oder nicht. M&ouml;gliche Werte f&uuml;r die Dateiattributnummer sind NORMAL (0), ARCHIVED (1), READONLY (2), COMPRESSED (3), DIRECTORY (4), HIDDEN (5) und SYSTEM (6) (zu Deutsch: Normal, Archiviert, Schreibgesch&uuml;tzt, Komprimiert, Verzeichnis, Versteckt und Systemdatei). Neben den numerischen Werten lassen sich optional auch die englischen Bezeichner als Attribut-Typ angeben, z.B. ARCHIVED oder READONLY.<br />GETFILEATT gibt 0 zur&uuml;ck, wenn das abgefragte Dateiattribut gesetzt ist, andernfalls -1.<br /><br />LETFILEATT setzt Dateiattribute, wenn diese nicht gesetzt sind. M&ouml;gliche Werte f&uuml;r die Dateiattribute sind identisch zu denen von GETFILEATT, allerdings lassen sich die Attribute COMPRESSED (3) und DIRECTORY (4) nicht setzen.<br />Schl&auml;gt LETFILEATT fehl, so erh&auml;lt [errorcode] den Wert -1, ansonsten 0.</td>
+			</tr>
+			<tr>
+				<td class="ref_label">Beispiele:</td>
+				<td class="ref_code"><font color="#000080">[file]</font> = <font color="#0000ff">'..\readme.txt'</font><br /><br /><font color="#808080">rem Attribute auslesen</font><br /><font color="#000080">[i]</font> = <font color="#0000ff">'1'</font><br /><b>repeat</b><br />&nbsp;&nbsp;&nbsp;&nbsp;getfileatt <font color="#000080">[ret]</font> = <font color="#000080">[file]</font>,<font color="#000080">[i]</font><br />&nbsp;&nbsp;&nbsp;&nbsp;<font color="#000080">[res]</font> = <font color="#000080">[res]</font> # <font color="#000080">[i]</font> # <font color="#0000ff">' = '</font> # <font color="#000080">[ret]</font> # <font color="#000080">[new_line]</font><br />&nbsp;&nbsp;&nbsp;&nbsp;<font color="#000080">[i]</font> + <font color="#0000ff">'1'</font><br /><b>until</b> <font color="#000080">[i]</font> &gt; <font color="#0000ff">'6'</font><br /><br />echo <font color="#0000ff">'File Attributes of '</font> # <font color="#000080">[file]</font> # <font color="#000080">[new_line]</font> # <font color="#000080">[new_line]</font> # <font color="#000080">[res]</font><br /><br /><font color="#808080">rem Attribute setzen</font><br />letfileatt <font color="#000080">[file]</font>, <font color="#0000ff">'normal'</font><br /><br /><b>end</b></td>
+			</tr>
+			<tr>
+				<td class="ref_label">Bemerkungen:</td>
+				<td>keine</td>
+			</tr>
+		</table>
+	
+		<div class="line">&nbsp;</div>
+	
+		<div id="copyright">
+			Copyright &copy; 2000-2006 by J.M.K S.F. Software Technologies, Jan Max Meyer<br />
+			All rights reserved.
+		</div>
+	</body>
+</html>

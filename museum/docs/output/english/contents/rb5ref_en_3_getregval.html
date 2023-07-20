@@ -1,0 +1,40 @@
+<html>
+	<head>
+		<title>RapidBATCH Language Reference :: GETREGVAL</title>
+		<link rel="stylesheet" href="jmksf.css" type="text/css" />
+	</head>
+	<body>
+		<div id="top">
+			<img src="rb5.png" alt="RapidBATCH Logo" />
+			GETREGVAL
+		</div>
+	
+		<div class="line">&nbsp;</div>
+	
+		<table cellspacing="10" width="100%">
+			<tr>
+				<td class="ref_label">Syntax:</td>
+				<td class="ref_syntax">GETREGVAL value = value-type, base-key, sub-key, value-label</td>
+			</tr>
+			<tr>
+				<td class="ref_label">Description:</td>
+				<td>GETREGVAL gets a value from the registry. First off all, the function expects as parameters the value type, that should be read, which can be 'STRING', 'DWORD' or 'BINARY'. Then, the base-key, which can be one of the below listed values, a sub-key, that specifies the key path from the base-key, as well as the value-label within the specified sub-key that should be read, is expected.<br /><br />The following values can be specified as <i>base-key</i>:<ul>  <li>'CLASSES_ROOT' for HKEY_CLASSES_ROOT</li>  <li>'CURRENT_CONFIG' for HKEY_CURRENT_CONFIG</li>  <li>'CURRENT_USER' for HKEY_CURRENT_USER</li>  <li>'LOCAL_MACHINE' for HKEY_LOCAL_MACHINE</li>  <li>'USERS' for HKEY_USERS</li></ul>The value that should be saved is returned in the format <i>value-type</i> defines.<br />The data-type STRING is directly returned &quot;as saved&quot; from the registy. When using DWORD, a numercial value is returned. A DWORD is long-type data value, a 32-bit numerical value that can have a maximum value of 4294967295 (binary value &quot;1111 1111 1111 1111 1111 1111 1111 1111&quot;).<br />When specifying BINARY as data type, the value is returned as a list of ASCII-character codes, as returned by GETFILE, where each byte is a code-value from 0 to 255, and seperated by the RapidBATCH list separation character (by default the pipe-character (|)).</td>
+			</tr>
+			<tr>
+				<td class="ref_label">Examples:</td>
+				<td class="ref_code"><font color="#808080">rem creating a registry key</font><br />newregkey <font color="#0000ff">'CURRENT_USER'</font>, <font color="#0000ff">'Software\Test'</font><br /><b>if</b> <font color="#000080">[errorcode]</font> = <font color="#000080">[false]</font> <b>halt</b><br /><br /><font color="#808080">rem writing test values</font><br />letregval <font color="#0000ff">'string'</font>, <font color="#0000ff">'CURRENT_USER'</font>, <font color="#0000ff">'Software\Test'</font>, <font color="#0000ff">'StringValue'</font>, <font color="#0000ff">'Hello World by RapidBATCH ;)'</font><br /><b>if</b> <font color="#000080">[errorcode]</font> = <font color="#000080">[false]</font><br />&nbsp;&nbsp;&nbsp;&nbsp;echo <font color="#0000ff">'Error when trying to write value to the registry.'</font><br />&nbsp;&nbsp;&nbsp;&nbsp;<b>halt</b><br /><b>endif</b><br /><br />letregval <font color="#0000ff">'dword'</font>, <font color="#0000ff">'CURRENT_USER'</font>, <font color="#0000ff">'Software\Test'</font>, <font color="#0000ff">'DWordValue'</font>, <font color="#0000ff">'12345'</font><br /><b>if</b> <font color="#000080">[errorcode]</font> = <font color="#000080">[false]</font><br />&nbsp;&nbsp;&nbsp;&nbsp;echo <font color="#0000ff">'Error when trying to write value to the registry.'</font><br />&nbsp;&nbsp;&nbsp;&nbsp;<b>halt</b><br /><b>endif</b><br /><br />letregval <font color="#0000ff">'binary'</font>, <font color="#0000ff">'CURRENT_USER'</font>, <font color="#0000ff">'Software\Test'</font>, <font color="#0000ff">'BinaryValue'</font>, <font color="#0000ff">'72|101|108|108|111|32|87|111|114|108|100'</font><br /><b>if</b> <font color="#000080">[errorcode]</font> = <font color="#000080">[false]</font><br />&nbsp;&nbsp;&nbsp;&nbsp;echo <font color="#0000ff">'Error when trying to write value to the registry.'</font><br />&nbsp;&nbsp;&nbsp;&nbsp;<b>halt</b><br /><b>endif</b><br /><br /><font color="#808080">rem reading the test-values from the registry</font><br />getregval <font color="#000080">[value]</font> = <font color="#0000ff">'string'</font>, <font color="#0000ff">'CURRENT_USER'</font>, <font color="#0000ff">'Software\Test'</font>, <font color="#0000ff">'StringValue'</font><br />echo <font color="#000080">[value]</font><br /><br />getregval <font color="#000080">[value]</font> = <font color="#0000ff">'dword'</font>, <font color="#0000ff">'CURRENT_USER'</font>, <font color="#0000ff">'Software\Test'</font>, <font color="#0000ff">'DWordValue'</font><br />echo <font color="#000080">[value]</font><br /><br />getregval <font color="#000080">[value]</font> = <font color="#0000ff">'binary'</font>, <font color="#0000ff">'CURRENT_USER'</font>, <font color="#0000ff">'Software\Test'</font>, <font color="#0000ff">'BinaryValue'</font><br /><font color="#000080">[i]</font> = <font color="#0000ff">'0'</font><br /><b>repeat</b><br />&nbsp;&nbsp;&nbsp;&nbsp;<font color="#000080">[i]</font> + <font color="#0000ff">'1'</font><br />&nbsp;&nbsp;&nbsp;&nbsp;gettok <font color="#000080">[ch]</font> = <font color="#000080">[value]</font>, <font color="#0000ff">'|'</font>, <font color="#000080">[i]</font><br />&nbsp;&nbsp;&nbsp;&nbsp;<b>if</b> <font color="#000080">[ch]</font> ! <font color="#0000ff">''</font><br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;getchr <font color="#000080">[ch]</font> = <font color="#000080">[ch]</font><br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#000080">[plainword]</font> # <font color="#000080">[ch]</font><br />&nbsp;&nbsp;&nbsp;&nbsp;<b>endif</b><br /><b>until</b> <font color="#000080">[ch]</font> = <font color="#0000ff">''</font><br />echo <font color="#000080">[plainword]</font><br /><br /><font color="#808080">rem cleaning up the registry</font><br />delregkey <font color="#0000ff">'CURRENT_USER'</font>, <font color="#0000ff">'Software\Test'</font></td>
+			</tr>
+			<tr>
+				<td class="ref_label">Remarks:</td>
+				<td>If GETREGVAL fails or the value that should be read is missing, [errorcode] gets the value '-1', and the function returns an empty string. Else, [errorcode] is '0'.<br />Use LETREGVAL to write a registry value or DELREGVAL to delete a value from the registry.</td>
+			</tr>
+		</table>
+	
+		<div class="line">&nbsp;</div>
+	
+		<div id="copyright">
+			Copyright &copy; 2000-2006 by J.M.K S.F. Software Technologies, Jan Max Meyer<br />
+			All rights reserved.
+		</div>
+	</body>
+</html>

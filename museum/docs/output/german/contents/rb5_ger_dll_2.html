@@ -1,0 +1,24 @@
+<html>
+	<head>
+		<title>DLLs selber programmieren</title>
+		<link rel="stylesheet" href="jmksf.css" type="text/css"></link>
+	</head>
+
+	<body>
+		<div id="top">
+			<img src="rb5.png" alt="RapidBATCH Logo" />
+			DLLs selber programmieren
+		</div>
+		
+		<div class="line">&nbsp;</div>
+		
+		Dieser Teil ist interessant f&uuml;r diejenigen, die selber DLLs programmieren m&ouml;chten. DLLs k&ouml;nnen mit jeder Programmiersprache erstellt werden, die das Erstellen von DLLs mit C-Aufrufkonventionen erlaubt - auf jeden Fall also mit einem C-Compiler. Es folgt eine kurze Einf&uuml;hrung in das Programmieren von DLLs und die RapidBATCH-Schnittstelle.<br /><br />DLLs (Dynamic Link Librarys, zur Laufzeit einzubindende Bibliotheken) stellen Funktionen bereit, die von Anwendungen aufgerufen werden k&ouml;nnen. DLLs werden entweder sofort beim Start eines Programms geladen oder erst bei Bedarf. RapidBATCH verwendet die zweite Methode, d.h. die DLLs werden erst durch den EXT-Befehl geladen. Beim ersten Aufruf einer Funktion aus einer DLL wird die DLL in den Speicher geladen und initialisiert. Die DLL bleibt dann bis zum Programmende im Speicher und wird dann zusammen mit der Anwendung automatisch entladen.<br /><br />Jede DLL muss eine Funktion "LibMain" enthalten. Diese Funktion wird automatisch beim Laden und Entladen der DLL aufgerufen. Die DLL kann in dieser Routine z.B. bei Laden Variablen initialisieren oder beim Beenden benutzte Objekte wieder freigeben oder tempor&auml;re Dateien l&ouml;schen. Die Funktion LibMain muss beim Laden der DLL den Wert TRUE zur&uuml;ckgeben, sonst wird der Ladevorgang abgebrochen und die DLL wird sofort wieder entladen. RapidBATCH w&uuml;rde dann [errorcode] = '-1' liefern - so als wenn die DLL nicht gefunden wurde. Beim Entladen wird der R&uuml;ckgabewert der Funktion LibMain ignoriert.<br /><br />Beim ersten Aufruf eines EXT-Befehls wird zuerst die DLL geladen (und damit LibMain ausgef&uuml;hrt), dann wird die Funktion gesucht und aufgerufen. Bei weiteren EXT-Befehlen, die dieselbe DLL benutzen, wird direkt die angegebene Funktion gesucht und aufgerufen.<br /><br />Die Funktionen, die von RapidBATCH aufgerufen werden sollen, m&uuml;ssen wie folgt deklariert werden:<br /><br /><pre>int __declspec(dllexport) _cdecl funktionsName( char** output, char** input, int input_count )</pre><i>output</i> ist dabei ein Zeiger auf die R&uuml;ckgabevariable, <i>input</i> ist ein Zeiger auf ein Array mit Eingabeparametern und <i>input_count</i> enth&auml;lt die Anzahl der &uuml;bergebenen Eingabeparameter. Der f&uuml;r den R&uuml;ckgabewert ben&ouml;tigte Speicher muss mit der Windows API-Funktion LocalAlloc() angefordert werden. Dieser Speicherbereich wird von RapidBATCH automatisch wieder freigegeben, um Speicherlecks zu verhindern. Im Fehlerfall kann <i>*output</i> auch auf (char*)NULL gesetzt werden. In diesem Fall liefert die EXT-Funktion einen leeren String zur&uuml;ck. Der R&uuml;ckgabewert der Funktion wird in der RapidBATCH-Variablen [errorcode] gespeichert. Im Erfolgsfall sollte daher 0 (Null) zur&uuml;ckgegeben werden oder im Fehlerfall eine positive Zahl als Fehlernummer.<br /><br />Im Verzeichnis DLL\DemoDLL des RapidBATCH-Installationsverzeichnisses findet sich eine Beispiel-DLL (DemoDLL.dll) mit Quelltext (DemoDLL.c) und einem Beispielscript (DemoDLL.rb), das diese DLL aufruft. Der Quelltext ist kommentiert und enth&auml;lt noch einige weitere Informationen zum Thema RapidBATCH und DLLs.<br /><br />Noch ein Hinweis zu den Funktionsnamen: Viele C-Compiler neigen dazu, die Funktionsnamen mit einem '_'-Zeichen zu dekorieren. Meistens kann das &uuml;ber entsprechende Compileroptionen abgeschaltet werden. Wenn das nicht m&ouml;glich ist, dann muss im RapidBATCH-Script der Name der Funktion mit einem vorangestellten '_'-Zeichen verwendet werden.<br /><br />
+
+		<div class="line">&nbsp;</div>
+
+		<div id="copyright">
+			Copyright &copy; 2000-2006 by J.M.K S.F. Software Technologies, Jan Max Meyer<br />
+			All rights reserved.
+		</div>
+	</body>
+</html>

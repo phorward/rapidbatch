@@ -1,0 +1,40 @@
+<html>
+	<head>
+		<title>RapidBATCH Befehlsreferenz :: GOSUB, RESUME</title>
+		<link rel="stylesheet" href="jmksf.css" type="text/css" />
+	</head>
+	<body>
+		<div id="top">
+			<img src="rb5.png" alt="RapidBATCH Logo" />
+			GOSUB, RESUME
+		</div>
+	
+		<div class="line">&nbsp;</div>
+	
+		<table cellspacing="10" width="100%">
+			<tr>
+				<td class="ref_label">Syntax:</td>
+				<td class="ref_syntax">GOSUB label<br />.<br />.<br />.<br />%label.<br />.<br />.<br />RESUME</td>
+			</tr>
+			<tr>
+				<td class="ref_label">Beschreibung:</td>
+				<td>GOSUB arbeitet &auml;hnlich wie GOTO. Hier wird zu einem Label gesprungen, welches hier als Unterprogramm (Sub) angesehen wird. Sobald eine RESUME-Anweisung auftritt, wird das Script hinter dem letzten GOSUB-Aufruf fortgesetzt. Dies erm&ouml;glicht &auml;usserst komplexe Programmkonstruktionen. GOSUB...RESUME-Konstruktionen lassen sich beliebig ineinander verschachteln (z.B. lassen sich aus Subs wiederum andere GOSUB-Spr&uuml;nge durchf&uuml;hren).<br /><br />Seit RapidBATCH 5.0 ist es auch m&ouml;glich, variable Werte an GOSUB zu &uuml;bergeben, d.h. der Name des Labels, welches angesprungen werden soll, kann eine Variable oder auch ein aus variablen und statischen Werten zusammengesetzter Label-Name sein.</td>
+			</tr>
+			<tr>
+				<td class="ref_label">Beispiele:</td>
+				<td class="ref_code"><font color="#008000">include 'dialog.rb'</font><br /><br /><font color="#808080">rem Ein statischer GOSUB-Aufruf</font><br /><font color="#000080">[i]</font> = <font color="#0000ff">'0'</font><br /><b>repeat</b><br />&nbsp;&nbsp;&nbsp;&nbsp;<font color="#000080">[i]</font> + <font color="#0000ff">'1'</font><br />&nbsp;&nbsp;&nbsp;&nbsp;<b>gosub</b> <font color="#0000ff">'square'</font><br /><b>until</b> <font color="#000080">[i]</font> = <font color="#0000ff">'10'</font><br /><br /><font color="#808080">rem Auf zum n&auml;chsten Beispiel...</font><br /><b>goto</b> <font color="#0000ff">'weiter'</font><br /><br />%square<br />&nbsp;&nbsp;&nbsp;&nbsp;echo <font color="#000080">[i]</font> # <font color="#0000ff">' * '</font> # <font color="#000080">[i]</font> # <font color="#0000ff">' = '</font> # (<font color="#000080">[i]</font> * <font color="#000080">[i]</font>)<br />&nbsp;&nbsp;&nbsp;&nbsp;<b>resume</b><br /><br />%weiter<br /><font color="#808080">rem Ein dynamischer GOSUB-Aufruf mit einer Variablen</font><br /><font color="#808080">rem (Zur Laufzeit sieht dieses Beispiel genauso aus wie das von GOTO,</font><br /><font color="#808080">rem allerdings ist die Umsetzung hier komplett anders)</font><br /><br />btnmenu <font color="#000080">[geschwindigkeit]</font> = <font color="#0000ff">'W&auml;hlen Sie eine Geschwindigkeit!'</font>, <font color="#0000ff">'30 km/h|60 km/h|120 km/h'</font><br /><br /><b>gosub</b> <font color="#000080">[geschwindigkeit]</font><br /><br />echo <font color="#0000ff">'Weiterhin gute Fahrt mit Ihren '</font> # <font color="#000080">[geschwindigkeit]</font> # <font color="#0000ff">' ...'</font><br /><b>halt</b><br /><br />%30 km/h<br />echo <font color="#0000ff">'Das ist aber sehr langsam!'</font><br /><b>resume</b><br /><br />%60 km/h<br />echo <font color="#0000ff">'Das ist ganz okay!'</font><br /><b>resume</b><br /><br />%120 km/h<br />echo <font color="#0000ff">'SEHR SCHNELL! Wollen Sie ein Rennen fahren?'</font><br /><b>resume</b></td>
+			</tr>
+			<tr>
+				<td class="ref_label">Bemerkungen:</td>
+				<td>Ein RESUME muss nicht gegeben sein. In solch einem Fall ist GOSUB &auml;quivalent zu GOTO. Wird ein RESUME ohne ein vorheriges GOSUB angegeben, wird dieses ignoriert und die Scriptausf&uuml;hrung hinter RESUME fortgesetzt.<br /><br />In RapidBATCH 5 wird von GOSUB...RESUME-Konstruktionen abgeraten, da man hier Zugriff auf die weitaus professionelleren M&ouml;glichkeiten der modernen prozeduralen Programmierung mit Hilfe der Anweisungen <a href="rb5ref_ger_1_proc_endproc.html">PROC...ENDPROC</a> oder <a href="rb5ref_ger_1_func_endfunc.html">FUNC...ENDFUNC</a> hat.<br />GOSUB...RESUME-Konstruktionen k&ouml;nnen aber bei der Implementierung von Ereignis-Routinen von eigenen Dialogen sehr von Nutzen sein.</td>
+			</tr>
+		</table>
+	
+		<div class="line">&nbsp;</div>
+	
+		<div id="copyright">
+			Copyright &copy; 2000-2006 by J.M.K S.F. Software Technologies, Jan Max Meyer<br />
+			All rights reserved.
+		</div>
+	</body>
+</html>

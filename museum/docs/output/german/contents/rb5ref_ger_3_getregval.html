@@ -1,0 +1,40 @@
+<html>
+	<head>
+		<title>RapidBATCH Befehlsreferenz :: GETREGVAL</title>
+		<link rel="stylesheet" href="jmksf.css" type="text/css" />
+	</head>
+	<body>
+		<div id="top">
+			<img src="rb5.png" alt="RapidBATCH Logo" />
+			GETREGVAL
+		</div>
+	
+		<div class="line">&nbsp;</div>
+	
+		<table cellspacing="10" width="100%">
+			<tr>
+				<td class="ref_label">Syntax:</td>
+				<td class="ref_syntax">GETREGVAL Wert = Datentyp, Hauptschl&uuml;ssel, Unterschl&uuml;ssel, Wertbezeichner</td>
+			</tr>
+			<tr>
+				<td class="ref_label">Beschreibung:</td>
+				<td>GETREGVAL liest einen Wert aus der Registry. Parameterwerte sind der Datentyp des zu lesenden Registry-Wertes, welcher durch die Konstanten &quot;STRING&quot; (Standard), &quot;DWORD&quot; und &quot;BINARY&quot; definiert wird (auch repr&auml;sentiert durch die numerischen Werte 0, 1 und 2)),der Hauptschl&uuml;ssel, ein Unterschl&uuml;ssel und der Bezeichner des Registry-Wertes, dessen Wert ausgelesen werden soll.<br /><br />Als Hauptschl&uuml;ssel sind folgende Werte als build-in Konstanten definiert:<br /><ul>  <li>'CLASSES_ROOT' f&uuml;r HKEY_CLASSES_ROOT</li>  <li>'CURRENT_CONFIG' f&uuml;r HKEY_CURRENT_CONFIG</li>  <li>'CURRENT_USER' f&uuml;r HKEY_CURRENT_USER</li>  <li>'LOCAL_MACHINE' f&uuml;r HKEY_LOCAL_MACHINE</li>  <li>'USERS' f&uuml;r HKEY_USERS</li>  <li>'DYN_DATA' f&uuml;r HKEY_DYN_DATA</li></ul>Der Unterschl&uuml;ssel gibt den Pfad des Unterschl&uuml;ssels, jeweils getrennt durch Backslash (\), an.<br /><br />Als Wertbezeichner wird der in der Registry definierte Bezeichner angegeben.<br />R&uuml;ckgabewert ist der gelesene Wert im entsprechenden Datentypsformat. Binary-Werte werden durch eine mit dem Standard-Separator separierten Liste an ASCII-Zeichencodes zur&uuml;ckgegeben, wie dies bei der Funktion GETFILE der Fall ist.</td>
+			</tr>
+			<tr>
+				<td class="ref_label">Beispiele:</td>
+				<td class="ref_code"><font color="#808080">rem Wert in Registry schreiben</font><br />letregval <font color="#0000ff">'STRING'</font>, <font color="#0000ff">'CURRENT_USER'</font>, <font color="#0000ff">'Software\jmksf\RapidBATCH'</font>, <font color="#0000ff">'HelloWorld'</font>, <font color="#0000ff">'Hello World by RapidBATCH ;)'</font><br /><br /><b>if</b> <font color="#000080">[errorcode]</font> = <font color="#0000ff">'0'</font><br />&nbsp;&nbsp;&nbsp;&nbsp;echo <font color="#0000ff">'Wert wurde erfolgreich geschrieben!'</font><br /><b>else</b><br />&nbsp;&nbsp;&nbsp;&nbsp;echo <font color="#0000ff">'Fehler beim Schreiben.'</font><br />&nbsp;&nbsp;&nbsp;&nbsp;<b>halt</b><br /><b>endif</b><br /><br /><font color="#808080">rem Wert wieder auslesen</font><br />getregval <font color="#000080">[wert]</font> = <font color="#0000ff">'STRING'</font>, <font color="#0000ff">'CURRENT_USER'</font>, <font color="#0000ff">'Software\jmksf\RapidBATCH'</font>, <font color="#0000ff">'HelloWorld'</font><br /><b>if</b> <font color="#000080">[errorcode]</font> = <font color="#0000ff">'0'</font><br />&nbsp;&nbsp;&nbsp;&nbsp;echo <font color="#0000ff">'Gelesener Wert: '</font> # <font color="#000080">[wert]</font><br /><b>else</b><br />&nbsp;&nbsp;&nbsp;&nbsp;echo <font color="#0000ff">'Fehler beim Lesen des Wertes.'</font><br /><b>endif</b><br /><br /><font color="#808080">rem Auf&auml;umen...</font><br />delregval <font color="#0000ff">'CURRENT_USER'</font>, <font color="#0000ff">'Software\jmksf\RapidBATCH'</font>, <font color="#0000ff">'HelloWorld'</font><br /><b>if</b> <font color="#000080">[errorcode]</font> = <font color="#0000ff">'-1'</font> echo <font color="#0000ff">'Fehler beim L&ouml;schen von Registry-Wert'</font><br /><b>end</b></td>
+			</tr>
+			<tr>
+				<td class="ref_label">Bemerkungen:</td>
+				<td>Schl&auml;gt GETREGVAL fehl, weil z.B. der zu lesende Wert nicht existiert, so erh&auml;lt [errorcode] den Wert '-1' und gibt einen Leerstring zur&uuml;ck. Ansonsten erh&auml;lt [errorcode] den Wert '0'.<br /><br />Verwenden Sie <a href="rb5ref_ger_3_letregval.html">LETREGVAL</a> und <a href="rb5ref_ger_3_delregval.html">DELREGVAL</a>, um Registry-Werte zu schreiben oder zu l&ouml;schen.</td>
+			</tr>
+		</table>
+	
+		<div class="line">&nbsp;</div>
+	
+		<div id="copyright">
+			Copyright &copy; 2000-2006 by J.M.K S.F. Software Technologies, Jan Max Meyer<br />
+			All rights reserved.
+		</div>
+	</body>
+</html>

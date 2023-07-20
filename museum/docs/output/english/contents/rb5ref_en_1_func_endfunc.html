@@ -1,0 +1,40 @@
+<html>
+	<head>
+		<title>RapidBATCH Language Reference :: FUNC...RET...ENDFUNC</title>
+		<link rel="stylesheet" href="jmksf.css" type="text/css" />
+	</head>
+	<body>
+		<div id="top">
+			<img src="rb5.png" alt="RapidBATCH Logo" />
+			FUNC...RET...ENDFUNC
+		</div>
+	
+		<div class="line">&nbsp;</div>
+	
+		<table cellspacing="10" width="100%">
+			<tr>
+				<td class="ref_label">Syntax:</td>
+				<td class="ref_syntax">FUNC function-name [:list-of-parameters]<br />&nbsp;&nbsp;&nbsp;&nbsp;{block of code}<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[RET [return-value] ]<br />&nbsp;&nbsp;&nbsp;&nbsp;{block of code}<br />ENDFUNC</td>
+			</tr>
+			<tr>
+				<td class="ref_label">Description:</td>
+				<td>Defines and implements a user-defined function.<br /><br />Functions are implemented to merge a set of RapidBATCH script code, performing a certain operation, together to one new, single function that can be called like any other RapidBATCH function everywhere within the script. A function must be created under an arbitrary name (over that the function is called and identified) and can optionally receive a certain number of parameters from the position it is called from. These parameters are defined as a list of variables, which are locally declared and receive the values assigned as parameters. By using the pointer-functionality, it is also possible to assign pointers pointing to arrays and variables to the function, so the function is able to store data to the pointer or access array elements over it.<br /><br />Using the RET-instruction, the function returns a value to the result variable that is specified at the function call. If no value is specified, RET automatically returns an empty-string. RET is also optional in functions, but MUST be used to finally return a value.<br /><br />A function is able to call other, user-defined procedures and functions or even itself recoursively. Implementing other functions or procedures within a function is not allowed.</td>
+			</tr>
+			<tr>
+				<td class="ref_label">Examples:</td>
+				<td class="ref_code"><font color="#808080">rem implementation of the function "square"</font><br /><b>func</b> square: <font color="#000080">[value]</font><br /><font color="#808080">&nbsp;&nbsp;&nbsp;&nbsp;rem directly return the result</font><br />&nbsp;&nbsp;&nbsp;&nbsp;<b>ret</b> <font color="#000080">[value]</font> * <font color="#000080">[value]</font><br /><b>endfunc</b><br /><br /><font color="#808080">rem calling the function "square"</font><br />square <font color="#000080">[result]</font> = <font color="#0000ff">'9'</font><br />echo <font color="#0000ff">'The result is: '</font> # <font color="#000080">[result]</font><br /><br />inputbox <font color="#000080">[square]</font> = <font color="#0000ff">'Value to square'</font>, <font color="#0000ff">'Please enter a value you want to square:'</font>, <font color="#0000ff">'5'</font><br />square <font color="#000080">[result]</font> = <font color="#000080">[square]</font><br />echo <font color="#0000ff">'The result is: '</font> # <font color="#000080">[result]</font><br /><br /><br /><font color="#808080">rem implementation of the recoursive calling function "fac"</font><br /><b>func</b> fac: <font color="#000080">[x]</font><br /><font color="#808080">&nbsp;&nbsp;&nbsp;&nbsp;rem local variable</font><br />&nbsp;&nbsp;&nbsp;&nbsp;<b>dec</b> <font color="#000080">[result]</font><br /><br />&nbsp;&nbsp;&nbsp;&nbsp;<b>if</b> <font color="#000080">[x]</font> = <font color="#0000ff">'0'</font><br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#000080">[result]</font> = <font color="#0000ff">'1'</font><br />&nbsp;&nbsp;&nbsp;&nbsp;<b>else</b><br /><font color="#808080">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;rem calling "fac" itself</font><br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;fac <font color="#000080">[result]</font> = <font color="#000080">[x]</font> - <font color="#0000ff">'1'</font><br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#000080">[result]</font> * <font color="#000080">[x]</font><br />&nbsp;&nbsp;&nbsp;&nbsp;<b>endif</b><br /><br /><font color="#808080">&nbsp;&nbsp;&nbsp;&nbsp;rem returning the content of [result]</font><br />&nbsp;&nbsp;&nbsp;&nbsp;<b>ret</b> <font color="#000080">[result]</font><br /><b>endfunc</b><br /><br /><font color="#808080">rem first call of "fac", starting the recoursion</font><br />fac <font color="#000080">[factoral]</font> = <font color="#0000ff">'4'</font><br /><br /><font color="#808080">rem show the result</font><br />echo <font color="#0000ff">'The factoral of 4 is '</font> # <font color="#000080">[factoral]</font></td>
+			</tr>
+			<tr>
+				<td class="ref_label">Remarks:</td>
+				<td>To implement user-defined procedures, use the statements PROC and ENDPROC.<br /><br />A set of procedures and functions can be collected and explicitly saved into a library-script file, that is included to scripts importing these procedures and functions over the INCLUDE-instruction. A function can not be called before its definition.<br />Calling RET is only allowed in procedures and functions.<br /><br />When declaring local variables in functions, it is recommended to call the DEC-instruction explicitly before their first use, to avoid problems with global variables that are defined under the same name.</td>
+			</tr>
+		</table>
+	
+		<div class="line">&nbsp;</div>
+	
+		<div id="copyright">
+			Copyright &copy; 2000-2006 by J.M.K S.F. Software Technologies, Jan Max Meyer<br />
+			All rights reserved.
+		</div>
+	</body>
+</html>

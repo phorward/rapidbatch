@@ -1,0 +1,40 @@
+<html>
+	<head>
+		<title>RapidBATCH Befehlsreferenz :: SHUTDOWN</title>
+		<link rel="stylesheet" href="jmksf.css" type="text/css" />
+	</head>
+	<body>
+		<div id="top">
+			<img src="rb5.png" alt="RapidBATCH Logo" />
+			SHUTDOWN
+		</div>
+	
+		<div class="line">&nbsp;</div>
+	
+		<table cellspacing="10" width="100%">
+			<tr>
+				<td class="ref_label">Syntax:</td>
+				<td class="ref_syntax">SHUTDOWN Modus</td>
+			</tr>
+			<tr>
+				<td class="ref_label">Beschreibung:</td>
+				<td>Beendet Windows und rebootet oder f&auml;hrt den PC herunter.<br /><br />Als Modus muss einer der folgenden numerischen Werte oder Build-in Konstanten angegeben werden:<br /><br />0 (SHUTDOWN) - PC herunterfahren<br />1 (REBOOT) - PC rebooten<br />2 (POWEROFF) - PC herunterfahren und ausschalten (falls dies Hardware-bedingt m&ouml;glich ist)<br />3 (LOGOFF) - Aktuellen Benutzer ausloggen und Anmeldebildschirm anzeigen</td>
+			</tr>
+			<tr>
+				<td class="ref_label">Beispiele:</td>
+				<td class="ref_code">echo <font color="#0000ff">'Restarting computer...'</font><br />shutdown <font color="#0000ff">'reboot'</font><br /><b>end</b></td>
+			</tr>
+			<tr>
+				<td class="ref_label">Bemerkungen:</td>
+				<td>[errorcode] erh&auml;lt im Fehlerfall den Wert -1, ansonsten 0.</td>
+			</tr>
+		</table>
+	
+		<div class="line">&nbsp;</div>
+	
+		<div id="copyright">
+			Copyright &copy; 2000-2006 by J.M.K S.F. Software Technologies, Jan Max Meyer<br />
+			All rights reserved.
+		</div>
+	</body>
+</html>

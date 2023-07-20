@@ -1,0 +1,1 @@
+astyle --indent=tab=4 --brackets=break --indent-cases --indent-switches *.cpp *.h
